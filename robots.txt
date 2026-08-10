@@ -1,0 +1,55 @@
+# MyApproved SEO-Optimized Robots.txt
+# Last Updated: 2024
+
+User-agent: *
+Allow: /
+
+# API Routes - No Index
+Disallow: /api/
+Disallow: /api/*
+
+# Admin Panel - No Index
+Disallow: /admin/
+Disallow: /admin/*
+
+# Authentication Pages - No Index
+Disallow: /login/
+Disallow: /login/*
+Disallow: /register/
+Disallow: /register/*
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /verify-email
+Disallow: /verify-mock
+Disallow: /verify-captcha
+
+# Dashboard/User Areas - No Index
+Disallow: /dashboard/
+Disallow: /dashboard/*
+
+# Debug/Test Pages - No Index
+Disallow: /debug/
+Disallow: /debug/*
+Disallow: /debug-client/
+Disallow: /test-*/
+Disallow: /test-*/*
+
+# Setup/Configuration Pages - No Index
+Disallow: /setup-crm
+Disallow: /setup-crm-private
+Disallow: /api-test
+
+# Legacy/Backup Files - No Index
+Disallow: /*_backup
+Disallow: /*_backup/*
+
+# Query Parameters - Avoid Duplicate Content
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*page=
+
+# Crawl Rate Optimization
+Crawl-delay: 1
+
+# XML Sitemap Location
+Sitemap: https://myapproved.com/sitemap.xml

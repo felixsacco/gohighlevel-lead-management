@@ -1,0 +1,12 @@
+.pageContainer {
+  padding-top: 6rem; /* 96px - adjust this value based on your header height */
+  min-height: calc(100vh - 6rem);
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .pageContainer {
+    padding-top: 5.5rem; /* 88px - adjust for mobile header height */
+    min-height: calc(100vh - 5.5rem);
+  }
+}

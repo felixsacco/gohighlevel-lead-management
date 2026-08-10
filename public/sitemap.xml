@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- CORE PAGES                                              -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <url>
+    <loc>https://myapproved.com/</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/find-tradespeople</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/instant-quote</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/post-job</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/for-tradespeople</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/register/client</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/register/tradesperson</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/how-it-works</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/blog</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/faq</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/locations</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/about</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/contact</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/verification</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/help</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/sitemap</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/privacy</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/terms</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/cookies</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- BLOG POSTS                                              -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <url>
+    <loc>https://myapproved.com/blog/how-much-does-a-plumber-cost-london</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/blog/best-electrician-manchester</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myapproved.com/blog/common-boiler-problems-winter</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- TRADE CATEGORY PAGES (/[trade])                         -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <url><loc>https://myapproved.com/plumber</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/electrician</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/builder</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/roofer</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/gas-engineer</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/carpenter</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/painter-decorator</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/plasterer</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/kitchen-fitter</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/bathroom-fitter</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/tiler</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/flooring</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/handyman</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/cleaner</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/heating-engineer</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/locksmith</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/window-fitter</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/gardener</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/landscaper</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/fencer</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/driveway-specialist</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/waste-removal</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/carpet-cleaner</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/security-installer</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/pest-control</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/damp-specialist</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/scaffolder</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/chimney-sweep</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/loft-insulation</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/air-conditioning</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/solar-panel-installer</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/loft-conversion</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://myapproved.com/conservatory</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FIND TRADESPEOPLE BY TRADE (/find-tradespeople/[trade]) -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <url><loc>https://myapproved.com/find-tradespeople/plumber</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/electrician</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/builder</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/roofer</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/carpenter</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/painter-decorator</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/plasterer</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/kitchen-fitter</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/bathroom-fitter</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/tiler</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/flooring</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/handyman</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/cleaner</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/locksmith</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/window-fitter</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gardener</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/landscaper</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/fencer</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/driveway-specialist</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/waste-removal</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/carpet-cleaner</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/security-installer</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/pest-control</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/damp-specialist</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/scaffolder</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/chimney-sweep</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/loft-insulation</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/air-conditioning</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/solar-panel-installer</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/loft-conversion</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/conservatory</loc><lastmod>2026-06-08</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- TOP TRADE + LOCATION PAGES (/find-tradespeople/[trade]/[location])     -->
+  <!-- High-demand trades × top 10 UK cities by search volume                 -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+  <!-- Plumbers by city -->
+  <url><loc>https://myapproved.com/find-tradespeople/plumber/london</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/plumber/manchester</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/plumber/birmingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/plumber/leeds</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/plumber/glasgow</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/plumber/liverpool</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/plumber/sheffield</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/plumber/bristol</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/plumber/edinburgh</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/plumber/nottingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Electricians by city -->
+  <url><loc>https://myapproved.com/find-tradespeople/electrician/london</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/electrician/manchester</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/electrician/birmingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/electrician/leeds</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/electrician/glasgow</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/electrician/liverpool</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/electrician/sheffield</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/electrician/bristol</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/electrician/edinburgh</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/electrician/nottingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Builders by city -->
+  <url><loc>https://myapproved.com/find-tradespeople/builder/london</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/builder/manchester</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/builder/birmingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/builder/leeds</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/builder/glasgow</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/builder/liverpool</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/builder/sheffield</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/builder/bristol</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/builder/edinburgh</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/builder/nottingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Gas Engineers by city -->
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer/london</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer/manchester</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer/birmingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer/leeds</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer/glasgow</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer/liverpool</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer/sheffield</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer/bristol</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer/edinburgh</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/gas-engineer/nottingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Roofers by city -->
+  <url><loc>https://myapproved.com/find-tradespeople/roofer/london</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/roofer/manchester</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/roofer/birmingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/roofer/leeds</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/roofer/glasgow</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/roofer/liverpool</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/roofer/sheffield</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/roofer/bristol</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/roofer/edinburgh</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/roofer/nottingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+
+  <!-- Heating Engineers by city -->
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer/london</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer/manchester</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer/birmingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer/leeds</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer/glasgow</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer/liverpool</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer/sheffield</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer/bristol</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer/edinburgh</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://myapproved.com/find-tradespeople/heating-engineer/nottingham</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+
+</urlset>

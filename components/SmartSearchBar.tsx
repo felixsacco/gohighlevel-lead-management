@@ -1,0 +1,233 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { Search, Shield, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useRouter } from 'next/navigation';
+import { isValidPostcode } from '@/lib/utils/validation';
+import { LoadingSpinner } from './LoadingSpinner';
+import AIQuoteForm from './AIQuoteForm';
+
+const TRADES = [
+  "Plumber",
+  "Electrician",
+  "Painter & Decorator",
+  "Handyman",
+  "Builder",
+  "Carpenter",
+  "Roofer",
+  "Gas Engineer",
+  "Tiler",
+  "Other"
+] as const;
+
+type Trade = typeof TRADES[number];
+
+interface SearchFormData {
+  trade: string;
+  postcode: string;
+}
+
+export default function SmartSearchBar() {
+  const [formData, setFormData] = useState<SearchFormData>({ trade: '', postcode: '' });
+  const [suggestions, setSuggestions] = useState<Trade[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [showAIQuoteForm, setShowAIQuoteForm] = useState(false);
+  const router = useRouter();
+  const searchRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Close suggestions when clicking outside - logic unchanged
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleTradeChange = (value: string) => {
+    setFormData(prev => ({ ...prev, trade: value }));
+    setError(null);
+    if (value.length > 1) {
+      const filtered = TRADES.filter(trade =>
+        trade.toLowerCase().includes(value.toLowerCase())
+      );
+      setSuggestions(filtered);
+      setShowSuggestions(true);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion: Trade) => {
+    setFormData(prev => ({ ...prev, trade: suggestion }));
+    setShowSuggestions(false);
+    document.getElementById('postcode')?.focus();
+  };
+
+  const handleInputFocus = () => {
+    if (formData.trade.length > 1 && suggestions.length > 0) {
+      setShowSuggestions(true);
+    }
+  };
+
+  const handleClearTrade = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setFormData(prev => ({ ...prev, trade: '' }));
+    inputRef.current?.focus();
+  };
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!formData.trade) {
+      setError('Please select a trade');
+      inputRef.current?.focus();
+      return;
+    }
+
+    if (!formData.postcode) {
+      setError('Please enter your postcode');
+      document.getElementById('postcode')?.focus();
+      return;
+    }
+
+    const formattedPostcode = formData.postcode.trim().toUpperCase();
+
+    if (!isValidPostcode(formattedPostcode)) {
+      setError('Please enter a valid UK postcode (e.g., SW1A 1AA)');
+      return;
+    }
+
+    // Open AI Quote Form instead of navigating - logic unchanged
+    setShowAIQuoteForm(true);
+  };
+
+  return (
+    <motion.div
+      className="w-full max-w-4xl mx-auto"
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {/* AI Quote Form Modal - unchanged */}
+      <AIQuoteForm
+        isOpen={showAIQuoteForm}
+        onClose={() => setShowAIQuoteForm(false)}
+      />
+
+      <form onSubmit={handleSearch} className="space-y-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+
+          {/* Trade input */}
+          <div className="relative md:col-span-1" ref={searchRef}>
+            <div className="relative">
+              <Input
+                ref={inputRef}
+                type="text"
+                placeholder="What do you need help with?"
+                value={formData.trade}
+                onChange={(e) => handleTradeChange(e.target.value)}
+                onFocus={handleInputFocus}
+                className="w-full pr-10 rounded-xl bg-[#1A1A1A] border border-white/10 text-white placeholder:text-white/30 focus-visible:border-[#FFB800] focus-visible:ring-0 text-sm h-12"
+                required
+                aria-label="Search for a trade"
+                aria-haspopup="listbox"
+                aria-expanded={showSuggestions}
+                aria-controls="trade-suggestions"
+              />
+              {formData.trade && (
+                <button
+                  type="button"
+                  onClick={handleClearTrade}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors"
+                  aria-label="Clear search"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+            {showSuggestions && suggestions.length > 0 && (
+              <ul
+                id="trade-suggestions"
+                className="absolute z-10 w-full mt-1.5 bg-[#1A1A1A] border border-white/10 rounded-xl shadow-2xl shadow-black/40 max-h-60 overflow-auto"
+                role="listbox"
+              >
+                {suggestions.map((suggestion) => (
+                  <li
+                    key={suggestion}
+                    role="option"
+                    aria-selected={formData.trade === suggestion}
+                    className={`px-4 py-2.5 cursor-pointer text-sm transition-colors duration-150 ${
+                      formData.trade === suggestion
+                        ? 'bg-[#FFB800]/10 text-[#FFB800]'
+                        : 'text-white/70 hover:bg-white/5 hover:text-white'
+                    }`}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          {/* Postcode input */}
+          <div className="md:col-span-1">
+            <Input
+              id="postcode"
+              type="text"
+              placeholder="Enter your postcode"
+              value={formData.postcode}
+              onChange={(e) => setFormData(prev => ({ ...prev, postcode: e.target.value.toUpperCase() }))}
+              className="w-full rounded-xl bg-[#1A1A1A] border border-white/10 text-white placeholder:text-white/30 focus-visible:border-[#FFB800] focus-visible:ring-0 text-sm h-12"
+              required
+              aria-label="Your postcode"
+            />
+          </div>
+
+          {/* Submit */}
+          <Button
+            type="submit"
+            className="bg-[#FFB800] hover:bg-[#FFC933] text-[#111111] font-black h-12 rounded-xl transition-all duration-200 hover:scale-[1.02] flex items-center justify-center"
+            disabled={isLoading}
+            aria-busy={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <LoadingSpinner size={18} className="mr-2" />
+                Searching...
+              </>
+            ) : (
+              <>
+                <Search className="mr-2 h-4 w-4" />
+                Search
+              </>
+            )}
+          </Button>
+        </div>
+
+        {error && (
+          <p className="text-red-400 text-xs text-center">{error}</p>
+        )}
+
+        <div className="flex items-center justify-center mt-1 gap-1.5">
+          <Shield className="h-4 w-4 text-[#FFB800]" />
+          <span className="text-xs text-white/50 font-medium">All Trades Verified</span>
+        </div>
+      </form>
+    </motion.div>
+  );
+}

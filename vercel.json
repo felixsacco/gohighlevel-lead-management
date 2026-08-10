@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "crons": [
+    {
+      "path": "/api/notifications/process-scheduled",
+      "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/escalate-jobs",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/purge-places-cache",
+      "schedule": "3 9 * * *"
+    },
+    {
+      "path": "/api/cron/release-expired-claims",
+      "schedule": "* * * * *"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+Sitemap: https://myapproved.com/sitemap.xml
+
+# ── Default: allow all, block internal/debug/auth routes ─────────────────────
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /dashboard/
+Disallow: /dashboard/*
+Disallow: /debug/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /api-test/
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+Disallow: /verify-captcha/
+Disallow: /verify-mock/
+Disallow: /verify-email/
+Disallow: /reset-password/
+Disallow: /reset-password-client/
+Disallow: /reset-password-tradesperson/
+Disallow: /forgot-password/
+Disallow: /job-description/
+Disallow: /leads/
+Disallow: /notifications/
+Disallow: /report-issue/
+Disallow: /thank-you/
+
+# ── Google ────────────────────────────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+
+# ── AI answer engines — allow full crawl for AEO citations ───────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*

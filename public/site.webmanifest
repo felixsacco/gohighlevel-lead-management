@@ -1,0 +1,25 @@
+{
+  "name": "MyApproved — Verified Tradespeople",
+  "short_name": "MyApproved",
+  "description": "Find verified, insured local tradespeople across the UK. Free quotes, real reviews, ID-checked professionals.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1A3A8A",
+  "theme_color": "#FFB800",
+  "lang": "en-GB",
+  "icons": [
+    {
+      "src": "/logo-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["business", "utilities"],
+  "screenshots": []
+}

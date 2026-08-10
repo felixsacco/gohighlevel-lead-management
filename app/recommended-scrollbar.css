@@ -1,0 +1,33 @@
+/* Custom scrollbar for Recommended Jobs section */
+.recommended-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.recommended-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.recommended-scrollbar::-webkit-scrollbar {
+  height: 10px;
+  background: #f1f5f9;
+  border-radius: 8px;
+}
+.recommended-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #facc15 20%, #fde68a 80%);
+  border-radius: 8px;
+}
+.recommended-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #fbbf24 20%, #facc15 80%);
+}
+
+/* Unique card style for Recommended Jobs */
+.recommended-scrollbar > div {
+  background: linear-gradient(135deg, #fffbe6 60%, #f7fafc 100%);
+  border: 2px solid #fde68a;
+  box-shadow: 0 6px 32px 0 rgba(250,204,21,0.12), 0 1.5px 6px 0 rgba(16,24,40,0.07);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.recommended-scrollbar > div:hover {
+  box-shadow: 0 12px 48px 0 rgba(250,204,21,0.22), 0 2px 8px 0 rgba(16,24,40,0.12);
+  transform: translateY(-4px) scale(1.03);
+  border-color: #facc15;
+}
