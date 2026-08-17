@@ -1,11 +1,31 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://jismdkfjkngwbpddhomx.supabase.co';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppc21ka2Zqa25nd2JwZGRob214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5Mzc2MzksImV4cCI6MjA2ODUxMzYzOX0.1pK4G-Mu5v8lSdDJUAsPsoDAlK9d7ocFaUH9dd2vl3A';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  // Fail closed: refuse to serve the activity log rather than silently connect
+  // to a fallback project (or throw at module load with an unclear error).
+  console.error('activity-log: NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY not set');
+}
+
+function getClient() {
+  if (!supabaseUrl || !supabaseKey) {
+    return null;
+  }
+  return createClient(supabaseUrl, supabaseKey);
+}
 
 export async function GET() {
+  const supabase = getClient();
+  if (!supabase) {
+    return NextResponse.json(
+      { error: 'Supabase environment not configured' },
+      { status: 500 }
+    );
+  }
+
   try {
     const { data, error } = await supabase
       .from('admin_activity_log')
