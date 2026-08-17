@@ -13,7 +13,7 @@ const TrustBadge = React.forwardRef<HTMLSpanElement, TrustBadgeProps>(
     const inner = (
       <>
         <Icon
-          className="h-4 w-4 shrink-0 text-[#FFB800]"
+          className="h-5 w-5 shrink-0 text-[#FFB800]"
           strokeWidth={1.75}
           aria-hidden="true"
         />
