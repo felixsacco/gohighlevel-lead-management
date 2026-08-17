@@ -35,6 +35,9 @@ class Analytics {
     const gaId = process.env.NEXT_PUBLIC_GA_ID;
     if (!gaId) return;
 
+    const consent = this.getConsent();
+    if (consent !== 'accepted') return;
+
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).gtag = function () {
       (window as any).dataLayer.push(arguments);
@@ -63,8 +66,21 @@ class Analytics {
     document.head.appendChild(script);
   }
 
+  /** Read the stored consent value (unknown if not present) */
+  private getConsent(): 'unknown' | 'accepted' | 'rejected' {
+    if (typeof window === 'undefined') return 'unknown';
+    try {
+      return localStorage.getItem('cookie-consent-v1') as 'unknown' | 'accepted' | 'rejected' || 'unknown';
+    } catch {
+      return 'unknown';
+    }
+  }
+
   /** Call this when user accepts cookies — lifts consent flags so GA4 can resume */
   grantConsent() {
+    if (typeof window !== 'undefined' && !(window as any).gtag) {
+      this.initGA4();
+    }
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('consent', 'update', {
         analytics_storage: 'granted',
@@ -204,6 +220,8 @@ class Analytics {
 
   // Send to custom analytics endpoint
   private async sendToCustomEndpoint(event: AnalyticsEvent) {
+    if (this.getConsent() !== 'accepted') return;
+
     try {
       await fetch('/api/analytics', {
         method: 'POST',

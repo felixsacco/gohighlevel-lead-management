@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { analytics } from '@/lib/analytics';
 
 const STORAGE_KEY = 'cookie-consent-v1';
 
@@ -25,6 +26,7 @@ export default function CookieConsent() {
       localStorage.setItem(STORAGE_KEY, 'accepted');
       setConsent('accepted');
     } catch {}
+    analytics.grantConsent();
   };
 
   const rejectNonEssential = () => {
