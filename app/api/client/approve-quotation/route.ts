@@ -25,6 +25,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (typeof clientId !== "string" || clientId.trim() === "") {
+      return NextResponse.json(
+        { error: "Missing required field: clientId" },
+        { status: 400 },
+      );
+    }
+
     const supabaseAdmin = getSupabaseAdmin();
     if (!supabaseAdmin) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
@@ -85,13 +92,11 @@ export async function POST(request: NextRequest) {
       clients: { id: string; first_name: string; last_name: string; email: string; phone?: string };
     };
 
-    if (clientId != null && String(clientId).trim() !== "") {
-      if (String(job.client_id) !== String(clientId)) {
-        return NextResponse.json(
-          { error: "You can only decide on applications for your own jobs." },
-          { status: 403 },
-        );
-      }
+    if (String(job.client_id) !== String(clientId)) {
+      return NextResponse.json(
+        { error: "You can only decide on applications for your own jobs." },
+        { status: 403 },
+      );
     }
 
     const clientInfo = job?.clients;
@@ -103,7 +108,7 @@ export async function POST(request: NextRequest) {
       trade: string;
       phone?: string;
     };
-    const assignedBy = clientId != null && String(clientId).trim() !== "" ? "client" : "admin";
+    const assignedBy = "client";
 
     const newStatus = action === "approve" ? "accepted" : "rejected";
     const acceptedAt = action === "approve" ? new Date().toISOString() : null;

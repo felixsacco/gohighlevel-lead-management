@@ -209,7 +209,7 @@ export default function ClientDashboardPage() {
       setDecisionError("");
       setDecisionBusyId(applicationId);
       try {
-        const res = await fetch("/api/client/admin-secret/approve-quotation", {
+        const res = await fetch("/api/client/approve-quotation", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ applicationId, action, clientId }),

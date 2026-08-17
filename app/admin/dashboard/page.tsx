@@ -933,7 +933,7 @@ export default function AdminDashboardPage() {
     console.log(`Admin: ${action}ing quotation ${applicationId}`);
     try {
       const response = await fetch(
-        "/api/client/admin-secret/approve-quotation",
+        "/api/client/approve-quotation",
         {
           method: "POST",
           headers: {
