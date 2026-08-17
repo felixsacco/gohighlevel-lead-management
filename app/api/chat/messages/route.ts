@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/lib/supabase';
 import { sendTransactionalEmail } from '@/lib/notifications/email';
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
 
 // GET messages for a chat room
 export async function GET(request: NextRequest) {
@@ -17,7 +12,12 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Missing chatRoomId' }, { status: 400 });
     }
 
-    const { data: messages, error } = await supabaseAdmin
+    const supabaseClient = createClient();
+    if (!supabaseClient) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+
+    const { data: messages, error } = await supabaseClient
       .from('chat_messages')
       .select('*')
       .eq('chat_room_id', chatRoomId)
@@ -45,8 +45,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
+    const supabaseClient = createClient();
+    if (!supabaseClient) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+
     // Insert the message
-    const { data: message, error: insertError } = await supabaseAdmin
+    const { data: message, error: insertError } = await supabaseClient
       .from('chat_messages')
       .insert({
         chat_room_id: chatRoomId,
@@ -63,7 +68,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Update chat room's updated_at timestamp
-    await supabaseAdmin
+    await supabaseClient
       .from('chat_rooms')
       .update({ updated_at: new Date().toISOString() })
       .eq('id', chatRoomId);
@@ -93,7 +98,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get chat room details and recipient information
-    const { data: chatRoom } = await supabaseAdmin
+    const { data: chatRoom } = await supabaseClient
       .from('chat_rooms')
       .select(`
         *,

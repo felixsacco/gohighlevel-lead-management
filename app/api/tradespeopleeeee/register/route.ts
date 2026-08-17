@@ -1,17 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/lib/supabase';
 import { sendTransactionalEmail } from '@/lib/notifications/email';
 import { sendNotification } from '@/lib/notifications';
 import { normalizeUkPhone } from '@/lib/utils/phone-mask';
 
-// Hardcoded Supabase credentials (no env file needed)
-const supabaseAdmin = createClient(
-  'https://jismdkfjkngwbpddhomx.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppc21ka2Zqa25nd2JwZGRob214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5Mzc2MzksImV4cCI6MjA2ODUxMzYzOX0.1pK4G-Mu5v8lSdDJUAsPsoDAlK9d7ocFaUH9dd2vl3A'
-);
-
 export async function POST(request: NextRequest) {
   try {
+    const supabaseClient = createClient();
+    if (!supabaseClient) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+
     console.log('Tradesperson registration API called');
     
     const body = await request.json();
@@ -48,7 +47,7 @@ export async function POST(request: NextRequest) {
 
     console.log('Checking for existing tradesperson...');
     // Check if email already exists in tradespeople table
-    const { data: existingTradesperson, error: tradespersonCheckError } = await supabaseAdmin
+    const { data: existingTradesperson, error: tradespersonCheckError } = await supabaseClient
       .from('tradespeople')
       .select('id')
       .eq('email', email)
@@ -64,7 +63,7 @@ export async function POST(request: NextRequest) {
 
     console.log('Checking for existing client...');
     // Check if email exists in clients table
-    const { data: existingClient, error: clientCheckError } = await supabaseAdmin
+    const { data: existingClient, error: clientCheckError } = await supabaseClient
       .from('clients')
       .select('id')
       .eq('email', email)
@@ -81,7 +80,7 @@ export async function POST(request: NextRequest) {
     console.log('Creating tradesperson record...');
 
     // Create tradesperson record
-    const { data: tradesperson, error: insertError } = await supabaseAdmin
+    const { data: tradesperson, error: insertError } = await supabaseClient
       .from('tradespeople')
       .insert({
         email,

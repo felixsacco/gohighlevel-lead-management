@@ -98,24 +98,28 @@ const EnhancedHeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center bg-[#111111] text-white overflow-hidden">
-      {/* Ambient glow blobs */}
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-[#FFB800]/5 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#FFB800]/3 rounded-full blur-[130px] pointer-events-none" />
+    <section className="relative min-h-screen flex items-center bg-[#1A3A8A] text-white overflow-hidden">
+      {/* Flat navy ground with a hard two-tone split — no gradient wash */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <div className="absolute top-0 bottom-0 left-0 w-[28%] bg-[#111111]" />
+        <div className="absolute top-0 bottom-0 left-[28%] right-0 bg-[#1A3A8A]" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-white/15" />
+        <div className="absolute bottom-0 left-[28%] right-0 h-px bg-white/10" />
+      </div>
 
       <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-24">
-        <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
+        <div className="grid lg:grid-cols-12 gap-16 xl:gap-24 items-center">
 
-          {/* ── Left Column ── */}
+          {/* ── Left Column (spans 7, asymmetric against image's 5) ── */}
           <motion.div
-            className="space-y-8"
+            className="lg:col-span-7 space-y-10"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {/* Live pill */}
-            <motion.div variants={itemVariants}>
-              <div className="inline-flex items-center gap-2.5 bg-white/[0.06] border border-white/10 px-4 py-2 rounded-full">
+            {/* Live status — flat, no pill, pushed off the left axis */}
+            <motion.div variants={itemVariants} className="lg:-translate-x-6">
+              <div className="inline-flex items-center gap-2.5 border-l-2 border-[#FFB800] pl-4 py-0.5">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FFB800] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FFB800]" />
@@ -126,8 +130,8 @@ const EnhancedHeroSection = () => {
               </div>
             </motion.div>
 
-            {/* Editorial headline */}
-            <motion.div variants={itemVariants} className="space-y-0">
+            {/* Editorial headline — offset, not centered */}
+            <motion.div variants={itemVariants} className="space-y-0 lg:-translate-x-6">
               <p className="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-[#FFB800] mb-3">
                 Rated #1 Tradesperson Platform
               </p>
@@ -143,16 +147,16 @@ const EnhancedHeroSection = () => {
               </h1>
             </motion.div>
 
-            <motion.p variants={itemVariants} className="text-base text-white/55 leading-relaxed max-w-[420px]">
+            <motion.p variants={itemVariants} className="text-base text-white/55 leading-relaxed max-w-[520px] lg:-translate-x-6">
               Hire vetted professionals near you. Fast, reliable, and backed by verified reviews.
             </motion.p>
 
-            {/* Feature pills */}
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-2">
+            {/* Feature pills — rectangle + single left hairline, not repeated rounded pills */}
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-x-5 gap-y-2">
               {trustFeatures.map(({ icon: Icon, label }) => (
                 <div
                   key={label}
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-white/50 border border-white/[0.08] px-3 py-1.5 rounded-full hover:border-[#FFB800]/30 hover:text-white/75 transition-colors duration-200"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/60 border-l border-[#FFB800]/60 pl-2.5 hover:text-white/80 transition-colors duration-200"
                 >
                   <Icon className="w-3 h-3 text-[#FFB800]" />
                   <span>{label}</span>
@@ -160,7 +164,7 @@ const EnhancedHeroSection = () => {
               ))}
             </motion.div>
 
-            {/* Search card */}
+            {/* Search card — rounded-2xl retained, input row goes square to vary radius */}
             <motion.div
               variants={itemVariants}
               className="bg-[#1A1A1A] border border-white/[0.07] rounded-2xl p-5 space-y-3.5"
@@ -171,7 +175,7 @@ const EnhancedHeroSection = () => {
                     What do you need?
                   </label>
                   <Select>
-                    <SelectTrigger className="h-11 rounded-xl border border-white/10 bg-[#232323] text-white text-sm focus:border-[#FFB800] focus:ring-0 [&>span]:text-white/40">
+                    <SelectTrigger className="h-11 rounded-none border border-white/10 border-b-2 border-b-[#FFB800]/40 bg-[#232323] text-white text-sm focus:border-[#FFB800] focus:ring-0 [&>span]:text-white/40">
                       <SelectValue placeholder="Choose a service..." />
                     </SelectTrigger>
                     <SelectContent>
@@ -190,12 +194,12 @@ const EnhancedHeroSection = () => {
                   </label>
                   <Input
                     placeholder="Enter postcode or city"
-                    className="h-11 rounded-xl border border-white/10 bg-[#232323] text-white placeholder:text-white/30 focus-visible:border-[#FFB800] focus-visible:ring-0 text-sm"
+                    className="h-11 rounded-none border border-white/10 border-b-2 border-b-[#FFB800]/40 bg-[#232323] text-white placeholder:text-white/30 focus-visible:border-[#FFB800] focus-visible:ring-0 text-sm"
                   />
                 </div>
               </div>
 
-              <Button className="w-full h-12 bg-[#FFB800] hover:bg-[#FFC933] text-[#111111] font-black text-sm rounded-xl transition-all duration-200 hover:scale-[1.01] group">
+              <Button className="w-full h-12 bg-[#FFB800] text-[#111111] font-black text-sm rounded-none ring-2 ring-inset ring-[#1A3A8A] hover:bg-[#FFC933] transition-colors duration-200 group">
                 <span>Get Started</span>
                 <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 transition-transform duration-200" />
               </Button>
@@ -205,46 +209,42 @@ const EnhancedHeroSection = () => {
               </p>
             </motion.div>
 
-            {/* Stats row */}
-            <motion.div variants={itemVariants} className="grid grid-cols-3">
+            {/* Stats row — hard top hairline, no floating dividers */}
+            <motion.div variants={itemVariants} className="grid grid-cols-3 border-t border-white/[0.08] pt-6">
               {[
                 { value: `${(tradespeopleCount / 1000).toFixed(0)}k+`, label: 'Tradespeople' },
                 { value: `${(reviewsCount / 1000).toFixed(0)}k+`, label: 'Reviews' },
                 { value: '98%', label: 'Success Rate' },
               ].map((stat, i) => (
-                <div key={stat.label} className={i > 0 ? 'border-l border-white/[0.08] pl-6' : ''}>
+                <div key={stat.label} className={i > 0 ? 'border-l border-white/[0.08] pl-6' : 'pr-6'}>
                   <div className="text-2xl font-black text-white tabular-nums">{stat.value}</div>
                   <div className="text-xs text-white/35 mt-0.5 font-medium">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
 
-            {/* Featured on */}
+            {/* Featured on — three distinct treatments, not one repeated span */}
             <motion.div variants={itemVariants} className="pt-1">
-              <p className="text-[0.6rem] font-bold tracking-[0.18em] uppercase text-white/20 mb-2">
+              <p className="text-[0.6rem] font-bold tracking-[0.18em] uppercase text-white/20 mb-3">
                 As featured on
               </p>
-              <div className="flex items-center gap-5">
-                {trustBadges.map((badge) => (
-                  <span
-                    key={badge.name}
-                    className="text-white/20 font-bold text-sm hover:text-white/45 transition-colors cursor-default"
-                  >
-                    {badge.name}
-                  </span>
-                ))}
+              <div className="flex items-center gap-6">
+                <span className="text-white/25 font-light text-base tracking-tight cursor-default">BBC</span>
+                <span className="text-white/30 font-semibold text-xs uppercase tracking-[0.08em] border border-white/15 px-2 py-1 cursor-default">TrustPilot</span>
+                <span className="text-white/25 font-bold text-sm cursor-default">Google</span>
+                <span className="text-white/30 italic font-serif text-sm cursor-default">Which?</span>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* ── Right Column ── */}
+          {/* ── Right Column (spans 5) ── */}
           <motion.div
-            className="relative hidden lg:block"
+            className="relative hidden lg:block lg:col-span-5"
             variants={imageVariants}
             initial="hidden"
             animate="visible"
           >
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/10">
               <Image
                 src="/hero.png"
                 alt="Professional tradesperson at work"
@@ -256,25 +256,21 @@ const EnhancedHeroSection = () => {
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                   if (e.currentTarget.parentElement) {
-                    e.currentTarget.parentElement.style.background =
-                      'linear-gradient(160deg, #1A1A1A 0%, #252525 50%, #1E1E1E 100%)';
+                    e.currentTarget.parentElement.style.background = '#1A1A1A';
                   }
                 }}
               />
-              {/* Vignettes */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/70 via-transparent to-[#111111]/25" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#111111]/15 to-transparent" />
 
-              {/* Play button */}
+              {/* Play button — hard edge, no glow/shadow */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <button className="w-16 h-16 bg-[#FFB800] rounded-full flex items-center justify-center hover:bg-[#FFC933] hover:scale-105 transition-all duration-200 group shadow-2xl shadow-[#FFB800]/30">
-                  <Play className="w-6 h-6 text-[#111111] ml-0.5 group-hover:scale-110 transition-transform duration-200" />
+                <button className="w-16 h-16 bg-[#FFB800] rounded-none ring-2 ring-inset ring-[#111111]/40 flex items-center justify-center hover:bg-[#FFC933] transition-colors duration-200 group">
+                  <Play className="w-6 h-6 text-[#111111] ml-0.5" />
                 </button>
               </div>
 
-              {/* Floating chip - jobs today */}
+              {/* Floating chip - jobs today (square, off-frame) */}
               <motion.div
-                className="absolute top-5 right-5 bg-[#111111]/85 backdrop-blur-md border border-white/[0.08] rounded-xl px-3.5 py-2.5"
+                className="absolute -right-3 top-8 bg-[#1A1A1A] border border-white/10 px-3.5 py-2.5"
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -285,15 +281,15 @@ const EnhancedHeroSection = () => {
                 <div className="text-[0.65rem] text-white/45 font-semibold mt-0.5">Jobs Today</div>
               </motion.div>
 
-              {/* Floating chip - success rate */}
+              {/* Floating chip - success rate (rounded, hard hairline) */}
               <motion.div
-                className="absolute bottom-5 left-5 bg-[#111111]/85 backdrop-blur-md border border-white/[0.08] rounded-xl px-3.5 py-2.5 flex items-center gap-2.5"
+                className="absolute -bottom-4 -left-3 bg-[#1A1A1A] rounded-2xl border border-white/10 px-4 py-3 flex items-center gap-2.5"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="w-7 h-7 bg-[#FFB800]/15 border border-[#FFB800]/25 rounded-full flex items-center justify-center shrink-0">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#FFB800]" />
+                <div className="w-7 h-7 bg-[#FFB800] flex items-center justify-center shrink-0 rounded-none">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#111111]" />
                 </div>
                 <div>
                   <div className="text-sm font-black text-white leading-none">98% Success</div>
@@ -301,9 +297,9 @@ const EnhancedHeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* Floating chip - 3 quotes */}
+              {/* Floating chip - 3 quotes (hairline-only, left edge) */}
               <motion.div
-                className="absolute top-1/2 -translate-y-1/2 left-5 bg-[#111111]/85 backdrop-blur-md border border-white/[0.08] rounded-xl px-3.5 py-2.5"
+                className="absolute top-1/2 -translate-y-1/2 -left-3 border-l-2 border-l-[#FFB800] bg-[#1A1A1A] pl-3 py-2.5 pr-3"
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.3, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -312,7 +308,7 @@ const EnhancedHeroSection = () => {
                   {[1, 2, 3].map((i) => (
                     <div
                       key={i}
-                      className="w-6 h-6 bg-[#FFB800]/20 border border-[#FFB800]/40 rounded-full flex items-center justify-center text-[#FFB800] text-[0.6rem] font-black"
+                      className="w-6 h-6 bg-[#FFB800] border border-[#111111] flex items-center justify-center text-[#111111] text-[0.6rem] font-black"
                     >
                       {i}
                     </div>

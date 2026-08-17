@@ -1,4 +1,5 @@
 import './globals.css';
+import './hero-animations.css';
 import { SchemaMarkup, organizationSchema, WebsiteSchema, ServiceSchema, LocalBusinessSchema, FAQSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
 import type { Metadata } from 'next';
 import EnhancedHeader from '@/components/EnhancedHeader';

@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
+import { createClient } from '@/lib/supabase';
 
 // Common responses database
 const AI_RESPONSES = {
@@ -164,12 +159,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
+    const supabaseClient = createClient();
+    if (!supabaseClient) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+
     // Find the best AI response
     const responseKey = findBestResponse(message);
     const aiResponse = AI_RESPONSES[responseKey] || AI_RESPONSES['help'];
 
     // Send AI response message
-    const { data: responseMessage, error: insertError } = await supabaseAdmin
+    const { data: responseMessage, error: insertError } = await supabaseClient
       .from('chat_messages')
       .insert({
         chat_room_id: chatRoomId,
@@ -186,14 +186,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Update chat room timestamp
-    await supabaseAdmin
+    await supabaseClient
       .from('chat_rooms')
       .update({ updated_at: new Date().toISOString() })
       .eq('id', chatRoomId);
 
     // If escalation is needed, create a support ticket
     if (aiResponse.escalate) {
-      await supabaseAdmin
+      await supabaseClient
         .from('support_tickets')
         .insert({
           user_id: userId,

@@ -21,7 +21,7 @@
 **Live database (queried 2026-08-10)**: `notification_logs` table **exists and has data**. Sample row returned:
 ```json
 {
-  "idempotency_key": "job_posted_confirmation:7c019a2b-...",
+  "idempotency_keyco": "job_posted_confirmation:7c019a2b-...",
   "event_type": "job_posted_confirmation",
   "channel": "email",
   "status": "failed",

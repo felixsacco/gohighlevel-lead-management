@@ -1,14 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const fetchCache = 'force-no-store';
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
 
 export async function GET(request: NextRequest) {
   try {
@@ -20,9 +15,14 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Missing userId or userType' }, { status: 400 });
     }
 
+    const supabaseClient = createClient();
+    if (!supabaseClient) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+
     let query;
     if (userType === 'client') {
-      query = supabaseAdmin
+      query = supabaseClient
         .from('chat_rooms')
         .select(`
           *,
@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
         .eq('is_active', true)
         .order('updated_at', { ascending: false });
     } else {
-      query = supabaseAdmin
+      query = supabaseClient
         .from('chat_rooms')
         .select(`
           *,
@@ -76,7 +76,7 @@ export async function GET(request: NextRequest) {
 
     if (error) {
       // Fallback: return bare chat_rooms without joins
-      const fallback = await supabaseAdmin
+      const fallback = await supabaseClient
         .from('chat_rooms')
         .select('*')
         .eq(userType === 'client' ? 'client_id' : 'tradesperson_id', userId)

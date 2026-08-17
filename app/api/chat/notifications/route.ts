@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
+import { createClient } from '@/lib/supabase';
 
 export async function GET(request: NextRequest) {
   try {
@@ -14,6 +9,11 @@ export async function GET(request: NextRequest) {
 
     if (!userId || !userType) {
       return NextResponse.json({ error: 'Missing userId or userType' }, { status: 400 });
+    }
+
+    const supabaseClient = createClient();
+    if (!supabaseClient) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }
 
     // Set up Server-Sent Events
@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
         sendEvent({ type: 'connected', message: 'Connected to chat notifications' });
 
         // Set up real-time subscription to chat notifications
-        const subscription = supabaseAdmin
+        const subscription = supabaseClient
           .channel('chat_notifications')
           .on(
             'postgres_changes',
@@ -85,7 +85,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing notificationIds array' }, { status: 400 });
     }
 
-    const { error } = await supabaseAdmin
+    const supabaseClient = createClient();
+    if (!supabaseClient) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+
+    const { error } = await supabaseClient
       .from('chat_notifications')
       .update({ is_read: true })
       .in('id', notificationIds);

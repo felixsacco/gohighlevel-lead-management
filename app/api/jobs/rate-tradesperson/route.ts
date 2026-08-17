@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/lib/supabase';
 import { sendNotification } from '@/lib/notifications';
-
-const supabaseAdmin = createClient(
-  'https://jismdkfjkngwbpddhomx.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppc21ka2Zqa25nd2JwZGRob214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5Mzc2MzksImV4cCI6MjA2ODUxMzYzOX0.1pK4G-Mu5v8lSdDJUAsPsoDAlK9d7ocFaUH9dd2vl3A'
-);
 
 export async function POST(request: NextRequest) {
   try {
-    const { 
+    const supabaseClient = createClient();
+    if (!supabaseClient) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+
+    const {
       jobId, 
       tradespersonId, 
       rating, 
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if job exists and is completed
-    const { data: job, error: jobError } = await supabaseAdmin
+    const { data: job, error: jobError } = await supabaseClient
       .from('jobs')
       .select('*')
       .eq('id', jobId)
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if tradesperson exists
-    const { data: tradesperson, error: tradespersonError } = await supabaseAdmin
+    const { data: tradesperson, error: tradespersonError } = await supabaseClient
       .from('tradespeople')
       .select('*')
       .eq('id', tradespersonId)
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if rating already exists for this job-tradesperson-reviewer combination
-    const { data: existingRating, error: checkError } = await supabaseAdmin
+    const { data: existingRating, error: checkError } = await supabaseClient
       .from('job_reviews')
       .select('*')
       .eq('job_id', jobId)
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Add rating to job_reviews table
-    const { error: reviewError } = await supabaseAdmin
+    const { error: reviewError } = await supabaseClient
       .from('job_reviews')
       .insert({
         job_id: jobId,

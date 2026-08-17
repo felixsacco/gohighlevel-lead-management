@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { createClient } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,8 +9,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
+    const supabaseClient = createClient();
+    if (!supabaseClient) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+
     // Mark all unread messages in this chat room as read (except those sent by the current user)
-    const { error } = await supabase
+    const { error } = await supabaseClient
       .from('chat_messages')
       .update({ is_read: true })
       .eq('chat_room_id', chatRoomId)

@@ -6,10 +6,11 @@ interface TrustBadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   icon: LucideIcon;
   label: string;
   href?: string;
+  labelClassName?: string;
 }
 
 const TrustBadge = React.forwardRef<HTMLSpanElement, TrustBadgeProps>(
-  ({ icon: Icon, label, href, className, ...props }, ref) => {
+  ({ icon: Icon, label, href, className, labelClassName, ...props }, ref) => {
     const inner = (
       <>
         <Icon
@@ -17,7 +18,7 @@ const TrustBadge = React.forwardRef<HTMLSpanElement, TrustBadgeProps>(
           strokeWidth={1.75}
           aria-hidden="true"
         />
-        <span className="text-[#111111]">{label}</span>
+        <span className={cn('text-[#111111]', labelClassName)}>{label}</span>
       </>
     );
 

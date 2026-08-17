@@ -81,6 +81,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { TrustBadge } from "@/components/TrustBadge";
+import { ShieldCheck as ShieldCheckFill, SealCheck as SealCheckFill } from "@phosphor-icons/react";
 
 const AIQuoteForm = dynamic(() => import("@/components/AIQuoteForm"), {
   ssr: false,
@@ -128,11 +130,12 @@ const useTypewriter = (words: string[], typingSpeed = 100, deletingSpeed = 50, p
 };
 
 // Animated rotating text hook with fade transition
-const useRotatingText = (words: string[], interval = 2600) => {
+const useRotatingText = (words: string[], interval = 2600, paused = false) => {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    if (paused) return;
     const timer = setInterval(() => {
       setVisible(false);
       setTimeout(() => {
@@ -141,7 +144,7 @@ const useRotatingText = (words: string[], interval = 2600) => {
       }, 350);
     }, interval);
     return () => clearInterval(timer);
-  }, [words, interval]);
+  }, [words, interval, paused]);
 
   return { word: words[index], visible };
 };
@@ -222,9 +225,31 @@ const TradesCarousel = () => {
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showAIModal, setShowAIModal] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [searchFocused, setSearchFocused] = useState(false);
 
-  // Search placeholder
-  const searchPlaceholder = "What work do you need doing?";
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduceMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReduceMotion(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  const { word: searchPlaceholder } = useRotatingText(
+    [
+      "Find a plumber in Manchester",
+      "Find an electrician in Leeds",
+      "Find a roofer in Birmingham",
+      "Find a painter in Glasgow",
+      "Find a gas engineer in Bristol",
+      "Find a builder in Liverpool",
+      "Find a carpenter in Sheffield",
+      "Find a bathroom fitter in London",
+    ],
+    2600,
+    reduceMotion || searchFocused
+  );
 
   return (
     <>
@@ -274,26 +299,38 @@ export default function Home() {
 
       {/* HERO SECTION — a public register for vetted tradespeople, not a marketing banner */}
       <section className="relative bg-[#1A3A8A] text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
+        {/* Brand background accents — subtle radial glow + amber grain */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+          <div className="absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-[#2450B8]/40 blur-3xl" />
+          <div className="absolute -bottom-40 -right-24 h-[36rem] w-[36rem] rounded-full bg-[#FFB800]/10 blur-3xl" />
+        </div>
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[140px] sm:pt-[160px] pb-20 md:pt-[200px] md:pb-32">
           <div className="max-w-5xl mx-auto">
             {/* Hero Content - Centered */}
             <div className="text-center">
-              {/* Register overline — a spec label, not a pill */}
-              <p className="inline-flex items-center gap-2 text-[0.65rem] font-bold tracking-[0.18em] uppercase text-white/70 mb-6 sm:mb-8">
-                <span className="h-px w-6 bg-[#FFB800]" aria-hidden="true"></span>
-                Public register of vetted UK tradespeople
-                <span className="h-px w-6 bg-[#FFB800]" aria-hidden="true"></span>
+              {/* Register overline — a spec label on a brand-yellow highlight bar */}
+              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-black mb-7 sm:mb-9">
+                <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-[#FFB800]" aria-hidden="true"></span>
+                <span className="relative px-3 py-1">
+                  <span aria-hidden="true" className="absolute inset-0 bg-[#FFB800] rounded-sm -rotate-1"></span>
+                  <span className="relative z-10">Vetted tradespeople across the UK</span>
+                </span>
+                <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-[#FFB800]" aria-hidden="true"></span>
               </p>
 
-              {/* Headline — two clean static lines, no truncation or rotation */}
-              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] mb-6 sm:mb-8 px-2 sm:px-4" style={{fontWeight: 800}}>
-                <span className="block text-white">Get Your Job Done Right.</span>
-                <span className="block text-[#FFB800]">Find an Approved Tradesperson</span>
+              {/* Headline — one line, with brand-highlighted emphasis */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight mb-6 sm:mb-8 px-2 sm:px-4" style={{fontWeight: 800}}>
+                Hire a tradesperson you can{" "}
+                <span className="relative whitespace-nowrap">
+                  <span aria-hidden="true" className="absolute inset-x-0 bottom-1 sm:bottom-2 h-3 sm:h-4 bg-gradient-to-r from-[#FFB800] to-[#FFD35C] rounded-sm -rotate-1"></span>
+                  <span className="relative z-10 text-black">actually count on</span>
+                </span>
               </h1>
 
               {/* Subheadline — one specific promise */}
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed mb-8 sm:mb-12 max-w-2xl mx-auto font-medium px-4">
-                Every tradesperson is ID-checked, insured and reviewed before they join the register.
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/85 leading-relaxed mb-8 sm:mb-12 max-w-2xl mx-auto font-medium px-4">
+                Every tradesperson's ID and insurance, checked before they're listed.
               </p>
 
               {/* Search Bar — a raised, rounded clickable target on navy */}
@@ -309,6 +346,8 @@ export default function Home() {
                       placeholder={searchPlaceholder}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
+                      onFocus={() => setSearchFocused(true)}
+                      onBlur={() => setSearchFocused(false)}
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowAIModal(true);
@@ -329,26 +368,17 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Trust indicators — three flat register entries, separated by hairlines */}
+              {/* Trust indicators — two flat register entries, separated by a hairline */}
               <div className="inline-flex flex-nowrap justify-center text-xs sm:text-sm md:text-base px-2 sm:px-4">
                 <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/80 whitespace-nowrap">
-                  <span className="text-[#FFB800] text-base sm:text-lg font-bold leading-none" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5 inline-block" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 21h18" />
-                      <path d="M5 21V7l7-4 7 4v14" />
-                      <path d="M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1" />
-                    </svg>
+                  <span className="text-white text-base sm:text-lg font-bold leading-none" aria-hidden="true">
+                    <ShieldCheckFill
+                      weight="fill"
+                      className="h-4 w-4 sm:h-5 sm:w-5 inline-block"
+                      aria-hidden="true"
+                    />
                   </span>
-                  <span className="font-bold tracking-wide">COMPANIES HOUSE VERIFIED</span>
-                </div>
-                <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/80 whitespace-nowrap border-l border-white/20">
-                  <span className="text-[#FFB800] text-base sm:text-lg font-bold leading-none" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5 inline-block" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" />
-                      <path d="M9 12l2 2 4-4" />
-                    </svg>
-                  </span>
-                  <span className="font-bold tracking-wide">INSURANCE CERTIFICATE VERIFIED</span>
+                  <span className="font-bold tracking-wide text-white/80">INSURANCE CERTIFICATE VERIFIED</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/80 whitespace-nowrap border-l border-white/20">
                   <span className="text-base sm:text-lg font-bold leading-none" aria-hidden="true">
@@ -359,7 +389,7 @@ export default function Home() {
                       <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.45-3.45C17.96 1.08 15.24 0 12 0 7.31 0 3.35 3.13 1.27 7.35l3.98 3.08C6.2 6.87 8.86 4.75 12 4.75z" />
                     </svg>
                   </span>
-                  <span className="font-bold tracking-wide">GOOGLE REVIEWS CHECKED</span>
+                  <span className="font-bold tracking-wide text-white/80">GOOGLE REVIEWS CHECKED</span>
                 </div>
               </div>
             </div>

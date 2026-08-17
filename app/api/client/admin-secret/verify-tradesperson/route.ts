@@ -58,15 +58,13 @@ export async function POST(request: NextRequest) {
     try {
       const { data: documents } = await supabaseAdmin
         .from('documents')
-        .select('doc_type, status, expiry_date, doc_number')
+        .select('doc_type, status, expiry_date')
         .eq('trade_id', tradespersonId);
 
       const aiResult = await aiVerifyTradesperson({
         tradespersonId,
         firstName: tradesperson.first_name,
         lastName: tradesperson.last_name,
-        email: tradesperson.email,
-        phone: tradesperson.phone,
         trade: tradesperson.trade,
         city: tradesperson.city,
         postcode: tradesperson.postcode,
@@ -75,8 +73,7 @@ export async function POST(request: NextRequest) {
         documents: (documents || []).map((d: any) => ({
           docType: d.doc_type,
           status: d.status,
-          expiryDate: d.expiry_date,
-          docNumber: d.doc_number,
+          expiryDate: d.expiry_date ?? null,
         })),
         companiesHouseProfile,
       });

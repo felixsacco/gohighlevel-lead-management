@@ -7,7 +7,13 @@
  *   npx dotenv -e .env.local -- npx tsx scripts/sync-prospects-to-ghl.ts
  */
 
-import "dotenv/config";
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+import path from "path";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, "../.env.local") });
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
+
 import { getSupabaseAdmin } from "../lib/supabase";
 import { createGoHighLevelPrivateService, GoHighLevelService } from "../lib/gohighlevel-service";
 
