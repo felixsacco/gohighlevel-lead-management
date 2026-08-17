@@ -7,7 +7,6 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { createGoHighLevelOAuth } from "@/lib/gohighlevel-oauth";
 import { createGoHighLevelService } from "@/lib/gohighlevel-service";
 import { Loader2, CheckCircle, XCircle, ExternalLink, Copy, RefreshCw } from "lucide-react";
 
@@ -29,23 +28,34 @@ export default function SetupCRMPage() {
   const [accessToken, setAccessToken] = useState("");
   const [testResult, setTestResult] = useState<any>(null);
 
-  // OAuth configuration (these should come from environment variables)
-  const clientId = process.env.NEXT_PUBLIC_GOHIGHLEVEL_CLIENT_ID || "";
-  const clientSecret = process.env.NEXT_PUBLIC_GOHIGHLEVEL_CLIENT_SECRET || "";
+  // The OAuth client secret is never read here. The authorization URL — which
+  // embeds only the (non-secret) client id and redirect URI — is produced by a
+  // server route that holds the secret server-side. The client id and redirect
+  // URI are not exposed to the browser bundle separately; they arrive inside
+  // the ready-made URL.
   const [redirectUri, setRedirectUri] = useState<string>('');
-  
+
   useEffect(() => {
-    setRedirectUri(process.env.NEXT_PUBLIC_GOHIGHLEVEL_REDIRECT_URI || `${window.location.origin}/api/crm/oauth/callback`);
+    setRedirectUri(`${window.location.origin}/api/crm/oauth/callback`);
   }, []);
 
   useEffect(() => {
-    // Generate authorization URL when component mounts
-    if (clientId && redirectUri) {
-      const oauthService = createGoHighLevelOAuth(clientId, clientSecret, redirectUri);
-      const url = oauthService.generateAuthUrl();
-      setAuthUrl(url);
-    }
-  }, [clientId, clientSecret, redirectUri]);
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch('/api/crm/oauth/config');
+        const data = await res.json();
+        if (!cancelled && data.authUrl) {
+          setAuthUrl(data.authUrl);
+        }
+      } catch {
+        // Leave authUrl empty so the UI shows the "not configured" state.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleAuthorize = () => {
     if (authUrl) {
