@@ -10,7 +10,7 @@ import { createGoHighLevelPrivateService } from "@/lib/gohighlevel-service";
 import { Loader2, CheckCircle, XCircle, Copy, ExternalLink } from "lucide-react";
 
 export default function SetupCRMPrivatePage() {
-  const [apiKey, setApiKey] = useState("pit-78d8b711-5a97-40ee-889a-688bd30f17ce");
+  const [apiKey, setApiKey] = useState("");
   const [locationId, setLocationId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [testResult, setTestResult] = useState<any>(null);
