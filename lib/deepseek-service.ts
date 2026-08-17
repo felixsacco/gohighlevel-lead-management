@@ -1,4 +1,6 @@
-const DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions";
+const GEMINI_API_URL = (model: string) =>
+  `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+const GEMINI_CLASSIFY_MODEL = "gemini-2.5-flash";
 const TIMEOUT_MS = 15_000;
 
 export interface DeepSeekEstimateInput {
@@ -15,7 +17,7 @@ export interface DeepSeekClassification {
   accessDifficulty: "easy" | "moderate" | "hard";
   estimatedHours: number;
   materialsRequired: string[];
-  source: "deepseek";
+  source: "gemini";
 }
 
 // Legacy interface kept for backward compat with any callers not yet updated
@@ -31,7 +33,7 @@ export interface DeepSeekEstimate {
   };
   confidence: "high" | "medium" | "low";
   notes: string;
-  source: "deepseek";
+  source: "gemini";
 }
 
 function getPostcodeRegion(postcode: string): string {
@@ -148,7 +150,7 @@ function sanitizeClassification(raw: Record<string, any>, trade: string): DeepSe
     accessDifficulty,
     estimatedHours,
     materialsRequired,
-    source: "deepseek",
+    source: "gemini",
   };
 }
 
@@ -156,12 +158,12 @@ export class DeepSeekService {
   private apiKey: string;
 
   constructor(apiKey?: string) {
-    this.apiKey = apiKey || process.env.DEEPSEEK_API_KEY || "";
+    this.apiKey = apiKey || process.env.GEMINI_API_KEY || "";
   }
 
   async generateClassification(input: DeepSeekEstimateInput): Promise<DeepSeekClassification | null> {
     if (!this.apiKey) {
-      console.warn("DeepSeekService: DEEPSEEK_API_KEY not configured, skipping AI classification");
+      console.warn("DeepSeekService: GEMINI_API_KEY not configured, skipping AI classification");
       return null;
     }
 
@@ -173,31 +175,37 @@ export class DeepSeekService {
     const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
     try {
-      const response = await fetch(DEEPSEEK_API_URL, {
+      const response = await fetch(`${GEMINI_API_URL(GEMINI_CLASSIFY_MODEL)}?key=${this.apiKey}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${this.apiKey}`,
         },
         body: JSON.stringify({
-          model: "deepseek-chat",
-          messages: [
-            { role: "system", content: "You are a UK trades job classifier. Always respond with valid JSON only. Never include pricing or cost estimates." },
-            { role: "user", content: buildClassificationPrompt(input) },
+          contents: [
+            {
+              parts: [
+                {
+                  text: `You are a UK trades job classifier. Always respond with valid JSON only. Never include pricing or cost estimates.\n\n${buildClassificationPrompt(input)}`,
+                },
+              ],
+            },
           ],
-          temperature: 0,
-          max_tokens: 400,
+          generationConfig: {
+            responseMimeType: "application/json",
+          },
         }),
         signal: controller.signal,
       });
 
       if (!response.ok) {
-        console.error("DeepSeek API error:", response.status, await response.text().catch(() => ""));
+        console.error("Gemini API error:", response.status, await response.text().catch(() => ""));
         return null;
       }
 
-      const data = await response.json();
-      const content = data.choices?.[0]?.message?.content || "";
+      const data = (await response.json()) as {
+        candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>;
+      };
+      const content = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
       // Strip markdown code fences if present
       const jsonStr = content.replace(/```json\s*/g, "").replace(/```\s*/g, "").trim();
@@ -249,7 +257,7 @@ export async function validateDescription(description: string, trade: string): P
     };
   }
 
-  // Try AI spell check via DeepSeek
+  // Try AI spell check via Gemini
   const result: DescriptionValidation = {
     wordCount,
     minWords,
@@ -261,7 +269,7 @@ export async function validateDescription(description: string, trade: string): P
   };
 
   try {
-    const apiKey = process.env.DEEPSEEK_API_KEY || '';
+    const apiKey = process.env.GEMINI_API_KEY || '';
     if (!apiKey) {
       result.feedback = 'AI review unavailable — check spelling manually';
       return result;
@@ -270,26 +278,24 @@ export async function validateDescription(description: string, trade: string): P
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 8000);
 
-    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+    const response = await fetch(`${GEMINI_API_URL(GEMINI_CLASSIFY_MODEL)}?key=${apiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'deepseek-chat',
-        messages: [
+        contents: [
           {
-            role: 'system',
-            content: 'You are a UK English spell checker for trades job descriptions. Only check for spelling mistakes and grammar errors — do NOT judge whether the job is genuine or legitimate. Return ONLY valid JSON.',
-          },
-          {
-            role: 'user',
-            content: `Trade: ${trade}\nDescription: "${description}"\n\nReturn JSON:\n{\n  "spellingErrors": [{"word": "misspelled", "suggestion": "correct"}],\n  "feedback": "brief note about any corrections needed, or null if fine"\n}`,
+            parts: [
+              {
+                text: `You are a UK English spell checker for trades job descriptions. Only check for spelling mistakes and grammar errors — do NOT judge whether the job is genuine or legitimate. Return ONLY valid JSON.\n\nTrade: ${trade}\nDescription: "${description}"\n\nReturn JSON:\n{\n  "spellingErrors": [{"word": "misspelled", "suggestion": "correct"}],\n  "feedback": "brief note about any corrections needed, or null if fine"\n}`,
+              },
+            ],
           },
         ],
-        temperature: 0,
-        max_tokens: 300,
+        generationConfig: {
+          responseMimeType: 'application/json',
+        },
       }),
       signal: controller.signal,
     });
@@ -297,8 +303,10 @@ export async function validateDescription(description: string, trade: string): P
     clearTimeout(timer);
 
     if (response.ok) {
-      const data = await response.json();
-      const content = data.choices?.[0]?.message?.content || '';
+      const data = (await response.json()) as {
+        candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>;
+      };
+      const content = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
       const jsonStr = content.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
       const parsed = JSON.parse(jsonStr);
       result.spellingIssues = (parsed.spellingErrors || []).map((e: any) => ({
