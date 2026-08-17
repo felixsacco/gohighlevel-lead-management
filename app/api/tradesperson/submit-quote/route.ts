@@ -9,9 +9,15 @@ import { sendTransactionalEmail } from '@/lib/notifications/email';
 export async function POST(request: NextRequest) {
   try {
     const supabaseUrl = 'https://jismdkfjkngwbpddhomx.supabase.co';
-    const anonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppc21ka2Zqa25nd2JwZGRob214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5Mzc2MzksImV4cCI6MjA2ODUxMzYzOX0.1pK4G-Mu5v8lSdDJUAsPsoDAlK9d7ocFaUH9dd2vl3A';
-    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || anonKey;
-    
+    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!serviceRoleKey) {
+      console.error('tradesperson/submit-quote: SUPABASE_SERVICE_ROLE_KEY is not set');
+      return NextResponse.json(
+        { success: false, error: 'Service role key is not configured' },
+        { status: 500 }
+      );
+    }
+
     const supabase = createClient(supabaseUrl, serviceRoleKey);
 
     const body = await request.json();

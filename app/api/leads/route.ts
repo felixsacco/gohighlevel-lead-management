@@ -4,15 +4,15 @@ import { emitFleetIngest } from '@/lib/fleet/emitFleetIngest';
 
 export async function POST(request: Request) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
-  if (!supabaseUrl || !supabaseKey) {
-    console.error('Missing Supabase environment variables');
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !serviceRoleKey) {
+    console.error('leads: SUPABASE_SERVICE_ROLE_KEY is not set');
     return NextResponse.json(
-      { error: 'Server configuration error' },
-      { status: 503 }
+      { error: 'Service role key is not configured' },
+      { status: 500 }
     );
   }
-  const supabase = createClient(supabaseUrl, supabaseKey);
+  const supabase = createClient(supabaseUrl, serviceRoleKey);
 
   try {
     const { name, email, phone, trade, postcode, description, estimate } = await request.json();
