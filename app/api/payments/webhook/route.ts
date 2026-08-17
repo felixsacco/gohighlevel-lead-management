@@ -1,8 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHmac, timingSafeEqual } from "crypto";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { sendNotification } from "@/lib/notifications";
 
 export async function POST(request: NextRequest) {
+  // --- Webhook signature verification (fail closed) ---
+  // NOTE: GoHighLevel's webhook signing scheme could not be confirmed from this
+  // repo. The header name and HMAC construction below must be reconciled against
+  // GHL's webhook documentation before this goes live.
+  const secret = process.env.GHL_WEBHOOK_SECRET;
+  if (!secret) {
+    console.error("Payments webhook: GHL_WEBHOOK_SECRET not set — rejecting request");
+    return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
+  }
+
+  const signature = request.headers.get("x-ghl-signature");
+  if (!signature) {
+    console.error("Payments webhook: missing signature header");
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const rawBody = await request.text();
+  const expected = createHmac("sha256", secret).update(rawBody).digest("hex");
+  const expectedBuffer = Buffer.from(expected, "utf8");
+  const receivedBuffer = Buffer.from(signature, "utf8");
+  if (
+    expectedBuffer.length !== receivedBuffer.length ||
+    !timingSafeEqual(expectedBuffer, receivedBuffer)
+  ) {
+    console.error("Payments webhook: signature mismatch");
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const supabase = getSupabaseAdmin();
   if (!supabase) {
     console.error("Payments webhook: Supabase admin not available");
@@ -11,7 +40,7 @@ export async function POST(request: NextRequest) {
 
   let body: any;
   try {
-    body = await request.json();
+    body = JSON.parse(rawBody);
   } catch {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
