@@ -16,26 +16,40 @@ dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 import { getSupabaseAdmin } from "../lib/supabase";
 
+// Restrict the field mask to the cheapest, non-review-derived fields.
+// Removed: rating, userRatingCount (review-derived → higher-cost SKU),
+// location (not consumed downstream). Note: `searchText` returns
+// `internationalPhoneNumber`, not `nationalPhoneNumber`.
 const FIELD_MASK = [
   "places.id",
   "places.displayName",
-  "places.rating",
-  "places.userRatingCount",
   "places.websiteUri",
   "places.internationalPhoneNumber",
   "places.shortFormattedAddress",
-  "places.location",
+  "places.businessStatus",
 ].join(",");
+
+// Hard ceiling on billable Places API calls per run. Each searchText request
+// is a charged SKU; this breaker stops the run before unbounded spend.
+const MAX_API_CALLS = 200;
+let apiCallsMade = 0;
+
+function registerApiCall(): void {
+  apiCallsMade += 1;
+  if (apiCallsMade > MAX_API_CALLS) {
+    throw new Error(
+      `Call ceiling reached (${MAX_API_CALLS} Places API calls). Aborting to prevent overspend.`,
+    );
+  }
+}
 
 interface RawPlace {
   id: string;
   displayName?: { text: string };
-  rating?: number;
-  userRatingCount?: number;
   websiteUri?: string;
   internationalPhoneNumber?: string;
   shortFormattedAddress?: string;
-  location?: { latitude: number; longitude: number };
+  businessStatus?: string;
 }
 
 function parseArgs(argv: string[]) {
@@ -59,6 +73,7 @@ async function searchPlaces(
   query: string,
   maxResults: number,
 ): Promise<RawPlace[]> {
+  registerApiCall();
   const url = "https://places.googleapis.com/v1/places:searchText";
   const res = await fetch(url, {
     method: "POST",
@@ -128,8 +143,6 @@ async function main() {
     address: p.shortFormattedAddress ?? null,
     phone: p.internationalPhoneNumber ?? null,
     website: p.websiteUri ?? null,
-    rating: p.rating ?? null,
-    review_count: p.userRatingCount ?? null,
   }));
 
   // Upsert: insert new, update existing only if not yet synced to GHL
@@ -145,7 +158,7 @@ async function main() {
 
   // Log what was written
   for (const r of rows) {
-    console.log(`  ${r.name}  |  ${r.phone ?? "no phone"}  |  ${r.rating ?? "-"}★ (${r.review_count ?? 0})`);
+    console.log(`  ${r.name}  |  ${r.phone ?? "no phone"}  |  ${r.website ?? "no website"}`);
   }
 
   console.log(`\nDone — ${rows.length} prospects upserted into outreach_prospects.`);
