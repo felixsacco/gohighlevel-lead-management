@@ -6,7 +6,7 @@
 
 Find Tradespeople · How It Works · For Tradespeople · Get Quotes · Sign Up
 
-Tagline: **24+ Trades • Verified & Approved • Nationwide**
+Tagline: **Free Quotes • No Obligation • Local Pros**
 
 ---
 

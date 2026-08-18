@@ -357,7 +357,7 @@ const EnhancedHeader = () => {
         <div className="bg-[#0A2463] backdrop-blur-sm py-1.5 sm:py-2 shadow-lg">
           <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
             <p className="text-center text-xs sm:text-sm text-gray-300">
-              24+ Trades • Verified & Approved • Nationwide
+              Free Quotes • No Obligation • Local Pros
             </p>
           </div>
         </div>
