@@ -4,6 +4,7 @@ import { SchemaMarkup, organizationSchema, WebsiteSchema, ServiceSchema, LocalBu
 import type { Metadata } from 'next';
 import EnhancedHeader from '@/components/EnhancedHeader';
 import Footer from '@/components/Footer';
+import CookieConsent from '@/components/CookieConsent';
 import { AnalyticsProvider } from '@/components/AnalyticsProvider';
 import { ReCaptchaProvider } from '@/components/ReCaptchaProvider';
 import AIQuoteFormProvider from '@/components/AIQuoteFormProvider';
@@ -138,6 +139,7 @@ export default function RootLayout({
           <footer role="contentinfo">
             <Footer />
           </footer>
+          <CookieConsent />
           </ReCaptchaProvider>
         </AnalyticsProvider>
       </body>
