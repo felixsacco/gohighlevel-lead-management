@@ -31,6 +31,31 @@ Generic status colours, used only for success/error feedback. They are not part 
 | Success | `#16A34A` | `rgb(22, 163, 74)` | generic; **not** a brand colour |
 | Error | `#DC2626` | `rgb(220, 38, 38)` | generic; **not** a brand colour |
 
+### Neutrals (grey scale in use for text)
+
+**Intentional, not deprecated.** These Tailwind grey classes render as the default grey ramp below and are kept as-is for neutral text; they are not brand colours and are not scheduled for consolidation.
+
+| Tailwind class | Rendered hex | Used for |
+|---|---|---|
+| `text-gray-400` | `#9CA3AF` | muted placeholder text |
+| `text-gray-500` | `#6B7280` | muted copy |
+| `text-gray-600` | `#4B5563` | muted copy |
+| `text-gray-700` | `#374151` | body copy |
+| `text-gray-900` | `#111827` | heading / body text |
+
+### On-navy tints (light blues on navy backgrounds)
+
+**Intentional, not deprecated.** These light-blue classes render as the default blue tint ramp below and are kept as-is for text and borders sitting on navy surfaces; they are not brand colours and are not scheduled for consolidation.
+
+| Tailwind class | Rendered hex | Used for |
+|---|---|---|
+| `text-blue-50` | `#EFF6FF` | search/hero tile ground |
+| `text-blue-100` | `#DBEAFE` | muted brand text on navy |
+| `text-blue-200` | `#BFDBFE` | muted text on navy |
+| `text-blue-300` | `#93C5FD` | muted text on navy |
+| `text-blue-400` | `#60A5FA` | muted text on navy |
+| `border-blue-200` | `#BFDBFE` | divider / border on navy |
+
 ---
 
 ## 2. Fonts
