@@ -296,11 +296,11 @@ export default function Home() {
       }) }} />
 
       {/* HERO SECTION — a public register for vetted tradespeople, not a marketing banner */}
-      <section className="relative bg-gradient-to-b from-[#0A2463] to-[#123A8F] text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
+      <section className="relative bg-gradient-to-b from-[#0A2463] to-[#1A3A8A] text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
         {/* Brand background accents — subtle radial glow + amber grain */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
-          <div className="absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-[#2450B8]/35 blur-3xl" />
-          <div className="absolute -bottom-40 -right-24 h-[36rem] w-[36rem] rounded-full bg-[#F5B301]/10 blur-3xl" />
+          <div className="absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-[#1A3A8A]/35 blur-3xl" />
+          <div className="absolute -bottom-40 -right-24 h-[36rem] w-[36rem] rounded-full bg-[#FFB800]/10 blur-3xl" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
@@ -308,14 +308,14 @@ export default function Home() {
             {/* Hero Content - Centered */}
             <div className="text-center">
               {/* Register overline — a transparent pill with a single amber stroke */}
-              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-[#F5B301] mb-8 sm:mb-12">
-                <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-[#F5B301]/60" aria-hidden="true"></span>
-                <span className="relative px-7 py-1.5 border border-[#F5B301]/60">
+              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-[#FFB800] mb-8 sm:mb-12">
+                <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-[#FFB800]/60" aria-hidden="true"></span>
+                <span className="relative px-7 py-1.5 border border-[#FFB800]/60">
                   <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" className="absolute left-2 top-1/2 -translate-y-1/2 shrink-0">
                     <defs>
                       <radialGradient id="screwL" cx="0.35" cy="0.3" r="1">
-                        <stop offset="0" stop-color="#F5B301"/>
-                        <stop offset="1" stop-color="#E8A900"/>
+                        <stop offset="0" stop-color="#FFB800"/>
+                        <stop offset="1" stop-color="#FFB800"/>
                       </radialGradient>
                     </defs>
                     <circle cx="12" cy="12" r="11" fill="url(#screwL)"/>
@@ -327,8 +327,8 @@ export default function Home() {
                   <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" className="absolute right-2 top-1/2 -translate-y-1/2 shrink-0">
                     <defs>
                       <radialGradient id="screwR" cx="0.35" cy="0.3" r="1">
-                        <stop offset="0" stop-color="#F5B301"/>
-                        <stop offset="1" stop-color="#E8A900"/>
+                        <stop offset="0" stop-color="#FFB800"/>
+                        <stop offset="1" stop-color="#FFB800"/>
                       </radialGradient>
                     </defs>
                     <circle cx="12" cy="12" r="11" fill="url(#screwR)"/>
@@ -339,7 +339,7 @@ export default function Home() {
                   </svg>
                   <span className="relative z-10">Vetted tradespeople across the UK</span>
                 </span>
-                <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-[#F5B301]/60" aria-hidden="true"></span>
+                <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-[#FFB800]/60" aria-hidden="true"></span>
               </p>
 
               {/* Headline — all white, underscored by a thin amber rule below the descender */}
@@ -350,19 +350,19 @@ export default function Home() {
                   <svg viewBox="0 0 400 46" width="100%" aria-hidden="true" className="absolute inset-x-0 -bottom-[0.85em] w-full overflow-visible pointer-events-none z-0">
                     <defs>
                       <linearGradient id="paintStroke" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0" stop-color="#E8A900"/>
-                        <stop offset="1" stop-color="#F5B301"/>
+                        <stop offset="0" stop-color="#FFB800"/>
+                        <stop offset="1" stop-color="#FFB800"/>
                       </linearGradient>
                       <linearGradient id="drip1" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0" stop-color="#E8A900"/>
+                        <stop offset="0" stop-color="#FFB800"/>
                         <stop offset="1" stop-color="#E0A100"/>
                       </linearGradient>
                       <linearGradient id="drip2" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0" stop-color="#E8A900"/>
+                        <stop offset="0" stop-color="#FFB800"/>
                         <stop offset="1" stop-color="#E0A100"/>
                       </linearGradient>
                       <linearGradient id="drip3" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0" stop-color="#E8A900"/>
+                        <stop offset="0" stop-color="#FFB800"/>
                         <stop offset="1" stop-color="#E0A100"/>
                       </linearGradient>
                     </defs>
@@ -399,12 +399,12 @@ export default function Home() {
                         e.stopPropagation();
                         setShowAIModal(true);
                       }}
-                      className="w-full px-4 py-4 sm:py-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F5B301] focus:ring-offset-0 rounded-full text-base sm:text-lg font-medium bg-transparent cursor-pointer text-center sm:text-left"
+                      className="w-full px-4 py-4 sm:py-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FFB800] focus:ring-offset-0 rounded-full text-base sm:text-lg font-medium bg-transparent cursor-pointer text-center sm:text-left"
                       readOnly
                     />
                   </div>
                   <Button
-                    className="rounded-full bg-[#F5B301] hover:bg-[#E8A900] text-[#0A2463] font-bold px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg w-auto sm:w-auto self-stretch sm:self-auto m-2 sm:m-0 transition-all duration-150 hover:-translate-y-px hover:shadow-md" style={{fontWeight: 800}}
+                    className="rounded-full bg-[#FFB800] hover:bg-[#FFB800] text-[#0A2463] font-bold px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg w-auto sm:w-auto self-stretch sm:self-auto m-2 sm:m-0 transition-all duration-150 hover:-translate-y-px hover:shadow-md" style={{fontWeight: 800}}
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowAIModal(true);
@@ -425,7 +425,7 @@ export default function Home() {
                       aria-hidden="true"
                     />
                   </span>
-                  <span className="font-bold tracking-wide text-white/70">PHOTO ID VERIFIED</span>
+                  <span className="font-bold tracking-wide text-white/70 notranslate">PHOTO ID VERIFIED</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap border-l border-white/20">
                   <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">
@@ -435,7 +435,7 @@ export default function Home() {
                       aria-hidden="true"
                     />
                   </span>
-                  <span className="font-bold tracking-wide text-white/70">INSURANCE VERIFIED</span>
+                  <span className="font-bold tracking-wide text-white/70 notranslate">INSURANCE VERIFIED</span>
                 </div>
               </div>
             </div>
@@ -463,7 +463,7 @@ export default function Home() {
           <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
             <Button
               size="lg"
-              className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+              className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
               onClick={() => setShowAIModal(true)}
             >
@@ -514,7 +514,7 @@ export default function Home() {
           <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
             <Button
               size="lg"
-              className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+              className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
               onClick={() => setShowAIModal(true)}
             >
@@ -548,8 +548,8 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Photo ID</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium">We confirm the person behind the profile is who they say they are.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Photo ID</h3>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We confirm the person behind the profile is who they say they are.</p>
             </div>
 
             {/* Check 2 */}
@@ -561,8 +561,8 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Registered business</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium">We check the company exists on Companies House, the official UK register.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Registered business</h3>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We check the company exists on Companies House, the official UK register.</p>
             </div>
 
             {/* Check 3 */}
@@ -574,8 +574,8 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Insurance</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium">We confirm the public liability certificate is real and still in date.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Insurance</h3>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We confirm the public liability certificate is real and still in date.</p>
             </div>
 
             {/* Check 4 */}
@@ -587,8 +587,8 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Qualifications</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium">We review the trade qualifications and accreditations they list.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Qualifications</h3>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We review the trade qualifications and accreditations they list.</p>
             </div>
           </div>
 
@@ -596,14 +596,14 @@ export default function Home() {
           <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
             <Button
               size="lg"
-              className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+              className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
               onClick={() => setShowAIModal(true)}
             >
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Only people who've passed our checks can quote.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70 notranslate">Only people who've passed our checks can quote.</p>
           </div>
         </div>
       </section>
@@ -622,29 +622,29 @@ export default function Home() {
               </p>
               <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
-                  <span><strong className="font-bold" style={{fontWeight: 700}}>Three tradespeople per job.</strong> You're quoting a real brief, not fighting a crowd for it.</span>
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
+                  <span className="notranslate"><strong className="font-bold" style={{fontWeight: 700}}>Three tradespeople per job.</strong> You're quoting a real brief, not fighting a crowd for it.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
                   <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs go to the nearest.</strong> Matched by distance, so travel never eats your day.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
                   <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs drop into your calendar.</strong> Slots fill themselves, so jobs never clash.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
                   <span><strong className="font-bold" style={{fontWeight: 700}}>£4.99 a lead, pay as you go.</strong> Pay only when a lead is worth taking. Nothing ongoing.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
                   <span><strong className="font-bold" style={{fontWeight: 700}}>Your marketing, handled.</strong> Website, SEO, paid ads, social, outreach, and reviews, taken off your plate.</span>
                 </li>
               </ul>
               <Button
                 size="lg"
-                className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg shadow-lg"
+                className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg shadow-lg"
                 style={{fontWeight: 800}}
                 asChild
               >
@@ -662,7 +662,7 @@ export default function Home() {
                 {/* Notification header */}
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wide">New job match · 2 min ago</span>
-                  <span className="w-5 h-5 rounded-full bg-[#F5B301] flex items-center justify-center text-[10px] font-bold text-black">1</span>
+                  <span className="w-5 h-5 rounded-full bg-[#FFB800] flex items-center justify-center text-[10px] font-bold text-black">1</span>
                 </div>
 
                 {/* Notification card */}
@@ -716,55 +716,55 @@ export default function Home() {
 
           <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
             <AccordionItem value="item-1" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
                 Is this just another directory anyone can pay to join?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
+              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
                 No. Other sites let tradespeople buy their way onto a list. We don't. Before anyone appears on MyApproved, we check their photo ID to confirm they are who they say they are, we check the business exists on Companies House, and we confirm their public liability insurance certificate is real and still in date. Paying a fee doesn't get you past any of that.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-2" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
                 How do you check tradespeople?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
+              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
                 Every tradesperson goes through four checks before they can take on work. We confirm their photo ID matches the person behind the profile. We check their business is registered on Companies House, the official UK register. We verify their public liability insurance certificate is genuine and not out of date. And we review the trade qualifications and accreditations they list. Only once all four pass do they appear on MyApproved.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-3" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
                 Will I get chased by dozens of companies trying to sell me a job?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
+              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
                 No. We send each job to three tradespeople, matched by what you need and who can actually get to you. That's a real three-person brief, not a broadcast to everyone in your postcode. So you get a few relevant quotes, not a phone that won't stop ringing.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-4" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
                 How is the price worked out?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
+              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
                 You describe the job and give us your location, and we turn that into a costed quote. So the first number you see is based on the work you've described, not on a salesperson trying to talk you up from nothing. You can compare it against other quotes before anyone calls. You never pay MyApproved for a quote.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-5" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
                 What happens if the job goes wrong?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
+              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
                 Start by talking to the tradesperson. If the two of you can't sort it out, contact us at support@myapproved.com and we'll help work it through. Every tradesperson on MyApproved has a public liability insurance certificate that we check and confirm is in date.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-6" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
                 Do I have to pay anything before I see quotes?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
+              <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
                 No. Posting a job is free, and seeing your quotes is free. The only person you ever pay is the tradesperson, and only for the work they do. There's no fee to join, no charge to look, and nothing to lose by getting a quote.
               </AccordionContent>
             </AccordionItem>
@@ -774,7 +774,7 @@ export default function Home() {
           <div className="text-center mt-8 sm:mt-12">
             <Button
               size="lg"
-              className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-12 py-5 sm:py-7 text-lg sm:text-xl shadow-lg hover:shadow-xl transition-all"
+              className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-12 py-5 sm:py-7 text-lg sm:text-xl shadow-lg hover:shadow-xl transition-all"
               style={{fontWeight: 800}}
               onClick={() => setShowAIModal(true)}
             >

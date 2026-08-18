@@ -6,9 +6,9 @@
 :root {
   /* Brand colour tokens */
   --color-navy-900: #0A2463;
-  --color-navy-700: #123A8F;
-  --color-amber: #F5B301;
-  --color-amber-hover: #E8A900;
+  --color-navy-700: #1A3A8A;
+  --color-amber: #FFB800;
+  --color-amber-hover: #FFB800;
   --color-on-amber: #0A2463;
 
   /* Spacing scale */

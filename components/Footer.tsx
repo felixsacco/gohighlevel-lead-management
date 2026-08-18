@@ -73,7 +73,7 @@ const Footer = () => {
   ];
 
   return (
-    <Section as="footer" className="py-16 bg-gradient-to-br from-blue-900 via-blue-950 to-blue-800 text-white">
+    <Section as="footer" className="py-16 bg-[#0A2463] text-white">
       <Container size="wide">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
@@ -95,12 +95,12 @@ const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
-                  className="w-full rounded-xl border border-blue-200 bg-white px-4 py-2.5 text-sm text-[#0A2463] placeholder-blue-400 focus:border-blue-500 focus:outline-none"
+                  className="w-full rounded-xl border border-blue-200 bg-white px-4 py-2.5 text-sm text-[#0A2463] placeholder-blue-400 focus:border-[#FFB800] focus:outline-none"
                 />
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full rounded-xl bg-[#F5B301] px-4 py-2.5 text-sm font-bold text-[#0A2463] transition-colors hover:bg-[#E8A900] disabled:opacity-60"
+                  className="w-full rounded-xl bg-[#FFB800] px-4 py-2.5 text-sm font-bold text-[#0A2463] transition-colors hover:bg-[#FFB800] disabled:opacity-60"
                 >
                   {status === "loading" ? "Sending…" : "Send me the checklist"}
                 </button>
@@ -120,7 +120,7 @@ const Footer = () => {
             {/* Block 2 — Contact details */}
             <div className="space-y-2">
               <p className="text-blue-100 flex items-center gap-2 text-sm sm:text-base">
-                <Mail className="w-4 h-4 text-yellow-400" />
+                <Mail className="w-4 h-4 text-[#FFB800]" />
                 support@myapproved.com
               </p>
               <p className="text-blue-300 flex items-center gap-2 text-xs">
@@ -131,7 +131,7 @@ const Footer = () => {
 
             {/* Block 3 — Legitimacy: ICO line + Google reviews */}
             <div className="space-y-2 text-xs text-blue-300">
-              <p className="flex items-center gap-2">
+              <p className="flex items-center gap-2 notranslate">
                 <svg viewBox="0 0 24 24" className="h-4 w-4 inline-block flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
@@ -151,15 +151,15 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-yellow-400 mb-5">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-[#FFB800] mb-5">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="text-blue-100 hover:text-yellow-400 transition-colors duration-200 flex items-center group"
+                    className="text-blue-100 hover:text-[#FFB800] transition-colors duration-200 flex items-center group"
                   >
-                    <span className="w-1 h-1 rounded-full bg-yellow-400 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="w-1 h-1 rounded-full bg-[#FFB800] mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {link.name}
                   </Link>
                 </li>
@@ -169,15 +169,15 @@ const Footer = () => {
 
           {/* Find Tradespeople */}
           <div>
-            <h3 className="text-lg font-semibold text-yellow-400 mb-5">Find Tradespeople</h3>
+            <h3 className="text-lg font-semibold text-[#FFB800] mb-5">Find Tradespeople</h3>
             <ul className="space-y-3">
               {findTradespeople.map((location) => (
                 <li key={location.name}>
                   <Link 
                     href={location.href}
-                    className="text-blue-100 hover:text-yellow-400 transition-colors duration-200 flex items-center group"
+                    className="text-blue-100 hover:text-[#FFB800] transition-colors duration-200 flex items-center group"
                   >
-                    <span className="w-1 h-1 rounded-full bg-yellow-400 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="w-1 h-1 rounded-full bg-[#FFB800] mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {location.name}
                   </Link>
                 </li>
@@ -185,7 +185,7 @@ const Footer = () => {
             </ul>
             <Link 
               href="/locations" 
-              className="inline-flex items-center gap-1 text-yellow-400 hover:text-yellow-300 mt-4 text-sm font-medium"
+              className="inline-flex items-center gap-1 text-[#FFB800] hover:text-[#FFB800] mt-4 text-sm font-medium"
             >
               View all locations
               <ArrowRight className="w-4 h-4" />
@@ -194,15 +194,15 @@ const Footer = () => {
 
           {/* Company Links */}
           <div>
-            <h3 className="text-lg font-semibold text-yellow-400 mb-5">Company</h3>
+            <h3 className="text-lg font-semibold text-[#FFB800] mb-5">Company</h3>
             <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="text-blue-100 hover:text-yellow-400 transition-colors duration-200 flex items-center group"
+                    className="text-blue-100 hover:text-[#FFB800] transition-colors duration-200 flex items-center group"
                   >
-                    <span className="w-1 h-1 rounded-full bg-yellow-400 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="w-1 h-1 rounded-full bg-[#FFB800] mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {link.name}
                   </Link>
                 </li>
@@ -212,7 +212,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-blue-800 pt-8">
+        <div className="border-t border-[#0A2463] pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Copyright + business details */}
             <div className="text-center md:text-left">
@@ -233,7 +233,7 @@ const Footer = () => {
                   href={process.env.NEXT_PUBLIC_FACEBOOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-blue-800/50 flex items-center justify-center text-blue-100 hover:bg-yellow-400 hover:text-blue-900 transition-all duration-200"
+                  className="w-10 h-10 rounded-full bg-[#0A2463]/50 flex items-center justify-center text-blue-100 hover:bg-[#FFB800] hover:text-[#0A2463] transition-all duration-200"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-5 h-5" />
@@ -244,7 +244,7 @@ const Footer = () => {
                   href={process.env.NEXT_PUBLIC_INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-blue-800/50 flex items-center justify-center text-blue-100 hover:bg-yellow-400 hover:text-blue-900 transition-all duration-200"
+                  className="w-10 h-10 rounded-full bg-[#0A2463]/50 flex items-center justify-center text-blue-100 hover:bg-[#FFB800] hover:text-[#0A2463] transition-all duration-200"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-5 h-5" />
@@ -255,7 +255,7 @@ const Footer = () => {
                   href={process.env.NEXT_PUBLIC_LINKEDIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-blue-800/50 flex items-center justify-center text-blue-100 hover:bg-yellow-400 hover:text-blue-900 transition-all duration-200"
+                  className="w-10 h-10 rounded-full bg-[#0A2463]/50 flex items-center justify-center text-blue-100 hover:bg-[#FFB800] hover:text-[#0A2463] transition-all duration-200"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
@@ -266,7 +266,7 @@ const Footer = () => {
                   href={process.env.NEXT_PUBLIC_TIKTOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-blue-800/50 flex items-center justify-center text-blue-100 hover:bg-yellow-400 hover:text-blue-900 transition-all duration-200"
+                  className="w-10 h-10 rounded-full bg-[#0A2463]/50 flex items-center justify-center text-blue-100 hover:bg-[#FFB800] hover:text-[#0A2463] transition-all duration-200"
                   aria-label="TikTok"
                 >
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
@@ -279,7 +279,7 @@ const Footer = () => {
                   href={process.env.NEXT_PUBLIC_GOOGLE_BUSINESS_PROFILE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-blue-800/50 flex items-center justify-center text-blue-100 hover:bg-yellow-400 hover:text-blue-900 transition-all duration-200"
+                  className="w-10 h-10 rounded-full bg-[#0A2463]/50 flex items-center justify-center text-blue-100 hover:bg-[#FFB800] hover:text-[#0A2463] transition-all duration-200"
                   aria-label="Google Business Profile"
                 >
                   <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
@@ -294,13 +294,13 @@ const Footer = () => {
 
             {/* Legal Links */}
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm text-blue-400">
-              <Link href="/privacy" className="hover:text-yellow-400 transition-colors">Privacy Policy</Link>
+              <Link href="/privacy" className="hover:text-[#FFB800] transition-colors">Privacy Policy</Link>
               <span>•</span>
-              <Link href="/terms" className="hover:text-yellow-400 transition-colors">Terms of Service</Link>
+              <Link href="/terms" className="hover:text-[#FFB800] transition-colors">Terms of Service</Link>
               <span>•</span>
-              <Link href="/cookies" className="hover:text-yellow-400 transition-colors">Cookie Policy</Link>
+              <Link href="/cookies" className="hover:text-[#FFB800] transition-colors">Cookie Policy</Link>
               <span>•</span>
-              <Link href="/sitemap" className="hover:text-yellow-400 transition-colors">Sitemap</Link>
+              <Link href="/sitemap" className="hover:text-[#FFB800] transition-colors">Sitemap</Link>
             </div>
           </div>
         </div>

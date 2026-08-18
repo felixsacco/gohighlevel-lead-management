@@ -204,3 +204,27 @@ html {
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
+
+/* =====================================================
+   [REMOVED — Google Translate widget suppression]
+   These rules were for the legacy Google Translate widget,
+   which has been removed from the header. They hid the
+   banner frame / skip link / tooltip that Google injected
+   and undid the top offset it applied so the fixed header
+   stayed put. Kept here (commented out) for reference in
+   case the widget is ever re-enabled.
+   ===================================================== */
+/* .skiptranslate,
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-te-gadget,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+} */

@@ -102,17 +102,17 @@
 
 /* Professional gradient backgrounds */
 .bg-professional-blue {
-  background: linear-gradient(135deg, #0056D2 0%, #1e40af 50%, #1e3a8a 100%);
+  background: linear-gradient(135deg, #1A3A8A 0%, #1A3A8A 50%, #0A2463 100%);
 }
 
 .bg-professional-gold {
-  background: linear-gradient(135deg, #FDBD18 0%, #f59e0b 50%, #d97706 100%);
+  background: linear-gradient(135deg, #FFC933 0%, #FFB800 50%, #FFB800 100%);
 }
 
 /* Enhanced button styles */
 .btn-primary-enhanced {
-  background: linear-gradient(135deg, #FDBD18 0%, #f59e0b 100%);
-  color: #0056D2;
+  background: linear-gradient(135deg, #FFC933 0%, #FFB800 100%);
+  color: #1A3A8A;
   font-weight: 800;
   padding: 12px 32px;
   border-radius: 12px;
@@ -125,7 +125,7 @@
 .btn-primary-enhanced:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 35px rgba(253, 189, 24, 0.4);
-  background: linear-gradient(135deg, #f59e0b 0%, #FDBD18 100%);
+  background: linear-gradient(135deg, #FFB800 0%, #FFC933 100%);
 }
 
 /* Trust badge enhancements */
