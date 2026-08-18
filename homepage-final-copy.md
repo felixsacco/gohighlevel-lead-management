@@ -20,7 +20,7 @@ Tagline: **Free Quotes • No Obligation • Local Pros**
 
 **Search:** "Find an electrician in Leeds" → button **Get Quotes**
 
-**Trust chips:** Insurance certificate verified · Google reviews checked
+**Trust chips:** Insurance certificate verified · Companies House checked
 
 ---
 
@@ -58,10 +58,10 @@ Tagline: **Free Quotes • No Obligation • Local Pros**
 
 Every tradesperson on MyApproved passes these checks before they can take on work.
 
-1. **Identity verified.** Photo ID checked and confirmed against official records
-2. **Insurance confirmed.** Public liability insurance verified. Minimum £2M coverage.
-3. **Qualifications checked.** Trade qualifications and accreditations reviewed
-4. **Google Reviews.** Customer feedback collected and monitored after every job
+1. **Photo ID.** We confirm the person behind the profile is who they say they are.
+2. **Registered business.** We check the company exists on Companies House, the official UK register.
+3. **Insurance.** We confirm the public liability certificate is real and still in date.
+4. **Qualifications.** We review the trade qualifications and accreditations they list.
 
 **Button:** Get Quotes
 **Sub-line:** Only people who've passed our checks can quote.
