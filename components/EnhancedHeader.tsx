@@ -9,7 +9,6 @@ import {
   X,
   Search,
   Phone,
-  Shield,
   Star,
   Users,
   Zap,
@@ -69,27 +68,12 @@ const EnhancedHeader = () => {
           <div className="flex items-center justify-between">
             {/* Logo - Mobile Responsive */}
             <Link href="/" className="flex items-center gap-2 sm:gap-3 group -ml-1 sm:-ml-2 whitespace-nowrap">
-              {/* Logo Icon - Mobile Only */}
-              <div className="w-12 h-12 sm:w-12 sm:h-12 bg-[#1A3A8A] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 md:hidden">
-                <img 
-                  src="/logo-icon.svg" 
-                  alt="MyApproved Logo Icon"
-                  className="w-8 h-8 object-contain"
-                  onError={(e) => {
-                    // Fallback to Shield icon if image fails to load
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    target.nextElementSibling?.classList.remove('hidden');
-                  }}
-                />
-                <Shield className="w-7 h-7 text-white hidden" />
-              </div>
-              {/* Logo Text/Image - Mobile Responsive */}
+              {/* Logo Lockup */}
               <div className="flex items-center">
-                <img 
-                  src="/logo-text.svg" 
+                <img
+                  src="/logo-text.svg"
                   alt="MyApproved Logo"
-                  className="h-9 sm:h-10 md:h-12 lg:h-14 xl:h-16 object-contain"
+                  className="h-9 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto object-contain"
                   onError={(e) => {
                     // Fallback to text if image fails to load
                     const target = e.target as HTMLImageElement;
@@ -199,27 +183,12 @@ const EnhancedHeader = () => {
               {/* Header - Mobile Responsive */}
               <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100 bg-[#0A2463]">
                 <div className="flex items-center gap-4 sm:gap-5">
-                  {/* Mobile Logo Icon */}
-                  <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-xl flex items-center justify-center overflow-hidden">
-                    <img 
-                      src="/logo-icon.svg" 
-                      alt="MyApproved Logo Icon"
-                      className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
-                      onError={(e) => {
-                        // Fallback to Shield icon if image fails to load
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        target.nextElementSibling?.classList.remove('hidden');
-                      }}
-                    />
-                    <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-white hidden" />
-                  </div>
-                  {/* Mobile Logo Text */}
+                  {/* Mobile Logo Lockup */}
                   <div>
-                    <img 
-                      src="/logo-text.svg" 
+                    <img
+                      src="/logo-text.svg"
                       alt="MyApproved Logo"
-                      className="h-16 sm:h-18 object-contain"
+                      className="h-12 sm:h-14 w-auto object-contain"
                       onError={(e) => {
                         // Fallback to text if image fails to load
                         const target = e.target as HTMLImageElement;

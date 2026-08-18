@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: `${baseUrl}/images/new-og-image.jpg`,
+        url: `${baseUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: 'Transforming Homes with MyApproved',
