@@ -91,9 +91,18 @@ export default function PrivacyPolicy() {
               <p>We only share your information in the following circumstances:</p>
               <ul className="list-disc pl-5 space-y-1 mt-2">
                 <li>With tradespeople when you request a quote or book a job (your name, contact details, and job description)</li>
-                <li>With Stripe for secure payment processing</li>
-                <li>With service providers who help us operate our platform (hosting, email delivery) under strict data processing agreements</li>
                 <li>When required by law, court order, or to protect the rights and safety of our users</li>
+              </ul>
+              <p className="mt-4">We use the following service providers and sub-processors to help us operate the platform, each under strict data processing agreements:</p>
+              <ul className="list-disc pl-5 space-y-1 mt-2">
+                <li><strong>Stripe</strong> — payment processing</li>
+                <li><strong>Supabase</strong> — database and storage</li>
+                <li><strong>Vercel</strong> — hosting</li>
+                <li><strong>GoHighLevel</strong> — CRM, SMS, and payments</li>
+                <li><strong>Google Gemini</strong> — verification and classification</li>
+                <li><strong>Google Places and Maps</strong> — location data and address lookups</li>
+                <li><strong>Postmark</strong> — transactional email</li>
+                <li><strong>Twilio</strong> — SMS</li>
               </ul>
             </div>
 
@@ -103,7 +112,7 @@ export default function PrivacyPolicy() {
                 <li>All data is encrypted in transit using TLS/SSL</li>
                 <li>Databases are encrypted at rest</li>
                 <li>Access to personal data is restricted to authorised staff only</li>
-                <li>We use Supabase for secure, GDPR-compliant data storage hosted in the EU</li>
+                <li>Your data is hosted by Supabase and Vercel, our database and hosting providers</li>
                 <li>Payment data is handled exclusively by Stripe and never stored on our servers</li>
               </ul>
             </div>
@@ -124,7 +133,7 @@ export default function PrivacyPolicy() {
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">7. Cookies</h2>
-              <p>We use cookies to keep you signed in, remember your preferences, and understand how people use our site. We do not use advertising cookies. You can manage cookie preferences via your browser settings or our cookie consent banner.</p>
+              <p>We use cookies to keep you signed in, remember your preferences, and understand how people use our site. We also use marketing cookies to deliver relevant advertisements and measure campaign effectiveness, including Google Ads and social media integrations. You can manage cookie preferences via our cookie consent banner or your browser settings, and you can opt out of non-essential cookies.</p>
             </div>
 
             <div>
