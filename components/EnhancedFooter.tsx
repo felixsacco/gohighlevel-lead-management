@@ -13,7 +13,7 @@ const EnhancedFooter = () => {
           {/* Brand Column */}
           <div className="md:col-span-1">
             <Link href="/" className="inline-flex items-center gap-4 group mb-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#FFB800] to-yellow-400 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#F5B301] to-yellow-400 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <Shield className="w-8 h-8 text-[#1A3A8A]" />
               </div>
               <span className="text-3xl font-bold text-white" style={{fontWeight: 800}}>MyApproved</span>

@@ -464,7 +464,7 @@ export default function Home() {
           <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
             <Button
               size="lg"
-              className="bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+              className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
               asChild
             >
@@ -473,6 +473,7 @@ export default function Home() {
                 <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
               </Link>
             </Button>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Get an instant quote based on your job description and location.</p>
           </div>
         </div>
       </section>
@@ -510,6 +511,22 @@ export default function Home() {
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Free for homeowners. Always</h3>
               <p className="text-sm sm:text-base text-gray-600">Posting a job and getting quotes costs you nothing. You only ever pay the tradesperson for work you agree to.</p>
             </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
+            <Button
+              size="lg"
+              className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+              style={{fontWeight: 800}}
+              asChild
+            >
+              <Link href="/find-tradespeople">
+                Get Quotes
+                <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
+              </Link>
+            </Button>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Post your job once — we do the chasing.</p>
           </div>
         </div>
       </section>
@@ -582,32 +599,21 @@ export default function Home() {
               <p className="text-sm sm:text-base text-gray-700 font-medium">Customer feedback collected and monitored after every job</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* READY TO GET STARTED SECTION */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-[#F1F5F9]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1A3A8A] mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
-              Ready to get your job done?
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#1A3A8A] max-w-3xl mx-auto font-semibold px-4">
-              Post your job for free and get quotes from checked, local tradespeople
-            </p>
-          </div>
 
           {/* CTA Button */}
-          <div className="text-center">
+          <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
             <Button
               size="lg"
-              className="bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-12 py-5 sm:py-7 text-lg sm:text-xl shadow-lg hover:shadow-xl transition-all"
+              className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
-              onClick={() => setShowAIModal(true)}
+              asChild
             >
-              Post a Job - It's Free
-              <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
+              <Link href="/find-tradespeople">
+                Get Quotes
+                <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
+              </Link>
             </Button>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Only people who've passed our checks can quote.</p>
           </div>
         </div>
       </section>
@@ -626,25 +632,25 @@ export default function Home() {
               </p>
               <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
                   <span>Get matched with jobs in your area</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
                   <span>Only pay for leads you want</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
                   <span>No subscription fees during launch</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
                   <span>Build your reputation with verified reviews</span>
                 </li>
               </ul>
               <Button
                 size="lg"
-                className="bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg shadow-lg"
+                className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg shadow-lg"
                 style={{fontWeight: 800}}
                 asChild
               >
@@ -653,9 +659,7 @@ export default function Home() {
                   <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
               </Button>
-              <p className="text-xs sm:text-sm text-gray-300 mt-3 sm:mt-4">
-                No listing fees while we launch
-              </p>
+              <p className="mt-3 text-sm sm:text-base text-white/70">Set up free — pay only for leads you want.</p>
             </div>
 
             {/* Right Column - Benefits Card */}
@@ -698,7 +702,7 @@ export default function Home() {
 
           <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
             <AccordionItem value="item-1" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
                 Is MyApproved free for homeowners?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
@@ -707,7 +711,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-2" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
                 How do you check tradespeople?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
@@ -716,7 +720,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-3" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
                 What areas do you cover?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
@@ -725,7 +729,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-4" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
                 How quickly will I get quotes?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
@@ -734,7 +738,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-5" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
                 What if the work isn't done properly?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
@@ -743,7 +747,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-6" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
                 How do tradespeople join?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
@@ -756,13 +760,14 @@ export default function Home() {
           <div className="text-center mt-8 sm:mt-12">
             <Button
               size="lg"
-              className="bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-12 py-5 sm:py-7 text-lg sm:text-xl shadow-lg hover:shadow-xl transition-all"
+              className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-12 py-5 sm:py-7 text-lg sm:text-xl shadow-lg hover:shadow-xl transition-all"
               style={{fontWeight: 800}}
               onClick={() => setShowAIModal(true)}
             >
-              Post a Job - It's Free
+              Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Tell us about your job — get an instant quote.</p>
           </div>
         </div>
       </section>

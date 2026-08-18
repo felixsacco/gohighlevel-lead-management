@@ -15,7 +15,6 @@ import {
   Users,
   Zap,
   ArrowRight,
-  MapPin,
   Clock,
   Award,
   CheckCircle,
@@ -64,7 +63,6 @@ const EnhancedHeader = () => {
 
   const navigationItems = [
     { href: "/find-tradespeople", label: "Find Tradespeople", icon: Search,      description: "Browse all 38 verified trades" },
-    { href: "/locations",         label: "Locations",         icon: MapPin,      description: "Find trades across 50 UK cities" },
     { href: "/how-it-works",      label: "How It Works",      icon: HelpCircle,  description: "Our verification process explained" },
     { href: "/for-tradespeople",  label: "For Tradespeople",  icon: Wrench,      description: "Grow your business with MyApproved" },
   ];
@@ -156,30 +154,16 @@ const EnhancedHeader = () => {
 
             {/* Desktop CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
-              {/* Login Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="flex items-center gap-2 text-blue-100 hover:text-white font-medium text-sm bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl transition-all duration-300">
-                    <User className="w-4 h-4" />
-                    <span>Login</span>
-                    <ChevronDown className="w-3 h-3" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuItem asChild>
-                    <Link href="/login/client" className="flex items-center gap-2 cursor-pointer">
-                      <User className="w-4 h-4" />
-                      <span>Customer Login</span>
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/login/trade" className="flex items-center gap-2 cursor-pointer">
-                      <Wrench className="w-4 h-4" />
-                      <span>Tradesperson Login</span>
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              {/* Get Quotes — standardized homeowner CTA */}
+              <Button
+                asChild
+                className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all border-2 border-[#F5B301]"
+                style={{fontWeight: 800}}
+              >
+                <Link href="/find-tradespeople">
+                  Get Quotes
+                </Link>
+              </Button>
 
               {/* Language Translator */}
               <DropdownMenu>

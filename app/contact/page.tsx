@@ -36,7 +36,7 @@ export default function ContactPage() {
       {/* Hero */}
       <section className="bg-[#1A3A8A] text-white pb-16 sm:pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-[#FFB800] text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-[#F5B301] text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
             <MessageCircle className="w-3.5 h-3.5" />
             Get in Touch
           </div>
@@ -174,7 +174,7 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-colors"
+                  className="w-full bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-colors"
                 >
                   <Send className="w-4 h-4" />
                   Send Message
@@ -190,7 +190,7 @@ export default function ContactPage() {
         <div className="max-w-xl mx-auto px-4">
           <h2 className="text-xl font-bold mb-2">Looking for quick answers?</h2>
           <p className="text-blue-200 text-sm mb-6">Our help centre covers the most common questions for homeowners and tradespeople.</p>
-          <a href="/help" className="inline-block bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold px-6 py-2.5 rounded-lg text-sm transition-colors">
+          <a href="/help" className="inline-block bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold px-6 py-2.5 rounded-lg text-sm transition-colors">
             Visit Help Centre
           </a>
         </div>

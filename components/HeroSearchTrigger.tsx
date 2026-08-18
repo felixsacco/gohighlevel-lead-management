@@ -8,7 +8,7 @@ export default function HeroSearchTrigger() {
   return (
     <div
       onClick={open}
-      className="relative flex items-center bg-white rounded-full shadow-2xl border-4 border-white cursor-pointer hover:border-[#FFB800] transition-all duration-200 pl-3 pr-1 py-1.5 sm:pl-4 sm:pr-2 sm:py-2 gap-2 sm:gap-3 max-w-2xl mx-auto w-full"
+      className="relative flex items-center bg-white rounded-full shadow-2xl border-4 border-white cursor-pointer hover:border-[#F5B301] transition-all duration-200 pl-3 pr-1 py-1.5 sm:pl-4 sm:pr-2 sm:py-2 gap-2 sm:gap-3 max-w-2xl mx-auto w-full"
     >
       <Search className="w-5 h-5 text-gray-400 flex-shrink-0 ml-1" />
       <input
@@ -24,7 +24,7 @@ export default function HeroSearchTrigger() {
       />
       <button
         onClick={(e) => { e.stopPropagation(); open(); }}
-        className="bg-[#FFB800] hover:bg-[#FFC933] text-[#0f172a] font-bold px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm transition-all flex-shrink-0 whitespace-nowrap"
+        className="bg-[#F5B301] hover:bg-[#E8A900] text-[#0f172a] font-bold px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm transition-all flex-shrink-0 whitespace-nowrap"
         style={{ fontWeight: 800 }}
       >
         Get Quotes

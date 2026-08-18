@@ -32,7 +32,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="bg-[#1A3A8A] text-white pb-16 sm:pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-[#FFB800] text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-[#F5B301] text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
             <Heart className="w-3.5 h-3.5" />
             Our Mission
           </div>
@@ -116,7 +116,7 @@ export default function AboutPage() {
                   "Governed by English law, built for the UK market",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm">
-                    <CheckCircle className="w-4 h-4 text-[#FFB800] shrink-0 mt-0.5" />
+                    <CheckCircle className="w-4 h-4 text-[#F5B301] shrink-0 mt-0.5" />
                     <span className="text-blue-100">{item}</span>
                   </li>
                 ))}
@@ -130,7 +130,7 @@ export default function AboutPage() {
                 { label: "Free for homeowners", value: "Always" },
               ].map(({ label, value }) => (
                 <div key={label} className="bg-white/10 rounded-xl p-5 text-center">
-                  <div className="text-2xl font-bold text-[#FFB800] mb-1">{value}</div>
+                  <div className="text-2xl font-bold text-[#F5B301] mb-1">{value}</div>
                   <div className="text-blue-200 text-xs">{label}</div>
                 </div>
               ))}

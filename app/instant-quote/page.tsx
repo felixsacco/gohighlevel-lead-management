@@ -10,7 +10,7 @@ export default function InstantQuotePage() {
 
   return (
     <section className="bg-[#1A3A8A] min-h-[60vh] flex flex-col items-start justify-start pt-8 sm:pt-12 text-center px-4 py-20">
-      <div className="inline-flex items-center gap-2 bg-[#FFB800] text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
+      <div className="inline-flex items-center gap-2 bg-[#F5B301] text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
         <Zap className="w-3.5 h-3.5" />
         Instant Quote
       </div>
@@ -20,7 +20,7 @@ export default function InstantQuotePage() {
       </p>
       <button
         onClick={() => window.dispatchEvent(new Event("open-ai-quote"))}
-        className="bg-[#FFB800] hover:bg-[#FFC933] text-black font-extrabold px-8 py-3.5 rounded-xl text-sm transition-colors"
+        className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-extrabold px-8 py-3.5 rounded-xl text-sm transition-colors"
       >
         Start My Quote
       </button>

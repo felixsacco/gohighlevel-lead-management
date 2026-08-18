@@ -4,7 +4,7 @@
 
 ## Header
 
-Find Tradespeople · Locations · How It Works · For Tradespeople · Login · Sign Up
+Find Tradespeople · How It Works · For Tradespeople · Get Quotes · Sign Up
 
 Tagline: **24+ Trades • Verified & Approved • Nationwide**
 
@@ -33,6 +33,7 @@ Tagline: **24+ Trades • Verified & Approved • Nationwide**
 **Carousel:** 16 trades in two scrolling rows (Plumber, Electrician, Roofer, Painter & Decorator, Carpenter, Locksmith, Gas Engineer, Builder, Tiler, Gardener, Plasterer, Bathroom Fitter, Kitchen Fitter, Flooring, Window Fitter, Waste Removal)
 
 **Button:** Get Quotes
+**Sub-line:** Get an instant quote based on your job description and location.
 
 ---
 
@@ -46,6 +47,9 @@ Tagline: **24+ Trades • Verified & Approved • Nationwide**
 
 4. **Free for homeowners. Always** — Posting a job and getting quotes costs you nothing. You only ever pay the tradesperson for work you agree to.
 
+**Button:** Get Quotes
+**Sub-line:** Post your job once — we do the chasing.
+
 ---
 
 ## Our Checks
@@ -56,6 +60,9 @@ Every tradesperson on MyApproved passes these checks before they can take on wor
 2. **Insurance confirmed** — Public liability insurance verified. Minimum £2M coverage.
 3. **Qualifications checked** — Trade qualifications and accreditations reviewed
 4. **Google Reviews** — Customer feedback collected and monitored after every job
+
+**Button:** Get Quotes
+**Sub-line:** Only people who've passed our checks can quote.
 
 ---
 
@@ -69,6 +76,7 @@ Get quality leads from homeowners in your area who are ready to hire. No cold ca
 - Build your reputation with verified reviews
 
 **Button:** Join as a Tradesperson
+**Sub-line:** Set up free — pay only for leads you want.
 
 ---
 
@@ -86,6 +94,7 @@ Get quality leads from homeowners in your area who are ready to hire. No cold ca
 *(6 FAQs as-is)*
 
 **Button:** Get Quotes
+**Sub-line:** Tell us about your job — get an instant quote.
 
 ---
 

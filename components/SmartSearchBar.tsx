@@ -140,7 +140,7 @@ export default function SmartSearchBar() {
                 value={formData.trade}
                 onChange={(e) => handleTradeChange(e.target.value)}
                 onFocus={handleInputFocus}
-                className="w-full pr-10 rounded-xl bg-[#1A1A1A] border border-white/10 text-white placeholder:text-white/30 focus-visible:border-[#FFB800] focus-visible:ring-0 text-sm h-12"
+                className="w-full pr-10 rounded-xl bg-[#1A1A1A] border border-white/10 text-white placeholder:text-white/30 focus-visible:border-[#F5B301] focus-visible:ring-0 text-sm h-12"
                 required
                 aria-label="Search for a trade"
                 aria-haspopup="listbox"
@@ -172,7 +172,7 @@ export default function SmartSearchBar() {
                     aria-selected={formData.trade === suggestion}
                     className={`px-4 py-2.5 cursor-pointer text-sm transition-colors duration-150 ${
                       formData.trade === suggestion
-                        ? 'bg-[#FFB800]/10 text-[#FFB800]'
+                        ? 'bg-[#F5B301]/10 text-[#F5B301]'
                         : 'text-white/70 hover:bg-white/5 hover:text-white'
                     }`}
                     onClick={() => handleSuggestionClick(suggestion)}
@@ -192,7 +192,7 @@ export default function SmartSearchBar() {
               placeholder="Enter your postcode"
               value={formData.postcode}
               onChange={(e) => setFormData(prev => ({ ...prev, postcode: e.target.value.toUpperCase() }))}
-              className="w-full rounded-xl bg-[#1A1A1A] border border-white/10 text-white placeholder:text-white/30 focus-visible:border-[#FFB800] focus-visible:ring-0 text-sm h-12"
+              className="w-full rounded-xl bg-[#1A1A1A] border border-white/10 text-white placeholder:text-white/30 focus-visible:border-[#F5B301] focus-visible:ring-0 text-sm h-12"
               required
               aria-label="Your postcode"
             />
@@ -201,7 +201,7 @@ export default function SmartSearchBar() {
           {/* Submit */}
           <Button
             type="submit"
-            className="bg-[#FFB800] hover:bg-[#FFC933] text-[#111111] font-black h-12 rounded-xl transition-all duration-200 hover:scale-[1.02] flex items-center justify-center"
+            className="bg-[#F5B301] hover:bg-[#E8A900] text-[#111111] font-black h-12 rounded-xl transition-all duration-200 hover:scale-[1.02] flex items-center justify-center"
             disabled={isLoading}
             aria-busy={isLoading}
           >
@@ -224,7 +224,7 @@ export default function SmartSearchBar() {
         )}
 
         <div className="flex items-center justify-center mt-1 gap-1.5">
-          <Shield className="h-4 w-4 text-[#FFB800]" />
+          <Shield className="h-4 w-4 text-[#F5B301]" />
           <span className="text-xs text-white/50 font-medium">All Trades Verified</span>
         </div>
       </form>

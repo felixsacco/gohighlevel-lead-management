@@ -462,7 +462,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                 Trade Category <span className="text-red-500">*</span>
               </label>
               <Select value={formData.trade} onValueChange={(value) => handleInputChange('trade', value)}>
-                <SelectTrigger className="w-full h-14 text-lg border-2 border-gray-300 focus:border-[#FFB800] rounded-xl">
+                <SelectTrigger className="w-full h-14 text-lg border-2 border-gray-300 focus:border-[#F5B301] rounded-xl">
                   <SelectValue placeholder="e.g. Plumber, Electrician, Builder" />
                 </SelectTrigger>
                 <SelectContent side="bottom" sideOffset={8} className="max-h-[300px] overflow-y-auto custom-dropdown-scroll">
@@ -484,7 +484,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Star className="w-5 h-5 text-[#FFB800] flex-shrink-0" />
+                    <Star className="w-5 h-5 text-[#F5B301] flex-shrink-0" />
                     <div className="text-sm text-gray-700">
                       <span className="font-semibold text-gray-900">Top rated</span>
                     </div>
@@ -530,7 +530,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                 value={formData.description}
                 onChange={(e) => handleDescriptionChange(e.target.value)}
                 placeholder="Describe the work you need done in detail..."
-                className="min-h-[100px] md:min-h-[120px] text-base border-2 border-gray-300 focus:border-[#FFB800] rounded-xl p-3 md:p-4"
+                className="min-h-[100px] md:min-h-[120px] text-base border-2 border-gray-300 focus:border-[#F5B301] rounded-xl p-3 md:p-4"
               />
             </div>
 
@@ -538,7 +538,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
               <label className="block text-sm md:text-base font-bold text-[#1A3A8A] mb-2 md:mb-3" style={{fontWeight: 700}}>
                 Upload Images (Optional)
               </label>
-              <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 md:p-6 text-center hover:border-[#FFB800] hover:bg-[#FFB800]/5 transition-all cursor-pointer">
+              <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 md:p-6 text-center hover:border-[#F5B301] hover:bg-[#F5B301]/5 transition-all cursor-pointer">
                 <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                 <p className="text-sm text-gray-600 mb-2">
                   Click to upload images or drag and drop
@@ -586,7 +586,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                 Urgency Level <span className="text-red-500">*</span>
               </label>
               <Select value={formData.urgency} onValueChange={(value) => handleInputChange('urgency', value)}>
-                <SelectTrigger className="w-full h-14 text-lg border-2 border-gray-300 focus:border-[#FFB800] rounded-xl">
+                <SelectTrigger className="w-full h-14 text-lg border-2 border-gray-300 focus:border-[#F5B301] rounded-xl">
                   <SelectValue placeholder="Select urgency level..." />
                 </SelectTrigger>
                 <SelectContent side="bottom" sideOffset={8}>
@@ -623,7 +623,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
           >
             <div className="text-center mb-8">
               <h3 className="text-3xl font-extrabold text-[#1A3A8A] mb-3" style={{fontWeight: 800}}>
-                Location & <span className="text-[#FFB800]">Availability</span>
+                Location & <span className="text-[#F5B301]">Availability</span>
               </h3>
               <p className="text-lg text-gray-600">Where and when do you need the work done?</p>
             </div>
@@ -639,7 +639,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                   onChange={(e) => handleInputChange('postcode', e.target.value.toUpperCase())}
                   placeholder="Enter your postcode"
                   className={`pl-14 h-14 text-lg border-2 rounded-xl ${
-                    postcodeError ? 'border-red-400 focus:border-red-500' : 'border-gray-300 focus:border-[#FFB800]'
+                    postcodeError ? 'border-red-400 focus:border-red-500' : 'border-gray-300 focus:border-[#F5B301]'
                   }`}
                 />
               </div>
@@ -660,7 +660,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                     onClick={() => handleInputChange('availability', time)}
                     className={`h-14 text-base font-bold border-2 rounded-xl transition-all ${
                       formData.availability === time 
-                        ? 'bg-[#FFB800] hover:bg-[#FFC933] text-black border-[#FFB800]' 
+                        ? 'bg-[#F5B301] hover:bg-[#E8A900] text-black border-[#F5B301]' 
                         : 'border-gray-300 hover:border-[#1A3A8A] hover:bg-gray-50'
                     }`}
                     style={{fontWeight: 700}}
@@ -737,7 +737,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
 
               <Button
                 onClick={onClose}
-                className="bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold px-8 py-3 text-base shadow-md"
+                className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold px-8 py-3 text-base shadow-md"
                 style={{fontWeight: 800}}
               >
                 Close
@@ -756,7 +756,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
             {/* Job Summary Card — merged from old standalone step */}
             <div className="text-center mb-4">
               <h3 className="text-2xl md:text-3xl font-extrabold text-[#1A3A8A] mb-2" style={{fontWeight: 800}}>
-                Job <span className="text-[#FFB800]">Summary</span>
+                Job <span className="text-[#F5B301]">Summary</span>
               </h3>
               <p className="text-sm md:text-base text-gray-600">Review your job details before submitting</p>
             </div>
@@ -791,7 +791,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
             {/* Estimate Section */}
             <div className="text-center mb-8">
               <h3 className="text-3xl font-extrabold text-[#1A3A8A] mb-3" style={{fontWeight: 800}}>
-                Your AI <span className="text-[#FFB800]">Estimate</span>
+                Your AI <span className="text-[#F5B301]">Estimate</span>
               </h3>
               <p className="text-lg text-gray-600">Based on your job details and location</p>
             </div>
@@ -802,7 +802,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                 <p className="text-gray-600">Generating your estimate...</p>
               </div>
             ) : estimate ? (
-              <Card className="border-2 border-[#FFB800] bg-gradient-to-br from-[#FFB800]/10 to-[#FFC933]/10">
+              <Card className="border-2 border-[#F5B301] bg-gradient-to-br from-[#F5B301]/10 to-[#E8A900]/10">
                 <CardContent className="p-6 md:p-10 text-center">
                   <div className="text-5xl md:text-7xl font-extrabold text-[#1A3A8A] mb-4" style={{fontWeight: 800}}>
                     {estimate}
@@ -865,7 +865,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                       value={formData.firstName}
                       onChange={(e) => handleInputChange('firstName', e.target.value)}
                       placeholder="First name"
-                      className="h-12 text-base border-2 border-gray-300 focus:border-[#FFB800] rounded-xl"
+                      className="h-12 text-base border-2 border-gray-300 focus:border-[#F5B301] rounded-xl"
                     />
                   </div>
                   <div>
@@ -876,7 +876,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                       value={formData.lastName}
                       onChange={(e) => handleInputChange('lastName', e.target.value)}
                       placeholder="Last name"
-                      className="h-12 text-base border-2 border-gray-300 focus:border-[#FFB800] rounded-xl"
+                      className="h-12 text-base border-2 border-gray-300 focus:border-[#F5B301] rounded-xl"
                     />
                   </div>
                 </div>
@@ -890,7 +890,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                     value={formData.clientEmail}
                     onChange={(e) => handleInputChange('clientEmail', e.target.value)}
                     placeholder="you@example.com"
-                    className="h-12 text-base border-2 border-gray-300 focus:border-[#FFB800] rounded-xl"
+                    className="h-12 text-base border-2 border-gray-300 focus:border-[#F5B301] rounded-xl"
                   />
                 </div>
 
@@ -903,7 +903,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                     value={formData.clientPhone}
                     onChange={(e) => handleInputChange('clientPhone', e.target.value)}
                     placeholder="+44 7000 000000"
-                    className="h-12 text-base border-2 border-gray-300 focus:border-[#FFB800] rounded-xl"
+                    className="h-12 text-base border-2 border-gray-300 focus:border-[#F5B301] rounded-xl"
                   />
                 </div>
 
@@ -960,20 +960,20 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                     <div className="flex flex-col items-center flex-1">
                       <div className={`flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-full text-sm md:text-base font-extrabold transition-all ${
                         currentStep >= step.number 
-                          ? 'bg-[#FFB800] text-black shadow-lg md:scale-110' 
+                          ? 'bg-[#F5B301] text-black shadow-lg md:scale-110' 
                           : 'bg-white/20 text-white/60'
                       }`} style={{fontWeight: 800}}>
                         {step.number}
                       </div>
                       <span className={`text-[10px] md:text-xs mt-1 md:mt-2 font-medium text-center leading-tight ${
-                        currentStep >= step.number ? 'text-[#FFB800]' : 'text-white/60'
+                        currentStep >= step.number ? 'text-[#F5B301]' : 'text-white/60'
                       }`}>
                         {step.title}
                       </span>
                     </div>
                     {index < steps.length - 1 && (
                       <div className={`h-0.5 md:h-1 flex-1 mx-1 md:mx-2 rounded-full transition-all ${
-                        currentStep > step.number ? 'bg-[#FFB800]' : 'bg-white/20'
+                        currentStep > step.number ? 'bg-[#F5B301]' : 'bg-white/20'
                       }`} />
                     )}
                   </div>
@@ -1008,7 +1008,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                       (currentStep === 2 && (!formData.description || !formData.urgency || descWordCount < 10)) ||
                       (currentStep === 3 && (!formData.postcode || !!postcodeError))
                     }
-                    className="bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold px-4 md:px-8 py-3 md:py-6 text-sm md:text-base shadow-lg hover:shadow-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed border-2 border-[#FFB800]"
+                    className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold px-4 md:px-8 py-3 md:py-6 text-sm md:text-base shadow-lg hover:shadow-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed border-2 border-[#F5B301]"
                     style={{fontWeight: 800}}
                   >
                     Next Step

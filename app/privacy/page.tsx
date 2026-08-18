@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
       <section className="bg-[#1A3A8A] text-white pb-16 sm:pb-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-[#FFB800] rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-[#F5B301] rounded-lg flex items-center justify-center">
               <Shield className="w-5 h-5 text-black" />
             </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold">Privacy Policy</h1>
