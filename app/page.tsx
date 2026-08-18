@@ -17,8 +17,6 @@ import {
   ShieldCheck,
   Sparkles,
   TrendingUp,
-  User,
-  Wrench,
   ChevronDown,
   Droplets,
   Bolt,
@@ -298,49 +296,98 @@ export default function Home() {
       }) }} />
 
       {/* HERO SECTION — a public register for vetted tradespeople, not a marketing banner */}
-      <section className="relative bg-[#1A3A8A] text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
+      <section className="relative bg-gradient-to-b from-[#0A2463] to-[#123A8F] text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
         {/* Brand background accents — subtle radial glow + amber grain */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
-          <div className="absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-[#2450B8]/40 blur-3xl" />
-          <div className="absolute -bottom-40 -right-24 h-[36rem] w-[36rem] rounded-full bg-[#FFB800]/10 blur-3xl" />
+          <div className="absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-[#2450B8]/35 blur-3xl" />
+          <div className="absolute -bottom-40 -right-24 h-[36rem] w-[36rem] rounded-full bg-[#F5B301]/10 blur-3xl" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[140px] sm:pt-[160px] pb-20 md:pt-[200px] md:pb-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
           <div className="max-w-5xl mx-auto">
             {/* Hero Content - Centered */}
             <div className="text-center">
-              {/* Register overline — a spec label on a brand-yellow highlight bar */}
-              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-black mb-7 sm:mb-9">
-                <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-[#FFB800]" aria-hidden="true"></span>
-                <span className="relative px-3 py-1">
-                  <span aria-hidden="true" className="absolute inset-0 bg-[#FFB800] rounded-sm -rotate-1"></span>
+              {/* Register overline — a transparent pill with a single amber stroke */}
+              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-[#F5B301] mb-8 sm:mb-12">
+                <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-[#F5B301]/60" aria-hidden="true"></span>
+                <span className="relative px-7 py-1.5 border border-[#F5B301]/60">
+                  <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" className="absolute left-2 top-1/2 -translate-y-1/2 shrink-0">
+                    <defs>
+                      <radialGradient id="screwL" cx="0.35" cy="0.3" r="1">
+                        <stop offset="0" stop-color="#F5B301"/>
+                        <stop offset="1" stop-color="#E8A900"/>
+                      </radialGradient>
+                    </defs>
+                    <circle cx="12" cy="12" r="11" fill="url(#screwL)"/>
+                    <circle cx="12" cy="12" r="10.2" fill="none" stroke="#0A2463" stroke-opacity="0.22" stroke-width="1.6"/>
+                    <circle cx="12" cy="12" r="7.4" fill="none" stroke="#0A2463" stroke-opacity="0.15" stroke-width="1"/>
+                    <rect x="2.6" y="10.1" width="18.8" height="3.8" rx="1.9" fill="#0A2463" fill-opacity="0.8" transform="rotate(28 12 12)"/>
+                    <path d="M4.8 8.4A9 9 0 0 1 11.6 3.3" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                  </svg>
+                  <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" className="absolute right-2 top-1/2 -translate-y-1/2 shrink-0">
+                    <defs>
+                      <radialGradient id="screwR" cx="0.35" cy="0.3" r="1">
+                        <stop offset="0" stop-color="#F5B301"/>
+                        <stop offset="1" stop-color="#E8A900"/>
+                      </radialGradient>
+                    </defs>
+                    <circle cx="12" cy="12" r="11" fill="url(#screwR)"/>
+                    <circle cx="12" cy="12" r="10.2" fill="none" stroke="#0A2463" stroke-opacity="0.22" stroke-width="1.6"/>
+                    <circle cx="12" cy="12" r="7.4" fill="none" stroke="#0A2463" stroke-opacity="0.15" stroke-width="1"/>
+                    <rect x="2.6" y="10.1" width="18.8" height="3.8" rx="1.9" fill="#0A2463" fill-opacity="0.8" transform="rotate(71 12 12)"/>
+                    <path d="M4.8 8.4A9 9 0 0 1 11.6 3.3" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                  </svg>
                   <span className="relative z-10">Vetted tradespeople across the UK</span>
                 </span>
-                <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-[#FFB800]" aria-hidden="true"></span>
+                <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-[#F5B301]/60" aria-hidden="true"></span>
               </p>
 
-              {/* Headline — one line, with brand-highlighted emphasis */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight mb-6 sm:mb-8 px-2 sm:px-4" style={{fontWeight: 800}}>
-                Hire a tradesperson you can{" "}
-                <span className="relative whitespace-nowrap">
-                  <span aria-hidden="true" className="absolute inset-x-0 bottom-1 sm:bottom-2 h-3 sm:h-4 bg-gradient-to-r from-[#FFB800] to-[#FFD35C] rounded-sm -rotate-1"></span>
-                  <span className="relative z-10 text-black">actually count on</span>
+              {/* Headline — all white, underscored by a thin amber rule below the descender */}
+              <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4" style={{fontWeight: 800}}>
+                Hire a tradesperson you{" "}
+                <span className="relative inline-block whitespace-nowrap">
+                  <span className="text-white relative z-10">actually count on</span>
+                  <svg viewBox="0 0 400 46" width="100%" aria-hidden="true" className="absolute inset-x-0 -bottom-[0.85em] w-full overflow-visible pointer-events-none z-0">
+                    <defs>
+                      <linearGradient id="paintStroke" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#E8A900"/>
+                        <stop offset="1" stop-color="#F5B301"/>
+                      </linearGradient>
+                      <linearGradient id="drip1" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#E8A900"/>
+                        <stop offset="1" stop-color="#E0A100"/>
+                      </linearGradient>
+                      <linearGradient id="drip2" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#E8A900"/>
+                        <stop offset="1" stop-color="#E0A100"/>
+                      </linearGradient>
+                      <linearGradient id="drip3" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#E8A900"/>
+                        <stop offset="1" stop-color="#E0A100"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M2 13c48-4 96-6 144-5s96 4 144 3 76-4 108-5v11c-32 2-72 5-108 6s-96-2-144-3-96 1-144 5z" fill="#0A2463" opacity="0.08" transform="translate(0 2)"/>
+                    <path d="M2 13c48-4 96-6 144-5s96 4 144 3 76-4 108-5v11c-32 2-72 5-108 6s-96-2-144-3-96 1-144 5z" fill="url(#paintStroke)"/>
+                    <path d="M88 18c-1 7-3 11-2 15 .6 3.6 3 4.4 5 4 2.4-.5 3.6-3.4 3-7-.7-4.4-2-8-2-12z" fill="url(#drip1)"/>
+                    <path d="M214 19c-1.4 10-3.4 16-2.4 21 .8 4.4 3.6 5.4 5.8 4.8 2.8-.8 4-4.4 3.2-9-1-5.6-2.6-11-2.6-16.8z" fill="url(#drip2)"/>
+                    <path d="M312 21c-.8 5-2 8-1.4 11 .5 2.6 2.2 3.2 3.8 2.9 1.8-.4 2.6-2.5 2.2-5-.5-3.2-1.6-6-1.6-8.9z" fill="url(#drip3)"/>
+                  </svg>
                 </span>
               </h1>
 
               {/* Subheadline — one specific promise */}
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/85 leading-relaxed mb-8 sm:mb-12 max-w-2xl mx-auto font-medium px-4">
-                Every tradesperson's ID and insurance, checked before they're listed.
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-12 sm:mb-16 max-w-[34rem] mx-auto font-normal px-4">
+                We check their ID, insurance and reviews before you see them.
               </p>
 
               {/* Search Bar — a raised, rounded clickable target on navy */}
-              <div className="relative max-w-3xl mx-auto mb-8 sm:mb-10 px-4">
+              <div className="relative max-w-3xl mx-auto mb-12 sm:mb-16 px-4">
                 <div
-                  className="relative flex flex-col sm:flex-row items-center bg-white rounded-full shadow-xl shadow-black/20 border border-white/40 cursor-pointer gap-0 sm:pl-2 sm:pr-1.5 sm:py-1.5 overflow-hidden"
+                  className="relative flex flex-col sm:flex-row items-center bg-white rounded-full shadow-xl shadow-black/20 border border-white/40 cursor-pointer gap-0 sm:pl-1.5 sm:pr-1.5 sm:py-1.5 overflow-hidden"
                   onClick={() => setShowAIModal(true)}
                 >
                   <div className="flex-1 relative flex items-center w-full sm:w-auto">
-                    <Search className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 ml-5 sm:ml-5 flex-shrink-0" />
+                    <Search className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 ml-4 sm:ml-4 flex-shrink-0" />
                     <input
                       type="text"
                       placeholder={searchPlaceholder}
@@ -352,12 +399,12 @@ export default function Home() {
                         e.stopPropagation();
                         setShowAIModal(true);
                       }}
-                      className="w-full px-4 py-4 sm:py-5 text-gray-900 placeholder-gray-500 focus:outline-none text-base sm:text-lg font-medium bg-transparent cursor-pointer text-center sm:text-left"
+                      className="w-full px-4 py-4 sm:py-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F5B301] focus:ring-offset-0 rounded-full text-base sm:text-lg font-medium bg-transparent cursor-pointer text-center sm:text-left"
                       readOnly
                     />
                   </div>
                   <Button
-                    className="rounded-full bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg w-auto sm:w-auto self-stretch sm:self-auto m-2 sm:m-0" style={{fontWeight: 800}}
+                    className="rounded-full bg-[#F5B301] hover:bg-[#E8A900] text-[#0A2463] font-bold px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg w-auto sm:w-auto self-stretch sm:self-auto m-2 sm:m-0 transition-all duration-150 hover:-translate-y-px hover:shadow-md" style={{fontWeight: 800}}
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowAIModal(true);
@@ -370,17 +417,17 @@ export default function Home() {
 
               {/* Trust indicators — two flat register entries, separated by a hairline */}
               <div className="inline-flex flex-nowrap justify-center text-xs sm:text-sm md:text-base px-2 sm:px-4">
-                <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/80 whitespace-nowrap">
-                  <span className="text-white text-base sm:text-lg font-bold leading-none" aria-hidden="true">
+                <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap">
+                  <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">
                     <ShieldCheckFill
                       weight="fill"
                       className="h-4 w-4 sm:h-5 sm:w-5 inline-block"
                       aria-hidden="true"
                     />
                   </span>
-                  <span className="font-bold tracking-wide text-white/80">INSURANCE CERTIFICATE VERIFIED</span>
+                  <span className="font-bold tracking-wide text-white/70">INSURANCE CERTIFICATE VERIFIED</span>
                 </div>
-                <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/80 whitespace-nowrap border-l border-white/20">
+                <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap border-l border-white/20">
                   <span className="text-base sm:text-lg font-bold leading-none" aria-hidden="true">
                     <svg viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5 inline-block">
                       <path fill="#4285F4" d="M23.5 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.45c-.28 1.5-1.13 2.77-2.4 3.62l3.86 2.99c2.26-2.09 3.59-5.16 3.59-8.8z" />
@@ -389,7 +436,7 @@ export default function Home() {
                       <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.45-3.45C17.96 1.08 15.24 0 12 0 7.31 0 3.35 3.13 1.27 7.35l3.98 3.08C6.2 6.87 8.86 4.75 12 4.75z" />
                     </svg>
                   </span>
-                  <span className="font-bold tracking-wide text-white/80">GOOGLE REVIEWS CHECKED</span>
+                  <span className="font-bold tracking-wide text-white/70">GOOGLE REVIEWS CHECKED</span>
                 </div>
               </div>
             </div>
@@ -403,7 +450,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1A3A8A] mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
-              Every Trade. One Platform.
+              One Search. Every Trade.
             </h2>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#1A3A8A]/80 max-w-3xl mx-auto font-semibold px-4">
               Find trusted, local tradespeople for any job around your home
@@ -422,7 +469,7 @@ export default function Home() {
               asChild
             >
               <Link href="/find-tradespeople">
-                Find Your Tradesperson
+                Get Quotes
                 <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
               </Link>
             </Button>
@@ -442,88 +489,26 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
             {/* Benefit 1 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Every tradesperson is checked</h3>
-              <p className="text-sm sm:text-base text-gray-600">ID verified, insurance confirmed, and qualifications reviewed before they're listed.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>You're covered if it goes wrong</h3>
+              <p className="text-sm sm:text-base text-gray-600">Every job through MyApproved is protected. If the work doesn't hold up, you're not left covering the cost alone.</p>
             </div>
 
             {/* Benefit 2 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Real reviews from real customers</h3>
-              <p className="text-sm sm:text-base text-gray-600">Every review is from a verified homeowner who actually hired the tradesperson.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Quotes in hours, not days</h3>
+              <p className="text-sm sm:text-base text-gray-600">Post your job once and hear back from available local tradespeople fast. No chasing, no waiting by the phone.</p>
             </div>
 
             {/* Benefit 3 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>You're covered</h3>
-              <p className="text-sm sm:text-base text-gray-600">All tradespeople carry public liability insurance. If something goes wrong, you're protected.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Tradespeople who know your area</h3>
+              <p className="text-sm sm:text-base text-gray-600">You're matched with people who work in your postcode, understand local housing, and can get to you quickly.</p>
             </div>
 
             {/* Benefit 4 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Quotes in hours, not days</h3>
-              <p className="text-sm sm:text-base text-gray-600">Post your job and hear back from available tradespeople quickly. No chasing.</p>
-            </div>
-
-            {/* Benefit 5 */}
-            <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Local tradespeople who know your area</h3>
-              <p className="text-sm sm:text-base text-gray-600">Matched with tradespeople near you who understand local conditions.</p>
-            </div>
-
-            {/* Benefit 6 */}
-            <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Free for homeowners. Always</h3>
-              <p className="text-sm sm:text-base text-gray-600">You'll never pay to post a job or get quotes.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* DUAL CTA SECTION */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-[#1A3A8A]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-            {/* For Homeowners */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-[#F5A623]">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
-                <User className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-              </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#1A3A8A] mb-3 sm:mb-4" style={{fontWeight: 800}}>Need a Tradesperson?</h3>
-              <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed font-medium">
-                Post your job for free and get quotes from checked, local tradespeople.
-              </p>
-              <Button
-                size="lg"
-                className="w-full bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold text-base sm:text-lg py-4 sm:py-6" style={{fontWeight: 800}}
-                onClick={() => setShowAIModal(true)}
-              >
-                Post a Job - It's Free
-                <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-              </Button>
-            </div>
-
-            {/* For Tradespeople */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-[#F5A223]">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
-                <Wrench className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-              </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#1A3A8A] mb-3 sm:mb-4" style={{fontWeight: 800}}>Are You a Tradesperson?</h3>
-              <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed font-medium">
-                Get quality leads from homeowners in your area. No listing fees while we launch.
-              </p>
-              <Button
-                size="lg"
-                className="w-full bg-[#15803d] hover:bg-[#166534] text-white font-bold text-base sm:text-lg py-4 sm:py-6" style={{fontWeight: 800}}
-                asChild
-              >
-                <Link href="/register/tradesperson">
-                  Join as a Tradesperson
-                  <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-                </Link>
-              </Button>
-              <p className="text-xs sm:text-sm text-emerald-600 font-semibold mt-3 sm:mt-4 text-center">
-                No listing fees while we launch
-              </p>
+              <p className="text-sm sm:text-base text-gray-600">Posting a job and getting quotes costs you nothing. You only ever pay the tradesperson for work you agree to.</p>
             </div>
           </div>
         </div>
@@ -537,7 +522,7 @@ export default function Home() {
               Our Checks
             </h2>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#1A3A8A] max-w-3xl mx-auto font-semibold px-4">
-              Every tradesperson on MyApproved passes these checks before they can take on work
+              Every tradesperson on MyApproved passes these checks before they can take on work.
             </p>
           </div>
 
@@ -565,7 +550,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Insurance confirmed</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium">Public liability insurance verified. Minimum £2M coverage</p>
+              <p className="text-sm sm:text-base text-gray-700 font-medium">Public liability insurance verified. Minimum £2M coverage.</p>
             </div>
 
             {/* Check 3 */}

@@ -74,7 +74,7 @@ const EnhancedHeader = () => {
       {/* Single fixed stack: promo bar + main nav + trust row (avoids overlap and eases body offset) */}
       <div className="fixed top-0 left-0 right-0 z-50 flex flex-col shadow-xl">
       <header
-        className="shrink-0 bg-[#1A3A8A] backdrop-blur-sm py-1 sm:py-2"
+        className="shrink-0 bg-[#0A2463] backdrop-blur-sm py-1 sm:py-2"
       >
         <div className="max-w-7xl mx-auto px-1 sm:px-2 lg:px-4">
           <div className="flex items-center justify-between">
@@ -112,7 +112,7 @@ const EnhancedHeader = () => {
                   <div className="text-sm sm:text-lg md:text-xl lg:text-2xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
                     MyApproved
                   </div>
-                  <div className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent tracking-wider">TRUSTED TRADESPEOPLE</div>
+                  <div className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#F5B301] to-[#E8A900] bg-clip-text text-transparent tracking-wider">TRUSTED TRADESPEOPLE</div>
                 </div>
               </div>
             </Link>
@@ -147,7 +147,7 @@ const EnhancedHeader = () => {
                     <IconComponent className="w-3 h-3" />
                     <span>{item.label}</span>
                     {isActive && (
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-yellow-400 rounded-full" />
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#F5B301] rounded-full" />
                     )}
                   </Link>
                 );
@@ -331,7 +331,7 @@ const EnhancedHeader = () => {
               
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button className="bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all border-2 border-[#FFB800]" style={{fontWeight: 800}}>
+                  <Button className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all border-2 border-[#F5B301]" style={{fontWeight: 800}}>
                     <span>Sign Up</span>
                     <ChevronDown className="w-3 h-3 ml-1" />
                   </Button>
@@ -370,7 +370,7 @@ const EnhancedHeader = () => {
         </div>
         
         {/* Trust Bar - Simple Text */}
-        <div className="bg-gradient-to-b from-blue-900 to-blue-800 backdrop-blur-sm border-b border-blue-700 py-1.5 sm:py-2 shadow-lg">
+        <div className="bg-[#0A2463] backdrop-blur-sm py-1.5 sm:py-2 shadow-lg">
           <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
             <p className="text-center text-xs sm:text-sm text-gray-300">
               24+ Trades • Verified & Approved • Nationwide
