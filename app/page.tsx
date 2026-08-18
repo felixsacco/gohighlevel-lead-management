@@ -727,10 +727,10 @@ export default function Home() {
           <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
             <AccordionItem value="item-1" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
               <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
-                Is MyApproved free for homeowners?
+                Is this just another directory anyone can pay to join?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
-                Yes, always. Posting a job and getting quotes is completely free. You only pay the tradesperson for the work they do.
+                No. Other sites let tradespeople buy their way onto a list. We don't. Before anyone appears on MyApproved, we check their photo ID to confirm they are who they say they are, we check the business exists on Companies House, and we confirm their public liability insurance certificate is real and still in date. Paying a fee doesn't get you past any of that.
               </AccordionContent>
             </AccordionItem>
 
@@ -739,43 +739,43 @@ export default function Home() {
                 How do you check tradespeople?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
-                Every tradesperson provides photo ID, proof of public liability insurance (minimum £2M), and evidence of their trade qualifications. We review all of this before they can appear on the platform.
+                Every tradesperson goes through four checks before they can take on work. We confirm their photo ID matches the person behind the profile. We check their business is registered on Companies House, the official UK register. We verify their public liability insurance certificate is genuine and not out of date. And we review the trade qualifications and accreditations they list. Only once all four pass do they appear on MyApproved.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-3" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
               <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
-                What areas do you cover?
+                Will I get chased by dozens of companies trying to sell me a job?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
-                We operate nationwide across the UK, connecting homeowners with verified tradespeople in every region.
+                No. We send each job to three tradespeople, matched by what you need and who can actually get to you. That's a real three-person brief, not a broadcast to everyone in your postcode. So you get a few relevant quotes, not a phone that won't stop ringing.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-4" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
               <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
-                How quickly will I get quotes?
+                How is the price worked out?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
-                Most homeowners receive their first quote within a few hours of posting a job.
+                You describe the job and give us your location, and we turn that into a costed quote. So the first number you see is based on the work you've described, not on a salesperson trying to talk you up from nothing. You can compare it against other quotes before anyone calls. You never pay MyApproved for a quote.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-5" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
               <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
-                What if the work isn't done properly?
+                What happens if the job goes wrong?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
-                All tradespeople on MyApproved carry public liability insurance. Contact us within 48 hours and we'll help resolve it.
+                Start by talking to the tradesperson. If the two of you can't sort it out, contact us at support@myapproved.com and we'll help work it through. Every tradesperson on MyApproved has a public liability insurance certificate that we check and confirm is in date.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-6" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
               <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#F5B301] py-4 sm:py-6" style={{fontWeight: 700}}>
-                How do tradespeople join?
+                Do I have to pay anything before I see quotes?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6">
-                Tradespeople apply online and provide their ID, insurance, and qualifications. We verify everything before they can quote on jobs.
+                No. Posting a job is free, and seeing your quotes is free. The only person you ever pay is the tradesperson, and only for the work they do. There's no fee to join, no charge to look, and nothing to lose by getting a quote.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
