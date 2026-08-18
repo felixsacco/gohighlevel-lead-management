@@ -490,26 +490,32 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
             {/* Benefit 1 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>You're covered if it goes wrong</h3>
-              <p className="text-sm sm:text-base text-gray-600">Every job through MyApproved is protected. If the work doesn't hold up, you're not left covering the cost alone.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Checked before they're listed</h3>
+              <p className="text-sm sm:text-base text-gray-600">No tradesperson gets on the platform without passing our checks.</p>
             </div>
 
             {/* Benefit 2 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Quotes in hours, not days</h3>
-              <p className="text-sm sm:text-base text-gray-600">Post your job once and hear back from available local tradespeople fast. No chasing, no waiting by the phone.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>See the price before anyone calls</h3>
+              <p className="text-sm sm:text-base text-gray-600">Get a costed quote from your job description, so no one has to talk you into a figure.</p>
             </div>
 
             {/* Benefit 3 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Tradespeople who know your area</h3>
-              <p className="text-sm sm:text-base text-gray-600">You're matched with people who work in your postcode, understand local housing, and can get to you quickly.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>The closest tradesperson</h3>
+              <p className="text-sm sm:text-base text-gray-600">Matched to who can actually get to you first.</p>
             </div>
 
             {/* Benefit 4 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Free for homeowners. Always</h3>
-              <p className="text-sm sm:text-base text-gray-600">Posting a job and getting quotes costs you nothing. You only ever pay the tradesperson for work you agree to.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Booked into a real slot</h3>
+              <p className="text-sm sm:text-base text-gray-600">Your job goes into their diary, not a pile of callbacks.</p>
+            </div>
+
+            {/* Benefit 5 */}
+            <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Free, no obligation</h3>
+              <p className="text-sm sm:text-base text-gray-600">Posting costs nothing. Quoting costs nothing.</p>
             </div>
           </div>
 
@@ -526,7 +532,7 @@ export default function Home() {
                 <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
               </Link>
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Post your job once — we do the chasing.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Post once. We do the chasing.</p>
           </div>
         </div>
       </section>
@@ -633,19 +639,23 @@ export default function Home() {
               <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
-                  <span>Get matched with jobs in your area</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>Three tradespeople per job.</strong> You're quoting a real brief, not fighting a crowd for it.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
-                  <span>Only pay for leads you want</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs go to the nearest.</strong> Matched by distance, so travel never eats your day.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
-                  <span>No subscription fees during launch</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs drop into your calendar.</strong> Slots fill themselves, so jobs never clash.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
-                  <span>Build your reputation with verified reviews</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>£4.99 a lead, pay as you go.</strong> Pay only when a lead is worth taking. Nothing ongoing.</span>
+                </li>
+                <li className="flex items-center gap-3 text-white text-sm sm:text-base">
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5B301] flex-shrink-0" />
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>Your marketing, handled.</strong> Website, SEO, paid ads, social, outreach, and reviews, taken off your plate.</span>
                 </li>
               </ul>
               <Button
@@ -659,28 +669,48 @@ export default function Home() {
                   <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
               </Button>
-              <p className="mt-3 text-sm sm:text-base text-white/70">Set up free — pay only for leads you want.</p>
+              <p className="mt-3 text-sm sm:text-base text-white/70">Create your profile and start receiving leads.</p>
             </div>
 
-            {/* Right Column - Benefits Card */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#1A3A8A] mb-4 sm:mb-6" style={{fontWeight: 700}}>What you get</h3>
-              <div className="space-y-4 sm:space-y-6">
-                <div>
-                  <h4 className="text-base sm:text-lg font-bold text-[#1A3A8A]" style={{fontWeight: 700}}>Quality leads</h4>
-                  <p className="text-sm sm:text-base text-gray-600">Connect with homeowners actively looking to hire</p>
+            {/* Right Column — job notification mockup */}
+            <div>
+              <div className="bg-gray-50 rounded-2xl border border-gray-100 p-5 space-y-3 shadow-xl">
+                {/* Notification header */}
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wide">New job match · 2 min ago</span>
+                  <span className="w-5 h-5 rounded-full bg-[#F5B301] flex items-center justify-center text-[10px] font-bold text-black">1</span>
                 </div>
-                <div>
-                  <h4 className="text-base sm:text-lg font-bold text-[#1A3A8A]" style={{fontWeight: 700}}>Your own profile</h4>
-                  <p className="text-sm sm:text-base text-gray-600">Showcase your work and qualifications</p>
+
+                {/* Notification card */}
+                <div className="bg-white rounded-xl border border-gray-100 p-4 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="bg-[#1A3A8A] text-white text-xs font-bold px-2.5 py-0.5 rounded-full">Plumber</span>
+                    <span className="inline-flex items-center gap-1 text-xs text-gray-500">
+                      <MapPin className="w-3.5 h-3.5" /> Leeds · LS4
+                    </span>
+                  </div>
+                  <p className="text-sm font-semibold text-gray-900 leading-snug mb-3">Leaking pipe under the kitchen sink, needs fixing this week.</p>
+
+                  <div className="flex items-center justify-between border-t border-gray-100 pt-3">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                        <CheckCircle className="w-3.5 h-3.5 text-green-500" /> 2 others in this area
+                      </div>
+                      <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                        <CheckCircle className="w-3.5 h-3.5 text-green-500" /> Slots into your calendar
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-[10px] font-semibold text-gray-400">Your quote</p>
+                      <p className="text-lg font-bold text-[#1A3A8A]" style={{fontWeight: 800}}>£165</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-base sm:text-lg font-bold text-[#1A3A8A]" style={{fontWeight: 700}}>Review collection</h4>
-                  <p className="text-sm sm:text-base text-gray-600">Build trust with verified customer feedback</p>
-                </div>
-                <div>
-                  <h4 className="text-base sm:text-lg font-bold text-[#1A3A8A]" style={{fontWeight: 700}}>Fair pricing</h4>
-                  <p className="text-sm sm:text-base text-gray-600">Only pay for leads you choose to quote on</p>
+
+                {/* Action */}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-400 font-medium">Quote it and it's in your diary</span>
+                  <span className="text-xs font-bold text-[#1A3A8A]">Quote in a tap →</span>
                 </div>
               </div>
             </div>
@@ -767,7 +797,7 @@ export default function Home() {
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Tell us about your job — get an instant quote.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">You've had your questions answered. Now find someone for the job.</p>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-# MyApproved — Homepage (final)
+# MyApproved Homepage (final)
 
 ---
 
@@ -24,7 +24,7 @@ Tagline: **Free Quotes • No Obligation • Local Pros**
 
 ---
 
-## Services — coverage
+## Services and coverage
 
 **Headline:** One Search. Every Trade.
 
@@ -39,16 +39,18 @@ Tagline: **Free Quotes • No Obligation • Local Pros**
 
 ## Why Homeowners Choose MyApproved
 
-1. **You're covered if it goes wrong** — Every job through MyApproved is protected. If the work doesn't hold up, you're not left covering the cost alone.
+1. **Checked before they're listed.** No tradesperson gets on the platform without passing our checks.
 
-2. **Quotes in hours, not days** — Post your job once and hear back from available local tradespeople fast. No chasing, no waiting by the phone.
+2. **See the price before anyone calls.** Get a costed quote from your job description, so no one has to talk you into a figure.
 
-3. **Tradespeople who know your area** — You're matched with people who work in your postcode, understand local housing, and can get to you quickly.
+3. **The closest tradesperson.** Matched to who can actually get to you first.
 
-4. **Free for homeowners. Always** — Posting a job and getting quotes costs you nothing. You only ever pay the tradesperson for work you agree to.
+4. **Booked into a real slot.** Your job goes into their diary, not a pile of callbacks.
+
+5. **Free, no obligation.** Posting costs nothing. Quoting costs nothing.
 
 **Button:** Get Quotes
-**Sub-line:** Post your job once — we do the chasing.
+**Sub-line:** Post once. We do the chasing.
 
 ---
 
@@ -56,10 +58,10 @@ Tagline: **Free Quotes • No Obligation • Local Pros**
 
 Every tradesperson on MyApproved passes these checks before they can take on work.
 
-1. **Identity verified** — Photo ID checked and confirmed against official records
-2. **Insurance confirmed** — Public liability insurance verified. Minimum £2M coverage.
-3. **Qualifications checked** — Trade qualifications and accreditations reviewed
-4. **Google Reviews** — Customer feedback collected and monitored after every job
+1. **Identity verified.** Photo ID checked and confirmed against official records
+2. **Insurance confirmed.** Public liability insurance verified. Minimum £2M coverage.
+3. **Qualifications checked.** Trade qualifications and accreditations reviewed
+4. **Google Reviews.** Customer feedback collected and monitored after every job
 
 **Button:** Get Quotes
 **Sub-line:** Only people who've passed our checks can quote.
@@ -70,22 +72,16 @@ Every tradesperson on MyApproved passes these checks before they can take on wor
 
 Get quality leads from homeowners in your area who are ready to hire. No cold calling, no wasted trips. Just real jobs from people who need your skills.
 
-- Get matched with jobs in your area
-- Only pay for leads you want
-- No subscription fees during launch
-- Build your reputation with verified reviews
+- **Three tradespeople per job.** You're quoting a real brief, not fighting a crowd for it.
+- **Jobs go to the nearest.** Matched by distance, so travel never eats your day.
+- **Jobs drop into your calendar.** Slots fill themselves, so jobs never clash.
+- **£4.99 a lead, pay as you go.** Pay only when a lead is worth taking. Nothing ongoing.
+- **Your marketing, handled.** Website, SEO, paid ads, social, outreach, and reviews, taken off your plate.
 
 **Button:** Join as a Tradesperson
-**Sub-line:** Set up free — pay only for leads you want.
+**Sub-line:** Create your profile and start receiving leads.
 
----
-
-## What you get
-
-- **Quality leads** — Connect with homeowners actively looking to hire
-- **Your own profile** — Showcase your work and qualifications
-- **Review collection** — Build trust with verified customer feedback
-- **Fair pricing** — Only pay for leads you choose to quote on
+**Right column (visual):** Job-notification mockup — Plumber · Leeds LS4 · "Leaking pipe under the kitchen sink" · illustrative "Your quote £165". Illustrative placeholder only; not a factual claim.
 
 ---
 
@@ -94,7 +90,7 @@ Get quality leads from homeowners in your area who are ready to hire. No cold ca
 *(6 FAQs as-is)*
 
 **Button:** Get Quotes
-**Sub-line:** Tell us about your job — get an instant quote.
+**Sub-line:** You've had your questions answered. Now find someone for the job.
 
 ---
 
@@ -106,7 +102,7 @@ Locations dropdown (as-is) · Popular Jobs · Find Tradespeople · Find Out More
 
 ## Footer
 
-MyApproved — Find trusted, approved tradespeople near you. Get fast quotes, compare, and book with confidence.
+MyApproved. Find trusted, approved tradespeople near you. Get fast quotes, compare, and book with confidence.
 
 support@myapproved.com · Quick Links · Company
 

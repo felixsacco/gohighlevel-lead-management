@@ -22,7 +22,7 @@ const steps = [
     icon: Search,
     step: "Step 1",
     title: "Search & Compare",
-    body: "Search for tradespeople by trade type and your location. Every profile on MyApproved has been verified before listing — identity, insurance, and qualifications all checked.",
+    body: "Search for tradespeople by trade type and your location. Every profile on MyApproved has been verified before listing. Identity, insurance, and qualifications all checked.",
     visual: (
       <div className="bg-gray-50 rounded-2xl border border-gray-100 p-6 space-y-3">
         <div className="bg-white rounded-xl border border-gray-200 px-4 py-3 flex items-center gap-3 shadow-sm">
@@ -111,7 +111,7 @@ const steps = [
     icon: Star,
     step: "Step 4",
     title: "Leave a Review",
-    body: "Once your job is complete, leave an honest review. Reviews are verified and help other homeowners make informed decisions — and reward quality tradespeople.",
+    body: "Once your job is complete, leave an honest review. Reviews are verified and help other homeowners make informed decisions. They reward quality tradespeople too.",
     visual: (
       <div className="bg-gray-50 rounded-2xl border border-gray-100 p-6 space-y-4">
         <div className="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
