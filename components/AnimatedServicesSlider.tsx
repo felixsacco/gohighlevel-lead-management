@@ -322,7 +322,7 @@ const AnimatedServicesSlider = () => {
             <span>Browse All Services</span>
             <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
-          <p className="text-gray-600 text-sm mt-3">Over 25 trade categories available nationwide</p>
+          <p className="text-gray-600 text-sm mt-3">Over 33 trade categories available nationwide</p>
         </div>
       </div>
     </section>

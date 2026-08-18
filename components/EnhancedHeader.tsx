@@ -62,7 +62,7 @@ const EnhancedHeader = () => {
   }, [isMobileMenuOpen]);
 
   const navigationItems = [
-    { href: "/find-tradespeople", label: "Find Tradespeople", icon: Search,      description: "Browse all 38 verified trades" },
+    { href: "/find-tradespeople", label: "Find Tradespeople", icon: Search,      description: "Browse all 33 verified trades" },
     { href: "/how-it-works",      label: "How It Works",      icon: HelpCircle,  description: "Our verification process explained" },
     { href: "/for-tradespeople",  label: "For Tradespeople",  icon: Wrench,      description: "Grow your business with MyApproved" },
   ];
@@ -154,17 +154,6 @@ const EnhancedHeader = () => {
 
             {/* Desktop CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
-              {/* Get Quotes — standardized homeowner CTA */}
-              <Button
-                asChild
-                className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all border-2 border-[#F5B301]"
-                style={{fontWeight: 800}}
-              >
-                <Link href="/find-tradespeople">
-                  Get Quotes
-                </Link>
-              </Button>
-
               {/* Language Translator */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -313,29 +302,16 @@ const EnhancedHeader = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
               
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all border-2 border-[#F5B301]" style={{fontWeight: 800}}>
-                    <span>Sign Up</span>
-                    <ChevronDown className="w-3 h-3 ml-1" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 bg-white/95 backdrop-blur-md border border-gray-200 shadow-xl rounded-xl p-2">
-                  <DropdownMenuItem asChild>
-                    <Link href="/register/client" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors cursor-pointer">
-                      <User className="w-4 h-4 text-blue-600" />
-                      <span className="font-medium text-gray-700">Register as Customer</span>
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator className="my-1 bg-gray-200" />
-                  <DropdownMenuItem asChild>
-                    <Link href="/register/tradesperson" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors cursor-pointer">
-                      <Wrench className="w-4 h-4 text-blue-600" />
-                      <span className="font-medium text-gray-700">Register as Tradesperson</span>
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <div className="flex flex-col items-center">
+                <Button
+                  className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all border-2 border-[#F5B301]"
+                  style={{fontWeight: 800}}
+                  onClick={() => window.dispatchEvent(new Event("open-ai-quote"))}
+                >
+                  Get Quotes
+                </Button>
+                <span className="mt-1 text-[11px] leading-tight text-gray-200 whitespace-nowrap">Free &amp; no obligation</span>
+              </div>
             </div>
 
             {/* Mobile Menu Button - Mobile Responsive */}

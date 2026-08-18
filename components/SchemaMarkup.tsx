@@ -210,7 +210,7 @@ export const FAQSchema = {
       "name": "What trades are available on MyApproved across the UK?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "MyApproved covers 24+ trades UK-wide including plumbers, electricians, roofers, gas engineers, builders, carpenters, painters and decorators, tilers, plasterers, locksmiths, bathroom fitters, kitchen fitters, landscapers, gardeners, handymen, window fitters, solar panel installers, heating engineers, loft conversion specialists, and driveway specialists. All are independently verified before listing."
+        "text": "MyApproved covers 33 trades UK-wide including plumbers, electricians, roofers, gas engineers, builders, carpenters, painters and decorators, tilers, plasterers, locksmiths, bathroom fitters, kitchen fitters, landscapers, gardeners, handymen, window fitters, solar panel installers, heating engineers, loft conversion specialists, and driveway specialists. All are independently verified before listing."
       }
     }
   ]

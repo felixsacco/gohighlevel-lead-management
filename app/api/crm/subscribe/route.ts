@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       email,
       tags: ["job-alerts"],
       customFields: {
-        source: "footer-signup",
+        source: "trades-alerts",
       },
     });
 
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       message: "Subscribed to job alerts.",
     });
   } catch (error) {
-    console.error("Footer signup failed:", error);
+    console.error("Trades alerts signup failed:", error);
     return NextResponse.json(
       {
         success: false,

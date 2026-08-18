@@ -124,7 +124,7 @@ export default function AboutPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "Trades covered", value: "24+" },
+                { label: "Trades covered", value: "33" },
                 { label: "UK-wide coverage", value: "Nationwide" },
                 { label: "Verification steps", value: "5-point" },
                 { label: "Free for homeowners", value: "Always" },

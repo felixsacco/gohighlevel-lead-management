@@ -16,11 +16,11 @@ Tagline: **Free Quotes • No Obligation • Local Pros**
 
 **Headline:** Hire a tradesperson you actually count on
 
-**Subhead:** We check their ID, insurance and reviews before you see them.
+**Subhead:** Every tradesperson is checked before you ever see them.
 
 **Search:** "Find an electrician in Leeds" → button **Get Quotes**
 
-**Trust chips:** Insurance certificate verified · Companies House checked
+**Trust chips:** Photo ID verified · Insurance verified
 
 ---
 
@@ -28,9 +28,9 @@ Tagline: **Free Quotes • No Obligation • Local Pros**
 
 **Headline:** One Search. Every Trade.
 
-**Subhead:** Find trusted, local tradespeople for any job around your home
+**Subhead:** One search covers every trade in your home.
 
-**Carousel:** 16 trades in two scrolling rows (Plumber, Electrician, Roofer, Painter & Decorator, Carpenter, Locksmith, Gas Engineer, Builder, Tiler, Gardener, Plasterer, Bathroom Fitter, Kitchen Fitter, Flooring, Window Fitter, Waste Removal)
+**Carousel:** A 16-trade sample of our 33 verified trades, shown in two scrolling rows (Plumber, Electrician, Roofer, Painter & Decorator, Carpenter, Locksmith, Gas Engineer, Builder, Tiler, Gardener, Plasterer, Bathroom Fitter, Kitchen Fitter, Flooring, Window Fitter, Waste Removal)
 
 **Button:** Get Quotes
 **Sub-line:** Get an instant quote based on your job description and location.
@@ -43,14 +43,12 @@ Tagline: **Free Quotes • No Obligation • Local Pros**
 
 2. **See the price before anyone calls.** Get a costed quote from your job description, so no one has to talk you into a figure.
 
-3. **The closest tradesperson.** Matched to who can actually get to you first.
+3. **Booked into a real slot.** Your job goes into their diary, not a pile of callbacks.
 
-4. **Booked into a real slot.** Your job goes into their diary, not a pile of callbacks.
-
-5. **Free, no obligation.** Posting costs nothing. Quoting costs nothing.
+4. **Free, no obligation.** Posting costs nothing. Quoting costs nothing.
 
 **Button:** Get Quotes
-**Sub-line:** Post once. We do the chasing.
+**Sub-line:** Post your job, see your price, and skip the chase.
 
 ---
 
@@ -79,7 +77,7 @@ Get quality leads from homeowners in your area who are ready to hire. No cold ca
 - **Your marketing, handled.** Website, SEO, paid ads, social, outreach, and reviews, taken off your plate.
 
 **Button:** Join as a Tradesperson
-**Sub-line:** Create your profile and start receiving leads.
+**Sub-line:** Get matched to jobs you can actually win.
 
 **Right column (visual):** Job-notification mockup — Plumber · Leeds LS4 · "Leaking pipe under the kitchen sink" · illustrative "Your quote £165". Illustrative placeholder only; not a factual claim.
 
@@ -106,7 +104,7 @@ Start by talking to the tradesperson. If the two of you can't sort it out, conta
 No. Posting a job is free, and seeing your quotes is free. The only person you ever pay is the tradesperson, and only for the work they do. There's no fee to join, no charge to look, and nothing to lose by getting a quote.
 
 **Button:** Get Quotes
-**Sub-line:** You've had your questions answered. Now find someone for the job.
+**Sub-line:** Enough reading. Get your quotes.
 
 ---
 
@@ -120,6 +118,12 @@ Locations dropdown (as-is) · Popular Jobs · Find Tradespeople · Find Out More
 
 MyApproved. Find trusted, approved tradespeople near you. Get fast quotes, compare, and book with confidence.
 
+**Signup (left column):**
+- Intro: The jobs your house quietly needs before the weather turns.
+- Button: Send me the checklist
+- Consent: Just the jobs worth doing. Once a month, no noise.
+- Success: You're in. Your monthly checklist is on its way.
+
 support@myapproved.com · Quick Links · Company
 
-Stripe · Google · © 2026 MyApproved
+ICO registration · Google Reviews · © 2026 MyApproved

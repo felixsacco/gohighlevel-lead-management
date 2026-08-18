@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     },
   },
   title: 'MyApproved - Find Verified & Approved Tradespeople Nationwide',
-  description: 'Find verified, insured local tradespeople across the UK. Compare plumbers, electricians, roofers, builders & 24+ trades. Free quotes, real reviews, ID-checked professionals. No obligation.',
+  description: 'Find verified, insured local tradespeople across the UK. Compare plumbers, electricians, roofers, builders & 33 trades. Free quotes, real reviews, ID-checked professionals. No obligation.',
   applicationName: 'MyApproved',
   authors: [{ name: 'MyApproved', url: 'https://myapproved.com' }],
   category: 'Home Services',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'MyApproved - Verified & Approved Tradespeople Nationwide',
-    description: 'Find verified, insured tradespeople across the UK. Free quotes, real reviews, ID-checked professionals. Plumbers, electricians, roofers & 24+ trades.',
+    description: 'Find verified, insured tradespeople across the UK. Free quotes, real reviews, ID-checked professionals. Plumbers, electricians, roofers & 33 trades.',
     url: baseUrl,
     siteName: 'MyApproved',
     locale: 'en_GB',

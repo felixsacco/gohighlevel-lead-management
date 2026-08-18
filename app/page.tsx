@@ -377,7 +377,7 @@ export default function Home() {
 
               {/* Subheadline — one specific promise */}
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-12 sm:mb-16 max-w-[34rem] mx-auto font-normal px-4">
-                We check their ID, insurance and reviews before you see them.
+                Every tradesperson is checked before you ever see them.
               </p>
 
               {/* Search Bar — a raised, rounded clickable target on navy */}
@@ -425,26 +425,17 @@ export default function Home() {
                       aria-hidden="true"
                     />
                   </span>
-                  <span className="font-bold tracking-wide text-white/70">INSURANCE CERTIFICATE VERIFIED</span>
+                  <span className="font-bold tracking-wide text-white/70">PHOTO ID VERIFIED</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap border-l border-white/20">
                   <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">
-                    <svg className="h-4 w-4 sm:h-5 sm:w-5 inline-block" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 2v8h8V4H6zm2 2h4v1H8V6zm0 2h4v1H8V8zm0 2h4v1H8v-1z" />
-                    </svg>
+                    <SealCheckFill
+                      weight="fill"
+                      className="h-4 w-4 sm:h-5 sm:w-5 inline-block"
+                      aria-hidden="true"
+                    />
                   </span>
-                  <span className="font-bold tracking-wide text-white/70">COMPANIES HOUSE CHECKED</span>
-                </div>
-                <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap border-l border-white/20">
-                  <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">
-                    <svg className="h-4 w-4 sm:h-5 sm:w-5 inline-block" viewBox="0 0 24 24" aria-hidden="true">
-                      <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/>
-                      <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/>
-                      <path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/>
-                      <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.45-3.45C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/>
-                    </svg>
-                  </span>
-                  <span className="font-bold tracking-wide text-white/70">GOOGLE REVIEWS CHECKED</span>
+                  <span className="font-bold tracking-wide text-white/70">INSURANCE VERIFIED</span>
                 </div>
               </div>
             </div>
@@ -461,7 +452,7 @@ export default function Home() {
               One Search. Every Trade.
             </h2>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#1A3A8A]/80 max-w-3xl mx-auto font-semibold px-4">
-              Find trusted, local tradespeople for any job around your home
+              One search covers every trade in your home.
             </p>
           </div>
 
@@ -474,12 +465,10 @@ export default function Home() {
               size="lg"
               className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
-              asChild
+              onClick={() => setShowAIModal(true)}
             >
-              <Link href="/find-tradespeople">
-                Get Quotes
-                <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
-              </Link>
+              Get Quotes
+              <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
             <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Get an instant quote based on your job description and location.</p>
           </div>
@@ -510,17 +499,11 @@ export default function Home() {
 
             {/* Benefit 3 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>The closest tradesperson</h3>
-              <p className="text-sm sm:text-base text-gray-600">Matched to who can actually get to you first.</p>
-            </div>
-
-            {/* Benefit 4 */}
-            <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Booked into a real slot</h3>
               <p className="text-sm sm:text-base text-gray-600">Your job goes into their diary, not a pile of callbacks.</p>
             </div>
 
-            {/* Benefit 5 */}
+            {/* Benefit 4 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Free, no obligation</h3>
               <p className="text-sm sm:text-base text-gray-600">Posting costs nothing. Quoting costs nothing.</p>
@@ -533,14 +516,12 @@ export default function Home() {
               size="lg"
               className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
-              asChild
+              onClick={() => setShowAIModal(true)}
             >
-              <Link href="/find-tradespeople">
-                Get Quotes
-                <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
-              </Link>
+              Get Quotes
+              <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Post once. We do the chasing.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Post your job, see your price, and skip the chase.</p>
           </div>
         </div>
       </section>
@@ -617,12 +598,10 @@ export default function Home() {
               size="lg"
               className="bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold border-2 border-[#F5B301] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
-              asChild
+              onClick={() => setShowAIModal(true)}
             >
-              <Link href="/find-tradespeople">
-                Get Quotes
-                <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
-              </Link>
+              Get Quotes
+              <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
             <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Only people who've passed our checks can quote.</p>
           </div>
@@ -674,7 +653,7 @@ export default function Home() {
                   <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
               </Button>
-              <p className="mt-3 text-sm sm:text-base text-white/70">Create your profile and start receiving leads.</p>
+              <p className="mt-3 text-sm sm:text-base text-white/70">Get matched to jobs you can actually win.</p>
             </div>
 
             {/* Right Column — job notification mockup */}
@@ -802,7 +781,7 @@ export default function Home() {
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">You've had your questions answered. Now find someone for the job.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Enough reading. Get your quotes.</p>
           </div>
         </div>
       </section>

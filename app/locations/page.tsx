@@ -8,7 +8,7 @@ import HeroSearchTrigger from "@/components/HeroSearchTrigger";
 export const metadata: Metadata = {
   title: "Find Tradespeople by Location | All UK Cities & Towns | MyApproved",
   description:
-    "Browse verified, insured tradespeople across every UK city and town. 30+ trades - plumbers, electricians, roofers, builders and more. All ID-checked, insured to £2M. Free quotes in hours.",
+    "Browse verified, insured tradespeople across every UK city and town. 33 trades - plumbers, electricians, roofers, builders and more. All ID-checked and insured. Free quotes in hours.",
   alternates: { canonical: "https://myapproved.com/locations" },
   openGraph: {
     title: "Find Tradespeople by Location | All UK Cities & Towns | MyApproved",
@@ -92,7 +92,7 @@ const tier3 = LOCATIONS.filter((l) => l.priority === 3);
 const FAQS = [
   {
     q: "How do I find a verified tradesperson near me?",
-    a: "Use the location and trade grids below to browse verified professionals in your area. Every tradesperson on MyApproved is ID-verified, insured to a minimum of £2M public liability, and rated by genuine customers.",
+    a: "Use the location and trade grids below to browse verified professionals in your area. Every tradesperson on MyApproved is ID-verified, properly insured, and rated by genuine customers.",
   },
   {
     q: "How much does it cost to get quotes from tradespeople?",
@@ -104,11 +104,11 @@ const FAQS = [
   },
   {
     q: "What trades are available on MyApproved?",
-    a: "We cover 30+ trades including plumbers, electricians, gas engineers, roofers, builders, carpenters, painters & decorators, bathroom fitters, kitchen fitters, locksmiths, landscapers, heating engineers, solar panel installers, and many more.",
+    a: "We cover 33 trades including plumbers, electricians, gas engineers, roofers, builders, carpenters, painters & decorators, bathroom fitters, kitchen fitters, locksmiths, landscapers, heating engineers, solar panel installers, and many more.",
   },
   {
     q: "Are all tradespeople on MyApproved insured?",
-    a: "Yes. Every tradesperson must provide proof of public liability insurance (minimum £2M) before joining MyApproved. We also carry out identity verification and check trade qualifications such as Gas Safe and NICEIC registration.",
+    a: "Yes. Every tradesperson must provide proof of public liability insurance before joining MyApproved. We also carry out identity verification and check trade qualifications such as Gas Safe and NICEIC registration.",
   },
 ];
 
@@ -121,7 +121,7 @@ const jsonLd = {
       url: "https://myapproved.com/locations",
       name: "Find Tradespeople by Location | All UK Cities & Towns | MyApproved",
       description:
-        "Browse verified, insured tradespeople across every UK city and town. 30+ trades, all ID-checked and insured.",
+        "Browse verified, insured tradespeople across every UK city and town. 33 trades, all ID-checked and insured.",
       breadcrumb: {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -189,7 +189,7 @@ export default function LocationsPage() {
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               {[
                 { icon: CheckCircle, text: "Every pro ID-verified" },
-                { icon: Shield, text: "Insured to £2M" },
+                { icon: Shield, text: "Fully insured" },
                 { icon: Star, text: "Genuine customer reviews" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="inline-flex items-center gap-1.5 text-sm text-blue-100 font-medium">

@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 
-import { CheckCircle, Users, TrendingUp, Shield, Star, User, Info, BadgeCheck } from "lucide-react";
+import { CheckCircle, Users, TrendingUp, Shield, Star, User, Info, BadgeCheck, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -115,6 +115,40 @@ export default function ForTradespeople() {
   const [avgJobValue, setAvgJobValue] = useState<number>(150); // £
   const [leadCost, setLeadCost] = useState<number>(15); // £ per lead
   const [trade, setTrade] = useState<string>("plumber");
+
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+
+    setStatus('loading');
+    setMessage('');
+
+    try {
+      const res = await fetch('/api/crm/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setStatus('success');
+        setMessage("You're subscribed. Watch your inbox for new jobs.");
+        setEmail('');
+      } else {
+        setStatus('error');
+        setMessage(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch {
+      setStatus('error');
+      setMessage('Something went wrong. Please try again.');
+    }
+  };
 
   const tradeDefaults: Record<string, { jobs: number; close: number; avg: number; lead: number }> = {
     plumber: { jobs: 12, close: 35, avg: 180, lead: 18 },
@@ -660,6 +694,50 @@ export default function ForTradespeople() {
           </div>
         </Container>
       </Section>
+
+      {/* Email capture */}
+      <section className="py-16 bg-white">
+        <Container size="narrow">
+          <div className="max-w-md mx-auto text-center">
+            <h2 className="text-3xl font-bold text-blue-900 mb-3">
+              New jobs near you, by email
+            </h2>
+            <p className="text-blue-800/80 mb-6">
+              Get alerts when new jobs are posted in your area.
+            </p>
+            <form onSubmit={handleSubscribe} className="space-y-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                className="w-full px-4 py-3 rounded-lg border border-blue-200 text-blue-900 placeholder:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <Button
+                type="submit"
+                size="lg"
+                disabled={status === 'loading'}
+                className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
+              >
+                {status === 'loading' ? 'Subscribing…' : 'Get job alerts'}
+              </Button>
+            </form>
+            {message && (
+              <p
+                className={`mt-4 text-sm ${
+                  status === 'success' ? 'text-green-600' : 'text-red-600'
+                }`}
+              >
+                {message}
+              </p>
+            )}
+            <p className="mt-4 text-xs text-blue-600/60">
+              Subscribe to receive job alerts by email. Unsubscribe any time.
+            </p>
+          </div>
+        </Container>
+      </section>
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-700 to-blue-800 text-white">

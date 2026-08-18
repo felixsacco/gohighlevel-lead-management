@@ -1,44 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Mail, Shield } from 'lucide-react';
 
 const EnhancedFooter = () => {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [message, setMessage] = useState('');
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-
-    setStatus('loading');
-    setMessage('');
-
-    try {
-      const res = await fetch('/api/crm/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok && data.success) {
-        setStatus('success');
-        setMessage("You're subscribed. Watch your inbox for new jobs.");
-        setEmail('');
-      } else {
-        setStatus('error');
-        setMessage(data.message || 'Something went wrong. Please try again.');
-      }
-    } catch {
-      setStatus('error');
-      setMessage('Something went wrong. Please try again.');
-    }
-  };
-
   return (
     <footer className="bg-[#1A3A8A] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -61,38 +27,6 @@ const EnhancedFooter = () => {
                 support@myapproved.com
               </a>
             </p>
-
-            {/* Email capture */}
-            <div className="mt-6 border-t border-blue-800 pt-6">
-              <h5 className="text-sm font-semibold text-white mb-3" style={{fontWeight: 700}}>
-                New jobs near you, by email
-              </h5>
-              <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="w-full rounded-md bg-blue-900/50 border border-blue-800 px-3 py-2 text-sm text-white placeholder:text-gray-400 focus:outline-none focus:border-[#F5B301]"
-                />
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="w-full rounded-md bg-[#F5B301] text-[#1A3A8A] text-sm font-semibold px-3 py-2 hover:bg-yellow-400 transition-colors disabled:opacity-60"
-                >
-                  {status === 'loading' ? 'Subscribing…' : 'Get job alerts'}
-                </button>
-              </form>
-              {message && (
-                <p className={`mt-2 text-xs ${status === 'error' ? 'text-red-300' : 'text-emerald-300'}`}>
-                  {message}
-                </p>
-              )}
-              <p className="mt-3 text-xs text-gray-400">
-                Subscribe to receive job alerts by email. Unsubscribe any time.
-              </p>
-            </div>
           </div>
 
           {/* Homeowners Column */}
