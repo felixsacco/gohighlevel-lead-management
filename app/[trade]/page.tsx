@@ -42,8 +42,8 @@ export async function generateMetadata({
     };
   }
   
-  const title = `Find ${trade.plural} Near You | Verified ${trade.name}s UK - Get Free Quotes | MyApproved`;
-  const description = `Find verified ${trade.plural.toLowerCase()} near you. Compare ${trade.plural.toLowerCase()}, read reviews, and get free quotes from local professionals. All ${trade.name.toLowerCase()}s checked, insured & rated. Book today.`;
+  const title = `Find ${trade.plural} Near You | Business-verified ${trade.name}s UK - Get Free Quotes | MyApproved`;
+  const description = `Find business-verified ${trade.plural.toLowerCase()} near you. Compare ${trade.plural.toLowerCase()}, read reviews, and get free quotes from local professionals. All ${trade.name.toLowerCase()}s identity checked, public liability insurance confirmed, and rated. Book today.`;
   
   return {
     title,
@@ -53,7 +53,7 @@ export async function generateMetadata({
       trade.plural.toLowerCase(),
       `find ${trade.name.toLowerCase()}`,
       `local ${trade.name.toLowerCase()}`,
-      `verified ${trade.name.toLowerCase()}`,
+      `business-verified ${trade.name.toLowerCase()}`,
       `hire ${trade.name.toLowerCase()}`,
       `${trade.name.toLowerCase()} near me`,
       `${trade.name.toLowerCase()} quotes`,
@@ -65,8 +65,8 @@ export async function generateMetadata({
     },
     robots: { index: false },
     openGraph: {
-      title: `${trade.plural} Near You | Verified ${trade.name}s - Free Quotes`,
-      description: `Connect with checked ${trade.plural.toLowerCase()} in your area. Free quotes, verified reviews, same-day service available.`,
+      title: `${trade.plural} Near You | Business-verified ${trade.name}s - Free Quotes`,
+      description: `Connect with business-verified ${trade.plural.toLowerCase()} in your area. Free quotes, verified reviews, same-day service available.`,
       url: `https://myapproved.com/find-tradespeople/${params.trade}`,
       siteName: 'MyApproved',
       locale: 'en_GB',
@@ -107,7 +107,7 @@ export default function TradePage({
             "@type": "Service",
             "@id": `https://myapproved.com/${trade.slug}#service`,
             "name": `${trade.name} Services`,
-            "description": `Find verified, insured ${trade.plural.toLowerCase()} across the UK. ID-checked professionals, real customer reviews, free no-obligation quotes.`,
+            "description": `Find business-verified ${trade.plural.toLowerCase()} with confirmed public liability cover across the UK. Identity-checked professionals, real customer reviews, free no-obligation quotes.`,
             "provider": {
               "@type": "Organization",
               "@id": "https://myapproved.com/#organization",
@@ -119,7 +119,7 @@ export default function TradePage({
             "url": `https://myapproved.com/${trade.slug}`,
             "offers": {
               "@type": "Offer",
-              "description": `Free no-obligation quotes from verified ${trade.plural.toLowerCase()} in your area`,
+              "description": `Free no-obligation quotes from business-verified ${trade.plural.toLowerCase()} in your area`,
               "price": "0",
               "priceCurrency": "GBP",
               "availability": "https://schema.org/InStock"
@@ -139,23 +139,23 @@ export default function TradePage({
                 "name": `How much does a ${trade.name.toLowerCase()} cost near me?`,
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": `${trade.name} costs in the UK vary by region and job complexity. Most ${trade.plural.toLowerCase()} charge an hourly rate plus materials. Use MyApproved to get up to 3 free quotes from verified local ${trade.plural.toLowerCase()} and compare exact costs for your project.`
+                  "text": `${trade.name} costs in the UK vary by region and job complexity. Most ${trade.plural.toLowerCase()} charge an hourly rate plus materials. Use MyApproved to get up to 3 free quotes from business-verified local ${trade.plural.toLowerCase()} and compare exact costs for your project.`
                 }
               },
               {
                 "@type": "Question",
-                "name": `How do I find a verified ${trade.name.toLowerCase()} in my area?`,
+                "name": `How do I find a business-verified ${trade.name.toLowerCase()} in my area?`,
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": `Use MyApproved to find verified ${trade.plural.toLowerCase()} near you. Every ${trade.name.toLowerCase()} on our platform is ID-checked, insured (minimum £2M public liability), and reviewed by real local customers. Post your job free and receive quotes within hours.`
+                  "text": `Use MyApproved to find business-verified ${trade.plural.toLowerCase()} near you. Every ${trade.name.toLowerCase()} on our platform is identity checked, public liability insurance confirmed (minimum £2M), and reviewed by real local customers. Post your job free and receive quotes within hours.`
                 }
               },
               {
                 "@type": "Question",
-                "name": `Are ${trade.plural} on MyApproved insured?`,
+                "name": `Is public liability insurance on MyApproved ${trade.plural.toLowerCase()} confirmed?`,
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": `Yes. All ${trade.plural.toLowerCase()} on MyApproved carry valid public liability insurance of at least £2 million, which is verified before they can list on the platform. Insurance is re-checked annually.`
+                  "text": `Yes. All ${trade.plural.toLowerCase()} on MyApproved hold public liability cover of at least £2m, confirmed and monitored before they can list on the platform. Cover is monitored and the listing is withdrawn if it lapses.`
                 }
               },
               {
@@ -163,7 +163,7 @@ export default function TradePage({
                 "name": `What is the cheapest way to find a reliable ${trade.name.toLowerCase()}?`,
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": `Post your job for free on MyApproved and receive up to 3 competitive quotes from verified local ${trade.plural.toLowerCase()}. Comparing quotes is the fastest way to get the best price — and all ${trade.plural.toLowerCase()} are pre-screened so you don't need to sacrifice quality for cost.`
+                  "text": `Post your job for free on MyApproved and receive up to 3 competitive quotes from business-verified local ${trade.plural.toLowerCase()}. Comparing quotes is the fastest way to get the best price — and all ${trade.plural.toLowerCase()} have passed identity, business and insurance checks so you don't need to sacrifice quality for cost.`
                 }
               }
             ]
@@ -198,7 +198,7 @@ export default function TradePage({
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
                 Find {trade.plural} Near You
                 <span className="block text-xl sm:text-2xl md:text-3xl font-semibold text-yellow-400 mt-2">
-                  Verified, Rated & Ready to Quote
+                  Business-verified, Rated & Ready to Quote
                 </span>
               </h1>
               
@@ -210,11 +210,11 @@ export default function TradePage({
               <div className="flex flex-wrap justify-center gap-4 mb-8">
                 <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
                   <Shield className="w-5 h-5 text-green-400" />
-                  <span className="font-medium">ID Verified</span>
+                  <span className="font-medium">Identity checked</span>
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
                   <Award className="w-5 h-5 text-yellow-400" />
-                  <span className="font-medium">£2M Insured</span>
+                  <span className="font-medium">£2M Public liability cover</span>
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
                   <Star className="w-5 h-5 text-yellow-400" />
@@ -251,7 +251,7 @@ export default function TradePage({
                 {trade.name} Services We Offer
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Our verified {trade.plural.toLowerCase()} provide comprehensive services 
+                Our business-verified {trade.plural.toLowerCase()} provide comprehensive services
                 for your home and business.
               </p>
             </div>
@@ -328,9 +328,9 @@ export default function TradePage({
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <BadgeCheck className="w-8 h-8 text-green-600" />
                 </div>
-                <h3 className="font-bold text-blue-900 mb-2">Fully Verified</h3>
+                <h3 className="font-bold text-blue-900 mb-2">Business verified</h3>
                 <p className="text-gray-600 text-sm">
-                  Every {trade.name.toLowerCase()} is ID checked and reference verified before joining.
+                  Every {trade.name.toLowerCase()} is identity checked and business verified before joining.
                 </p>
               </div>
               
@@ -338,9 +338,9 @@ export default function TradePage({
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-8 h-8 text-blue-600" />
                 </div>
-                <h3 className="font-bold text-blue-900 mb-2">£2M Insurance</h3>
+                <h3 className="font-bold text-blue-900 mb-2">£2M Public liability cover</h3>
                 <p className="text-gray-600 text-sm">
-                  All {trade.plural.toLowerCase()} carry minimum £2M public liability insurance.
+                  All {trade.plural.toLowerCase()} hold public liability cover of at least £2m, confirmed and monitored.
                 </p>
               </div>
               
@@ -401,7 +401,7 @@ export default function TradePage({
               Ready to Find Your {trade.name}?
             </h2>
             <p className="text-lg text-blue-100 mb-8">
-              Get free quotes from verified {trade.plural.toLowerCase()} in your area. 
+              Get free quotes from business-verified {trade.plural.toLowerCase()} in your area.
               Compare prices, read reviews, and hire with confidence.
             </p>
             
