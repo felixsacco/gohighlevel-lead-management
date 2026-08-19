@@ -258,7 +258,7 @@ export default function Home() {
         "@id": "https://myapproved.com/#website",
         "url": "https://myapproved.com",
         "name": "MyApproved",
-        "description": "Find verified, insured local tradespeople across the UK. Free quotes, real reviews, ID-checked professionals.",
+        "description": "Find identity-checked local tradespeople across the UK. Free quotes, real reviews, public liability insurance confirmed and monitored.",
         "inLanguage": "en-GB",
         "potentialAction": { "@type": "SearchAction", "target": { "@type": "EntryPoint", "urlTemplate": "https://myapproved.com/find-tradespeople?search={search_term_string}" }, "query-input": "required name=search_term_string" }
       }) }} />
@@ -270,7 +270,7 @@ export default function Home() {
         "name": "MyApproved",
         "url": "https://myapproved.com",
         "logo": { "@type": "ImageObject", "url": "https://myapproved.com/logo-icon.svg", "width": 512, "height": 512 },
-        "description": "MyApproved is a UK-wide tradespeople verification platform connecting homeowners nationwide with ID-checked, insured, and reviewed local tradespeople.",
+        "description": "MyApproved is a UK-wide tradespeople verification platform connecting homeowners nationwide with identity-checked and reviewed local tradespeople whose public liability insurance is confirmed and monitored.",
         "areaServed": { "@type": "Country", "name": "United Kingdom" },
         "sameAs": [
           process.env.NEXT_PUBLIC_TWITTER_URL,
@@ -337,7 +337,7 @@ export default function Home() {
                     <rect x="2.6" y="10.1" width="18.8" height="3.8" rx="1.9" fill="#0A2463" fill-opacity="0.8" transform="rotate(71 12 12)"/>
                     <path d="M4.8 8.4A9 9 0 0 1 11.6 3.3" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
                   </svg>
-                  <span className="relative z-10">Vetted tradespeople across the UK</span>
+                  <span className="relative z-10">Identity-checked tradespeople across the UK</span>
                 </span>
                 <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-[#FFB800]/60" aria-hidden="true"></span>
               </p>
@@ -377,7 +377,7 @@ export default function Home() {
 
               {/* Subheadline — one specific promise */}
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-12 sm:mb-16 max-w-[34rem] mx-auto font-normal px-4">
-                Every tradesperson is checked before you ever see them.
+                No tradesperson is listed until identity, business and insurance checks have passed.
               </p>
 
               {/* Search Bar — a raised, rounded clickable target on navy */}
@@ -425,7 +425,7 @@ export default function Home() {
                       aria-hidden="true"
                     />
                   </span>
-                  <span className="font-bold tracking-wide text-white/70 notranslate">PHOTO ID VERIFIED</span>
+                  <span className="font-bold tracking-wide text-white/70 notranslate">IDENTITY CHECKED</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap border-l border-white/20">
                   <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">
@@ -435,7 +435,7 @@ export default function Home() {
                       aria-hidden="true"
                     />
                   </span>
-                  <span className="font-bold tracking-wide text-white/70 notranslate">INSURANCE VERIFIED</span>
+                  <span className="font-bold tracking-wide text-white/70 notranslate">PUBLIC LIABILITY INSURANCE CONFIRMED</span>
                 </div>
               </div>
             </div>
@@ -488,7 +488,7 @@ export default function Home() {
             {/* Benefit 1 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Checked before they're listed</h3>
-              <p className="text-sm sm:text-base text-gray-600">No tradesperson gets on the platform without passing our checks.</p>
+              <p className="text-sm sm:text-base text-gray-600">No tradesperson is listed until identity, business and insurance checks have passed.</p>
             </div>
 
             {/* Benefit 2 */}
@@ -534,7 +534,7 @@ export default function Home() {
               Our Checks
             </h2>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#1A3A8A] max-w-3xl mx-auto font-semibold px-4">
-              Every tradesperson on MyApproved passes these checks before they can take on work.
+              Every tradesperson on MyApproved passes identity, business and insurance checks before they can take on work.
             </p>
           </div>
 
@@ -549,7 +549,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Photo ID</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We confirm the person behind the profile is who they say they are.</p>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We confirm the person behind the profile is who they say they are, with photo ID verified against a live selfie.</p>
             </div>
 
             {/* Check 2 */}
@@ -575,7 +575,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Insurance</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We confirm the public liability certificate is real and still in date.</p>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We confirm the public liability cover is real and still in date, and monitor it so the listing is withdrawn if it lapses.</p>
             </div>
 
             {/* Check 4 */}
@@ -588,7 +588,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Qualifications</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We review the trade qualifications and accreditations they list.</p>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We review the trade qualifications and accreditations they list against named certificate schemes.</p>
             </div>
           </div>
 
@@ -603,7 +603,7 @@ export default function Home() {
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70 notranslate">Only people who've passed our checks can quote.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70 notranslate">Only people who've passed identity, business and insurance checks can quote.</p>
           </div>
         </div>
       </section>
@@ -720,7 +720,7 @@ export default function Home() {
                 Is this just another directory anyone can pay to join?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
-                No. Other sites let tradespeople buy their way onto a list. We don't. Before anyone appears on MyApproved, we check their photo ID to confirm they are who they say they are, we check the business exists on Companies House, and we confirm their public liability insurance certificate is real and still in date. Paying a fee doesn't get you past any of that.
+                No. Other sites let tradespeople buy their way onto a list. We don't. Before anyone appears on MyApproved, we check their photo ID against a live selfie to confirm they are who they say they are, we check the business exists on Companies House, and we confirm their public liability insurance cover is real and still in date. Paying a fee doesn't get you past any of that.
               </AccordionContent>
             </AccordionItem>
 
@@ -729,7 +729,7 @@ export default function Home() {
                 How do you check tradespeople?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
-                Every tradesperson goes through four checks before they can take on work. We confirm their photo ID matches the person behind the profile. We check their business is registered on Companies House, the official UK register. We verify their public liability insurance certificate is genuine and not out of date. And we review the trade qualifications and accreditations they list. Only once all four pass do they appear on MyApproved.
+                No tradesperson is listed until their identity, business and insurance checks have passed. We confirm their photo ID matches the person behind the profile, verified against a live selfie. We check their business is registered on Companies House, the official UK register. And we confirm their public liability insurance cover is genuine and not out of date. Only once all of these pass do they appear on MyApproved.
               </AccordionContent>
             </AccordionItem>
 
@@ -756,7 +756,7 @@ export default function Home() {
                 What happens if the job goes wrong?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
-                Start by talking to the tradesperson. If the two of you can't sort it out, contact us at support@myapproved.com and we'll help work it through. Every tradesperson on MyApproved has a public liability insurance certificate that we check and confirm is in date.
+                Start by talking to the tradesperson. If the two of you can't sort it out, contact us at support@myapproved.com and we'll help work it through. Every tradesperson on MyApproved has public liability insurance that we confirm and monitor, so cover is withdrawn if it ever lapses.
               </AccordionContent>
             </AccordionItem>
 
