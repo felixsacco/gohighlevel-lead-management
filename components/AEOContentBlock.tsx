@@ -253,8 +253,6 @@ export interface AEOContentBlockProps {
   city: string;
   neighborhood?: string;
   postalDistrict?: string;
-  averageRating?: number;
-  reviewCount?: number;
   className?: string;
 }
 
@@ -263,8 +261,6 @@ export default function AEOContentBlock({
   city,
   neighborhood,
   postalDistrict,
-  averageRating = 0,
-  reviewCount = 0,
   className = "",
 }: AEOContentBlockProps) {
   const entry     = AEO_DATA[tradeType.toLowerCase()] ?? AEO_DATA.default;
@@ -325,25 +321,6 @@ export default function AEOContentBlock({
 
         {/* Trust signal pills */}
         <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-blue-50">
-          {averageRating > 0 && (
-            <span
-              className="inline-flex items-center gap-1.5 bg-yellow-50 px-3 py-1 rounded-full text-xs font-semibold text-yellow-800 ring-1 ring-yellow-200"
-              itemScope
-              itemType="https://schema.org/AggregateRating"
-            >
-              <span className="text-yellow-500" aria-hidden="true">★</span>
-              <meta itemProp="bestRating" content="5" />
-              <meta itemProp="worstRating" content="1" />
-              <span itemProp="ratingValue" content={String(averageRating)}>
-                {averageRating.toFixed(1)}
-              </span>
-              <span className="font-normal text-yellow-700">from</span>
-              <span itemProp="reviewCount" content={String(reviewCount)}>
-                {reviewCount.toLocaleString()}
-              </span>
-              <span className="font-normal text-yellow-700">verified reviews</span>
-            </span>
-          )}
           {[
             "Identity checked",
             "Public liability insurance confirmed",

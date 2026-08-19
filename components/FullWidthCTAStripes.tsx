@@ -47,21 +47,21 @@ const FullWidthCTAStripes = () => {
       id: 'customers',
       title: 'Need Work Done?',
       subtitle: 'Find Trusted Tradespeople in Minutes',
-      description: 'Get instant quotes from verified, insured professionals. No more waiting weeks for callbacks or worrying about cowboy builders.',
+      description: 'Get instant quotes from identity-checked professionals with public liability cover confirmed. No more waiting weeks for callbacks or worrying about cowboy builders.',
       buttonText: 'Find Tradespeople',
       buttonAction: () => window.location.href = '/find-tradespeople',
       gradient: 'from-[#0056D2] via-blue-600 to-blue-800',
       hoverGradient: 'from-blue-800 via-blue-600 to-[#0056D2]',
       icon: Search,
       stats: [
-        { value: '2,847', label: 'Jobs posted today' },
-        { value: '3 min', label: 'Average response' },
-        { value: '98%', label: 'Success rate' }
+        { value: 'New', label: 'Jobs posted today' },
+        { value: 'Instant', label: 'Quotes' },
+        { value: 'Free', label: 'No obligation' }
       ],
       features: [
         'Instant AI quotes',
-        'Verified professionals only',
-        'Full insurance guarantee',
+        'Identity-checked professionals',
+        'Public liability cover confirmed',
         'No obligation quotes'
       ],
       illustration: 'customer'
@@ -70,16 +70,16 @@ const FullWidthCTAStripes = () => {
       id: 'tradespeople',
       title: 'Are You a Tradesperson?',
       subtitle: 'Grow Your Business with Quality Leads',
-      description: 'Join 10,000+ approved tradespeople earning more with our platform. Get matched with customers who need your skills.',
+      description: 'Join trusted tradespeople earning more with our platform. Get matched with customers who need your skills.',
       buttonText: 'Join MyApproved',
       buttonAction: () => window.location.href = '/register/tradesperson',
       gradient: 'from-[#FDBD18] via-yellow-400 to-orange-400',
       hoverGradient: 'from-orange-400 via-yellow-400 to-[#FDBD18]',
       icon: Users,
       stats: [
-        { value: '47', label: 'Avg leads/month' },
-        { value: '73%', label: 'Conversion rate' },
-        { value: '£2.4k', label: 'Avg monthly boost' }
+        { value: '£2M', label: 'Public liability cover' },
+        { value: 'Identity', label: 'Checked professionals' },
+        { value: '£4.99', label: 'Lead fee' }
       ],
       features: [
         'Quality leads only',
@@ -100,7 +100,7 @@ const FullWidthCTAStripes = () => {
       hoverGradient: 'from-teal-600 via-green-500 to-emerald-500',
       icon: Calculator,
       stats: [
-        { value: '94%', label: 'Quote accuracy' },
+        { value: 'AI', label: 'Powered quotes' },
         { value: '60s', label: 'Time to quote' },
         { value: 'Free', label: 'Always' }
       ],
@@ -124,7 +124,7 @@ const FullWidthCTAStripes = () => {
               <div className="text-center text-white">
                 <Search className="w-16 h-16 mx-auto mb-4 opacity-80" />
                 <div className="text-lg font-bold">Find Your Perfect Match</div>
-                <div className="text-sm opacity-80">Verified professionals ready to help</div>
+                <div className="text-sm opacity-80">Identity-checked professionals ready to help</div>
               </div>
             </div>
             {/* Floating elements */}

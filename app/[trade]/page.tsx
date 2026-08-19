@@ -66,7 +66,7 @@ export async function generateMetadata({
     robots: { index: false },
     openGraph: {
       title: `${trade.plural} Near You | Business-verified ${trade.name}s - Free Quotes`,
-      description: `Connect with business-verified ${trade.plural.toLowerCase()} in your area. Free quotes, verified reviews, same-day service available.`,
+      description: `Connect with business-verified ${trade.plural.toLowerCase()} in your area. Free quotes, customer reviews, same-day service available.`,
       url: `https://myapproved.com/find-tradespeople/${params.trade}`,
       siteName: 'MyApproved',
       locale: 'en_GB',
@@ -176,8 +176,6 @@ export default function TradePage({
         <AEOContentBlock
           tradeType={params.trade}
           city="the UK"
-          averageRating={Number(process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE) || 4.9}
-          reviewCount={Number(process.env.NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT) || 850}
         />
 
         {/* Breadcrumb */}
@@ -203,8 +201,8 @@ export default function TradePage({
               </h1>
               
               <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                Find trusted {trade.plural.toLowerCase()} across the UK. Compare local professionals, 
-                read verified reviews, and get free quotes for your project.
+                Find trusted {trade.plural.toLowerCase()} across the UK. Compare local professionals,
+                read customer reviews, and get free quotes for your project.
               </p>
               
               <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -217,8 +215,8 @@ export default function TradePage({
                   <span className="font-medium">£2M Public liability cover</span>
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-                  <Star className="w-5 h-5 text-yellow-400" />
-                  <span className="font-medium">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}/5 Rated</span>
+                  <Shield className="w-5 h-5 text-green-400" />
+                  <span className="font-medium">Identity checked</span>
                 </span>
               </div>
               

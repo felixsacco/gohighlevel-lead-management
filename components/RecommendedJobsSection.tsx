@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import {
   MapPin,
-  Star,
   Clock,
   ChevronLeft,
   ChevronRight,
@@ -27,7 +26,6 @@ interface Job {
   requestsToday: number;
   estimatedPrice?: string;
   responseTime?: string;
-  rating?: number;
   category: string;
 }
 
@@ -41,7 +39,6 @@ const recommendedJobs: Job[] = [
     requestsToday: 12,
     estimatedPrice: '£150-300',
     responseTime: '2 mins',
-    rating: 4.9,
     category: 'Electrical'
   },
   {
@@ -53,7 +50,6 @@ const recommendedJobs: Job[] = [
     requestsToday: 8,
     estimatedPrice: '£120-250',
     responseTime: '5 mins',
-    rating: 4.8,
     category: 'Plumbing'
   },
   {
@@ -65,7 +61,6 @@ const recommendedJobs: Job[] = [
     requestsToday: 15,
     estimatedPrice: '£200-400',
     responseTime: '3 mins',
-    rating: 4.9,
     category: 'Roofing'
   },
   {
@@ -77,7 +72,6 @@ const recommendedJobs: Job[] = [
     requestsToday: 6,
     estimatedPrice: '£800-1500',
     responseTime: '10 mins',
-    rating: 4.7,
     category: 'Gardening'
   },
   {
@@ -89,7 +83,6 @@ const recommendedJobs: Job[] = [
     requestsToday: 4,
     estimatedPrice: '£80-150',
     responseTime: '15 mins',
-    rating: 4.8,
     category: 'Appliance Repair'
   },
   {
@@ -101,7 +94,6 @@ const recommendedJobs: Job[] = [
     requestsToday: 9,
     estimatedPrice: '£1200-2000',
     responseTime: '8 mins',
-    rating: 4.9,
     category: 'Painting'
   }
 ];
@@ -223,11 +215,11 @@ const RecommendedJobsSection = () => {
           <div className="flex items-center justify-center gap-6 mt-6 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-gray-700">Live: <span className="font-bold text-[#0056D2]">47</span> new jobs in last hour</span>
+              <span className="text-gray-700">Live: <span className="font-bold text-[#0056D2]">new</span> jobs in your area</span>
             </div>
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-[#FDBD18]" />
-              <span className="text-gray-700"><span className="font-bold text-[#0056D2]">1,247</span> tradespeople online</span>
+              <span className="text-gray-700"><span className="font-bold text-[#0056D2]">tradespeople</span> online now</span>
             </div>
           </div>
         </div>
@@ -275,12 +267,6 @@ const RecommendedJobsSection = () => {
                               <MapPin className="w-4 h-4 text-[#0056D2]" />
                               <span className="font-semibold">{job.city}</span>
                             </div>
-                            {job.rating && (
-                              <div className="flex items-center gap-1">
-                                <Star className="w-4 h-4 text-[#FDBD18] fill-current" />
-                                <span className="font-semibold text-gray-700">{job.rating}</span>
-                              </div>
-                            )}
                           </div>
 
                           <div className="flex items-center justify-between text-sm">
@@ -302,7 +288,7 @@ const RecommendedJobsSection = () => {
                             </span>
                             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700">
                               <Shield className="w-3 h-3" />
-                              <span>Verified Client</span>
+                              <span>Identity checked</span>
                             </span>
                           </div>
                         </div>
@@ -367,7 +353,7 @@ const RecommendedJobsSection = () => {
             View All Available Jobs
             <ChevronRight className="w-5 h-5 ml-3" />
           </Button>
-          <p className="text-gray-600 text-sm mt-3">Join 10,000+ tradespeople earning with MyApproved</p>
+          <p className="text-gray-600 text-sm mt-3">Join trusted tradespeople earning with MyApproved</p>
         </div>
       </div>
     </section>

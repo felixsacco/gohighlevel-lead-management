@@ -66,19 +66,19 @@ const MobileStickyFooter = () => {
                 <div className="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-2">
                   <Shield className="w-6 h-6 text-green-600" />
                 </div>
-                <div className="text-xs font-bold text-gray-700">All Verified</div>
+                <div className="text-xs font-bold text-gray-700">Identity Checked</div>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-2">
                   <Clock className="w-6 h-6 text-blue-600" />
                 </div>
-                <div className="text-xs font-bold text-gray-700">3min Response</div>
+                <div className="text-xs font-bold text-gray-700">Fast Response</div>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center mx-auto mb-2">
                   <Star className="w-6 h-6 text-[#FDBD18]" />
                 </div>
-                <div className="text-xs font-bold text-gray-700">4.9★ Rating</div>
+                <div className="text-xs font-bold text-gray-700">Trusted</div>
               </div>
             </div>
 
@@ -148,7 +148,7 @@ const MobileStickyFooter = () => {
           {/* Center: Live indicator */}
           <div className="flex items-center gap-2 text-xs">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="font-bold text-gray-700">2,847 jobs today</span>
+            <span className="font-bold text-gray-700">New jobs posted today</span>
           </div>
 
           {/* Right: Expand button */}

@@ -369,7 +369,7 @@ export default function ClientRegistration() {
                 </div>
                 <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full border border-yellow-300/70 bg-yellow-50 px-3 py-1.5 text-xs font-semibold text-yellow-800">
                   <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-500" />
-                  Join 50,000+ Happy Customers
+                  Join Happy Customers
                 </div>
                 <div className="flex items-center justify-center mb-4">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-md">
@@ -697,16 +697,7 @@ export default function ClientRegistration() {
                   </span>
                   <div>
                     <p className="text-sm font-semibold text-white">Verified Professionals</p>
-                    <p className="text-sm text-blue-200">ID, insurance, and background checks for complete peace of mind.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-500/20 border border-yellow-400/30 backdrop-blur-sm">
-                    <Star className="h-5 w-5 text-yellow-400" />
-                  </span>
-                  <div>
-                    <p className="text-sm font-semibold text-yellow-400">Top-Rated Pros</p>
-                    <p className="text-sm text-blue-200">5★ reviews from thousands of satisfied UK customers.</p>
+                    <p className="text-sm text-blue-200">Identity, business and insurance checks for complete peace of mind.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
@@ -740,7 +731,7 @@ export default function ClientRegistration() {
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
               <h3 className="text-lg font-semibold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Peace of mind</h3>
               <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Vetted & insured pros</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Insurance confirmed and monitored</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Clear pricing</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-yellow-400" /> <span className="text-blue-100">Dedicated support</span></li>
               </ul>
@@ -760,7 +751,7 @@ export default function ClientRegistration() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-yellow-500/30 border border-yellow-400/50 text-yellow-300 text-xs font-bold backdrop-blur-sm">2</span>
-                  <span className="text-blue-100">Get matched with verified, top‑rated pros</span>
+                  <span className="text-blue-100">Get matched with identity-checked pros</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-green-500/30 border border-green-400/50 text-green-300 text-xs font-bold backdrop-blur-sm">3</span>
@@ -770,17 +761,6 @@ export default function ClientRegistration() {
             </div>
           </div>
 
-          {/* Ratings strip */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-2xl blur-xl" />
-            <div className="relative bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-4 shadow-xl">
-              <div className="flex items-center justify-center gap-2 text-center">
-                <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-lg font-bold text-white">4.9/5</span>
-                <span className="text-blue-200">from 12,000+ verified reviews</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -915,8 +915,8 @@ export default function ClientLoginPage() {
                     <div className="text-[10px] text-white/40 font-medium mt-0.5">Online Now</div>
                   </div>
                   <div className="text-center px-3">
-                    <div className="text-xl sm:text-2xl font-black text-[#F5A623]">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}★</div>
-                    <div className="text-[10px] text-white/40 font-medium mt-0.5">Avg Rating</div>
+                    <div className="text-xl sm:text-2xl font-black text-[#F5A623]">✓</div>
+                    <div className="text-[10px] text-white/40 font-medium mt-0.5">Identity checked</div>
                   </div>
                   <div className="text-center px-3">
                     <div className="text-xl sm:text-2xl font-black text-[#F5A623]">24/7</div>
@@ -969,9 +969,9 @@ export default function ClientLoginPage() {
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-2xl blur-xl" />
             <div className="relative bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md rounded-2xl border border-white/20 p-4 shadow-xl">
               <div className="flex items-center justify-center gap-2 text-center">
-                <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-lg font-bold text-white">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}/5</span>
-                <span className="text-blue-200">from customer reviews</span>
+                <Shield className="h-5 w-5 text-green-400" />
+                <span className="text-lg font-bold text-white">Identity checked</span>
+                <span className="text-blue-200">public liability insurance confirmed and monitored</span>
               </div>
             </div>
           </div>

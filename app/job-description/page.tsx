@@ -772,11 +772,11 @@ export default function JobDescriptionPage() {
             >
               <Shield className="h-5 w-5 text-blue-600" />
               <span className="text-sm font-medium text-gray-700">
-                All tradespeople are vetted & verified
+                All tradespeople are identity checked
               </span>
             </motion.div>
             <p className="text-xs text-gray-500 mt-2">
-              5,000+ trusted professionals in our network
+              Trusted professionals in our network
             </p>
           </motion.div>
         </motion.div>

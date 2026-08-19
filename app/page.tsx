@@ -295,7 +295,7 @@ export default function Home() {
         }
       }) }} />
 
-      {/* HERO SECTION — a public register for vetted tradespeople, not a marketing banner */}
+      {/* HERO SECTION — a public register for identity-checked tradespeople, not a marketing banner */}
       <section className="relative bg-gradient-to-b from-[#0A2463] to-[#1A3A8A] text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
         {/* Brand background accents — subtle radial glow + amber grain */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">

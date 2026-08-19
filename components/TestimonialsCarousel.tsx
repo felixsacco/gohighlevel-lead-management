@@ -112,7 +112,7 @@ const TestimonialsCarousel = () => {
       name: 'Priya Singh',
       location: 'Liverpool',
       avatar: 'https://randomuser.me/api/portraits/women/25.jpg',
-      quote: 'Outstanding experience from start to finish. The insurance guarantee and verified reviews gave me complete peace of mind. The decorator did an incredible job on our living room - looks absolutely stunning!',
+      quote: 'Outstanding experience from start to finish. The identity-checking and customer reviews gave me complete peace of mind. The decorator did an incredible job on our living room - looks absolutely stunning!',
       rating: 5,
       jobType: 'Interior Painting & Decorating',
       completedDate: '1 week ago',
@@ -225,25 +225,25 @@ const TestimonialsCarousel = () => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Real reviews from real customers across the UK. <span className="font-bold text-[#0056D2]">Join thousands</span> who've found their perfect tradesperson.
           </p>
-          
+
           {/* Trust stats */}
           <div className="flex items-center justify-center gap-8 mt-8">
             <div className="text-center">
-              <div className="text-3xl font-black text-[#0056D2]">4.9</div>
+              <div className="text-3xl font-black text-[#0056D2]">✓</div>
               <div className="flex items-center justify-center gap-1 mb-1">
                 {renderStars(5)}
               </div>
-              <div className="text-sm text-gray-600">Average Rating</div>
+              <div className="text-sm text-gray-600">Identity checked</div>
             </div>
             <div className="w-px h-12 bg-gray-300"></div>
             <div className="text-center">
-              <div className="text-3xl font-black text-[#0056D2]">50,000+</div>
-              <div className="text-sm text-gray-600 mt-2">Happy Customers</div>
+              <div className="text-3xl font-black text-[#0056D2]">✓</div>
+              <div className="text-sm text-gray-600 mt-2">Business verified</div>
             </div>
             <div className="w-px h-12 bg-gray-300"></div>
             <div className="text-center">
-              <div className="text-3xl font-black text-[#0056D2]">98%</div>
-              <div className="text-sm text-gray-600 mt-2">Would Recommend</div>
+              <div className="text-3xl font-black text-[#0056D2]">✓</div>
+              <div className="text-sm text-gray-600 mt-2">Insurance confirmed</div>
             </div>
           </div>
         </div>
@@ -341,15 +341,8 @@ const TestimonialsCarousel = () => {
                         </div>
                         <div className="flex items-center gap-1">
                           <CheckCircle className="w-3 h-3 text-blue-500" />
-                          <span>Verified</span>
+                          <span>Identity Checked</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Award className="w-3 h-3 text-[#FDBD18]" />
-                          <span>Top Rated</span>
-                        </div>
-                      </div>
-                      <div className="text-xs font-bold text-[#0056D2]">
-                        5.0★ Rating
                       </div>
                     </div>
                   </div>
@@ -402,24 +395,24 @@ const TestimonialsCarousel = () => {
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-2 mx-auto">G</div>
               <div className="text-sm font-bold text-gray-700">Google Reviews</div>
-              <div className="text-xs text-gray-500">4.9★ (25k+ reviews)</div>
+              <div className="text-xs text-gray-500">Reviews visible on Google</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-2 mx-auto">T</div>
               <div className="text-sm font-bold text-gray-700">Trustpilot</div>
-              <div className="text-xs text-gray-500">4.8★ (15k+ reviews)</div>
+              <div className="text-xs text-gray-500">Reviews on Trustpilot</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-700 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-2 mx-auto">f</div>
               <div className="text-sm font-bold text-gray-700">Facebook</div>
-              <div className="text-xs text-gray-500">4.7★ (8k+ reviews)</div>
+              <div className="text-xs text-gray-500">Reviews on Facebook</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-[#0056D2] rounded-2xl flex items-center justify-center text-white mb-2 mx-auto">
                 <Shield className="w-8 h-8" />
               </div>
               <div className="text-sm font-bold text-gray-700">MyApproved</div>
-              <div className="text-xs text-gray-500">4.9★ (50k+ reviews)</div>
+              <div className="text-xs text-gray-500">Identity-checked tradespeople</div>
             </div>
           </div>
         </div>

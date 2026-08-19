@@ -385,19 +385,6 @@ export default function FindTradespeople() {
       <ProgrammaticSchema
         tradeType={tradeSlug}
         city="United Kingdom"
-        averageRating={
-          sortedGooglePlaces.length > 0
-            ? parseFloat(
-                (
-                  sortedGooglePlaces.reduce((s, p) => s + (p.rating ?? 0), 0) /
-                  sortedGooglePlaces.length
-                ).toFixed(1)
-              )
-            : Number(process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE) || 4.9
-        }
-        reviewCount={
-          sortedGooglePlaces.reduce((s, p) => s + (p.userRatingCount ?? 0), 0) || Number(process.env.NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT) || 200
-        }
       />
 
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
@@ -409,14 +396,14 @@ export default function FindTradespeople() {
             <span className="xs:hidden">Verified</span>
           </span>
           <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-blue-50 px-2 sm:px-3 py-1 rounded-full ring-1 ring-blue-100">
-            <Shield className="w-3 h-3 sm:w-4 sm:h-4" /> 
-            <span className="hidden xs:inline">Insurance Guaranteed</span>
+            <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="hidden xs:inline">Public liability insurance confirmed and monitored</span>
             <span className="xs:hidden">Insured</span>
           </span>
           <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-blue-50 px-2 sm:px-3 py-1 rounded-full ring-1 ring-blue-100">
-            <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" /> 
-            <span className="hidden xs:inline">Rated 5.0 by 50,000+ Customers</span>
-            <span className="xs:hidden">5.0★ 50K+</span>
+            <Shield className="w-3 h-3 sm:w-4 sm:h-4 text-green-400" />
+            <span className="hidden xs:inline">Identity checked</span>
+            <span className="xs:hidden">Verified</span>
           </span>
         </div>
         {/* Search and Filters */}
@@ -559,8 +546,8 @@ export default function FindTradespeople() {
                 {selectedTrade === "Roofer" && (() => {
                   const rp = recommendedPlace;
                   const rpName       = rp?.displayName?.text ?? "Upgrade Roofs";
-                  const rpRating     = rp?.rating ?? 5.0;
-                  const rpReviews    = rp?.userRatingCount ?? 104;
+                  const rpRating     = rp?.rating;
+                  const rpReviews    = rp?.userRatingCount;
                   const rpPhone      = rp?.internationalPhoneNumber ?? "+44 1270 897606";
                   const rpWebsite    = rp?.websiteUri;
                   const rpAddress    = rp?.shortFormattedAddress ?? "20 Crewe Rd, Sandbach CW11 4NE";
@@ -569,7 +556,7 @@ export default function FindTradespeople() {
                   const rpNextOpen   = rp ? getNextOpenTime(rp.regularOpeningHours) : null;
                   const rpLat        = rp?.location?.latitude ?? 53.1467;
                   const rpLng        = rp?.location?.longitude ?? -2.3641;
-                  const rpFilledStars = Math.round(rpRating);
+                  const rpFilledStars = rpRating ? Math.round(rpRating) : 0;
                   const rpDirections = `https://www.google.com/maps/dir/?api=1&destination=${rpLat},${rpLng}`;
                   const rpFullAddress = [rpAddress, rpPostcode].filter(Boolean).join(", ");
 
@@ -588,11 +575,17 @@ export default function FindTradespeople() {
 
                       {/* Stars + review count + type */}
                       <div className="flex items-center flex-wrap gap-1 text-sm mb-1">
-                        <span className="font-semibold text-gray-900">{rpRating.toFixed(1)}</span>
-                        <span className="text-yellow-400 text-xs tracking-tight">
-                          {"★".repeat(rpFilledStars)}{"☆".repeat(Math.max(0, 5 - rpFilledStars))}
-                        </span>
-                        <span className="text-gray-500 text-xs">({rpReviews.toLocaleString()})</span>
+                        {rpRating != null && (
+                          <>
+                            <span className="font-semibold text-gray-900">{rpRating.toFixed(1)}</span>
+                            <span className="text-yellow-400 text-xs tracking-tight">
+                              {"★".repeat(rpFilledStars)}{"☆".repeat(Math.max(0, 5 - rpFilledStars))}
+                            </span>
+                          </>
+                        )}
+                        {rpReviews != null && (
+                          <span className="text-gray-500 text-xs">({rpReviews.toLocaleString()})</span>
+                        )}
                         <span className="text-gray-300 text-xs">·</span>
                         <span className="text-gray-500 text-xs">{rp?.primaryTypeDisplayName?.text ?? "Roofing service"}</span>
                       </div>
@@ -811,7 +804,6 @@ export default function FindTradespeople() {
         <AEOContentBlock
           tradeType={tradeSlug}
           city="the UK"
-          reviewCount={sortedGooglePlaces.reduce((s, p) => s + (p.userRatingCount ?? 0), 0) || 850}
           className="rounded-xl sm:rounded-2xl border-blue-100 shadow-sm mb-6 sm:mb-8"
         />
 

@@ -480,13 +480,13 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                   <div className="flex items-center gap-3">
                     <ShieldCheck className="w-5 h-5 text-[#1A3A8A] flex-shrink-0" />
                     <div className="text-sm text-gray-700">
-                      <span className="font-semibold text-gray-900">Verified pros</span>
+                      <span className="font-semibold text-gray-900">Identity-checked pros</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <Star className="w-5 h-5 text-[#F5B301] flex-shrink-0" />
                     <div className="text-sm text-gray-700">
-                      <span className="font-semibold text-gray-900">Top rated</span>
+                      <span className="font-semibold text-gray-900">Customer reviewed</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -498,7 +498,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                   <div className="flex items-center gap-3">
                     <ShieldCheck className="w-5 h-5 text-[#1A3A8A] flex-shrink-0" />
                     <div className="text-sm text-gray-700">
-                      <span className="font-semibold text-gray-900">Fully insured</span>
+                      <span className="font-semibold text-gray-900">Public liability insured</span>
                     </div>
                   </div>
                 </div>

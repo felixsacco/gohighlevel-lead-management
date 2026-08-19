@@ -46,15 +46,15 @@ const CTACardsSection = () => {
       badge: 'Most Popular',
       variant: 'primary',
       stats: [
-        { label: 'Average Response', value: '3 mins' },
-        { label: 'Success Rate', value: '98%' }
+        { label: 'Average Response', value: 'Fast' },
+        { label: 'Identity Check', value: 'Included' }
       ],
       features: ['Instant quotes', 'Identity-checked tradespeople', 'Insurance cover confirmed']
     },
     {
       id: 'join',
       title: 'Join as Tradesperson',
-      description: 'Grow your business with quality leads. Join thousands of verified tradespeople earning more.',
+      description: 'Grow your business with quality leads. Join trusted tradespeople earning more.',
       buttonText: 'Start Earning Today',
       href: '/register/tradesperson',
       icon: UsersRound,
@@ -62,8 +62,8 @@ const CTACardsSection = () => {
       badge: 'High Demand',
       variant: 'outline',
       stats: [
-        { label: 'Avg. Monthly Leads', value: '47' },
-        { label: 'Conversion Rate', value: '73%' }
+        { label: 'Public Liability Cover', value: '£2M' },
+        { label: 'Lead Fee', value: '£4.99' }
       ],
       features: ['Quality leads only', 'No upfront costs', 'Instant notifications']
     },
@@ -78,7 +78,7 @@ const CTACardsSection = () => {
       badge: 'AI Powered',
       variant: 'primary',
       stats: [
-        { label: 'Quote Accuracy', value: '94%' },
+        { label: 'Instant Quotes', value: 'AI' },
         { label: 'Time to Quote', value: '60s' }
       ],
       features: ['No obligation', 'Instant estimates', 'Compare options']
@@ -250,7 +250,7 @@ const CTACardsSection = () => {
               {[
                 { icon: Shield, value: 'Identity Checked', label: 'Business verified' },
                 { icon: Clock, value: 'Instant Quotes', label: 'AI-powered estimates' },
-                { icon: Star, value: '4.9★ Rating', label: 'From verified jobs' },
+                { icon: Star, value: 'Insurance confirmed', label: 'And monitored' },
                 { icon: Award, value: 'Re-checked', label: 'Time-limited checks' },
               ].map(({ icon: Icon, value, label }) => (
                 <div key={value} className="text-center">

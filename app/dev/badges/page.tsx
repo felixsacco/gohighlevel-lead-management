@@ -2,31 +2,15 @@ import {
   BadgeCheck,
   ShieldCheck,
   Landmark,
-  FileCheck,
-  LockKeyhole,
-  Star,
-  GraduationCap,
   MapPin,
-  Phone,
-  Mail,
-  ScanFace,
-  Scale,
 } from 'lucide-react';
 import { TrustBadge } from '@/components/TrustBadge';
 
 const badges = [
-  { icon: BadgeCheck, label: 'ID verified' },
-  { icon: ShieldCheck, label: 'Insurance certificate' },
-  { icon: Landmark, label: 'Companies House checked' },
-  { icon: FileCheck, label: 'ICO registered' },
-  { icon: LockKeyhole, label: 'Secure payments' },
-  { icon: Star, label: 'Reviews verified' },
-  { icon: GraduationCap, label: 'Qualifications checked' },
-  { icon: MapPin, label: 'Address verified' },
-  { icon: Phone, label: 'Phone verified' },
-  { icon: Mail, label: 'Email verified' },
-  { icon: ScanFace, label: 'DBS checked' },
-  { icon: Scale, label: 'Complaints process' },
+  { icon: BadgeCheck, label: 'Identity checked' },
+  { icon: ShieldCheck, label: 'Insurance confirmed and monitored' },
+  { icon: Landmark, label: 'Business verified' },
+  { icon: MapPin, label: 'Address confirmed' },
 ];
 
 export default function BadgesPage() {
@@ -40,7 +24,7 @@ export default function BadgesPage() {
           Trust badge set
         </h1>
         <p className="mt-3 text-base leading-relaxed text-neutral-600">
-          Twelve distinct marks, one consistent stroke and size. Each uses a
+          Four distinct marks, one consistent stroke and size. Each uses a
           unique lucide icon, amber icon with a near-black label, matched to the
           optical weight of the Google mark.
         </p>

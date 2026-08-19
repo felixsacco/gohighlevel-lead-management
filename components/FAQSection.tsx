@@ -38,7 +38,7 @@ const FAQSection = () => {
     {
       id: 'faq-1',
       question: 'How do I know a tradesperson is approved and trustworthy?',
-      answer: 'Every tradesperson on our platform undergoes a rigorous verification process including identity checks, qualification verification, insurance validation, and background screening. We also continuously monitor reviews and performance to ensure quality standards are maintained.',
+      answer: 'Every tradesperson on our platform undergoes identity checks and insurance confirmation before listing. We also confirm any legally required trade registration against the official register where one applies, and continuously monitor for changes to ensure quality standards are maintained.',
       icon: Shield,
       category: 'verification',
       relatedLink: {
@@ -59,7 +59,7 @@ const FAQSection = () => {
     },
     {
       id: 'faq-3',
-      question: 'Are all tradespeople fully insured?',
+      question: 'Are all tradespeople covered by public liability insurance?',
       answer: 'Absolutely. We require all tradespeople to have valid public liability insurance (minimum £2M coverage) and employers liability insurance where applicable. We verify and monitor insurance status regularly to ensure continuous protection for your projects.',
       icon: CheckCircle,
       category: 'insurance',
@@ -115,7 +115,7 @@ const FAQSection = () => {
     {
       id: 'faq-8',
       question: 'What areas do you cover across the UK?',
-      answer: 'We cover all major cities and towns across England, Scotland, Wales, and Northern Ireland. Our network includes over 10,000 verified tradespeople in locations from London to Edinburgh, Manchester to Cardiff, and everywhere in between.',
+      answer: 'We cover all major cities and towns across England, Scotland, Wales, and Northern Ireland. Our network of identity-checked tradespeople spans London, Edinburgh, Manchester, Cardiff, and everywhere in between.',
       icon: Award,
       category: 'general',
       relatedLink: {

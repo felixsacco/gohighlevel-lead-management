@@ -187,10 +187,11 @@ export default function FAQPage() {
                 </p>
                 <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                   <p className="text-sm text-blue-100 leading-relaxed" itemProp="text">
-                    Every tradesperson on MyApproved passes identity verification, insurance confirmation (minimum £2M public liability),
-                    and qualification checks (Gas Safe, NICEIC, FENSA where applicable) before appearing on the platform. Verification is
-                    repeated annually. Homeowners across the UK can hire with complete confidence - all tradespeople are pre-screened before
-                    they can receive a single quote request.
+                    Every tradesperson on MyApproved passes identity checks and public liability insurance confirmation (minimum £2M)
+                    before appearing on the platform. Where a legally required trade registration applies (Gas Safe, NICEIC, FENSA),
+                    that registration is checked against the official register before they can list. Verification is
+                    repeated annually. Homeowners across the UK can hire with confidence - all listed tradespeople are identity-checked
+                    before they can receive a single quote request.
                   </p>
                 </div>
               </div>

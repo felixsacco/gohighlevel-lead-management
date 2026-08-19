@@ -212,13 +212,13 @@ const TrendingCategoriesSection = () => {
         {/* Trust strip */}
         <div className="flex flex-wrap items-center justify-center gap-6 mb-8 text-xs text-white/35">
           <span className="inline-flex items-center gap-1.5">
-            <Shield className="w-3.5 h-3.5 text-[#F5B301]" /> All Trades Verified
+            <Shield className="w-3.5 h-3.5 text-[#F5B301]" /> Identity checked
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <Shield className="w-3.5 h-3.5 text-[#F5B301]" /> Insurance Guaranteed
+            <Shield className="w-3.5 h-3.5 text-[#F5B301]" /> Insurance confirmed and monitored
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <Star className="w-3.5 h-3.5 text-[#F5B301]" /> Rated 5.0 by 50,000+ Customers
+            <Star className="w-3.5 h-3.5 text-[#F5B301]" /> Identity checked and business verified
           </span>
         </div>
 

@@ -46,7 +46,7 @@ const AIExplainerSection = () => {
       id: 2,
       title: 'AI Finds Perfect Matches',
       subtitle: 'Smart matching in seconds',
-      description: 'Our advanced AI instantly scans 10,000+ verified tradespeople, checking availability, location, ratings, and specializations to find your ideal matches.',
+      description: 'Our advanced AI instantly scans identity-checked tradespeople, checking availability, location, ratings, and specializations to find your ideal matches.',
       icon: Brain,
       color: 'from-purple-500 to-purple-700',
       features: [
@@ -57,14 +57,14 @@ const AIExplainerSection = () => {
       ],
       visual: {
         type: 'matching',
-        content: 'Analyzing 10,000+ tradespeople...'
+        content: 'Analyzing tradespeople near you...'
       }
     },
     {
       id: 3,
       title: 'Get Instant Quotes',
       subtitle: 'Connect with top professionals',
-      description: 'Receive multiple quotes from pre-screened professionals within minutes. Compare prices, reviews, and availability to make the best choice.',
+      description: 'Receive multiple quotes from identity-checked professionals within minutes. Compare prices, reviews, and availability to make the best choice.',
       icon: Users,
       color: 'from-green-500 to-green-700',
       features: [
@@ -281,7 +281,7 @@ const AIExplainerSection = () => {
                       <div className="bg-purple-500/20 rounded-2xl p-4 border border-purple-400/30">
                         <div className="flex items-center justify-between mb-3">
                           <span className="text-white font-semibold">Scanning Database</span>
-                          <span className="text-[#FDBD18] font-bold">10,000+ Tradespeople</span>
+                          <span className="text-[#FDBD18] font-bold">Identity-checked tradespeople</span>
                         </div>
                         <div className="w-full bg-white/20 rounded-full h-2">
                           <div className="bg-gradient-to-r from-[#FDBD18] to-yellow-400 h-2 rounded-full animate-pulse" style={{width: '85%'}}></div>
@@ -338,7 +338,7 @@ const AIExplainerSection = () => {
                                 <div className="font-bold text-white">Elite Plumbing Services</div>
                                 <div className="flex items-center gap-1">
                                   <Star className="w-4 h-4 text-[#FDBD18] fill-current" />
-                                  <span className="text-white font-bold">4.9</span>
+                                  <span className="text-white font-bold">✓</span>
                                 </div>
                               </div>
                               <div className="text-blue-200 text-sm mb-2">Emergency specialist • 2 mins away</div>
@@ -379,8 +379,8 @@ const AIExplainerSection = () => {
                     <CheckCircle className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-sm font-black text-[#0056D2]">98% Success</div>
-                    <div className="text-xs text-gray-600">Match Rate</div>
+                    <div className="text-sm font-black text-[#0056D2]">Identity Checked</div>
+                    <div className="text-xs text-gray-600">Identity Checked</div>
                   </div>
                 </div>
               </div>

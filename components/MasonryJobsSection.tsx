@@ -32,7 +32,6 @@ interface Job {
   postedTime: string;
   views: number;
   responses: number;
-  clientRating: number;
   isVerified: boolean;
   isAIMatched: boolean;
   category: string;
@@ -57,7 +56,6 @@ const MasonryJobsSection = () => {
       postedTime: '12 minutes ago',
       views: 47,
       responses: 8,
-      clientRating: 4.8,
       isVerified: true,
       isAIMatched: true,
       category: 'Plumbing',
@@ -76,7 +74,6 @@ const MasonryJobsSection = () => {
       postedTime: '1 hour ago',
       views: 23,
       responses: 5,
-      clientRating: 4.9,
       isVerified: true,
       isAIMatched: false,
       category: 'Electrical',
@@ -95,7 +92,6 @@ const MasonryJobsSection = () => {
       postedTime: '3 hours ago',
       views: 31,
       responses: 12,
-      clientRating: 4.7,
       isVerified: true,
       isAIMatched: true,
       category: 'Tiling',
@@ -114,7 +110,6 @@ const MasonryJobsSection = () => {
       postedTime: '5 hours ago',
       views: 89,
       responses: 15,
-      clientRating: 4.6,
       isVerified: true,
       isAIMatched: true,
       category: 'Landscaping',
@@ -133,7 +128,6 @@ const MasonryJobsSection = () => {
       postedTime: '30 minutes ago',
       views: 56,
       responses: 9,
-      clientRating: 4.8,
       isVerified: true,
       isAIMatched: false,
       category: 'Roofing',
@@ -152,7 +146,6 @@ const MasonryJobsSection = () => {
       postedTime: '2 hours ago',
       views: 18,
       responses: 4,
-      clientRating: 4.9,
       isVerified: true,
       isAIMatched: true,
       category: 'Painting',
@@ -258,11 +251,11 @@ const MasonryJobsSection = () => {
           <div className="flex items-center justify-center gap-6 mt-6 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-gray-700">Live: <span className="font-bold text-[#0056D2]">47</span> new jobs in last hour</span>
+              <span className="text-gray-700">Live: <span className="font-bold text-[#0056D2]">new</span> jobs in your area</span>
             </div>
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-[#FDBD18]" />
-              <span className="text-gray-700"><span className="font-bold text-[#0056D2]">1,247</span> tradespeople online</span>
+              <span className="text-gray-700"><span className="font-bold text-[#0056D2]">tradespeople</span> online now</span>
             </div>
           </div>
         </div>
@@ -299,7 +292,7 @@ const MasonryJobsSection = () => {
                       {job.isVerified && (
                         <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold text-green-700 bg-green-50 border border-green-200">
                           <Shield className="w-3 h-3" />
-                          <span>Verified</span>
+                          <span>Identity checked</span>
                         </div>
                       )}
                     </div>
@@ -371,7 +364,7 @@ const MasonryJobsSection = () => {
                     </div>
                     <div className="flex items-center gap-1">
                       <Star className="w-3 h-3 text-[#FDBD18] fill-current" />
-                      <span className="font-semibold">{job.clientRating}</span>
+                      <span className="font-semibold">Identity checked</span>
                     </div>
                   </div>
 
@@ -410,20 +403,20 @@ const MasonryJobsSection = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="text-3xl font-black text-[#0056D2] mb-1">47</div>
-              <div className="text-sm text-gray-600">Avg. leads per month</div>
+              <div className="text-3xl font-black text-[#0056D2] mb-1">£2M</div>
+              <div className="text-sm text-gray-600">Public liability cover</div>
             </div>
             <div>
-              <div className="text-3xl font-black text-[#0056D2] mb-1">73%</div>
-              <div className="text-sm text-gray-600">Conversion rate</div>
+              <div className="text-3xl font-black text-[#0056D2] mb-1">Identity</div>
+              <div className="text-sm text-gray-600">Checked professionals</div>
             </div>
             <div>
-              <div className="text-3xl font-black text-[#0056D2] mb-1">3min</div>
-              <div className="text-sm text-gray-600">Avg. response time</div>
+              <div className="text-3xl font-black text-[#0056D2] mb-1">Free</div>
+              <div className="text-sm text-gray-600">To post a job</div>
             </div>
             <div>
-              <div className="text-3xl font-black text-[#0056D2] mb-1">£2.4k</div>
-              <div className="text-sm text-gray-600">Avg. monthly earnings</div>
+              <div className="text-3xl font-black text-[#0056D2] mb-1">3</div>
+              <div className="text-sm text-gray-600">Free quotes to compare</div>
             </div>
           </div>
         </div>

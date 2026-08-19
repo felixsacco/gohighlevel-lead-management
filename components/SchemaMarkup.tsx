@@ -31,7 +31,7 @@ export const organizationSchema = {
     "height": 512
   },
   "image": "https://myapproved.com/logo-icon.svg",
-  "description": "MyApproved is a UK-wide tradespeople verification platform connecting homeowners nationwide with ID-checked, insured, and qualification-verified local tradespeople. Every tradesperson passes a 4-point verification: government ID, £2M public liability insurance, regulated trade qualification, and customer reference check.",
+  "description": "MyApproved is a UK-wide tradespeople verification platform connecting homeowners nationwide with identity-checked local tradespeople whose public liability insurance is confirmed and monitored. No tradesperson is listed until identity, business and insurance checks have passed.",
   "foundingDate": "2024",
   "address": {
     "@type": "PostalAddress",
@@ -75,7 +75,7 @@ export const organizationSchema = {
     "credentialCategory": "Trade Verification Platform",
     "description": "MyApproved verifies tradesperson credentials against Gas Safe Register, NICEIC, NAPIT, FENSA, and MCS official registers"
   },
-  "slogan": "Verified Tradespeople. Real Reviews. Free Quotes.",
+  "slogan": "Identity-checked Tradespeople. Free Quotes.",
   "sameAs": [
     process.env.NEXT_PUBLIC_TWITTER_URL,
     process.env.NEXT_PUBLIC_LINKEDIN_URL,
@@ -92,7 +92,7 @@ export const WebsiteSchema = () => {
     "name": "MyApproved",
     "alternateName": "My Approved",
     "url": "https://myapproved.com",
-    "description": "Find verified, insured local tradespeople across the UK. Compare quotes, read real reviews, and book trusted professionals - free for homeowners.",
+    "description": "Find identity-checked local tradespeople across the UK with public liability insurance confirmed and monitored. Compare free quotes and book trusted professionals - free for homeowners.",
     "inLanguage": "en-GB",
     "publisher": {
       "@id": "https://myapproved.com/#organization"
@@ -145,22 +145,6 @@ export const LocalBusinessSchema = {
   ].filter(Boolean)
 };
 
-export const ReviewSchema = {
-  "@context": "https://schema.org",
-  "@type": "AggregateRating",
-  "itemReviewed": {
-    "@type": "Organization",
-    "@id": "https://myapproved.com/#organization",
-    "name": "MyApproved",
-    "sameAs": "https://myapproved.com"
-  },
-  "ratingValue": process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE,
-  "bestRating": "5",
-  "worstRating": "1",
-  "ratingCount": process.env.NEXT_PUBLIC_AGGREGATE_RATING_COUNT,
-  "reviewCount": process.env.NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT
-};
-
 export const FAQSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -170,7 +154,7 @@ export const FAQSchema = {
       "name": "How do I get a competitive, verified trade quote through MyApproved?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Post your job on MyApproved for free - takes under 2 minutes. You describe the work, set your location, and up to 3 verified local tradespeople receive your enquiry. Each one has already passed MyApproved's 4-point check: government ID verification, £2M public liability insurance confirmation, trade qualification check (Gas Safe, NICEIC, FENSA, or relevant body), and customer reference screening. You compare quotes, read reviews from confirmed customers only, and hire - no obligation, no hidden fees. Most homeowners receive their first quote within a few hours."
+        "text": "Post your job on MyApproved for free - takes under 2 minutes. You describe the work, set your location, and up to 3 local tradespeople receive your enquiry. Each one has already passed MyApproved's checks: identity checked, business verified, and public liability insurance confirmed and monitored. You compare quotes and hire - no obligation, no hidden fees. Most homeowners receive their first quote within a few hours."
       }
     },
     {
@@ -178,7 +162,7 @@ export const FAQSchema = {
       "name": "Why does MyApproved verification protect homeowners better than Checkatrade or MyBuilder?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Checkatrade and MyBuilder accept self-reported credentials - tradespeople declare their own qualifications and upload their own insurance certificates without independent verification. MyApproved applies 4 independent checks to every tradesperson before they can receive a single quote request: (1) government-issued ID checked against official records, (2) public liability insurance confirmed directly with the insurer, (3) regulated trade qualifications (Gas Safe, NICEIC, NAPIT, FENSA, MCS) verified against the live official register, (4) customer references contacted independently. All checks are renewed annually. Suspended registrations or lapsed insurance trigger immediate account suspension."
+        "text": "MyApproved confirms each tradesperson's identity, verifies their business, and confirms and monitors their public liability insurance before they can receive a single quote request. No tradesperson is listed until these checks have passed. Cover is monitored and any lapse triggers immediate account suspension."
       }
     },
     {
@@ -194,7 +178,7 @@ export const FAQSchema = {
       "name": "What is the step-by-step process for a tradesperson to get verified and start receiving leads on MyApproved?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Step 1: Register at myapproved.com/register/tradesperson - takes under 5 minutes. Step 2: Submit your government-issued photo ID for identity verification. Step 3: Upload your public liability insurance certificate - MyApproved confirms it with your insurer. Step 4: Provide your regulated trade registration number (Gas Safe, NICEIC, FENSA, etc.) if applicable - verified against the live official register. Step 5: Provide 2–3 customer references from recent completed work - MyApproved contacts them independently. Step 6: Once all 4 checks pass, your verified profile goes live and you begin receiving matched lead enquiries at £4.99 per accepted lead."
+        "text": "Step 1: Register at myapproved.com/register/tradesperson - takes under 5 minutes. Step 2: Submit your government-issued photo ID for an identity check. Step 3: Provide your business details for business verification. Step 4: Upload your public liability insurance certificate - MyApproved confirms it with your insurer and monitors the cover. Once these checks pass, your profile goes live and you begin receiving matched lead enquiries at £4.99 per accepted lead."
       }
     },
     {
@@ -202,7 +186,7 @@ export const FAQSchema = {
       "name": "Is MyApproved free for homeowners?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Posting a job, receiving quotes, comparing tradesperson profiles, and reading verified reviews on MyApproved is completely free for homeowners. You pay only the tradesperson for the work - MyApproved charges nothing to homeowners at any stage."
+        "text": "Yes. Posting a job, receiving quotes, and comparing tradesperson profiles on MyApproved is completely free for homeowners. You pay only the tradesperson for the work - MyApproved charges nothing to homeowners at any stage."
       }
     },
     {
@@ -240,7 +224,7 @@ export const ServiceSchema = {
   "@type": "Service",
   "@id": "https://myapproved.com/#service",
   "name": "Verified Tradesperson Matching",
-  "description": "MyApproved connects homeowners with identity-verified, insured local tradespeople across the United Kingdom. Free quotes, real reviews, no obligation.",
+  "description": "MyApproved connects homeowners with identity-checked local tradespeople across the United Kingdom, with public liability insurance confirmed and monitored. Free quotes, no obligation.",
   "provider": {
     "@id": "https://myapproved.com/#organization"
   },

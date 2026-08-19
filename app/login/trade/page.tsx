@@ -382,7 +382,7 @@ export default function TradespersonLoginPage() {
               <CardHeader className="text-center pb-4 sm:pb-6">
                 <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-[#FFB800] px-3 py-1.5 text-xs font-extrabold text-black border-2 border-[#FFB800]">
                   <Star className="h-3.5 w-3.5 fill-yellow-600 text-yellow-700" />
-                  Join 10,000+ Approved Tradespeople
+                  Join Trusted Tradespeople
                 </div>
                 <div className="flex items-center justify-center mb-3">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-md">
@@ -617,8 +617,8 @@ export default function TradespersonLoginPage() {
                       <div className="text-[10px] text-white/40 font-medium mt-0.5">Online Now</div>
                     </div>
                     <div className="text-center px-3">
-                      <div className="text-xl sm:text-2xl font-black text-[#F5A623]">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}★</div>
-                      <div className="text-[10px] text-white/40 font-medium mt-0.5">Avg Rating</div>
+                      <div className="text-xl sm:text-2xl font-black text-[#F5A623]">✓</div>
+                      <div className="text-[10px] text-white/40 font-medium mt-0.5">Identity checked</div>
                     </div>
                     <div className="text-center px-3">
                       <div className="text-xl sm:text-2xl font-black text-[#F5A623]">24/7</div>
@@ -637,9 +637,9 @@ export default function TradespersonLoginPage() {
                 <h2 className="text-xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Why Join MyApproved</h2>
                 <ul className="space-y-4">
                   {[
-                    { Icon: Shield,       color: "blue",   title: "Verified Badge",      body: "Show customers you are ID-checked, insured, and background verified." },
+                    { Icon: Shield,       color: "blue",   title: "Identity Checked Badge",  body: "Show customers you are ID-checked and your public liability insurance is confirmed." },
                     { Icon: Star,         color: "yellow", title: "Quality Leads Only",  body: "Receive genuine job requests from real customers in your area." },
-                    { Icon: CheckCircle,  color: "green",  title: "Grow Your Business",  body: "Average tradesperson earns 47 leads per month on MyApproved." },
+                    { Icon: CheckCircle,  color: "green",  title: "Grow Your Business",  body: "Receive genuine job requests from real customers in your area." },
                   ].map(({ Icon, color, title, body }) => (
                     <li key={title} className="flex items-start gap-3">
                       <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full bg-${color}-500/20 border border-${color}-400/30 backdrop-blur-sm shrink-0`}>
@@ -655,14 +655,14 @@ export default function TradespersonLoginPage() {
               </div>
             </div>
 
-            {/* Rating strip */}
+            {/* Trust strip */}
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-2xl blur-xl" />
               <div className="relative bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md rounded-2xl border border-white/20 p-4 shadow-xl">
                 <div className="flex items-center justify-center gap-2 text-center">
-                  <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                  <span className="text-lg font-bold text-white">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}/5</span>
-                  <span className="text-blue-200">from 12,000+ verified reviews</span>
+                  <Shield className="h-5 w-5 text-green-400" />
+                  <span className="text-lg font-bold text-white">Identity checked</span>
+                  <span className="text-blue-200">public liability insurance confirmed and monitored</span>
                 </div>
               </div>
             </div>

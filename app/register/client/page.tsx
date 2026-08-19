@@ -744,7 +744,7 @@ export default function ClientRegistration() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-yellow-500/30 border border-yellow-400/50 text-yellow-300 text-xs font-bold backdrop-blur-sm">2</span>
-                  <span className="text-blue-100">Get matched with verified pros</span>
+                  <span className="text-blue-100">Get matched with identity-checked pros</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-green-500/30 border border-green-400/50 text-green-300 text-xs font-bold backdrop-blur-sm">3</span>

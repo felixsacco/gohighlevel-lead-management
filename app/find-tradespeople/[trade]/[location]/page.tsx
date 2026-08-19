@@ -413,7 +413,7 @@ export default function FindTradeLocationPage({
                 "@type": "HowToStep",
                 position: 4,
                 name: "Hire with confidence",
-                text: `Every ${trade.name.toLowerCase()} is government ID-checked, £2M insured, qualification-verified, and reference-screened.`,
+                text: `Every ${trade.name.toLowerCase()} is government ID-checked and their public liability cover of at least £2M is confirmed and monitored.`,
               },
             ],
           }),
@@ -484,10 +484,10 @@ export default function FindTradeLocationPage({
               </h1>
 
               <p className="text-base sm:text-lg text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Every {trade.name.toLowerCase()} on MyApproved passes 4 independent
-                verification checks before receiving a single lead in {locationName}.
-                Compare free quotes from professionals who have actually been vetted —
-                not self-declared.
+                Every {trade.name.toLowerCase()} on MyApproved is identity-checked and
+                insurance-confirmed before receiving a single lead in {locationName}.
+                Compare free quotes from professionals whose checks are confirmed on
+                their public profile — not self-declared.
               </p>
 
               <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8">
@@ -525,8 +525,8 @@ export default function FindTradeLocationPage({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100">
               {[
-                { value: "Vetted", label: "Identity Confirmed", sub: "against official records" },
-                { value: "100%", label: "Background Verified", sub: "before first lead" },
+                { value: "ID", label: "Identity Checked", sub: "against official records" },
+                { value: "£2M+", label: "Insurance Confirmed", sub: "and monitored" },
                 { value: "£2M+", label: "Insurance Cover", sub: "independently confirmed" },
                 { value: "Free", label: "For Homeowners", sub: "no fees, ever" },
               ].map(({ value, label, sub }) => (
@@ -596,7 +596,7 @@ export default function FindTradeLocationPage({
                   step: "04",
                   icon: ThumbsUp,
                   title: "Hire with confidence",
-                  desc: `Every ${trade.name.toLowerCase()} is government ID-checked, £2M insured, qualification-verified, and reference-screened before listing.`,
+                  desc: `Every ${trade.name.toLowerCase()} is government ID-checked and their public liability cover of at least £2M is confirmed and monitored before listing.`,
                   color: "bg-purple-50 text-purple-700",
                 },
               ].map(({ step, icon: Icon, title, desc, color }) => (

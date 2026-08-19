@@ -84,7 +84,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "Are MyApproved plumbers Gas Safe registered?",
-      a: "Any gas work (boilers, gas appliances, central heating) on MyApproved is carried out exclusively by Gas Safe registered engineers. You can verify their 7-digit Gas Safe ID at gassaferegister.co.uk before work begins.",
+      a: "Gas work (boilers, gas appliances, central heating) on MyApproved is carried out by Gas Safe registered engineers. You can verify their 7-digit Gas Safe ID at gassaferegister.co.uk before work begins.",
     },
     {
       q: "What is the cheapest way to find a reliable plumber?",
@@ -513,8 +513,6 @@ export interface ProgrammaticSchemaProps {
   city: string;
   neighborhood?: string;
   postalCode?: string;
-  averageRating?: number;
-  reviewCount?: number;
   pageUrl?: string;
 }
 
@@ -524,8 +522,6 @@ export default function ProgrammaticSchema({
   city,
   neighborhood,
   postalCode,
-  averageRating = Number(process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE) || 4.9,
-  reviewCount = Number(process.env.NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT) || 200,
   pageUrl,
 }: ProgrammaticSchemaProps) {
   const schemaType  = TRADE_SCHEMA_TYPE[tradeType.toLowerCase()] ?? "LocalBusiness";
@@ -543,7 +539,7 @@ export default function ProgrammaticSchema({
     "@type": schemaType,
     "@id": canonical,
     name: `${tradeName}s in ${localLabel} | MyApproved`,
-    description: `Find ${tradeName.toLowerCase()}s in ${localLabel}${postalCode ? ` ${postalCode}` : ""} with their identity checked and public liability insurance confirmed and monitored. Read real customer reviews, and get free no-obligation quotes on MyApproved.`,
+    description: `Find ${tradeName.toLowerCase()}s in ${localLabel}${postalCode ? ` ${postalCode}` : ""} with their identity checked and public liability insurance confirmed and monitored. Get free no-obligation quotes on MyApproved.`,
     url: canonical,
     image: "https://myapproved.com/logo-icon.svg",
     logo: {
@@ -576,21 +572,6 @@ export default function ProgrammaticSchema({
           : [{ "@type": "City", name: city, ...(postalCode ? { postalCode } : {}) }],
       },
     ],
-    ...(averageRating > 0 ? {
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: averageRating.toFixed(1),
-        reviewCount,
-        bestRating: "5",
-        worstRating: "1",
-      },
-      review: {
-        "@type": "Review",
-        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-        author: { "@type": "Person", name: "MyApproved Customer" },
-        reviewBody: `Found a brilliant ${tradeName.toLowerCase()} through MyApproved. Arrived on time, fixed the problem first visit, and the quote was exactly what I paid. Will definitely use MyApproved again.`,
-      },
-    } : {}),
     ...(price ? {
       offers: {
         "@type": "Offer",
@@ -643,7 +624,7 @@ export default function ProgrammaticSchema({
     "@type": "Service",
     name: `${tradeName} Services in ${localLabel}`,
     serviceType: tradeName,
-    description: `${tradeName.charAt(0).toUpperCase() + tradeName.slice(1)} services in ${localLabel}${postalCode ? ` ${postalCode}` : ""}. Free quotes, no obligation. All tradespeople have their identity checked and are reviewed by real customers on MyApproved.`,
+    description: `${tradeName.charAt(0).toUpperCase() + tradeName.slice(1)} services in ${localLabel}${postalCode ? ` ${postalCode}` : ""}. Free quotes, no obligation. All tradespeople have their identity checked and public liability insurance confirmed and monitored on MyApproved.`,
     provider: {
       "@type": "Organization",
       "@id": "https://myapproved.com/#organization",
@@ -657,15 +638,6 @@ export default function ProgrammaticSchema({
         ? { "@type": "City", name: city, containedInPlace: { "@type": "AdministrativeArea", name: adminArea, containedInPlace: { "@type": "Country", name: "United Kingdom" } } }
         : { "@type": "AdministrativeArea", name: adminArea, containedInPlace: { "@type": "Country", name: "United Kingdom" } },
     },
-    ...(averageRating > 0 ? {
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: averageRating.toFixed(1),
-        reviewCount,
-        bestRating: "5",
-        worstRating: "1",
-      }
-    } : {}),
     ...(price ? {
       offers: {
         "@type": "Offer",

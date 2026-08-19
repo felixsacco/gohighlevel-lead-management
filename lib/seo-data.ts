@@ -451,8 +451,7 @@ export const SERVICE_MODIFIERS = [
   "Cheap",
   "Affordable",
   "Best",
-  "Top Rated",
-  "Verified",
+  "Checked",
   "Gas Safe",
   "NIC EIC",
   "FENSA",
@@ -470,7 +469,7 @@ export const SERVICE_MODIFIERS = [
 // Content templates for programmatic pages
 export const CONTENT_TEMPLATES = {
   tradePage: {
-    intro: (trade: string, location: string) => `Looking for a trusted ${trade.toLowerCase()} in ${location}? MyApproved connects you with verified, ${location}-based ${trade.toLowerCase()}s who are checked, insured, and rated by real customers.`,
+    intro: (trade: string, location: string) => `Looking for a trusted ${trade.toLowerCase()} in ${location}? MyApproved connects you with identity-checked, ${location}-based ${trade.toLowerCase()}s whose public liability insurance is confirmed and monitored.`,
     whyChoose: (trade: string) => `Why choose MyApproved ${trade}s?`,
     services: (trade: string, location: string) => `Popular ${trade} services in ${location}`,
     areas: (trade: string, location: string) => `${trade} services available across ${location} and surrounding areas`,
@@ -479,7 +478,7 @@ export const CONTENT_TEMPLATES = {
   },
   
   locationPage: {
-    intro: (location: string) => `Find trusted local tradespeople in ${location}. MyApproved connects you with verified professionals across ${location} who are checked, insured, and ready to help with your home improvement projects.`,
+    intro: (location: string) => `Find trusted local tradespeople in ${location}. MyApproved connects you with identity-checked professionals across ${location} whose public liability insurance is confirmed and ready to help with your home improvement projects.`,
     popularTrades: (location: string) => `Most popular trades in ${location}`,
     whyLocal: (location: string) => `Why choose local ${location} tradespeople?`,
     areas: (location: string) => `Areas we cover in and around ${location}`,
@@ -498,11 +497,11 @@ export function generateTradeLocationMetadata(tradeSlug: string, locationSlug: s
   const locationName = location.name;
   
   return {
-    title: `${tradeName} in ${locationName} | Verified ${trade.plural} - Get Free Quotes | MyApproved`,
-    description: `Find verified ${tradeName.toLowerCase()}s in ${locationName}. Compare ${trade.plural.toLowerCase()}, read reviews, and get free quotes. All ${tradeName.toLowerCase()}s checked, insured & rated. Book your ${locationName} ${tradeName.toLowerCase()} today.`,
+    title: `${tradeName} in ${locationName} | Identity-Checked ${trade.plural} - Get Free Quotes | MyApproved`,
+    description: `Find identity-checked ${tradeName.toLowerCase()}s in ${locationName}. Compare ${trade.plural.toLowerCase()}, read reviews, and get free quotes. All ${tradeName.toLowerCase()}s are identity-checked and their public liability insurance is confirmed and monitored. Book your ${locationName} ${tradeName.toLowerCase()} today.`,
     openGraph: {
-      title: `${tradeName}s in ${locationName} | Get Free Quotes from Verified ${trade.plural}`,
-      description: `Connect with checked ${tradeName.toLowerCase()}s in ${locationName}. Free quotes, verified reviews, same-day service available.`,
+      title: `${tradeName}s in ${locationName} | Get Free Quotes from Identity-Checked ${trade.plural}`,
+      description: `Connect with identity-checked ${tradeName.toLowerCase()}s in ${locationName}. Free quotes, customer reviews, same-day service available.`,
     }
   };
 }
@@ -518,7 +517,7 @@ export function generateTradeLocationSchema(tradeSlug: string, locationSlug: str
     "@context": "https://schema.org",
     "@type": "Service",
     "name": `${trade.name} Services in ${location.name}`,
-    "description": `Professional ${trade.name.toLowerCase()} services in ${location.name}. Verified, insured, and rated ${trade.plural.toLowerCase()}.`,
+    "description": `Professional ${trade.name.toLowerCase()} services in ${location.name}. Identity-checked, public liability insured, and reviewed by real customers.`,
     "provider": {
       "@type": "LocalBusiness",
       "name": `MyApproved ${trade.name}s`,

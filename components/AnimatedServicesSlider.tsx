@@ -30,7 +30,6 @@ interface Service {
   jobs: number;
   avgPrice: string;
   responseTime: string;
-  rating: number;
   description: string;
   isPopular?: boolean;
   gradient: string;
@@ -60,7 +59,6 @@ const AnimatedServicesSlider = () => {
       jobs: 1247,
       avgPrice: '£120-280',
       responseTime: '2 mins',
-      rating: 4.9,
       description: 'Emergency repairs, installations, and maintenance',
       isPopular: true,
       gradient: 'from-blue-500 to-blue-700'
@@ -72,7 +70,6 @@ const AnimatedServicesSlider = () => {
       jobs: 892,
       avgPrice: '£150-350',
       responseTime: '3 mins',
-      rating: 4.8,
       description: 'Wiring, repairs, and electrical installations',
       isPopular: true,
       gradient: 'from-yellow-500 to-orange-500'
@@ -84,7 +81,6 @@ const AnimatedServicesSlider = () => {
       jobs: 634,
       avgPrice: '£200-500',
       responseTime: '5 mins',
-      rating: 4.7,
       description: 'Extensions, renovations, and construction',
       gradient: 'from-gray-600 to-gray-800'
     },
@@ -95,7 +91,6 @@ const AnimatedServicesSlider = () => {
       jobs: 523,
       avgPrice: '£180-400',
       responseTime: '4 mins',
-      rating: 4.8,
       description: 'Interior and exterior painting services',
       gradient: 'from-green-500 to-emerald-600'
     },
@@ -106,7 +101,6 @@ const AnimatedServicesSlider = () => {
       jobs: 387,
       avgPrice: '£300-800',
       responseTime: '6 mins',
-      rating: 4.6,
       description: 'Roof repairs, replacements, and maintenance',
       gradient: 'from-red-500 to-red-700'
     },
@@ -117,7 +111,6 @@ const AnimatedServicesSlider = () => {
       jobs: 445,
       avgPrice: '£80-200',
       responseTime: '8 mins',
-      rating: 4.7,
       description: 'Landscaping, maintenance, and garden design',
       gradient: 'from-green-400 to-green-600'
     },
@@ -128,7 +121,6 @@ const AnimatedServicesSlider = () => {
       jobs: 756,
       avgPrice: '£60-150',
       responseTime: '1 min',
-      rating: 4.9,
       description: 'Regular cleaning and deep cleaning services',
       isPopular: true,
       gradient: 'from-purple-500 to-purple-700'
@@ -175,19 +167,19 @@ const AnimatedServicesSlider = () => {
             Popular <span className="text-[#FDBD18]">Services</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            The services customers are booking most. <span className="font-bold text-[#0056D2]">Verified professionals</span>, 
-            instant quotes, and <span className="font-bold text-[#FDBD18]">guaranteed quality</span>.
+            The services customers are booking most. <span className="font-bold text-[#0056D2]">Identity-checked professionals</span>,
+            instant quotes, and <span className="font-bold text-[#FDBD18]">public liability cover confirmed</span>.
           </p>
           
           {/* Live stats */}
           <div className="flex items-center justify-center gap-8 mt-6 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-gray-700">Live: <span className="font-bold text-[#0056D2]">2,847</span> jobs posted today</span>
+              <span className="text-gray-700">Live: <span className="font-bold text-[#0056D2]">new</span> jobs posted today</span>
             </div>
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-[#FDBD18]" />
-              <span className="text-gray-700"><span className="font-bold text-[#0056D2]">1,247</span> tradespeople online</span>
+              <span className="text-gray-700"><span className="font-bold text-[#0056D2]">tradespeople</span> online now</span>
             </div>
           </div>
         </div>
@@ -242,7 +234,7 @@ const AnimatedServicesSlider = () => {
                             </div>
                             <div className="flex items-center gap-1">
                               <Star className="w-4 h-4 text-[#FDBD18] fill-current" />
-                              <span className="font-bold text-gray-700">{service.rating}</span>
+                              <span className="font-bold text-gray-700">Identity checked</span>
                             </div>
                           </div>
                           
@@ -258,7 +250,7 @@ const AnimatedServicesSlider = () => {
 
                           <div className="flex items-center gap-2">
                             <CheckCircle className="w-4 h-4 text-green-500" />
-                            <span className="text-xs text-gray-600 font-semibold">All verified & insured</span>
+                            <span className="text-xs text-gray-600 font-semibold">Identity checked & public liability cover confirmed</span>
                           </div>
                         </div>
 

@@ -1028,7 +1028,7 @@ export default function TradespersonSignupPage() {
             <div className="absolute top-0 left-0 right-0 h-1 bg-[#fdbd18] rounded-t-3xl" />
             <div className="flex items-center gap-2 text-sm text-gray-800">
               <Check className="h-4 w-4 text-[#fdbd18]" />
-              4.9/5 from 12k+ verified reviews
+              Identity-checked tradespeople
             </div>
           </div>
         </div>

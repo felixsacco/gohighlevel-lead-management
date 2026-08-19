@@ -87,7 +87,7 @@ const testimonials: Testimonial[] = [
     id: '5',
     name: 'Priya Singh',
     city: 'Liverpool',
-    quote: 'Outstanding experience from start to finish. The insurance guarantee and verified reviews gave me peace of mind. The painter did an incredible job on our living room.',
+    quote: 'Outstanding experience from start to finish. The identity-checking and customer reviews gave me peace of mind. The painter did an incredible job on our living room.',
     rating: 5,
     image: 'https://randomuser.me/api/portraits/women/25.jpg',
     jobType: 'Interior Painting',
@@ -191,21 +191,21 @@ const TestimonialsSection = () => {
           {/* Trust stats */}
           <div className="flex items-center justify-center gap-8 mt-8">
             <div className="text-center">
-              <div className="text-3xl font-black text-[#0056D2]">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE ?? '—'}</div>
+              <div className="text-3xl font-black text-[#0056D2]">✓</div>
               <div className="flex items-center justify-center gap-1 mb-1">
                 {renderStars(5)}
               </div>
-              <div className="text-sm text-gray-600">Average Rating</div>
+              <div className="text-sm text-gray-600">Identity checked</div>
             </div>
             <div className="w-px h-12 bg-gray-300"></div>
             <div className="text-center">
-              <div className="text-3xl font-black text-[#0056D2]">50,000+</div>
-              <div className="text-sm text-gray-600 mt-2">Happy Customers</div>
+              <div className="text-3xl font-black text-[#0056D2]">✓</div>
+              <div className="text-sm text-gray-600 mt-2">Business verified</div>
             </div>
             <div className="w-px h-12 bg-gray-300"></div>
             <div className="text-center">
-              <div className="text-3xl font-black text-[#0056D2]">98%</div>
-              <div className="text-sm text-gray-600 mt-2">Would Recommend</div>
+              <div className="text-3xl font-black text-[#0056D2]">✓</div>
+              <div className="text-sm text-gray-600 mt-2">Insurance confirmed</div>
             </div>
           </div>
         </div>
@@ -237,7 +237,7 @@ const TestimonialsSection = () => {
                         <div className="ml-auto">
                           <div className="inline-flex items-center gap-1 bg-green-50 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">
                             <CheckCircle className="w-3 h-3" />
-                            <span>Verified</span>
+                            <span>Identity Checked</span>
                           </div>
                         </div>
                       )}
@@ -293,17 +293,17 @@ const TestimonialsSection = () => {
                     <div className="relative z-10 flex items-center gap-2 mt-4 pt-4 border-t border-gray-100">
                       <div className="flex items-center gap-1 text-xs text-gray-600">
                         <Shield className="w-3 h-3 text-green-500" />
-                        <span>Insured</span>
+                        <span>Insurance confirmed</span>
                       </div>
                       <span className="text-gray-300">•</span>
                       <div className="flex items-center gap-1 text-xs text-gray-600">
                         <CheckCircle className="w-3 h-3 text-blue-500" />
-                        <span>Verified</span>
+                        <span>Identity checked</span>
                       </div>
                       <span className="text-gray-300">•</span>
                       <div className="flex items-center gap-1 text-xs text-gray-600">
                         <Award className="w-3 h-3 text-[#FDBD18]" />
-                        <span>Top Rated</span>
+                        <span>Business verified</span>
                       </div>
                     </div>
                   </div>

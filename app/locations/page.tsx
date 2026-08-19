@@ -189,7 +189,7 @@ export default function LocationsPage() {
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               {[
                 { icon: CheckCircle, text: "Every pro ID-verified" },
-                { icon: Shield, text: "Fully insured" },
+                { icon: Shield, text: "Public liability insured" },
                 { icon: Star, text: "Genuine customer reviews" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="inline-flex items-center gap-1.5 text-sm text-blue-100 font-medium">

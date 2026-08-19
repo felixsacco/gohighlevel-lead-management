@@ -23,6 +23,7 @@ import {
   Upload,
   File,
   X,
+  Shield,
 } from "lucide-react";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
@@ -409,7 +410,7 @@ export default function TradespersonRegistration() {
                 </div>
                 <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-[#FFB800] px-3 py-1.5 text-xs font-extrabold text-black border-2 border-[#FFB800]">
                   <Star className="h-3.5 w-3.5 fill-yellow-600 text-yellow-700" />
-                  Join 10,000+ Trusted Tradespeople
+                  Join Trusted Tradespeople
                 </div>
                 <div className="flex items-center justify-center mb-4">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-md">
@@ -1078,21 +1079,21 @@ export default function TradespersonRegistration() {
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
               <h3 className="text-lg font-semibold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Peace of mind</h3>
               <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Vetted & insured pros</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Identity-checked & insured pros</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Clear pricing</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-yellow-400" /> <span className="text-blue-100">Dedicated support</span></li>
               </ul>
             </div>
           </div>
 
-          {/* Ratings strip */}
+          {/* Trust strip */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-2xl blur-xl" />
             <div className="relative bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md rounded-2xl border border-white/20 p-4 shadow-xl">
               <div className="flex items-center justify-center gap-2 text-center">
-                <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-lg font-bold text-white">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}/5</span>
-                <span className="text-blue-200">from 12,000+ verified reviews</span>
+                <Shield className="h-5 w-5 text-green-400" />
+                <span className="text-lg font-bold text-white">Identity checked</span>
+                <span className="text-blue-200">public liability insurance confirmed and monitored</span>
               </div>
             </div>
           </div>

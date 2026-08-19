@@ -128,13 +128,13 @@ All of these are marked `NEXT_PUBLIC_` and must be set for both production and p
 
 ### 1.10 Aggregate Ratings
 
-Only set these if you have real data to back them up. See Section 6 — the current hardcoded values should ideally be replaced with a database-backed source.
+Omit these (leave empty) to suppress fabricated aggregate ratings. There is no source of real aggregate review data, so these must remain unset for compliance with VERIFICATION.md Section 9.
 
-| Variable | Placeholder Value |
+| Variable | Value |
 |---|---|
-| `NEXT_PUBLIC_AGGREGATE_RATING_VALUE` | `4.9` |
-| `NEXT_PUBLIC_AGGREGATE_RATING_COUNT` | `250` |
-| `NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT` | `1200` |
+| `NEXT_PUBLIC_AGGREGATE_RATING_VALUE` | (empty) |
+| `NEXT_PUBLIC_AGGREGATE_RATING_COUNT` | (empty) |
+| `NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT` | (empty) |
 
 ---
 

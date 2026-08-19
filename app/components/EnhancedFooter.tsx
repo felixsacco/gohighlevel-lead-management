@@ -47,14 +47,6 @@ const EnhancedFooter = () => {
               <span className="font-medium">SSL Secure</span>
             </div>
             <div className="flex items-center gap-2 text-slate-300">
-              <ShieldCheck className="w-4 h-4 text-blue-400" />
-              <span className="font-medium">UK Verified</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-300">
-              <Award className="w-4 h-4 text-yellow-400" />
-              <span className="font-medium">Google Business Partner</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-300">
               <Shield className="w-4 h-4 text-purple-400" />
               <span className="font-medium">Data Protected</span>
             </div>
@@ -78,23 +70,23 @@ const EnhancedFooter = () => {
                 </span>
               </div>
               <p className="text-slate-400 leading-relaxed mb-6 max-w-md">
-                The UK's most trusted platform connecting homeowners with verified, insured tradespeople. 
-                Get instant quotes and quality work, guaranteed.
+                The UK's trusted platform connecting homeowners with identity-checked tradespeople whose
+                public liability insurance is confirmed and monitored.
               </p>
-              
+
               {/* Stats */}
               <div className="grid grid-cols-3 gap-4 mb-8">
                 <div className="text-center bg-slate-800/50 rounded-lg p-3">
-                  <div className="text-xl font-bold text-yellow-400">50k+</div>
-                  <div className="text-xs text-slate-400">Happy Customers</div>
+                  <div className="text-xl font-bold text-yellow-400">✓</div>
+                  <div className="text-xs text-slate-400">Identity checked</div>
                 </div>
                 <div className="text-center bg-slate-800/50 rounded-lg p-3">
-                  <div className="text-xl font-bold text-blue-400">5k+</div>
-                  <div className="text-xs text-slate-400">Verified Trades</div>
+                  <div className="text-xl font-bold text-blue-400">✓</div>
+                  <div className="text-xs text-slate-400">Business verified</div>
                 </div>
                 <div className="text-center bg-slate-800/50 rounded-lg p-3">
-                  <div className="text-xl font-bold text-green-400">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}★</div>
-                  <div className="text-xs text-slate-400">Average Rating</div>
+                  <div className="text-xl font-bold text-green-400">✓</div>
+                  <div className="text-xs text-slate-400">Insurance confirmed</div>
                 </div>
               </div>
             </div>

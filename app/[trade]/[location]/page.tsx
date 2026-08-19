@@ -114,7 +114,7 @@ export default function TradeLocationPage({
             "@type": "LocalBusiness",
             "@id": `https://myapproved.com/${params.trade}/${params.location}`,
             name: `${trade.name}s in ${location.name} | Verified & Approved | MyApproved`,
-            description: `Find insured, ID-checked ${trade.plural.toLowerCase()} in ${location.name}. Compare verified profiles, read real customer reviews, and get free no-obligation quotes on MyApproved.`,
+            description: `Find public-liability-insured, identity-checked ${trade.plural.toLowerCase()} in ${location.name}. Compare verified profiles, read real customer reviews, and get free no-obligation quotes on MyApproved.`,
             url: `https://myapproved.com/${params.trade}/${params.location}`,
             image: "https://myapproved.com/logo-icon.svg",
             logo: {
@@ -196,15 +196,15 @@ export default function TradeLocationPage({
                 "name": `How much does a ${trade.name.toLowerCase()} cost in ${location.name}?`,
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": `${trade.name}s in ${location.name} typically charge ${trade.hourlyRate} per hour. Fixed-price quotes are available for larger jobs. Emergency call-outs may incur additional charges, especially evenings and weekends. Get free quotes from verified local ${trade.plural.toLowerCase()} to compare exact costs.`
+                  "text": `${trade.name}s in ${location.name} typically charge ${trade.hourlyRate} per hour. Fixed-price quotes are available for larger jobs. Emergency call-outs may incur additional charges, especially evenings and weekends. Get free quotes from identity-checked local ${trade.plural.toLowerCase()} to compare exact costs.`
                 }
               },
               {
                 "@type": "Question",
-                "name": `Are MyApproved ${trade.plural.toLowerCase()} in ${location.name} insured?`,
+                "name": `Do MyApproved ${trade.plural.toLowerCase()} in ${location.name} hold public liability insurance?`,
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": `Yes. All ${trade.plural.toLowerCase()} on MyApproved carry minimum £2M public liability insurance. We verify insurance documents before any tradesperson can join or receive a quote request.`
+                  "text": `Yes. All ${trade.plural.toLowerCase()} on MyApproved hold public liability cover of £2m, confirmed and monitored. We confirm insurance before any tradesperson can join or receive a quote request.`
                 }
               },
               {
@@ -220,7 +220,7 @@ export default function TradeLocationPage({
                 "name": `How do I choose the best ${trade.name.toLowerCase()} in ${location.name}?`,
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": `Compare ${trade.plural.toLowerCase()} based on verified reviews, qualifications, response time, and quotes. All MyApproved ${trade.plural.toLowerCase()} are ID-checked and insurance-verified, so you can focus on finding the right fit for your project.`
+                  "text": `Compare ${trade.plural.toLowerCase()} based on customer reviews, response time, and quotes. All MyApproved ${trade.plural.toLowerCase()} are identity-checked and their public liability insurance is confirmed and monitored, so you can focus on finding the right fit for your project.`
                 }
               }
             ]
@@ -270,8 +270,6 @@ export default function TradeLocationPage({
         <AEOContentBlock
           tradeType={params.trade}
           city={location.name}
-          averageRating={Number(process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE) || 4.9}
-          reviewCount={Number(process.env.NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT) || 200}
         />
 
         {/* Breadcrumb Navigation */}
@@ -296,28 +294,28 @@ export default function TradeLocationPage({
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
                 {trade.name}s in {location.name}
                 <span className="block text-xl sm:text-2xl md:text-3xl font-semibold text-yellow-400 mt-2">
-                  Verified, Insured & Ready to Help
+                  Identity Checked, Public Liability Confirmed & Ready to Help
                 </span>
               </h1>
               
               <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                Find trusted {trade.name.toLowerCase()}s in {location.name}. Compare quotes from verified local professionals. 
-                All {trade.plural.toLowerCase()} checked, insured, and rated by real customers.
+                Find trusted {trade.name.toLowerCase()}s in {location.name}. Compare quotes from identity-checked local professionals.
+                All {trade.plural.toLowerCase()} are identity-checked, carry confirmed public liability cover, and are rated by real customers.
               </p>
               
               {/* Trust Indicators */}
               <div className="flex flex-wrap justify-center gap-4 mb-8">
                 <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
                   <Shield className="w-5 h-5 text-green-400" />
-                  <span className="font-medium">ID Verified</span>
+                  <span className="font-medium">Identity checked</span>
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
                   <Award className="w-5 h-5 text-yellow-400" />
-                  <span className="font-medium">£2M Insured</span>
+                  <span className="font-medium">Public liability cover of £2m, confirmed and monitored</span>
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-                  <Star className="w-5 h-5 text-yellow-400" />
-                  <span className="font-medium">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}/5 Rated</span>
+                  <Shield className="w-5 h-5 text-green-400" />
+                  <span className="font-medium">Identity checked</span>
                 </span>
               </div>
               
@@ -342,7 +340,7 @@ export default function TradeLocationPage({
               {/* Response time */}
               <p className="mt-4 text-yellow-300 font-semibold flex items-center justify-center gap-2">
                 <Clock className="w-5 h-5" />
-                Free quotes from local, verified {trade.plural.toLowerCase()} in {location.name}
+                Free quotes from local, identity-checked {trade.plural.toLowerCase()} in {location.name}
               </p>
             </div>
           </div>
@@ -382,21 +380,21 @@ export default function TradeLocationPage({
               <div className="grid sm:grid-cols-3 gap-4 text-center">
                 <div className="bg-white rounded-xl p-5 shadow-sm">
                   <BadgeCheck className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                  <h3 className="font-bold text-blue-900 mb-1">ID & Insurance Checked</h3>
+                  <h3 className="font-bold text-blue-900 mb-1">Identity and insurance checked</h3>
                   <p className="text-sm text-gray-600">
                     Every {trade.name.toLowerCase()} on MyApproved is verified before they can quote.
                   </p>
                 </div>
                 <div className="bg-white rounded-xl p-5 shadow-sm">
                   <Star className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
-                  <h3 className="font-bold text-blue-900 mb-1">Real Reviews Only</h3>
+                  <h3 className="font-bold text-blue-900 mb-1">Reviews verified from completed jobs</h3>
                   <p className="text-sm text-gray-600">
                     Ratings come exclusively from homeowners who actually hired the tradesperson.
                   </p>
                 </div>
                 <div className="bg-white rounded-xl p-5 shadow-sm">
                   <Shield className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                  <h3 className="font-bold text-blue-900 mb-1">£2M Public Liability</h3>
+                  <h3 className="font-bold text-blue-900 mb-1">Public liability cover of £2m, confirmed and monitored</h3>
                   <p className="text-sm text-gray-600">
                     All listed {trade.plural.toLowerCase()} carry valid public liability insurance.
                   </p>
@@ -421,10 +419,10 @@ export default function TradeLocationPage({
                       <BadgeCheck className="w-6 h-6 text-green-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-blue-900 mb-1">Fully Verified</h3>
+                      <h3 className="font-bold text-blue-900 mb-1">Business verified</h3>
                       <p className="text-gray-600">
-                        Every {trade.name.toLowerCase()} is ID checked, reference verified, and 
-                        qualification confirmed before joining MyApproved.
+                        Every {trade.name.toLowerCase()} is identity checked and business verified
+                        before joining MyApproved.
                       </p>
                     </div>
                   </div>
@@ -434,10 +432,10 @@ export default function TradeLocationPage({
                       <Shield className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-blue-900 mb-1">£2M Insurance</h3>
+                      <h3 className="font-bold text-blue-900 mb-1">Public liability cover of £2m, confirmed and monitored</h3>
                       <p className="text-gray-600">
-                        All {trade.plural.toLowerCase()} carry minimum £2M public liability insurance 
-                        for your peace of mind.
+                        All {trade.plural.toLowerCase()} carry public liability insurance, confirmed
+                        and monitored, for your peace of mind.
                       </p>
                     </div>
                   </div>
@@ -447,9 +445,9 @@ export default function TradeLocationPage({
                       <Star className="w-6 h-6 text-yellow-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-blue-900 mb-1">Real Reviews</h3>
+                      <h3 className="font-bold text-blue-900 mb-1">Reviews verified from completed jobs</h3>
                       <p className="text-gray-600">
-                        Read genuine reviews from verified {location.name} customers who've 
+                        Read genuine reviews from verified {location.name} customers who've
                         hired our {trade.plural.toLowerCase()}.
                       </p>
                     </div>
@@ -589,11 +587,11 @@ export default function TradeLocationPage({
               
               <div className="bg-gray-50 rounded-xl p-6">
                 <h3 className="font-bold text-blue-900 mb-2">
-                  Are MyApproved {trade.plural.toLowerCase()} in {location.name} insured?
+                  Do MyApproved {trade.plural.toLowerCase()} in {location.name} hold public liability insurance?
                 </h3>
                 <p className="text-gray-600">
-                  Yes, all {trade.plural.toLowerCase()} on MyApproved carry minimum £2M public liability 
-                  insurance. We verify insurance documents before any tradesperson can join our platform.
+                  Yes, all {trade.plural.toLowerCase()} on MyApproved hold public liability cover of £2m,
+                  confirmed and monitored. We confirm insurance before any tradesperson can join our platform.
                 </p>
               </div>
               
@@ -613,9 +611,9 @@ export default function TradeLocationPage({
                   How do I choose the best {trade.name.toLowerCase()} in {location.name}?
                 </h3>
                 <p className="text-gray-600">
-                  Compare {trade.plural.toLowerCase()} based on their verified reviews, qualifications, 
-                  response time, and quotes. All MyApproved {trade.plural.toLowerCase()} have been ID-checked 
-                  and verified, so you can hire with confidence.
+                  Compare {trade.plural.toLowerCase()} based on their customer reviews,
+                  response time, and quotes. All MyApproved {trade.plural.toLowerCase()} have been identity-checked
+                  and their public liability insurance is confirmed and monitored, so you can hire with confidence.
                 </p>
               </div>
             </div>
@@ -629,7 +627,7 @@ export default function TradeLocationPage({
               Ready to Find Your {trade.name} in {location.name}?
             </h2>
             <p className="text-lg text-blue-100 mb-8">
-              Get free quotes from up to 3 verified {trade.plural.toLowerCase()}. 
+              Get free quotes from up to 3 identity-checked {trade.plural.toLowerCase()}.
               Compare prices, read reviews, and choose with confidence.
             </p>
             

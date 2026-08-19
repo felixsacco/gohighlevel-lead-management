@@ -370,7 +370,7 @@ export default function TradespersonRegistration() {
                 </div>
                 <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full border border-yellow-300/70 bg-yellow-50 px-3 py-1.5 text-xs font-semibold text-yellow-800">
                   <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-500" />
-                  Join 10,000+ Trusted Tradespeople
+                  Join Trusted Tradespeople
                 </div>
                 <div className="flex items-center justify-center mb-4">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-md">
@@ -777,8 +777,8 @@ export default function TradespersonRegistration() {
             <div className="relative bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-4 shadow-xl">
               <div className="flex items-center justify-center gap-2 text-center">
                 <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-lg font-bold text-white">4.9/5</span>
-                <span className="text-blue-200">from 12,000+ verified reviews</span>
+                <span className="text-lg font-bold text-white">Identity-checked</span>
+                <span className="text-blue-200">tradespeople</span>
               </div>
             </div>
           </div>

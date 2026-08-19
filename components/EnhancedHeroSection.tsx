@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
@@ -47,36 +47,8 @@ const imageVariants = {
 };
 
 const EnhancedHeroSection = () => {
-  const [jobsCount, setJobsCount] = useState(2000);
-  const [reviewsCount, setReviewsCount] = useState(45000);
-  const [tradespeopleCount, setTradespeopleCount] = useState(8000);
-
-  // Animated counters - logic unchanged
-  useEffect(() => {
-    const animateCounter = (target: number, setter: (value: number) => void, duration: number = 2000) => {
-      const start = target * 0.7;
-      const increment = (target - start) / (duration / 16);
-      let current = start;
-
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          setter(target);
-          clearInterval(timer);
-        } else {
-          setter(Math.floor(current));
-        }
-      }, 16);
-    };
-
-    const timer = setTimeout(() => {
-      animateCounter(2847, setJobsCount);
-      animateCounter(50000, setReviewsCount);
-      animateCounter(10000, setTradespeopleCount);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, []);
+  // Counter animations removed — prior fabricated counts (jobs/reviews/tradespeople)
+  // had no supporting check in the spec and were removed for compliance.
 
   const popularServices = [
     'Plumber', 'Electrician', 'Builder', 'Painter', 'Roofer',
@@ -91,7 +63,7 @@ const EnhancedHeroSection = () => {
   ];
 
   const trustFeatures = [
-    { icon: Shield, label: 'Insured & Verified' },
+    { icon: Shield, label: 'Insurance Confirmed' },
     { icon: CheckCircle, label: 'No Cowboy Builders' },
     { icon: Zap, label: '60s Quotes' },
     { icon: Clock, label: '3-Min Response' },
@@ -125,7 +97,7 @@ const EnhancedHeroSection = () => {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FFB800]" />
                 </span>
                 <span className="text-sm font-semibold text-white/70 tabular-nums">
-                  LIVE - {jobsCount.toLocaleString()} jobs posted today
+                  LIVE - new jobs posted today
                 </span>
               </div>
             </motion.div>
@@ -133,7 +105,7 @@ const EnhancedHeroSection = () => {
             {/* Editorial headline — offset, not centered */}
             <motion.div variants={itemVariants} className="space-y-0 lg:-translate-x-6">
               <p className="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-[#FFB800] mb-3">
-                Rated #1 Tradesperson Platform
+                UK Tradesperson Recommendation Platform
               </p>
               <h1 className="text-[clamp(3.25rem,7.5vw,5.5rem)] font-black leading-[0.9] tracking-tight">
                 <span className="block text-white">Find Trusted</span>
@@ -148,7 +120,7 @@ const EnhancedHeroSection = () => {
             </motion.div>
 
             <motion.p variants={itemVariants} className="text-base text-white/55 leading-relaxed max-w-[520px] lg:-translate-x-6">
-              Hire vetted professionals near you. Fast, reliable, and backed by verified reviews.
+              Hire identity-checked professionals near you. Fast, reliable, with public liability cover confirmed.
             </motion.p>
 
             {/* Feature pills — rectangle + single left hairline, not repeated rounded pills */}
@@ -212,9 +184,9 @@ const EnhancedHeroSection = () => {
             {/* Stats row — hard top hairline, no floating dividers */}
             <motion.div variants={itemVariants} className="grid grid-cols-3 border-t border-white/[0.08] pt-6">
               {[
-                { value: `${(tradespeopleCount / 1000).toFixed(0)}k+`, label: 'Tradespeople' },
-                { value: `${(reviewsCount / 1000).toFixed(0)}k+`, label: 'Reviews' },
-                { value: '98%', label: 'Success Rate' },
+                { value: '£2M', label: 'Public Liability Cover' },
+                { value: 'Identity', label: 'Checked Professionals' },
+                { value: 'Free', label: 'To Post a Job' },
               ].map((stat, i) => (
                 <div key={stat.label} className={i > 0 ? 'border-l border-white/[0.08] pl-6' : 'pr-6'}>
                   <div className="text-2xl font-black text-white tabular-nums">{stat.value}</div>
@@ -276,7 +248,7 @@ const EnhancedHeroSection = () => {
                 transition={{ delay: 0.9, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="text-xl font-black text-[#FFB800] tabular-nums leading-none">
-                  {jobsCount.toLocaleString()}
+                  New
                 </div>
                 <div className="text-[0.65rem] text-white/45 font-semibold mt-0.5">Jobs Today</div>
               </motion.div>
@@ -292,8 +264,8 @@ const EnhancedHeroSection = () => {
                   <CheckCircle className="w-3.5 h-3.5 text-[#111111]" />
                 </div>
                 <div>
-                  <div className="text-sm font-black text-white leading-none">98% Success</div>
-                  <div className="text-[0.6rem] text-white/40 mt-0.5">Job Completion</div>
+                  <div className="text-sm font-black text-white leading-none">Identity Checked</div>
+                  <div className="text-[0.6rem] text-white/40 mt-0.5">Professionals</div>
                 </div>
               </motion.div>
 

@@ -247,7 +247,7 @@ Both exist only in the Go backend. Not referenced by the Next.js/TS application.
 
 ### 6.1 Star Ratings & Review Counts — RESOLVED
 
-Ratings now come from `NEXT_PUBLIC_AGGREGATE_RATING_VALUE`, `NEXT_PUBLIC_AGGREGATE_RATING_COUNT`, and `NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT` environment variables. Omit them to suppress.
+Ratings previously came from `NEXT_PUBLIC_AGGREGATE_RATING_VALUE`, `NEXT_PUBLIC_AGGREGATE_RATING_COUNT`, and `NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT` environment variables. These are no longer consumed in source and are left empty to suppress fabricated aggregate ratings.
 
 ### 6.2 Competitive Claims
 

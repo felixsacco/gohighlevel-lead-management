@@ -138,23 +138,23 @@ const UltraFooter = () => {
 
               {/* Trust statistics */}
               <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/20">
-                <h4 className="font-black text-white text-lg mb-4">Trusted by Thousands</h4>
+                <h4 className="font-black text-white text-lg mb-4">How we protect you</h4>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
-                    <div className="text-2xl font-black text-[#FDBD18]">50,000+</div>
-                    <div className="text-sm text-blue-200">Happy Customers</div>
+                    <div className="text-2xl font-black text-[#FDBD18]">✓</div>
+                    <div className="text-sm text-blue-200">Identity checked</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-black text-[#FDBD18]">10,000+</div>
-                    <div className="text-sm text-blue-200">Verified Trades</div>
+                    <div className="text-2xl font-black text-[#FDBD18]">✓</div>
+                    <div className="text-sm text-blue-200">Business verified</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-black text-[#FDBD18]">4.9★</div>
-                    <div className="text-sm text-blue-200">Average Rating</div>
+                    <div className="text-2xl font-black text-[#FDBD18]">✓</div>
+                    <div className="text-sm text-blue-200">Insurance confirmed</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-black text-[#FDBD18]">98%</div>
-                    <div className="text-sm text-blue-200">Success Rate</div>
+                    <div className="text-2xl font-black text-[#FDBD18]">✓</div>
+                    <div className="text-sm text-blue-200">Monitoring in place</div>
                   </div>
                 </div>
               </div>
@@ -246,12 +246,12 @@ const UltraFooter = () => {
                 <p className="text-blue-200 text-lg">Get instant quotes and manage jobs on the go. Available on iOS and Android.</p>
                 <div className="flex items-center gap-4 mt-4 text-sm text-blue-200">
                   <div className="flex items-center gap-2">
-                    <Star className="w-4 h-4 text-[#FDBD18]" />
-                    <span>4.9★ App Store Rating</span>
+                    <Shield className="w-4 h-4 text-[#FDBD18]" />
+                    <span>Identity-checked tradespeople</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4 text-green-400" />
-                    <span>100k+ Downloads</span>
+                    <span>Available across the UK</span>
                   </div>
                 </div>
               </div>

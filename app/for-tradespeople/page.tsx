@@ -212,7 +212,7 @@ export default function ForTradespeople() {
                   <Shield className="w-4 h-4" /> Verified ID &amp; Insurance
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full ring-1 ring-white/20">
-                  <Star className="w-4 h-4 text-yellow-400" /> 50,000+ 5★ reviews
+                  <Star className="w-4 h-4 text-yellow-400" /> Identity checked &amp; business verified
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full ring-1 ring-white/20">
                   <Shield className="w-4 h-4" /> No monthly contract
@@ -255,8 +255,8 @@ export default function ForTradespeople() {
                     <div className="text-blue-300 text-xs">Jobs won</div>
                   </div>
                   <div className="bg-white/10 rounded-lg p-3">
-                    <div className="text-xl font-bold text-[#fdbd18]">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}★</div>
-                    <div className="text-blue-300 text-xs">Rating</div>
+                    <div className="text-xl font-bold text-[#fdbd18]">✓</div>
+                    <div className="text-blue-300 text-xs">Verified</div>
                   </div>
                 </div>
                 <div className="bg-white/10 rounded-lg p-3 flex items-center gap-3">
@@ -657,7 +657,7 @@ export default function ForTradespeople() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-3">
               What Our Tradespeople Say
             </h2>
-            <p className="text-blue-800/80">Real results from verified pros using MyApproved.</p>
+            <p className="text-blue-800/80">Real results from identity-checked pros using MyApproved.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">

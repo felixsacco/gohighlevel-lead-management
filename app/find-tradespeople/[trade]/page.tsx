@@ -59,13 +59,13 @@ export async function generateMetadata({
   if (!trade) return { title: "Not Found | MyApproved", robots: { index: false } };
 
   return {
-    title: `Verified ${trade.plural} Near You | Free Quotes UK | MyApproved`,
-    description: `Find verified, insured ${trade.plural.toLowerCase()} across the UK. Compare local professionals, read real reviews, and get free no-obligation quotes. All ID-checked and approved.`,
-    keywords: `${trade.plural.toLowerCase()} near me, verified ${trade.plural.toLowerCase()} UK, find ${trade.name.toLowerCase()} quotes, local ${trade.name.toLowerCase()} free quotes`,
+    title: `Identity-Checked ${trade.plural} Near You | Free Quotes UK | MyApproved`,
+    description: `Find identity-checked ${trade.plural.toLowerCase()} across the UK. Compare local professionals, read customer reviews, and get free no-obligation quotes. All ID-checked and public liability insured.`,
+    keywords: `${trade.plural.toLowerCase()} near me, identity-checked ${trade.plural.toLowerCase()} UK, find ${trade.name.toLowerCase()} quotes, local ${trade.name.toLowerCase()} free quotes`,
     alternates: { canonical: `https://myapproved.com/find-tradespeople/${params.trade}` },
     openGraph: {
-      title: `Verified ${trade.plural} Near You | MyApproved UK`,
-      description: `Compare verified ${trade.plural.toLowerCase()} in your area. Free quotes, real reviews, all tradespeople insured.`,
+      title: `Identity-Checked ${trade.plural} Near You | MyApproved UK`,
+      description: `Compare identity-checked ${trade.plural.toLowerCase()} in your area. Free quotes, customer reviews, all tradespeople public liability insured.`,
       url: `https://myapproved.com/find-tradespeople/${params.trade}`,
       siteName: "MyApproved",
       locale: "en_GB",
@@ -101,8 +101,6 @@ export default function FindTradePage({ params }: { params: { trade: string } })
         tradeType={params.trade}
         city="United Kingdom"
         postalCode=""
-        averageRating={Number(process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE) || 4.9}
-        reviewCount={Number(process.env.NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT) || 200}
         pageUrl={`https://myapproved.com/find-tradespeople/${params.trade}`}
       />
 
@@ -177,9 +175,6 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                   <CheckCircle className="w-4 h-4 text-[#fdbd18]" /> £2M Insured
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-medium">
-                  <Star className="w-4 h-4 text-[#fdbd18]" /> {process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}/5 Rated
-                </span>
-                <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-medium">
                   <Clock className="w-4 h-4 text-blue-300" /> Quotes in Hours
                 </span>
               </div>
@@ -202,8 +197,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100">
               {[
-                { value: `${process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}/5`, label: "Average Rating", sub: "from verified reviews" },
-                { value: "100%", label: "Background Verified", sub: "before first lead" },
+                { value: "ID", label: "Identity Checked", sub: "before first lead" },
                 { value: "£2M+", label: "Insurance Cover", sub: "independently confirmed" },
                 { value: "Free", label: "For Homeowners", sub: "no fees, ever" },
               ].map(({ value, label, sub }) => (
@@ -221,8 +215,6 @@ export default function FindTradePage({ params }: { params: { trade: string } })
         <AEOContentBlock
           tradeType={params.trade}
           city="the UK"
-          averageRating={Number(process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE) || 4.9}
-          reviewCount={Number(process.env.NEXT_PUBLIC_AGGREGATE_REVIEW_COUNT) || 312}
         />
 
         {/* ── How to Hire ── */}
@@ -263,7 +255,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                   step: "04",
                   icon: ThumbsUp,
                   title: "Hire with confidence",
-                  desc: `Every ${trade.name.toLowerCase()} is ID-checked, £2M insured, qualification-verified, and reference-screened.`,
+                  desc: `Every ${trade.name.toLowerCase()} is ID-checked and their public liability cover of at least £2M is confirmed and monitored.`,
                   color: "bg-purple-50 text-purple-700",
                 },
               ].map(({ step, icon: Icon, title, desc, color }) => (
@@ -364,11 +356,11 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                 },
                 {
                   q: `Are all ${trade.plural.toLowerCase()} on MyApproved verified?`,
-                  a: `Yes. Every ${trade.name.toLowerCase()} on MyApproved passes 4 independent checks: (1) government-issued ID verification, (2) £2M public liability insurance confirmed directly with the insurer, (3) regulated trade qualification check against the live official register where applicable, (4) customer references contacted independently. All checks renew annually.`,
+                  a: `Yes. Every ${trade.name.toLowerCase()} on MyApproved is identity-checked and their public liability insurance is confirmed and monitored. Where a legally required trade registration applies (such as Gas Safe or a competent person scheme), that registration is checked against the official register before they can list.`,
                 },
                 {
                   q: `Is MyApproved free for homeowners?`,
-                  a: `Yes — completely free. Posting a job, receiving quotes, comparing ${trade.plural.toLowerCase()}, and reading verified reviews costs you nothing. MyApproved charges £4.99 per lead to the tradespeople, not to homeowners.`,
+                  a: `Yes — completely free. Posting a job, receiving quotes, comparing ${trade.plural.toLowerCase()}, and reading customer reviews costs you nothing. MyApproved charges £4.99 per lead to the tradespeople, not to homeowners.`,
                 },
                 {
                   q: `How quickly will I receive quotes from ${trade.plural.toLowerCase()}?`,
@@ -427,8 +419,8 @@ export default function FindTradePage({ params }: { params: { trade: string } })
         <section className="py-16 sm:py-20 bg-gradient-to-br from-[#002FA7] to-[#001f7a] text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-              <Star className="w-4 h-4 text-[#fdbd18]" />
-              Rated {process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}/5 by homeowners across the UK
+              <Shield className="w-4 h-4 text-green-400" />
+              Identity checked and public liability insurance confirmed and monitored
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4">
               Ready to Find a Verified {trade.name}?
