@@ -497,7 +497,7 @@ export function generateTradeLocationMetadata(tradeSlug: string, locationSlug: s
   const locationName = location.name;
   
   return {
-    title: `${tradeName} in ${locationName} | Identity-Checked ${trade.plural} - Get Free Quotes | MyApproved`,
+    title: `${tradeName} in ${locationName} | Identity-Checked ${trade.plural} - Get Free Quotes | MyApproved™`,
     description: `Find identity-checked ${tradeName.toLowerCase()}s in ${locationName}. Compare ${trade.plural.toLowerCase()}, read reviews, and get free quotes. All ${tradeName.toLowerCase()}s are identity-checked and their public liability insurance is confirmed and monitored. Book your ${locationName} ${tradeName.toLowerCase()} today.`,
     openGraph: {
       title: `${tradeName}s in ${locationName} | Get Free Quotes from Identity-Checked ${trade.plural}`,

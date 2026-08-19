@@ -8,7 +8,7 @@ import { TrustBadge } from '@/components/TrustBadge';
 
 const badges = [
   { icon: BadgeCheck, label: 'Identity checked' },
-  { icon: ShieldCheck, label: 'Insurance confirmed and monitored' },
+  { icon: ShieldCheck, label: 'Public liability insurance confirmed and monitored' },
   { icon: Landmark, label: 'Business verified' },
   { icon: MapPin, label: 'Address confirmed' },
 ];
