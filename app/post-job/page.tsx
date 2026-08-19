@@ -34,7 +34,7 @@ export default function PostJobPage() {
             </div>
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-blue-400" />
-              <span>5,000+ verified tradespeople</span>
+              <span>Identity-checked tradespeople</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-yellow-400" />
@@ -67,7 +67,7 @@ export default function PostJobPage() {
               {
                 step: "2",
                 title: "Receive Free Quotes",
-                desc: "Up to 5 verified tradespeople will respond with competitive quotes for your job.",
+                desc: "Up to 5 tradespeople will respond with competitive quotes for your job.",
               },
               {
                 step: "3",
@@ -104,8 +104,8 @@ export default function PostJobPage() {
             {[
               {
                 icon: Shield,
-                title: 'Verified Professionals',
-                description: 'All tradespeople are background checked, insured, and verified for quality',
+                title: 'Checked Professionals',
+                description: 'Every tradesperson passes identity, business and insurance checks before listing',
               },
               {
                 icon: Users,
