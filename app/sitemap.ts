@@ -62,28 +62,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // ── Legacy trade pages (e.g. /plumber, /electrician) ─────────────────────────
-  const legacyTradePages: MetadataRoute.Sitemap = TRADES.map(trade => ({
-    url: `${baseUrl}/${trade.slug}`,
-    lastModified: lastMod,
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }))
-
-  // ── Legacy trade + location pages - all trades × all 50 UK cities ────────────
-  const legacyTradeLocationPages: MetadataRoute.Sitemap = []
-  for (const trade of TRADES) {
-    for (const location of LOCATIONS) {
-      const locationSlug = toSlug(location.name)
-      legacyTradeLocationPages.push({
-        url: `${baseUrl}/${trade.slug}/${locationSlug}`,
-        lastModified: lastMod,
-        changeFrequency: 'weekly' as const,
-        priority: 0.55,
-      })
-    }
-  }
-
   // ── Blog posts ────────────────────────────────────────────────────────────────
   const blogPages: MetadataRoute.Sitemap = MOCK_BLOG_POSTS.map(post => ({
     url: `${baseUrl}/blog/${post.slug}`,
@@ -96,8 +74,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticPages,
     ...findTradespeopleTradePages,
     ...findTradespeopleLocationPages,
-    ...legacyTradePages,
-    ...legacyTradeLocationPages,
     ...blogPages,
   ]
 }

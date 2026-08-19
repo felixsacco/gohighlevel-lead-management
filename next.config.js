@@ -10,6 +10,58 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
+  async redirects() {
+    const tradeSlugs = [
+      'plumber',
+      'electrician',
+      'builder',
+      'roofer',
+      'carpenter',
+      'painter-decorator',
+      'kitchen-fitter',
+      'bathroom-fitter',
+      'tiler',
+      'flooring',
+      'gas-engineer',
+      'plasterer',
+      'locksmith',
+      'window-fitter',
+      'heating-engineer',
+      'gardener',
+      'landscaper',
+      'fencer',
+      'driveway-specialist',
+      'cleaner',
+      'waste-removal',
+      'carpet-cleaner',
+      'security-installer',
+      'pest-control',
+      'damp-specialist',
+      'scaffolder',
+      'chimney-sweep',
+      'loft-insulation',
+      'air-conditioning',
+      'solar-panel-installer',
+      'handyman',
+      'loft-conversion',
+      'conservatory',
+    ];
+
+    const tradePattern = tradeSlugs.join('|');
+
+    return [
+      {
+        source: `/:trade(${tradePattern})`,
+        destination: '/find-tradespeople/:trade',
+        permanent: true,
+      },
+      {
+        source: `/:trade(${tradePattern})/:location`,
+        destination: '/find-tradespeople/:trade/:location',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
