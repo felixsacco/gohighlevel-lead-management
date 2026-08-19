@@ -30,8 +30,8 @@ interface JobSubmissionData {
 }
 
 interface GoHighLevelContact {
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
   phone?: string;
   address1?: string;
