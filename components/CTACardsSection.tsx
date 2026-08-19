@@ -38,7 +38,7 @@ const CTACardsSection = () => {
     {
       id: 'hire',
       title: 'Hire a Tradesperson',
-      description: 'Find verified, insured professionals in your area. Get instant quotes and book with confidence.',
+      description: 'Find identity-checked, business-verified tradespeople in your area. Get instant quotes and book with confidence.',
       buttonText: 'Find Tradespeople',
       href: '/find-tradespeople',
       icon: Wrench,
@@ -49,12 +49,12 @@ const CTACardsSection = () => {
         { label: 'Average Response', value: '3 mins' },
         { label: 'Success Rate', value: '98%' }
       ],
-      features: ['Instant quotes', 'Verified professionals', 'Insurance guaranteed']
+      features: ['Instant quotes', 'Identity-checked tradespeople', 'Insurance cover confirmed']
     },
     {
       id: 'join',
       title: 'Join as Tradesperson',
-      description: 'Grow your business with quality leads. Join 10,000+ approved tradespeople earning more.',
+      description: 'Grow your business with quality leads. Join thousands of verified tradespeople earning more.',
       buttonText: 'Start Earning Today',
       href: '/register/tradesperson',
       icon: UsersRound,
@@ -248,10 +248,10 @@ const CTACardsSection = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { icon: Shield, value: '100% Verified', label: 'All tradespeople checked' },
+                { icon: Shield, value: 'Identity Checked', label: 'Business verified' },
                 { icon: Clock, value: 'Instant Quotes', label: 'AI-powered estimates' },
-                { icon: Star, value: '4.9★ Rating', label: '50,000+ reviews' },
-                { icon: Award, value: 'Award Winning', label: 'Industry recognised' },
+                { icon: Star, value: '4.9★ Rating', label: 'From verified jobs' },
+                { icon: Award, value: 'Re-checked', label: 'Time-limited checks' },
               ].map(({ icon: Icon, value, label }) => (
                 <div key={value} className="text-center">
                   <div className="w-11 h-11 bg-[#F5B301]/10 border border-[#F5B301]/15 rounded-xl flex items-center justify-center mx-auto mb-3">
