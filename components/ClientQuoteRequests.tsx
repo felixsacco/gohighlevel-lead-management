@@ -253,8 +253,7 @@ export default function ClientQuoteRequests({ clientEmail, clientId }: ClientQuo
                 <div className="flex items-center justify-between pt-4 border-t">
                   <p className="text-sm text-gray-500">Requested on {formatDate(request.created_at)}</p>
                   <div className="text-[11px] inline-flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-blue-800">Trades Fully Verified</span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-amber-800">MyApproved Guarantee</span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-blue-800">Identity checked</span>
                   </div>
                 </div>
               </CardContent>
