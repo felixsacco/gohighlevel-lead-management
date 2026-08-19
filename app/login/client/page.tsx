@@ -613,7 +613,7 @@ export default function ClientLoginPage() {
             {/* Trust badge - Matching Homepage */}
             <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-[#FFB800] px-3 py-1.5 text-xs font-extrabold text-black border-2 border-[#FFB800]">
               <Star className="h-3.5 w-3.5 fill-yellow-600 text-yellow-700" />
-              Trusted by 50,000+ UK customers
+              Business verified
             </div>
             <div className="flex items-center justify-center mb-3">
               <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-md">
@@ -772,7 +772,7 @@ export default function ClientLoginPage() {
                   <Shield className="h-4 w-4 text-blue-400" /> Secure login
                 </li>
                 <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-md px-2 py-1 backdrop-blur-sm">
-                  <Star className="h-4 w-4 text-yellow-400" /> Top-rated pros
+                  <Star className="h-4 w-4 text-yellow-400" /> Business verified
                 </li>
               </ul>
 
@@ -872,7 +872,7 @@ export default function ClientLoginPage() {
                               </span>
                             </div>
                             <span className="text-[8px] font-black text-[#F5A623] bg-[#F5A623]/10 border border-[#F5A623]/20 px-1.5 py-0.5 rounded-full">
-                              ✓ VERIFIED
+                              ✓ ID checked
                             </span>
                           </div>
                           {/* Business name */}
@@ -939,8 +939,8 @@ export default function ClientLoginPage() {
                     <Shield className="h-5 w-5 text-blue-400" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Verified Professionals</p>
-                    <p className="text-sm text-blue-200">ID, insurance, and background checks for complete peace of mind.</p>
+                    <p className="text-sm font-semibold text-white">Business verified</p>
+                    <p className="text-sm text-blue-200">Identity, business and insurance checks passed before listing.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
@@ -948,8 +948,8 @@ export default function ClientLoginPage() {
                     <Star className="h-5 w-5 text-yellow-400" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-yellow-400">Top-Rated Pros</p>
-                    <p className="text-sm text-blue-200">5★ reviews from thousands of satisfied UK customers.</p>
+                    <p className="text-sm font-semibold text-yellow-400">Reviewed by UK customers</p>
+                    <p className="text-sm text-blue-200">Customer reviews available on each listed business.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
@@ -971,7 +971,7 @@ export default function ClientLoginPage() {
               <div className="flex items-center justify-center gap-2 text-center">
                 <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
                 <span className="text-lg font-bold text-white">{process.env.NEXT_PUBLIC_AGGREGATE_RATING_VALUE || '4.9'}/5</span>
-                <span className="text-blue-200">from 12,000+ verified reviews</span>
+                <span className="text-blue-200">from customer reviews</span>
               </div>
             </div>
           </div>
