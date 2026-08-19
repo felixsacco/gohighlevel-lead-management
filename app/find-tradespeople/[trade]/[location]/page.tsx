@@ -176,7 +176,7 @@ function getServiceCosts(tradeSlug: string, hourlyRate: string) {
       { label: "Half-day booking (4 hrs)", range: "4 × hourly rate" },
       { label: "Full-day booking (8 hrs)", range: "8 × hourly rate" },
       { label: "Emergency / out-of-hours", range: "1.5× standard rate" },
-      { label: "Written quote", range: "Free — required" },
+      { label: "Written quote", range: "Free (required)" },
       { label: "Call-out fee", range: "£0–£60" },
     ]
   );
@@ -212,13 +212,13 @@ export async function generateMetadata({
 
   return {
     title: `Verified ${trade.plural} in ${locationName} | Free Quotes | MyApproved`,
-    description: `Find ID-checked, £2M-insured ${trade.plural.toLowerCase()} in ${locationName}. Compare free quotes from verified local professionals. All independently verified — not self-declared.`,
+    description: `Find ID-checked, £2M-insured ${trade.plural.toLowerCase()} in ${locationName}. Compare free quotes from verified local professionals. All checks confirmed on the public profile.`,
     alternates: {
       canonical: `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
     },
     openGraph: {
       title: `Verified ${trade.plural} in ${locationName} | MyApproved`,
-      description: `Compare verified ${trade.plural.toLowerCase()} in ${locationName}. Free quotes, real reviews, all insured to £2M.`,
+      description: `Compare verified ${trade.plural.toLowerCase()} in ${locationName}. Free quotes and real reviews. All insured to £2M.`,
       url: `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
       siteName: "MyApproved",
       locale: "en_GB",
@@ -264,11 +264,11 @@ export default function FindTradeLocationPage({
   const faqs = [
     {
       q: `How much does a ${trade.name.toLowerCase()} cost in ${locationName}?`,
-      a: `${trade.plural} in ${locationName} typically charge ${trade.hourlyRate} per hour. Every MyApproved ${trade.name.toLowerCase()} provides a fixed, written quote before work begins — no verbal estimates that change mid-job. Post your job free to get up to 3 comparable quotes from verified local professionals.`,
+      a: `${trade.plural} in ${locationName} typically charge ${trade.hourlyRate} per hour. Every MyApproved ${trade.name.toLowerCase()} provides a fixed, written quote before work begins. No verbal estimates that change mid-job. Post your job free to get up to 3 comparable quotes from verified local professionals.`,
     },
     {
       q: `Are ${trade.plural.toLowerCase()} on MyApproved in ${locationName} insured?`,
-      a: `Yes. Every ${trade.name.toLowerCase()} on MyApproved carries a minimum of £2M public liability insurance, independently confirmed with their insurer — not self-declared. Certificates are verified at onboarding and re-checked annually. Lapsed insurance triggers immediate suspension.`,
+      a: `Yes. Every ${trade.name.toLowerCase()} on MyApproved carries a minimum of £2M public liability insurance, independently confirmed with their insurer. Certificates are verified at onboarding and re-checked annually. Lapsed insurance triggers immediate suspension.`,
     },
     {
       q: `How does MyApproved verify ${trade.plural.toLowerCase()} in ${locationName}?`,
@@ -276,7 +276,7 @@ export default function FindTradeLocationPage({
     },
     {
       q: `How quickly can I get a ${trade.name.toLowerCase()} in ${locationName}?`,
-      a: `Post your job free and most ${locationName} homeowners receive their first quote within a few hours. For emergency work, ${trade.plural.toLowerCase()} can typically respond within 1–2 hours. All quotes are obligation-free.`,
+      a: `Post your job free and most ${locationName} homeowners get their first quote within a few hours. For emergency work, ${trade.plural.toLowerCase()} can usually respond within 1–2 hours. All quotes are free with no obligation.`,
     },
   ];
 
@@ -295,7 +295,7 @@ export default function FindTradeLocationPage({
             "@type": "LocalBusiness",
             "@id": `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
             name: `${trade.name}s in ${locationName} | Verified & Approved | MyApproved`,
-            description: `Find insured, ID-checked ${trade.plural.toLowerCase()} in ${locationName}. Compare verified profiles, read real customer reviews, and get free no-obligation quotes on MyApproved.`,
+            description: `Find insured, ID-checked ${trade.plural.toLowerCase()} in ${locationName}. Compare verified profiles, read real customer reviews, and get free quotes on MyApproved.`,
             url: `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
             image: "https://myapproved.com/logo-icon.svg",
             logo: {
@@ -389,25 +389,25 @@ export default function FindTradeLocationPage({
             "@context": "https://schema.org",
             "@type": "HowTo",
             name: `How to hire a verified ${trade.name.toLowerCase()} in ${locationName}`,
-            description: `Step-by-step guide to finding and hiring a verified, insured ${trade.name.toLowerCase()} in ${locationName} through MyApproved.`,
+            description: `How to find and hire a verified, insured ${trade.name.toLowerCase()} in ${locationName} through MyApproved.`,
             step: [
               {
                 "@type": "HowToStep",
                 position: 1,
                 name: "Post your job",
-                text: `Describe the ${trade.name.toLowerCase()} work you need in ${locationName}. Takes under 2 minutes. Completely free.`,
+                text: `Describe the ${trade.name.toLowerCase()} work you need in ${locationName}. It takes under 2 minutes and costs nothing.`,
               },
               {
                 "@type": "HowToStep",
                 position: 2,
                 name: "Receive verified quotes",
-                text: `Up to 3 verified local ${trade.plural.toLowerCase()} send you fixed, written quotes. No verbal estimates.`,
+                text: `Up to 3 verified local ${trade.plural.toLowerCase()} send you fixed, written quotes.`,
               },
               {
                 "@type": "HowToStep",
                 position: 3,
                 name: "Compare profiles and choose",
-                text: "Review each professional's verified credentials, customer ratings, and quote. Message them directly — no obligation.",
+                text: "Review each professional's verified credentials, customer ratings, and quote. Message them directly, with no obligation.",
               },
               {
                 "@type": "HowToStep",
@@ -487,7 +487,7 @@ export default function FindTradeLocationPage({
                 Every {trade.name.toLowerCase()} on MyApproved is identity-checked and
                 insurance-confirmed before receiving a single lead in {locationName}.
                 Compare free quotes from professionals whose checks are confirmed on
-                their public profile — not self-declared.
+                their public profile, not self-declared.
               </p>
 
               <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8">
@@ -565,7 +565,7 @@ export default function FindTradeLocationPage({
                 How to Hire a Verified {trade.name} in {locationName}
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto text-sm sm:text-base">
-                Four steps, completely free, takes under 2 minutes.
+                Four steps, free, and it takes under 2 minutes.
               </p>
             </div>
 
@@ -575,7 +575,7 @@ export default function FindTradeLocationPage({
                   step: "01",
                   icon: FileText,
                   title: "Post your job",
-                  desc: `Describe the ${trade.name.toLowerCase()} work you need in ${locationName}. Set your budget and timeline. Free — takes 2 minutes.`,
+                  desc: `Describe the ${trade.name.toLowerCase()} work you need in ${locationName}. Set your budget and timeline. It is free and takes 2 minutes.`,
                   color: "bg-blue-50 text-[#002FA7]",
                 },
                 {
@@ -589,7 +589,7 @@ export default function FindTradeLocationPage({
                   step: "03",
                   icon: Search,
                   title: "Compare & choose",
-                  desc: "Review verified profiles, real customer ratings, and itemised quotes. Message professionals directly — no obligation.",
+                  desc: "Review verified profiles, real customer ratings, and itemised quotes. Message professionals directly, with no obligation.",
                   color: "bg-green-50 text-green-700",
                 },
                 {
@@ -616,7 +616,7 @@ export default function FindTradeLocationPage({
             <div className="mt-10">
               <HeroSearchTrigger />
               <p className="text-xs text-gray-400 mt-3 text-center">
-                Takes 2 minutes · Completely free · No obligation
+                Takes 2 minutes · Free · No obligation
               </p>
             </div>
           </div>
@@ -659,7 +659,7 @@ export default function FindTradeLocationPage({
                   {trade.name} Costs in {locationName}
                 </h2>
                 <p className="text-xs text-gray-500 mb-5">
-                  Typical {new Date().getFullYear()}–{new Date().getFullYear() + 1} rates. Exact costs vary — get 3 free written quotes to compare.
+                  Typical {new Date().getFullYear()}–{new Date().getFullYear() + 1} rates. Exact costs vary. Get 3 free written quotes to compare.
                 </p>
                 <div className="divide-y divide-blue-50">
                   {serviceCosts.map((row) => (
@@ -675,13 +675,13 @@ export default function FindTradeLocationPage({
                   ))}
                   <div className="flex justify-between items-center py-3 gap-4">
                     <span className="text-gray-700 text-sm">Written quote</span>
-                    <span className="font-bold text-green-600 text-sm">Free — required</span>
+                    <span className="font-bold text-green-600 text-sm">Free (required)</span>
                   </div>
                 </div>
                 <div className="mt-5 bg-[#fdbd18]/10 border border-[#fdbd18]/30 rounded-lg p-3">
                   <p className="text-xs text-yellow-800 font-medium">
                     All MyApproved {trade.plural.toLowerCase()} provide a fixed, itemised written
-                    quote before work starts — no verbal estimates that increase mid-job.
+                    quote before work starts. No verbal estimates that increase mid-job.
                   </p>
                 </div>
               </div>
@@ -737,7 +737,7 @@ export default function FindTradeLocationPage({
                   </h3>
                   <p className="text-blue-100 text-sm mb-4">
                     Post your job free and receive up to 3 quotes from verified local{" "}
-                    {trade.plural.toLowerCase()}. No obligation — compare and hire at your own pace.
+                    {trade.plural.toLowerCase()}. No obligation. Compare and hire at your own pace.
                   </p>
                   <HeroSearchTrigger />
                 </div>
@@ -843,8 +843,8 @@ export default function FindTradeLocationPage({
               Ready to Find a Verified {trade.name} in {locationName}?
             </h2>
             <p className="text-base sm:text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
-              Post your job free. Quotes from verified {trade.plural.toLowerCase()} in{" "}
-              {locationName} — no obligation, no hidden fees, no waiting on hold.
+              Post your job free. Get quotes from verified {trade.plural.toLowerCase()} in{" "}
+              {locationName}. No obligation, no hidden fees, no waiting on hold.
             </p>
 
             <div className="mb-8">

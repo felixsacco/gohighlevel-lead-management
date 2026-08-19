@@ -33,7 +33,7 @@ const Footer = () => {
       const data = await res.json();
       if (res.ok && data.success) {
         setStatus("success");
-        setMessage("You're in. Your monthly checklist is on its way.");
+        setMessage("You're in. Your price guide is on its way.");
         setEmail("");
       } else {
         setStatus("error");
@@ -87,7 +87,7 @@ const Footer = () => {
                 className="h-10 sm:h-12 md:h-14 w-auto object-contain flex-shrink-0"
               />
               <p className="text-blue-100 leading-relaxed text-sm sm:text-base">
-                The jobs your house quietly needs before the weather turns.
+                Know what home jobs should cost before someone quotes you.
               </p>
               <form onSubmit={handleSubscribe} className="space-y-2 pt-2">
                 <input
@@ -102,7 +102,7 @@ const Footer = () => {
                   disabled={status === "loading"}
                   className="w-full rounded-xl bg-[#FFB800] px-4 py-2.5 text-sm font-bold text-[#0A2463] transition-colors hover:bg-[#FFB800] disabled:opacity-60"
                 >
-                  {status === "loading" ? "Sending…" : "Send me the checklist"}
+                  {status === "loading" ? "Sending…" : "Send me the price guide"}
                 </button>
               </form>
               {message && (
@@ -113,7 +113,7 @@ const Footer = () => {
                 </p>
               )}
               <p className="text-xs text-blue-300/70 leading-relaxed">
-                Just the jobs worth doing. Once a month, no noise.
+                Free guide. Typical prices for the jobs that go wrong in winter.
               </p>
             </div>
 

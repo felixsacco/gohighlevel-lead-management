@@ -88,12 +88,13 @@ const AIQuoteForm = dynamic(() => import("@/components/AIQuoteForm"), {
 });
 
 // Typewriter hook for rotating placeholder
-const useTypewriter = (words: string[], typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000) => {
-  const [text, setText] = useState("");
+const useTypewriter = (words: string[], typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000, paused = false) => {
+  const [text, setText] = useState(words[0]);
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    if (paused) return;
     const currentWord = words[wordIndex];
 
     const timeout = setTimeout(() => {
@@ -122,7 +123,7 @@ const useTypewriter = (words: string[], typingSpeed = 100, deletingSpeed = 50, p
     }
 
     return () => clearTimeout(timeout);
-  }, [text, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pauseTime]);
+  }, [text, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pauseTime, paused]);
 
   return text;
 };
@@ -234,7 +235,7 @@ export default function Home() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  const { word: searchPlaceholder } = useRotatingText(
+  const searchPlaceholder = useTypewriter(
     [
       "Find a plumber in Manchester",
       "Find an electrician in Leeds",
@@ -245,7 +246,9 @@ export default function Home() {
       "Find a carpenter in Sheffield",
       "Find a bathroom fitter in London",
     ],
-    2600,
+    100,
+    50,
+    2000,
     reduceMotion || searchFocused
   );
 
@@ -337,7 +340,7 @@ export default function Home() {
                     <rect x="2.6" y="10.1" width="18.8" height="3.8" rx="1.9" fill="#0A2463" fill-opacity="0.8" transform="rotate(71 12 12)"/>
                     <path d="M4.8 8.4A9 9 0 0 1 11.6 3.3" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
                   </svg>
-                  <span className="relative z-10">Identity-checked tradespeople across the UK</span>
+                  <span className="relative z-10">Checked tradespeople across the UK</span>
                 </span>
                 <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-[#FFB800]/60" aria-hidden="true"></span>
               </p>
@@ -377,7 +380,7 @@ export default function Home() {
 
               {/* Subheadline — one specific promise */}
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-12 sm:mb-16 max-w-[34rem] mx-auto font-normal px-4">
-                No tradesperson is listed until identity, business and insurance checks have passed.
+                Skip the no-shows and the cowboys
               </p>
 
               {/* Search Bar — a raised, rounded clickable target on navy */}
@@ -435,7 +438,7 @@ export default function Home() {
                       aria-hidden="true"
                     />
                   </span>
-                  <span className="font-bold tracking-wide text-white/70 notranslate">PUBLIC LIABILITY INSURANCE CONFIRMED</span>
+                  <span className="font-bold tracking-wide text-white/70 notranslate">INSURANCE VERIFIED</span>
                 </div>
               </div>
             </div>
@@ -470,7 +473,7 @@ export default function Home() {
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Get an instant quote based on your job description and location.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Instant quote in minutes.</p>
           </div>
         </div>
       </section>
@@ -521,7 +524,7 @@ export default function Home() {
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Post your job, see your price, and skip the chase.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Post, see price, relax.</p>
           </div>
         </div>
       </section>
@@ -603,7 +606,7 @@ export default function Home() {
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70 notranslate">Only people who've passed identity, business and insurance checks can quote.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70 notranslate">Only MyApproved tradespeople get your job.</p>
           </div>
         </div>
       </section>
@@ -653,7 +656,7 @@ export default function Home() {
                   <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
               </Button>
-              <p className="mt-3 text-sm sm:text-base text-white/70">Get matched to jobs you can actually win.</p>
+              <p className="mt-3 text-sm sm:text-base text-white/70">Matched to winnable jobs.</p>
             </div>
 
             {/* Right Column — job notification mockup */}
@@ -781,7 +784,7 @@ export default function Home() {
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Enough reading. Get your quotes.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Get your quotes now.</p>
           </div>
         </div>
       </section>

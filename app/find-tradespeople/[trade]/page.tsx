@@ -163,8 +163,8 @@ export default function FindTradePage({ params }: { params: { trade: string } })
               )}
 
               <p className="text-lg text-blue-100 mb-8 max-w-3xl mx-auto">
-                {trade.description}. Compare local {trade.plural.toLowerCase()}, read verified
-                reviews, and get free no-obligation quotes — all on MyApproved.
+                {trade.description}. Compare local {trade.plural.toLowerCase()} and get free
+                no-obligation quotes on MyApproved.
               </p>
 
               <div className="flex flex-wrap justify-center gap-3 mb-8">
@@ -225,7 +225,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                 How to Hire a Verified {trade.name}
               </h2>
               <p className="text-sm text-gray-500 max-w-xl mx-auto">
-                Four steps, completely free, takes under 2 minutes.
+                Four steps free of charge. It takes less than 2 minutes.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -234,7 +234,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                   step: "01",
                   icon: FileText,
                   title: "Post your job",
-                  desc: `Describe the ${trade.name.toLowerCase()} work you need and your location. Free — takes 2 minutes.`,
+                  desc: `Say what ${trade.name.toLowerCase()} work you need and where you are. Free, and it takes 2 minutes.`,
                   color: "bg-blue-50 text-[#002FA7]",
                 },
                 {
@@ -248,14 +248,14 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                   step: "03",
                   icon: Search,
                   title: "Compare & choose",
-                  desc: "Review profiles, verified ratings, and itemised quotes. Message directly — no obligation.",
+                  desc: "Look over their profiles and itemised quotes. Message them directly. No obligation.",
                   color: "bg-green-50 text-green-700",
                 },
                 {
                   step: "04",
                   icon: ThumbsUp,
                   title: "Hire with confidence",
-                  desc: `Every ${trade.name.toLowerCase()} is ID-checked and their public liability cover of at least £2M is confirmed and monitored.`,
+                  desc: `Every ${trade.name.toLowerCase()} is ID-checked, and their public liability cover of at least £2M is confirmed and monitored.`,
                   color: "bg-purple-50 text-purple-700",
                 },
               ].map(({ step, icon: Icon, title, desc, color }) => (
@@ -285,8 +285,8 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                 {trade.name} Services Covered
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Our verified {trade.plural.toLowerCase()} cover all the following services. Request
-                a free quote and specify exactly what you need.
+                Our verified {trade.plural.toLowerCase()} handle all of the following. Ask for a
+                free quote and state exactly what the job involves.
               </p>
             </div>
 
@@ -315,7 +315,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                 Find {trade.plural} by Location
               </h2>
               <p className="text-gray-600">
-                Browse verified {trade.plural.toLowerCase()} in major cities and towns across the UK.
+                Browse verified {trade.plural.toLowerCase()} in cities and towns across the UK.
               </p>
             </div>
 
@@ -352,19 +352,19 @@ export default function FindTradePage({ params }: { params: { trade: string } })
               {[
                 {
                   q: `How much does a ${trade.name.toLowerCase()} cost in the UK?`,
-                  a: `${trade.plural} in the UK typically charge ${trade.hourlyRate} per hour. Costs vary by region, job complexity, and materials required. Every MyApproved ${trade.name.toLowerCase()} provides a fixed, written quote before work begins — no verbal estimates that increase mid-job. Post your job free to compare up to 3 quotes from verified local professionals.`,
+                  a: `${trade.plural} in the UK typically charge ${trade.hourlyRate} per hour. The cost depends on your region, the size of the job, and the materials used. Every MyApproved ${trade.name.toLowerCase()} gives you a fixed, written quote before work starts. No verbal estimates that climb once the job begins. Post your job free to compare up to 3 quotes from verified local professionals.`,
                 },
                 {
                   q: `Are all ${trade.plural.toLowerCase()} on MyApproved verified?`,
-                  a: `Yes. Every ${trade.name.toLowerCase()} on MyApproved is identity-checked and their public liability insurance is confirmed and monitored. Where a legally required trade registration applies (such as Gas Safe or a competent person scheme), that registration is checked against the official register before they can list.`,
+                  a: `Yes. Every ${trade.name.toLowerCase()} on MyApproved is identity-checked and their public liability insurance is confirmed and monitored. Where the law requires a trade registration (such as Gas Safe or a competent person scheme), that registration is checked against the official register before they can list.`,
                 },
                 {
                   q: `Is MyApproved free for homeowners?`,
-                  a: `Yes — completely free. Posting a job, receiving quotes, comparing ${trade.plural.toLowerCase()}, and reading customer reviews costs you nothing. MyApproved charges £4.99 per lead to the tradespeople, not to homeowners.`,
+                  a: `Yes. Free. Posting a job, receiving quotes, comparing ${trade.plural.toLowerCase()}, and reading customer reviews costs you nothing. MyApproved charges £4.99 per lead to the tradespeople, not to homeowners.`,
                 },
                 {
                   q: `How quickly will I receive quotes from ${trade.plural.toLowerCase()}?`,
-                  a: `Most homeowners receive their first quote within a few hours of posting. For emergency ${trade.name.toLowerCase()} work, local professionals typically respond within 1–2 hours. All quotes come with no obligation — you choose who to hire.`,
+                  a: `Most homeowners receive their first quote within a few hours of posting. For emergency ${trade.name.toLowerCase()} work, local professionals typically respond within 1–2 hours. All quotes come with no obligation. You decide who to hire.`,
                 },
               ].map((faq, i) => (
                 <AccordionItem
@@ -427,7 +427,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
             </h2>
             <p className="text-base sm:text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
               Post your job free and get up to 3 quotes from verified{" "}
-              {trade.plural.toLowerCase()} near you — no obligation, no hidden fees.
+              {trade.plural.toLowerCase()} near you. No obligation and no hidden fees.
             </p>
             <div className="mb-8">
               <HeroSearchTrigger />
