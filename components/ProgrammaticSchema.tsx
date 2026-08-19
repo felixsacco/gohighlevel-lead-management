@@ -79,8 +79,8 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
       a: "Plumbers near you typically charge £40–£70 per hour with call-out fees of £50–£100. Emergency plumbers cost £80–£150 per hour. Most standard jobs - leak repairs, tap replacement, toilet fitting - cost £150–£400 all-in. All plumbers on MyApproved provide upfront fixed-price quotes before work starts.",
     },
     {
-      q: "How do I find a verified plumber in my area?",
-      a: "Use MyApproved to find a verified plumber near you. Every plumber listed is identity-verified, carries minimum £2M public liability insurance, and is reviewed by real customers who completed a confirmed booking. Post your job free and receive quotes within hours.",
+      q: "How do I find a local plumber in my area?",
+      a: "Use MyApproved to find a plumber near you. Every plumber listed has their identity checked and their public liability insurance confirmed and monitored. Post your job free and receive quotes within hours.",
     },
     {
       q: "Are MyApproved plumbers Gas Safe registered?",
@@ -88,7 +88,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "What is the cheapest way to find a reliable plumber?",
-      a: "MyApproved is free for homeowners - post your job and receive up to 3 competitive quotes from verified local plumbers at no cost. You only pay the plumber for completed work. Comparing quotes saves homeowners an average of 15–25% vs. hiring the first plumber you find.",
+      a: "MyApproved is free for homeowners - post your job and receive up to 3 competitive quotes from local plumbers at no cost. You only pay the plumber for completed work. Comparing quotes saves homeowners an average of 15–25% vs. hiring the first plumber you find.",
     },
   ],
   electrician: [
@@ -98,39 +98,39 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How do I find a qualified electrician in my area?",
-      a: "MyApproved lists only NICEIC, NAPIT, or equivalent scheme-registered electricians. Every electrician is identity-verified and insurance-checked before listing. Post your job free on MyApproved and get quotes from certified local electricians within hours.",
+      a: "MyApproved lists only NICEIC, NAPIT, or equivalent scheme-registered electricians. Every electrician has their identity checked and their public liability insurance confirmed and monitored before listing. Post your job free on MyApproved and get quotes from scheme-registered local electricians within hours.",
     },
     {
       q: "Do MyApproved electricians provide Part P certification?",
-      a: "Yes. All notifiable electrical work is fully Part P certified by MyApproved electricians. They notify the relevant building control body on your behalf, giving you a completion certificate valid for insurance and property conveyancing.",
+      a: "Yes. All notifiable electrical work is carried out by Part P registered electricians on MyApproved. They notify the relevant building control body on your behalf, giving you a completion certificate valid for insurance and property conveyancing.",
     },
     {
       q: "Is it safe to hire an electrician found online?",
-      a: "It is safe when using a verified platform like MyApproved. Every electrician listed has passed identity verification, insurance checks, and scheme registration checks (NICEIC, NAPIT, or equivalent). Reviews are left only by customers who completed a confirmed booking - not anonymous or fake.",
+      a: "It is safe when using a verification platform like MyApproved. Every electrician listed has their identity checked, their public liability insurance confirmed and monitored, and scheme registration checks (NICEIC, NAPIT, or equivalent). Reviews are left only by customers who completed a confirmed booking - not anonymous or fake.",
     },
   ],
   roofer: [
     {
       q: "How much does a roofer cost near me?",
-      a: "Roofers near you charge £35–£55 per hour. Minor roof repairs cost £150–£500; major repairs £500–£2,000; a full re-roof averages £5,000–£12,000 for a typical semi-detached. All MyApproved roofers carry minimum £1M public liability insurance and provide itemised written quotes.",
+      a: "Roofers near you charge £35–£55 per hour. Minor roof repairs cost £150–£500; major repairs £500–£2,000; a full re-roof averages £5,000–£12,000 for a typical semi-detached. All MyApproved roofers have their public liability insurance confirmed and monitored, and provide itemised written quotes.",
     },
     {
       q: "How do I find a reliable roofer in my area?",
-      a: "MyApproved lists only verified, insured roofers with real customer reviews. Every roofer passes ID verification and insurance checks before listing. Post your roofing job free and compare quotes from local roofers - no obligation to accept.",
+      a: "MyApproved lists only roofers with real customer reviews. Every roofer has their identity checked and their public liability insurance confirmed and monitored before listing. Post your roofing job free and compare quotes from local roofers - no obligation to accept.",
     },
     {
-      q: "Are MyApproved roofers fully insured?",
-      a: "Yes. Every roofer on MyApproved holds verified public liability insurance before they can accept bookings. Insurance certificates are reviewed annually as part of our ongoing tradesperson compliance process.",
+      q: "Do MyApproved roofers have public liability insurance?",
+      a: "Yes. Every roofer on MyApproved has their public liability insurance confirmed and monitored before they can accept bookings. Cover is reviewed as part of our ongoing tradesperson compliance process, and verification is withdrawn if cover lapses.",
     },
     {
       q: "What questions should I ask a roofer before hiring?",
-      a: "Ask for: (1) proof of public liability insurance, (2) a detailed written quote with materials specified, (3) whether they're a member of the National Federation of Roofing Contractors (NFRC), (4) how waste materials will be disposed of, and (5) the expected timeline. All MyApproved roofers are pre-screened against these criteria.",
+      a: "Ask for: (1) proof of public liability insurance, (2) a detailed written quote with materials specified, (3) whether they're a member of the National Federation of Roofing Contractors (NFRC), (4) how waste materials will be disposed of, and (5) the expected timeline. All MyApproved roofers have their identity checked and their public liability insurance confirmed and monitored against these criteria.",
     },
   ],
   "gas-engineer": [
     {
       q: "How much does a Gas Safe engineer cost near me?",
-      a: "Gas Safe registered engineers near you charge £60–£100 per hour. A boiler service costs £80–£120; a boiler repair £150–£600; a new boiler installation £1,500–£4,000. Landlord gas safety certificates (CP12) start from £60. All engineers on MyApproved are verified Gas Safe registered.",
+      a: "Gas Safe registered engineers near you charge £60–£100 per hour. A boiler service costs £80–£120; a boiler repair £150–£600; a new boiler installation £1,500–£4,000. Landlord gas safety certificates (CP12) start from £60. All engineers on MyApproved are Gas Safe registered.",
     },
     {
       q: "How do I find a Gas Safe registered engineer near me?",
@@ -148,11 +148,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   builder: [
     {
       q: "How much does a local builder cost near me?",
-      a: "Builders near you charge £35–£60 per hour or quote projects at a fixed price. Single-storey extensions cost £20,000–£45,000; double-storey £40,000–£80,000; loft conversions £30,000–£60,000. All builders on MyApproved are insured, ID-checked, and rated by verified local homeowners.",
+      a: "Builders near you charge £35–£60 per hour or quote projects at a fixed price. Single-storey extensions cost £20,000–£45,000; double-storey £40,000–£80,000; loft conversions £30,000–£60,000. All builders on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are rated by local homeowners.",
     },
     {
       q: "How do I find a trustworthy builder in my area?",
-      a: "MyApproved verifies every builder's ID, insurance, and qualifications before listing. Reviews are left only by homeowners who completed a confirmed project - not anonymous feedback. Post your building job free and compare quotes from verified local builders.",
+      a: "MyApproved checks every builder's identity and confirms their public liability insurance before listing. Reviews are left only by homeowners who completed a confirmed project - not anonymous feedback. Post your building job free and compare quotes from local builders.",
     },
     {
       q: "Do I need planning permission for a home extension?",
@@ -166,11 +166,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   carpenter: [
     {
       q: "How much does a carpenter cost near me?",
-      a: "Carpenters near you charge £35–£55 per hour. Standard jobs cost £200–£1,500; bespoke fitted wardrobes run £800–£3,500; kitchen fitting £1,000–£4,000; new staircase £3,000–£8,000. All carpenters on MyApproved are trade-qualified, fully insured, and reviewed by verified local homeowners.",
+      a: "Carpenters near you charge £35–£55 per hour. Standard jobs cost £200–£1,500; bespoke fitted wardrobes run £800–£3,500; kitchen fitting £1,000–£4,000; new staircase £3,000–£8,000. All carpenters on MyApproved have their identity checked, have their public liability insurance confirmed and monitored, and are reviewed by local homeowners.",
     },
     {
       q: "How do I find a reliable carpenter in my area?",
-      a: "MyApproved lists only verified, insured carpenters with real customer reviews. Post your carpentry job free and receive competitive quotes from qualified local carpenters. Every carpenter on MyApproved has passed identity verification and insurance checks.",
+      a: "MyApproved lists only carpenters with real customer reviews. Post your carpentry job free and receive competitive quotes from qualified local carpenters. Every carpenter on MyApproved has their identity checked and their public liability insurance confirmed and monitored.",
     },
     {
       q: "What is the difference between a carpenter and a joiner?",
@@ -178,7 +178,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "Do carpenters need to be qualified?",
-      a: "While no licence is legally required, professional carpenters on MyApproved hold City & Guilds, NVQ Level 2/3, or equivalent trade qualifications. Qualification certificates are verified before listing. This ensures technical competency across structural, first-fix, and second-fix carpentry work.",
+      a: "While no licence is legally required, professional carpenters on MyApproved have their identity checked and their public liability insurance confirmed and monitored, ensuring technical competency across structural, first-fix, and second-fix carpentry work.",
     },
   ],
   locksmith: [
@@ -188,11 +188,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How do I find a reputable locksmith near me?",
-      a: "Use MyApproved to find a vetted local locksmith. Every locksmith listed is identity-verified, insured, and reviewed by real customers. Look for Master Locksmiths Association (MLA) membership as an additional quality indicator. Post your job free and receive quotes within minutes.",
+      a: "Use MyApproved to find a local locksmith. Every locksmith listed has their identity checked, their public liability insurance confirmed and monitored, and is reviewed by real customers. Look for Master Locksmiths Association (MLA) membership as an additional quality indicator. Post your job free and receive quotes within minutes.",
     },
     {
       q: "What should I look for in a reputable locksmith?",
-      a: "Look for: MLA membership, public liability insurance, photo ID on arrival, a written quote before work starts, and genuine customer reviews. Rogue locksmiths often advertise misleadingly low prices then charge far more on arrival. All locksmiths on MyApproved are pre-vetted against these criteria.",
+      a: "Look for: MLA membership, proof of public liability insurance, a written quote before work starts, and genuine customer reviews. Rogue locksmiths often advertise misleadingly low prices then charge far more on arrival. All locksmiths on MyApproved have their identity checked and their public liability insurance confirmed and monitored.",
     },
     {
       q: "Can a locksmith open a door without breaking the lock?",
@@ -202,11 +202,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   plasterer: [
     {
       q: "How much does plastering cost near me?",
-      a: "Plasterers near you charge £30–£50 per hour or £200–£600 per room for a skim coat. A full house re-plaster averages £2,500–£6,000. External rendering costs £40–£70 per square metre. All plasterers on MyApproved are trade-qualified with verified public liability insurance.",
+      a: "Plasterers near you charge £30–£50 per hour or £200–£600 per room for a skim coat. A full house re-plaster averages £2,500–£6,000. External rendering costs £40–£70 per square metre. All plasterers on MyApproved have their identity checked and their public liability insurance confirmed and monitored.",
     },
     {
       q: "How do I find a good plasterer in my area?",
-      a: "MyApproved lists verified, insured plasterers with real customer reviews. Post your plastering job free and receive competitive quotes from local tradespeople. Every plasterer passes ID and insurance verification before listing on MyApproved.",
+      a: "MyApproved lists plasterers with real customer reviews. Post your plastering job free and receive competitive quotes from local tradespeople. Every plasterer has their identity checked and their public liability insurance confirmed and monitored before listing on MyApproved.",
     },
     {
       q: "How long does plaster take to dry before painting?",
@@ -220,11 +220,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "painter-decorator": [
     {
       q: "How much does a painter and decorator cost near me?",
-      a: "Painters and decorators near you charge £25–£45 per hour or quote £400–£1,200 per room including materials. A full 3-bed house exterior typically runs £2,000–£5,000. All decorators on MyApproved are fully insured and reviewed by verified local customers - free quotes available.",
+      a: "Painters and decorators near you charge £25–£45 per hour or quote £400–£1,200 per room including materials. A full 3-bed house exterior typically runs £2,000–£5,000. All decorators on MyApproved have their identity checked and their public liability insurance confirmed and monitored - free quotes available.",
     },
     {
       q: "How do I find a reliable painter and decorator in my area?",
-      a: "MyApproved lists verified, insured painters and decorators with genuine customer reviews. Post your decorating job free and compare quotes from local tradespeople. Every decorator listed has passed ID verification and insurance checks before appearing on MyApproved.",
+      a: "MyApproved lists painters and decorators with genuine customer reviews. Post your decorating job free and compare quotes from local tradespeople. Every decorator listed has their identity checked and their public liability insurance confirmed and monitored before appearing on MyApproved.",
     },
     {
       q: "Do painters supply their own materials?",
@@ -238,11 +238,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   handyman: [
     {
       q: "How much does a handyman cost near me?",
-      a: "Handymen near you charge £25–£40 per hour with a minimum call-out of 1–2 hours. Half-day rates run £80–£150; full-day rates £150–£280. All handymen on MyApproved carry public liability insurance and are reviewed by real local customers - no hidden fees.",
+      a: "Handymen near you charge £25–£40 per hour with a minimum call-out of 1–2 hours. Half-day rates run £80–£150; full-day rates £150–£280. All handymen on MyApproved have their public liability insurance confirmed and monitored and are reviewed by real local customers - no hidden fees.",
     },
     {
       q: "How do I find a trustworthy handyman near me?",
-      a: "MyApproved lists verified, insured handymen with genuine customer reviews. Every handyman passes ID verification and insurance checks before listing. Post your job free and receive quotes from local handymen - ideal for small jobs that don't require a specialist trade.",
+      a: "MyApproved lists handymen with genuine customer reviews. Every handyman has their identity checked and their public liability insurance confirmed and monitored before listing. Post your job free and receive quotes from local handymen - ideal for small jobs that don't require a specialist trade.",
     },
     {
       q: "What jobs can a handyman do?",
@@ -250,21 +250,21 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "Is it worth hiring a handyman for small jobs?",
-      a: "Yes - hiring a verified handyman for multiple small tasks in one visit is cost-effective and avoids the safety risks of DIY. MyApproved handymen can batch several jobs in a half-day visit for a flat rate of £80–£150, making them ideal for landlords and busy homeowners.",
+      a: "Yes - hiring a handyman for multiple small tasks in one visit is cost-effective and avoids the safety risks of DIY. MyApproved handymen can batch several jobs in a half-day visit for a flat rate of £80–£150, making them ideal for landlords and busy homeowners.",
     },
   ],
   cleaner: [
     {
       q: "How much does a professional cleaner cost near me?",
-      a: "Professional cleaners near you charge £15–£25 per hour. A one-off deep clean costs £100–£300; end-of-tenancy cleans £150–£400 depending on property size. All cleaners on MyApproved are reference-checked, identity-verified, and reviewed by real local customers.",
+      a: "Professional cleaners near you charge £15–£25 per hour. A one-off deep clean costs £100–£300; end-of-tenancy cleans £150–£400 depending on property size. All cleaners on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers.",
     },
     {
       q: "How do I find a reliable cleaner near me?",
-      a: "MyApproved lists verified, insured cleaners with genuine customer reviews. Every cleaner passes reference checks and identity verification before listing. Post your cleaning job free and receive quotes from local cleaners - regular or one-off.",
+      a: "MyApproved lists cleaners with genuine customer reviews. Every cleaner has their identity checked and their public liability insurance confirmed and monitored before listing. Post your cleaning job free and receive quotes from local cleaners - regular or one-off.",
     },
     {
-      q: "Are MyApproved cleaners DBS checked?",
-      a: "Many cleaners on MyApproved hold an Enhanced DBS certificate - filter for this when you search. All cleaners are reference-checked and identity-verified as part of our standard approval process. DBS-checked cleaners are identified with a badge on their profile.",
+      q: "Are MyApproved cleaners identity checked?",
+      a: "Every cleaner on MyApproved has their identity checked before listing. You can contact any cleaner directly to confirm cover before booking.",
     },
     {
       q: "What is included in an end of tenancy clean?",
@@ -274,11 +274,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   tiler: [
     {
       q: "How much does a tiler cost near me?",
-      a: "Tilers near you charge £30–£50 per hour. Bathroom tiling costs £300–£800; kitchen splashback tiling runs £150–£400; floor tiling £30–£60 per square metre. All tilers on MyApproved are trade-qualified, insured, and reviewed by real local customers - free quotes available.",
+      a: "Tilers near you charge £30–£50 per hour. Bathroom tiling costs £300–£800; kitchen splashback tiling runs £150–£400; floor tiling £30–£60 per square metre. All tilers on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers - free quotes available.",
     },
     {
       q: "How do I find a good tiler near me?",
-      a: "MyApproved lists verified, insured tilers with genuine customer reviews. Post your tiling job free and compare quotes from qualified local tilers. Every tiler listed has passed ID and insurance verification before appearing on the platform.",
+      a: "MyApproved lists tilers with genuine customer reviews. Post your tiling job free and compare quotes from local tilers. Every tiler listed has their identity checked and their public liability insurance confirmed and monitored before appearing on the platform.",
     },
     {
       q: "How long does it take to tile a bathroom?",
@@ -292,11 +292,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   gardener: [
     {
       q: "How much does a gardener cost near me?",
-      a: "Gardeners near you charge £25–£40 per hour. Regular garden maintenance visits cost £50–£120; a full garden clearance runs £150–£500. All gardeners on MyApproved are reviewed by verified local customers and carry public liability insurance - free quotes available.",
+      a: "Gardeners near you charge £25–£40 per hour. Regular garden maintenance visits cost £50–£120; a full garden clearance runs £150–£500. All gardeners on MyApproved are reviewed by real local customers and have their public liability insurance confirmed and monitored - free quotes available.",
     },
     {
       q: "How do I find a reliable gardener near me?",
-      a: "MyApproved lists verified, insured gardeners with genuine customer reviews. Post your gardening job free and receive quotes from local gardeners - regular maintenance, one-off clearances, or specialist work. Every gardener listed has passed ID and insurance verification.",
+      a: "MyApproved lists gardeners with genuine customer reviews. Post your gardening job free and receive quotes from local gardeners - regular maintenance, one-off clearances, or specialist work. Every gardener listed has their identity checked and their public liability insurance confirmed and monitored.",
     },
     {
       q: "What is included in a regular garden maintenance visit?",
@@ -310,11 +310,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "bathroom-fitter": [
     {
       q: "How much does a bathroom fitter cost near me?",
-      a: "Bathroom fitters near you charge £35–£55 per hour. A full bathroom renovation typically costs £3,000–£10,000; an en-suite runs £2,000–£6,000. All bathroom fitters on MyApproved are insured, trade-qualified, and reviewed by real local customers - get a free quote today.",
+      a: "Bathroom fitters near you charge £35–£55 per hour. A full bathroom renovation typically costs £3,000–£10,000; an en-suite runs £2,000–£6,000. All bathroom fitters on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers - get a free quote today.",
     },
     {
       q: "How do I find a reliable bathroom fitter near me?",
-      a: "MyApproved lists verified, insured bathroom fitters with genuine customer reviews. Post your bathroom job free and compare quotes from qualified local fitters. Every bathroom fitter listed has passed ID and insurance checks.",
+      a: "MyApproved lists bathroom fitters with genuine customer reviews. Post your bathroom job free and compare quotes from local fitters. Every bathroom fitter listed has their identity checked and their public liability insurance confirmed and monitored.",
     },
     {
       q: "How long does a bathroom renovation take?",
@@ -328,11 +328,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "kitchen-fitter": [
     {
       q: "How much does a kitchen fitter cost near me?",
-      a: "Kitchen fitters near you charge £35–£55 per hour. Labour-only fitting typically costs £1,000–£5,000; a complete supply-and-fit kitchen runs £5,000–£20,000 depending on size and specification. All kitchen fitters on MyApproved are trade-qualified, insured, and reviewed by verified local homeowners.",
+      a: "Kitchen fitters near you charge £35–£55 per hour. Labour-only fitting typically costs £1,000–£5,000; a complete supply-and-fit kitchen runs £5,000–£20,000 depending on size and specification. All kitchen fitters on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local homeowners.",
     },
     {
       q: "How do I find a reliable kitchen fitter near me?",
-      a: "MyApproved lists verified, insured kitchen fitters with genuine customer reviews. Post your kitchen job free and receive quotes from qualified local fitters. Every kitchen fitter listed has passed ID and insurance checks before appearing on the platform.",
+      a: "MyApproved lists kitchen fitters with genuine customer reviews. Post your kitchen job free and receive quotes from local fitters. Every kitchen fitter listed has their identity checked and their public liability insurance confirmed and monitored before appearing on the platform.",
     },
     {
       q: "How long does kitchen fitting take?",
@@ -340,17 +340,17 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "Do I need an electrician as well as a kitchen fitter?",
-      a: "Most kitchen fitters on MyApproved can handle first-fix electrical work (socket relocation, appliance connections). For new circuits or consumer unit work, a Part P certified electrician is required. Your MyApproved kitchen fitter will identify what's needed in the quoting stage and can coordinate with other tradespeople.",
+      a: "Most kitchen fitters on MyApproved can handle first-fix electrical work (socket relocation, appliance connections). For new circuits or consumer unit work, a Part P registered electrician is required. Your MyApproved kitchen fitter will identify what's needed in the quoting stage and can coordinate with other tradespeople.",
     },
   ],
   landscaper: [
     {
       q: "How much does a landscaper cost near me?",
-      a: "Landscapers near you charge £30–£50 per hour. Patio installations cost £1,500–£6,000; full garden designs £3,000–£15,000. All landscapers on MyApproved are reviewed by real local homeowners and carry full public liability insurance - free quotes available.",
+      a: "Landscapers near you charge £30–£50 per hour. Patio installations cost £1,500–£6,000; full garden designs £3,000–£15,000. All landscapers on MyApproved are reviewed by real local homeowners and have their public liability insurance confirmed and monitored - free quotes available.",
     },
     {
       q: "How do I find a reliable landscaper near me?",
-      a: "MyApproved lists verified, insured landscapers with genuine customer reviews. Post your landscaping job free and compare quotes from qualified local tradespeople. Every landscaper listed has passed ID and insurance checks.",
+      a: "MyApproved lists landscapers with genuine customer reviews. Post your landscaping job free and compare quotes from local tradespeople. Every landscaper listed has their identity checked and their public liability insurance confirmed and monitored.",
     },
     {
       q: "Do I need planning permission for a patio or decking?",
@@ -364,11 +364,11 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "window-fitter": [
     {
       q: "How much does a window fitter cost near me?",
-      a: "Window fitters near you charge £35–£55 per hour. A new UPVC window costs £400–£800 fitted; a full set for a 3-bed home runs £3,000–£8,000. All window fitters on MyApproved are FENSA registered or Local Authority approved, with guaranteed compliance documentation.",
+      a: "Window fitters near you charge £35–£55 per hour. A new UPVC window costs £400–£800 fitted; a full set for a 3-bed home runs £3,000–£8,000. All window fitters on MyApproved have their identity checked and their public liability insurance confirmed and monitored.",
     },
     {
       q: "How do I find a reliable window fitter near me?",
-      a: "MyApproved lists only FENSA-registered or equivalent window fitters. Every installer is identity-verified, insurance-checked, and reviewed by real local customers. Post your window job free and compare quotes - you'll receive FENSA certificates on completion for insurance and conveyancing.",
+      a: "MyApproved lists only FENSA-registered or equivalent window fitters. Every installer has their identity checked and their public liability insurance confirmed and monitored, and is reviewed by real local customers. Post your window job free and compare quotes - you'll receive FENSA certificates on completion for insurance and conveyancing.",
     },
     {
       q: "Do I need a FENSA certificate for new windows?",
@@ -386,7 +386,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How do I find a reliable heating engineer near me?",
-      a: "MyApproved verifies every heating engineer's qualifications and Gas Safe registration before listing. Post your heating job free and compare quotes from certified local engineers. For gas-related work, always use a Gas Safe registered engineer - it is a legal requirement in the UK.",
+      a: "MyApproved confirms every heating engineer's Gas Safe registration before listing. Post your heating job free and compare quotes from certified local engineers. For gas-related work, always use a Gas Safe registered engineer - it is a legal requirement in the UK.",
     },
     {
       q: "How often should central heating be serviced?",
@@ -400,7 +400,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "loft-conversion": [
     {
       q: "How much does a loft conversion cost near me?",
-      a: "Loft conversion builders near you typically quote £35,000–£60,000 for a dormer; £20,000–£35,000 for a Velux conversion. Prices vary by roof type, size, and specification. All MyApproved loft conversion contractors are insured and manage building regulations applications on your behalf.",
+      a: "Loft conversion builders near you typically quote £35,000–£60,000 for a dormer; £20,000–£35,000 for a Velux conversion. Prices vary by roof type, size, and specification. All MyApproved loft conversion contractors have their identity checked and their public liability insurance confirmed and monitored, and manage building regulations applications on your behalf.",
     },
     {
       q: "Do I need planning permission for a loft conversion?",
@@ -418,7 +418,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "driveway-specialist": [
     {
       q: "How much does a new driveway cost near me?",
-      a: "Driveway specialists near you charge £30–£50 per hour. A block-paved driveway for a typical 3-bed home costs £3,000–£7,000; resin bound runs £2,000–£5,000; tarmac £1,500–£4,000; gravel £500–£2,000. All driveway specialists on MyApproved are insured and reviewed by verified local homeowners.",
+      a: "Driveway specialists near you charge £30–£50 per hour. A block-paved driveway for a typical 3-bed home costs £3,000–£7,000; resin bound runs £2,000–£5,000; tarmac £1,500–£4,000; gravel £500–£2,000. All driveway specialists on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local homeowners.",
     },
     {
       q: "Do I need planning permission for a new driveway?",
@@ -453,16 +453,16 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   ],
   default: [
     {
-      q: "How much do verified tradespeople charge near me?",
-      a: "Verified tradespeople near you provide upfront fixed-price quotes with no hidden fees. Hourly rates vary by trade: plumbers £40–£70, electricians £45–£75, builders £35–£60, roofers £35–£55. All tradespeople on MyApproved are ID-checked, insured, and reviewed by real local customers - post your job free today.",
+      q: "How much do tradespeople charge near me?",
+      a: "Tradespeople near you provide upfront fixed-price quotes with no hidden fees. Hourly rates vary by trade: plumbers £40–£70, electricians £45–£75, builders £35–£60, roofers £35–£55. All tradespeople on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers - post your job free today.",
     },
     {
       q: "How does MyApproved verify tradespeople?",
-      a: "Every tradesperson on MyApproved undergoes a multi-step approval process: government-standard ID check, trade qualification verification, public liability insurance check (minimum £2M), and reference screening. Reviews are left only by customers who completed a confirmed booking - no anonymous or fake reviews.",
+      a: "Every tradesperson on MyApproved has their identity checked and their public liability insurance confirmed and monitored. Reviews are left only by customers who completed a confirmed booking - no anonymous or fake reviews.",
     },
     {
       q: "Is MyApproved free to use for homeowners?",
-      a: "Yes, completely free. Getting quotes from verified tradespeople on MyApproved costs homeowners nothing. You only pay the tradesperson directly for completed work. There are no hidden admin fees, commission charges, or subscription costs for customers - ever.",
+      a: "Yes, completely free. Getting quotes from tradespeople on MyApproved costs homeowners nothing. You only pay the tradesperson directly for completed work. There are no hidden admin fees, commission charges, or subscription costs for customers - ever.",
     },
     {
       q: "How quickly will I receive quotes from local tradespeople?",
@@ -542,8 +542,8 @@ export default function ProgrammaticSchema({
     "@context": "https://schema.org",
     "@type": schemaType,
     "@id": canonical,
-    name: `${tradeName}s in ${localLabel} | Verified & Approved | MyApproved`,
-    description: `Find insured, ID-checked ${tradeName.toLowerCase()}s in ${localLabel}${postalCode ? ` ${postalCode}` : ""}. Compare verified profiles, read real customer reviews, and get free no-obligation quotes on MyApproved.`,
+    name: `${tradeName}s in ${localLabel} | MyApproved`,
+    description: `Find ${tradeName.toLowerCase()}s in ${localLabel}${postalCode ? ` ${postalCode}` : ""} with their identity checked and public liability insurance confirmed and monitored. Read real customer reviews, and get free no-obligation quotes on MyApproved.`,
     url: canonical,
     image: "https://myapproved.com/logo-icon.svg",
     logo: {
@@ -588,7 +588,7 @@ export default function ProgrammaticSchema({
         "@type": "Review",
         reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
         author: { "@type": "Person", name: "MyApproved Customer" },
-        reviewBody: `Found a brilliant verified ${tradeName.toLowerCase()} through MyApproved. Arrived on time, fixed the problem first visit, and the quote was exactly what I paid. Will definitely use MyApproved again.`,
+        reviewBody: `Found a brilliant ${tradeName.toLowerCase()} through MyApproved. Arrived on time, fixed the problem first visit, and the quote was exactly what I paid. Will definitely use MyApproved again.`,
       },
     } : {}),
     ...(price ? {
@@ -643,7 +643,7 @@ export default function ProgrammaticSchema({
     "@type": "Service",
     name: `${tradeName} Services in ${localLabel}`,
     serviceType: tradeName,
-    description: `Verified, insured ${tradeName.toLowerCase()} services in ${localLabel}${postalCode ? ` ${postalCode}` : ""}. Free quotes, no obligation. All tradespeople ID-checked and reviewed by real customers on MyApproved.`,
+    description: `${tradeName.charAt(0).toUpperCase() + tradeName.slice(1)} services in ${localLabel}${postalCode ? ` ${postalCode}` : ""}. Free quotes, no obligation. All tradespeople have their identity checked and are reviewed by real customers on MyApproved.`,
     provider: {
       "@type": "Organization",
       "@id": "https://myapproved.com/#organization",
