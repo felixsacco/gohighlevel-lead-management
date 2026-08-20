@@ -69,12 +69,12 @@ async function getTraderBySlug(slug: string) {
   return null as { slug: string; status: string } | null;
 }
 
-/** Reads the static badge SVG from /public/brand/. */
+/** Reads the static badge SVG from /public/badge/. */
 async function loadBadge(variant: Variant): Promise<string> {
   const { readFile } = await import("node:fs/promises");
   const path = await import("node:path");
   return readFile(
-    path.join(process.cwd(), "public", "brand", `badge-${variant}.svg`),
+    path.join(process.cwd(), "public", "badge", `badge-${variant}.svg`),
     "utf8"
   );
 }
