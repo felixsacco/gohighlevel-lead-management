@@ -80,11 +80,14 @@ export default function ForTradespeople() {
       {/* Header removed; global Header comes from app/layout.tsx */}
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden pt-8 sm:pt-12 pb-16 sm:pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4" style={{fontWeight: 800}}>
+              <p className="text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
+                For Tradespeople
+              </p>
+              <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4" style={{fontWeight: 800}}>
                 Grow Your Trade Business with <span className="text-brand-amber">MyApproved</span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-white/75 mb-5">
@@ -160,7 +163,7 @@ export default function ForTradespeople() {
       <section className="bg-white py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy tracking-tight text-center" style={{fontWeight: 800}}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4 tracking-tight text-center" style={{fontWeight: 800}}>
               How it works for trades
             </h2>
           </div>
@@ -197,7 +200,7 @@ export default function ForTradespeople() {
       <section className="bg-brand-slate py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy mb-4" style={{fontWeight: 800}}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
               Why Tradespeople Choose MyApproved
             </h2>
             <p className="text-base sm:text-lg text-slate-600">
@@ -230,7 +233,7 @@ export default function ForTradespeople() {
       <section className="bg-white py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy mb-4" style={{fontWeight: 800}}>Simple, fair pricing</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>Simple, fair pricing</h2>
             <p className="text-base sm:text-lg text-slate-600">
               Join for free and pay only for the leads you accept. No subscription, no monthly fees.
             </p>
@@ -273,7 +276,7 @@ export default function ForTradespeople() {
       <section className="py-16 sm:py-20 bg-brand-slate">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-md mx-auto text-center">
-            <h2 className="text-3xl font-extrabold text-brand-navy mb-3" style={{fontWeight: 800}}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-3" style={{fontWeight: 800}}>
               New jobs near you, by email
             </h2>
             <p className="text-slate-600 mb-6">
@@ -316,7 +319,7 @@ export default function ForTradespeople() {
       {/* CTA Section */}
       <section className="py-16 sm:py-20 bg-gradient-to-b from-brand-navyDark to-brand-navy text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-extrabold mb-6" style={{fontWeight: 800}}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6" style={{fontWeight: 800}}>
             Ready to Grow Your Business?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
