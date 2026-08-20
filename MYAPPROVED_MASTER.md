@@ -1,5 +1,7 @@
-# MyApproved™ — Master Documentation Bundle
+# MyApproved™ — Master Brief
 
+> Single source of truth for the **entire MyApproved platform** — product, stack, architecture, verification process, brand, design system, deployment, integrations, SEO, and security. This is the consolidated reference for the whole entity, not only its branding.
+>
 > Consolidated, docs-only, secrets-redacted reference for Google AI Studio (Grounding with Files / Gemini context).
 > **Contains configuration documentation and code snippets for internal use only — no live credentials, no `.env` values, no third-party secrets.**
 
