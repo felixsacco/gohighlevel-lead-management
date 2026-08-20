@@ -43,7 +43,7 @@ export default function TestEmailAdminPage() {
         <CardHeader>
           <CardTitle>Test Admin Email</CardTitle>
           <CardDescription>
-            Test sending email to admin (fizasaif0233@gmail.com)
+            Test sending email to the configured admin address
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

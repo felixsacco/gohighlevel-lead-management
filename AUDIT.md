@@ -33,7 +33,7 @@ MFA is a control configured at the provider's account/console level, not in appl
 `app/setup-crm-private/page.tsx` is a `"use client"` component that initialises React state with a **live GoHighLevel Private Integration token**:
 
 ```ts
-const [apiKey, setApiKey] = useState("pit-78d8b711-5a97-40ee-889a-688bd30f17ce");
+const [apiKey, setApiKey] = useState("pit-REDACTED");
 ```
 
 This token is compiled into the browser JS bundle and is retrievable by any visitor who loads the page. It grants programmatic access to the GoHighLevel account (CRM, SMS, and payment data). The page also exposes `handleCopyApiKey()` / `handleCopyEnvVars()` helpers that surface the key in the UI. **This is live personal data access exposed to the client — a BLOCKER per the audit instruction.** The token must be revoked/rotated immediately and the value moved to a server-side env var.
@@ -43,11 +43,11 @@ This token is compiled into the browser JS bundle and is retrievable by any visi
 `app/api/admin/activity-log/route.ts:4-5` hardcodes a **live Supabase URL and anon key** as fallback literals:
 
 ```ts
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://jismdkfjkngwbpddhomx.supabase.co';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppc21ka2Zqa25nd2JwZGRob214Iiwicm9sZSI6ImFub24i...';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://REDACTED.supabase.co';
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJ-REDACTED';
 ```
 
-The project ref `jismdkfjkngwbpddhomx` is **different** from the primary `zaheoihrevtsnzrcswhn` ref used across the rest of the codebase (and in the committed `supabase-credentials.txt`). `jismdkfjkngwbpddhomx` appears only in this one file; every other Supabase reference in the 41-file surface uses `zaheoihrevtsnzrcswhn`. This is therefore a **second, stale Supabase project** whose anon key — still live and valid until it is rotated/revoked — is committed literally in source. A stale project holding UK personal data with a leaked key is a live-data exposure risk. **BLOCKER.** The stale project should be identified in the Supabase dashboard, checked for residual PII, and its key rotated or the project deleted; the fallback literal removed from source.
+The project ref `REDACTED-project-ref` is **different** from the primary `REDACTED-primary-ref` used across the rest of the codebase (and in the committed `supabase-credentials.txt`). `REDACTED-project-ref` appears only in this one file; every other Supabase reference in the 41-file surface uses `REDACTED-primary-ref`. This is therefore a **second, stale Supabase project** whose anon key — still live and valid until it is rotated/revoked — is committed literally in source. A stale project holding UK personal data with a leaked key is a live-data exposure risk. **BLOCKER.** The stale project should be identified in the Supabase dashboard, checked for residual PII, and its key rotated or the project deleted; the fallback literal removed from source.
 
 ### K1.5 — HIGH — GHL OAuth client secret prefixed `NEXT_PUBLIC_`
 
@@ -81,7 +81,7 @@ All of the following committed files trace to the single commit `6c301b0 "Initia
 
 Because these are committed (not merely untracked), the values remain in git history even if the files are later removed. **Every key in these three files should be treated as compromised and rotated.** The files should be removed from the working tree and the history rewritten (or the repository made private) — noting that keys have already left the repo, so rotation is the primary mitigation.
 
-The second Supabase project ref `jismdkfjkngwbpddhomx` appears in `.env.local` (correctly gitignored, untracked — see K1.4) — this is not committed, unlike the `zaheoihrevtsnzrcswhn` project whose keys ARE committed.
+The second Supabase project ref `REDACTED-project-ref` appears in `.env.local` (correctly gitignored, untracked — see K1.4) — this is not committed, unlike the `REDACTED-primary-ref` project whose keys ARE committed.
 
 ### K1.8 — Key rotation dates
 
@@ -144,7 +144,7 @@ No breach-detection, alerting, or 72-hour notification mechanism is present in t
 
 ### K3.1 — Supabase project region — UNVERIFIED (potential BLOCKER)
 
-Two Supabase project refs exist in the codebase (see K1.4): the primary `zaheoihrevtsnzrcswhn` and a second, stale `jismdkfjkngwbpddhomx`. The **hosting region of neither project is determinable from code or committed docs**. The privacy policy §5 asserts Supabase is "hosted in the EU," but there is no evidence in the repository that confirms this — the region is set at Supabase console level, not in code.
+Two Supabase project refs exist in the codebase (see K1.4): the primary `REDACTED-primary-ref` and a second, stale `REDACTED-project-ref`. The **hosting region of neither project is determinable from code or committed docs**. The privacy policy §5 asserts Supabase is "hosted in the EU," but there is no evidence in the repository that confirms this — the region is set at Supabase console level, not in code.
 
 **This is live UK-personal-data residency that cannot be verified.** If either Supabase project is hosted in a non-EU/UK region (e.g. `us-east-1`, `ap-southeast-1`), UK/EU personal data would be stored in a third country without an adequacy decision or appropriate safeguards, which is a **BLOCKER**. Must verify the region of BOTH projects in the Supabase dashboard and, if non-EU/UK, migrate or establish an appropriate transfer mechanism (UK IDTA / EU SCCs). Rated **UNVERIFIED-BLOCKER (pending region confirmation)**.
 
@@ -258,7 +258,7 @@ No ICO registration number (format `ZBxxxxxx` / `Zxxxxxxx`) appears anywhere in 
 ## Summary of BLOCKER findings (Section K)
 
 1. **K1.3** — Live GHL Private Integration token hardcoded in a client component (`app/setup-crm-private/page.tsx`).
-2. **K1.4** — Live Supabase anon key (second, stale project `jismdkfjkngwbpddhomx`) hardcoded as a literal fallback.
+2. **K1.4** — Live Supabase anon key (second, stale project `REDACTED-project-ref`) hardcoded as a literal fallback.
 3. **K2.3 / K3.2** — Full tradesperson PII (incl. identity documents + Companies House profile) sent to DeepSeek undisclosed/unmitigated.
 4. **K3.1** — Supabase hosting region unverified (potential non-EU/UK residency of UK PII).
 5. **K4.1** — GA4/GTM gtag.js injected before consent.

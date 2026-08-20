@@ -26,8 +26,8 @@ if (Test-Path .\.env.local) {
     Write-Host "Creating .env.local file with Supabase credentials..." -ForegroundColor Yellow
     
     @"
-NEXT_PUBLIC_SUPABASE_URL=https://zaheoihrevtsnzrcswhn.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphaGVvaWhyZXZ0c256cmNzd2huIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk2NTU3MzQsImV4cCI6MjA2NTIzMTczNH0.SoxziWcNenWFqZ61BIzNZyJFA2w8kZil7llu4lINXBw
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 "@ | Out-File -FilePath .\.env.local -Encoding utf8
     

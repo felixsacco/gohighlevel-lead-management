@@ -28,7 +28,7 @@ Add these variables to your `.env.local` file:
 
 ```bash
 # GoHighLevel CRM Private Integration
-GOHIGHLEVEL_API_KEY=pit-78d8b711-5a97-40ee-889a-688bd30f17ce
+GOHIGHLEVEL_API_KEY=pit-REDACTED
 GOHIGHLEVEL_LOCATION_ID=your_location_id_here
 ```
 

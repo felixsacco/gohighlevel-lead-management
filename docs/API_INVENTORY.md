@@ -29,10 +29,10 @@ Every environment variable referenced in the codebase, its usage locations, and 
 | `CRON_SECRET` | `app/api/notifications/process-scheduled/route.ts` | Real value. |
 | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Client-side Maps | Real value. |
 | `NEXT_PUBLIC_APP_URL` | Canonical URLs, email links | `https://myapproved.com` |
-| `ADMIN_EMAIL` | `lib/notifications/admin-inbox.ts`, dispute routes | `khamareclarke@gmail.com` |
+| `ADMIN_EMAIL` | `lib/notifications/admin-inbox.ts`, dispute routes | `admin-email@REDACTED` |
 | `SUPPORT_EMAIL` | `lib/notifications/email-layout.ts` | `support@myapproved.com` |
 | `SMTP_HOST/PORT/USER` | `lib/notifications/email.ts` | GoDaddy SMTP. `SMTP_PASS` empty in `.env.local`. |
-| `FLEET_INGEST_URL` | `lib/fleet/emitFleetIngest.ts` | `https://www.khamareclarke.com/api/fleet/ingest` |
+| `FLEET_INGEST_URL` | `lib/fleet/emitFleetIngest.ts` | `https://www.REDACTED.example/api/fleet/ingest` |
 | `NEXT_PUBLIC_AGGREGATE_RATING_*` | `components/SchemaMarkup.tsx` | Configurable JSON-LD ratings |
 
 ### 1.2 Present in `.env` / `.env.example` but EMPTY (needs provisioning)
@@ -95,7 +95,7 @@ The following variables were removed from `.env`/`.env.example` as their service
 | Property | Value |
 |---|---|
 | SDK | `@supabase/supabase-js` |
-| Target | `https://jismdkfjkngwbpddhomx.supabase.co` |
+| Target | `https://REDACTED.supabase.co` |
 | Wired | **Fully** |
 | Client init | `lib/supabase.ts` |
 | Graceful degradation | **YES** — logs warning on missing env vars, no hardcoded fallbacks |
@@ -126,7 +126,7 @@ The following variables were removed from `.env`/`.env.example` as their service
 | Property | Value |
 |---|---|
 | SDK | Native `fetch()` |
-| Target | `https://www.khamareclarke.com/api/fleet/ingest` |
+| Target | `https://www.REDACTED.example/api/fleet/ingest` |
 | Wired | **Active** |
 | Key file | `lib/fleet/emitFleetIngest.ts` |
 | Graceful degradation | **YES** (gold standard) — fire-and-forget, 4s timeout, never throws |

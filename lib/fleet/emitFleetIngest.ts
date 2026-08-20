@@ -1,10 +1,10 @@
 /**
  * Fleet ingest emitter — fire-and-forget POST to the central
- * khamareclarke.com hub so every lead/job/quote event shows in JARVIS.
+ * fleet hub so every lead/job/quote event shows in observability.
  *
  * Required env vars:
- *   FLEET_INGEST_URL   default https://www.khamareclarke.com/api/fleet/ingest
- *   FLEET_INGEST_SECRET  shared with the hub (never commit)
+ *   FLEET_INGEST_URL    ingest endpoint (no default — must be set)
+ *   FLEET_INGEST_SECRET shared with the hub (never commit)
  */
 export interface FleetIngestInput {
   project?: string;
@@ -16,7 +16,7 @@ export interface FleetIngestInput {
 const PROJECT = 'myapproved';
 
 function hubUrl(): string {
-  const raw = (process.env.FLEET_INGEST_URL || 'https://www.khamareclarke.com/api/fleet/ingest').trim();
+  const raw = (process.env.FLEET_INGEST_URL || '').trim();
   return raw.replace(/\/$/, '');
 }
 

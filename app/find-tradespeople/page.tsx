@@ -2,24 +2,16 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Search, MapPin, Star, Shield, CheckCircle, ChevronRight, Phone, Globe, Navigation } from "lucide-react";
+import { Search, MapPin, Star, Shield, CheckCircle, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import InitialsAvatar from "@/components/InitialsAvatar";
 import { Textarea } from "@/components/ui/textarea";
 import GetQuoteModal from "@/components/GetQuoteModal";
 import Link from "next/link";
-import Image from "next/image";
 import ProgrammaticSchema from "@/components/ProgrammaticSchema";
 import AEOContentBlock from "@/components/AEOContentBlock";
 import { Section } from "@/components/ui/Section";
@@ -45,31 +37,6 @@ interface Tradesperson {
   phone: string;
   email: string;
 }
-
-interface GooglePlace {
-  displayName?: { text: string };
-  rating?: number;
-  userRatingCount?: number;
-  editorialSummary?: { text: string };
-  regularOpeningHours?: {
-    openNow: boolean;
-    weekdayDescriptions?: string[];
-  };
-  websiteUri?: string;
-  internationalPhoneNumber?: string;
-  shortFormattedAddress?: string;
-  addressComponents?: Array<{ longText: string; shortText: string; types: string[] }>;
-  primaryTypeDisplayName?: { text: string };
-  location?: { latitude: number; longitude: number };
-  contextualContents?: Array<{
-    reviews?: Array<{ text?: { text: string } }>;
-  }>;
-}
-
-const TRADE_OPTIONS = [
-  "Plumber", "Electrician", "Gas Engineer", "Builder",
-  "Roofer", "Carpenter", "Cleaner", "Plasterer", "Painter", "Handyman",
-];
 
 export default function FindTradespeople() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -107,62 +74,9 @@ export default function FindTradespeople() {
   const [minReviews100Flag, setMinReviews100Flag] = useState(false); // 100+ reviews
 
   // ── Google Places live data ──
-  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [selectedTrade, setSelectedTrade] = useState<string>("Plumber");
-  const [googlePlaces, setGooglePlaces] = useState<GooglePlace[]>([]);
-  const [placesLoading, setPlacesLoading] = useState(false);
-  const [placesError, setPlacesError] = useState("");
-  const [placesSortBy, setPlacesSortBy] = useState<"rating" | "reviews" | "closest">("reviews");
-  const [radiusMiles, setRadiusMiles] = useState<number>(10);
-  const [recommendedPlace, setRecommendedPlace] = useState<GooglePlace | null>(null);
-  const [sessionId] = useState<string>(() =>
-    typeof crypto !== "undefined" && crypto.randomUUID
-      ? crypto.randomUUID()
-      : `sess_${Date.now()}_${Math.random().toString(36).slice(2)}`
-  );
 
   // Client-side sort of the live Places array
-  const sortedGooglePlaces = useMemo(() => {
-    const arr = [...googlePlaces];
-    if (placesSortBy === "rating") arr.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
-    else if (placesSortBy === "reviews") arr.sort((a, b) => (b.userRatingCount ?? 0) - (a.userRatingCount ?? 0));
-    // "closest" keeps the original Google proximity order
-    return arr;
-  }, [googlePlaces, placesSortBy]);
-
-  // Parse next opening time from weekday descriptions (e.g. "Opens 8:30 am Mon")
-  const getNextOpenTime = (hours: GooglePlace["regularOpeningHours"]): string | null => {
-    if (!hours || hours.openNow || !hours.weekdayDescriptions) return null;
-    const jsDay = new Date().getDay(); // 0=Sun
-    const gDay = jsDay === 0 ? 6 : jsDay - 1; // Google: Mon=0 … Sun=6
-    const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-    for (let i = 0; i < 7; i++) {
-      const idx = (gDay + i) % 7;
-      const desc = hours.weekdayDescriptions[idx] ?? "";
-      if (desc.toLowerCase().includes("closed")) continue;
-      const match = desc.match(/:\s*(\d{1,2}:\d{2}\s*[ap]m)/i);
-      if (match) {
-        return i === 0 ? `today ${match[1].toLowerCase()}` : `${DAY_LABELS[idx]} ${match[1].toLowerCase()}`;
-      }
-    }
-    return null;
-  };
-
-  // Fire-and-forget telemetry - writes to admin_activity_log via /api/places/track
-  const trackInteraction = (businessName: string, actionType: string) => {
-    fetch("/api/places/track", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        business_name: businessName,
-        action_type: actionType,
-        user_session_id: sessionId,
-        timestamp: new Date().toISOString(),
-        metadata: { selected_trade: selectedTrade, has_location: !!userCoords },
-      }),
-    }).catch(() => {});
-  };
-
   const clearAllFilters = () => {
     setOnlyVerified(false);
     setOnlyAvailableToday(false);
@@ -318,64 +232,6 @@ export default function FindTradespeople() {
     setShowQuoteModal(true);
   };
 
-  // ── Google Places fetcher ──
-  const fetchGooglePlaces = async (trade: string, coords: { lat: number; lng: number } | null, radiusMeters: number) => {
-    setPlacesLoading(true);
-    setPlacesError("");
-    try {
-      const res = await fetch("/api/places", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ trade, lat: coords?.lat ?? null, lng: coords?.lng ?? null, radiusMeters }),
-      });
-      const data = await res.json();
-      if (!res.ok || data.error) {
-        setPlacesError(data.error ?? "Could not load Google Business results.");
-        setGooglePlaces([]);
-      } else {
-        setGooglePlaces(data.places ?? []);
-      }
-    } catch {
-      setPlacesError("Network error fetching Google Business results.");
-      setGooglePlaces([]);
-    } finally {
-      setPlacesLoading(false);
-    }
-  };
-
-  // Capture user geolocation once on mount
-  useEffect(() => {
-    if (!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(
-      (pos) => setUserCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-      () => setUserCoords(null), // silently fall back to no-coords query
-      { timeout: 8000 }
-    );
-  }, []);
-
-  // Re-fetch whenever selected trade, location, or radius changes
-  useEffect(() => {
-    fetchGooglePlaces(selectedTrade, userCoords, radiusMiles * 1609);
-  }, [selectedTrade, userCoords, radiusMiles]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Fetch live GMB data for Upgrade Roofs whenever Roofer is selected
-  useEffect(() => {
-    if (selectedTrade !== "Roofer") { setRecommendedPlace(null); return; }
-    fetch("/api/places", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ trade: "Upgrade Roofs Sandbach", lat: 53.1467, lng: -2.3641, radiusMeters: 5000 }),
-    })
-      .then((r) => r.json())
-      .then((d) => {
-        const match = (d.places ?? []).find((p: GooglePlace) =>
-          p.displayName?.text?.toLowerCase().includes("upgrade roofs")
-        );
-        if (match) setRecommendedPlace(match);
-      })
-      .catch(() => {});
-  }, [selectedTrade]); // eslint-disable-line react-hooks/exhaustive-deps
-
   // Convert display trade name → URL slug for SEO components
   const tradeSlug = selectedTrade.toLowerCase().replace(/\s+/g, "-");
 
@@ -441,363 +297,6 @@ export default function FindTradespeople() {
               </Button>
             </div>
           </div>
-
-          {/* Sort control */}
-          <div className="flex items-center gap-3">
-            <Select value={placesSortBy} onValueChange={(v) => setPlacesSortBy(v as typeof placesSortBy)}>
-              <SelectTrigger className="w-48 h-10 text-sm border-gray-200">
-                <SelectValue placeholder="Sort results" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="rating">Highest Rated</SelectItem>
-                <SelectItem value="reviews">Most Reviewed</SelectItem>
-                <SelectItem value="closest">Closest to Me</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        {/* ── Live Google Business Profiles ── */}
-        <div className="mb-6 sm:mb-8">
-          {/* Trade selector chips */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-gray-400 flex-shrink-0 pr-1">
-              Near You:
-            </span>
-            {TRADE_OPTIONS.map((t) => (
-              <button
-                key={t}
-                onClick={() => setSelectedTrade(t)}
-                className={`px-3 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap flex-shrink-0 transition-all ring-1 ${
-                  selectedTrade === t
-                    ? "bg-[#002FA7] text-white ring-[#002FA7]"
-                    : "bg-white text-blue-900 ring-blue-100 hover:ring-blue-300"
-                }`}
-              >
-                {t}s
-              </button>
-            ))}
-          </div>
-
-          {/* Radius toggle */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-gray-400 flex-shrink-0 pr-1">
-              Radius:
-            </span>
-            {[5, 10, 25, 50].map((miles) => (
-              <button
-                key={miles}
-                onClick={() => setRadiusMiles(miles)}
-                className={`px-3 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap flex-shrink-0 transition-all ring-1 ${
-                  radiusMiles === miles
-                    ? "bg-[#002FA7] text-white ring-[#002FA7]"
-                    : "bg-white text-blue-900 ring-blue-100 hover:ring-blue-300"
-                }`}
-              >
-                {miles} mi
-              </button>
-            ))}
-          </div>
-
-          {placesLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="rounded-xl border border-gray-200 bg-white p-4 animate-pulse">
-                  <div className="h-4 bg-gray-100 rounded w-2/3 mb-2" />
-                  <div className="h-3 bg-gray-100 rounded w-1/2 mb-2" />
-                  <div className="h-3 bg-gray-100 rounded w-3/4 mb-2" />
-                  <div className="h-3 bg-gray-100 rounded w-2/3 mb-4" />
-                  <div className="h-12 bg-gray-100 rounded mb-4" />
-                  <div className="grid grid-cols-3 gap-2">
-                    <div className="h-8 bg-gray-100 rounded" />
-                    <div className="h-8 bg-gray-100 rounded" />
-                    <div className="h-8 bg-gray-100 rounded" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : placesError ? (
-            // Don't disappear silently when Google rejects the request -
-            // show a soft fallback so the user still has a clear next step.
-            <div className="rounded-2xl border border-blue-100 bg-white p-6 sm:p-8 text-center">
-              <h3 className="text-lg sm:text-xl font-bold text-blue-900 mb-2">
-                Live results are temporarily unavailable
-              </h3>
-              <p className="text-sm text-blue-900/70 max-w-md mx-auto mb-5">
-                We could not load real-time business listings right now. Post your job
-                free and verified MyApproved tradespeople will come to you with quotes.
-              </p>
-              <a
-                href="/post-job"
-                className="inline-flex items-center gap-2 bg-[#fdbd18] hover:bg-yellow-400 text-blue-900 font-bold px-5 py-2.5 rounded-full text-sm sm:text-base transition-all"
-              >
-                Post a job — it&apos;s free
-              </a>
-            </div>
-          ) : sortedGooglePlaces.length > 0 ? (
-            <div>
-              <div className="flex items-center gap-2 mb-3 flex-wrap">
-                {userCoords && <span className="text-xs text-gray-400">Based on your location</span>}
-                <span className="text-xs text-gray-400 ml-auto">{sortedGooglePlaces.length} results</span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-                {/* Recommended card - live GMB data for Upgrade Roofs, pinned top on Roofer searches */}
-                {selectedTrade === "Roofer" && (() => {
-                  const rp = recommendedPlace;
-                  const rpName       = rp?.displayName?.text ?? "Upgrade Roofs";
-                  const rpRating     = rp?.rating;
-                  const rpReviews    = rp?.userRatingCount;
-                  const rpPhone      = rp?.internationalPhoneNumber ?? "+44 1270 897606";
-                  const rpWebsite    = rp?.websiteUri;
-                  const rpAddress    = rp?.shortFormattedAddress ?? "20 Crewe Rd, Sandbach CW11 4NE";
-                  const rpPostcode   = rp?.addressComponents?.find((c: any) => c.types?.includes("postal_code"))?.longText ?? "CW11 4NE";
-                  const rpIsOpen     = rp?.regularOpeningHours?.openNow;
-                  const rpNextOpen   = rp ? getNextOpenTime(rp.regularOpeningHours) : null;
-                  const rpLat        = rp?.location?.latitude ?? 53.1467;
-                  const rpLng        = rp?.location?.longitude ?? -2.3641;
-                  const rpFilledStars = rpRating ? Math.round(rpRating) : 0;
-                  const rpDirections = `https://www.google.com/maps/dir/?api=1&destination=${rpLat},${rpLng}`;
-                  const rpFullAddress = [rpAddress, rpPostcode].filter(Boolean).join(", ");
-
-                  return (
-                    <div className="rounded-xl border-2 border-[#002FA7] bg-white shadow-md p-4 flex flex-col relative overflow-hidden">
-                      {/* Recommended pill */}
-                      <div className="absolute top-3 right-3 flex items-center gap-1 bg-[#002FA7] text-white text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full">
-                        <Image src="/logo-icon.svg" alt="myapproved" width={10} height={10} />
-                        Recommended
-                      </div>
-
-                      {/* Business name */}
-                      <h4 className="text-[15px] font-bold text-[#0f172a] leading-snug mb-1 pr-28">
-                        {rpName}
-                      </h4>
-
-                      {/* Stars + review count + type */}
-                      <div className="flex items-center flex-wrap gap-1 text-sm mb-1">
-                        {rpRating != null && (
-                          <>
-                            <span className="font-semibold text-gray-900">{rpRating.toFixed(1)}</span>
-                            <span className="text-yellow-400 text-xs tracking-tight">
-                              {"★".repeat(rpFilledStars)}{"☆".repeat(Math.max(0, 5 - rpFilledStars))}
-                            </span>
-                          </>
-                        )}
-                        {rpReviews != null && (
-                          <span className="text-gray-500 text-xs">({rpReviews.toLocaleString()})</span>
-                        )}
-                        <span className="text-gray-300 text-xs">·</span>
-                        <span className="text-gray-500 text-xs">{rp?.primaryTypeDisplayName?.text ?? "Roofing service"}</span>
-                      </div>
-
-                      {/* Address */}
-                      <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-1">
-                        <MapPin className="w-3 h-3 flex-shrink-0 text-gray-400" />
-                        <span>{rpFullAddress}</span>
-                      </div>
-
-                      {/* Open status */}
-                      <div className="flex items-center gap-1 text-xs mb-3">
-                        {rpIsOpen != null ? (
-                          <span className={rpIsOpen ? "font-semibold text-green-600" : "text-gray-500"}>
-                            {rpIsOpen ? "Open" : "Closed"}
-                          </span>
-                        ) : (
-                          <span className="font-semibold text-green-600">Open</span>
-                        )}
-                        {!rpIsOpen && rpNextOpen && (
-                          <>
-                            <span className="text-gray-300">·</span>
-                            <span className="text-gray-500">Opens {rpNextOpen}</span>
-                          </>
-                        )}
-                        {rpPhone && (
-                          <>
-                            <span className="text-gray-300">·</span>
-                            <span className="text-gray-500">{rpPhone}</span>
-                          </>
-                        )}
-                      </div>
-
-                      <p className="text-xs text-gray-500 line-clamp-2 mb-3 flex-1">
-                        {rp?.editorialSummary?.text ?? "Local roofing specialists in Sandbach - repairs, replacements, and guttering across Cheshire."}
-                      </p>
-
-                      <div className="h-px bg-gray-100 mb-3" />
-
-                      {/* Action strip */}
-                      <div className="grid grid-cols-3 gap-1.5">
-                        <a
-                          href={`tel:${rpPhone.replace(/\s/g, "")}`}
-                          onClick={() => trackInteraction(rpName, "call_click")}
-                          className="inline-flex flex-col items-center justify-center gap-0.5 py-2 rounded-lg bg-[#fdbd18] text-[#0f172a] text-[11px] font-semibold hover:brightness-95 transition-all"
-                        >
-                          <Phone className="w-3.5 h-3.5" />
-                          Call
-                        </a>
-                        <a
-                          href={rpWebsite}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => trackInteraction(rpName, "website_click")}
-                          className={`inline-flex flex-col items-center justify-center gap-0.5 py-2 rounded-lg bg-[#002FA7] text-white text-[11px] font-semibold hover:bg-[#001f7a] transition-colors ${!rpWebsite ? "opacity-40 pointer-events-none" : ""}`}
-                        >
-                          <Globe className="w-3.5 h-3.5" />
-                          Website
-                        </a>
-                        <a
-                          href={rpDirections}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => trackInteraction(rpName, "directions_click")}
-                          className="inline-flex flex-col items-center justify-center gap-0.5 py-2 rounded-lg bg-[#002FA7] text-white text-[11px] font-semibold hover:bg-[#001f7a] transition-colors"
-                        >
-                          <Navigation className="w-3.5 h-3.5" />
-                          Directions
-                        </a>
-                      </div>
-                    </div>
-                  );
-                })()}
-
-                {sortedGooglePlaces.map((place, idx) => {
-                  const name            = place.displayName?.text ?? "Unknown Business";
-                  const rating          = place.rating;
-                  const reviewCount     = place.userRatingCount;
-                  const primaryType     = place.primaryTypeDisplayName?.text;
-                  const address         = place.shortFormattedAddress;
-                  const postcode        = place.addressComponents?.find(c => c.types?.includes("postal_code"))?.longText;
-                  const isOpen          = place.regularOpeningHours?.openNow;
-                  const nextOpen        = getNextOpenTime(place.regularOpeningHours);
-                  const phone           = place.internationalPhoneNumber;
-                  const website         = place.websiteUri;
-                  const summary         = place.editorialSummary?.text;
-                  const reviewText      = place.contextualContents?.[0]?.reviews?.[0]?.text?.text;
-                  const filledStars     = rating ? Math.round(rating) : 0;
-                  const lat             = place.location?.latitude;
-                  const lng             = place.location?.longitude;
-                  const directionsUrl   = lat && lng
-                    ? `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`
-                    : address
-                    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`
-                    : null;
-
-                  return (
-                    <div
-                      key={idx}
-                      className="rounded-xl border border-gray-200 bg-white shadow-sm p-4 flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-                      onClick={() => trackInteraction(name, "view_profile")}
-                    >
-                      {/* Row 1 - Business name */}
-                      <h4 className="text-[15px] font-bold text-[#0f172a] leading-snug mb-1">
-                        {name}
-                      </h4>
-
-                      {/* Row 2 - Rating · Type */}
-                      <div className="flex items-center flex-wrap gap-1 text-sm mb-1">
-                        {rating != null && (
-                          <>
-                            <span className="font-semibold text-gray-900">{rating.toFixed(1)}</span>
-                            <span className="text-yellow-400 leading-none tracking-tight text-xs">
-                              {"★".repeat(filledStars)}{"☆".repeat(Math.max(0, 5 - filledStars))}
-                            </span>
-                            {reviewCount != null && (
-                              <span className="text-gray-500 text-xs">({reviewCount.toLocaleString()})</span>
-                            )}
-                          </>
-                        )}
-                        {primaryType && (
-                          <>
-                            <span className="text-gray-300 text-xs">·</span>
-                            <span className="text-gray-500 text-xs">{primaryType}</span>
-                          </>
-                        )}
-                      </div>
-
-                      {/* Row 3 - Address + Postcode */}
-                      {(address || postcode) && (
-                        <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-1 flex-wrap">
-                          <MapPin className="w-3 h-3 flex-shrink-0 text-gray-400" />
-                          <span>
-                            {[address, postcode].filter(Boolean).join(", ")}
-                          </span>
-                        </div>
-                      )}
-
-                      {/* Row 4 - Open status · Next open time · Phone */}
-                      <div className="flex items-center flex-wrap gap-1 text-xs mb-3">
-                        {isOpen != null && (
-                          <span className={isOpen ? "font-semibold text-green-600" : "text-gray-500"}>
-                            {isOpen ? "Open" : "Closed"}
-                          </span>
-                        )}
-                        {!isOpen && nextOpen && (
-                          <>
-                            <span className="text-gray-300">·</span>
-                            <span className="text-gray-500">Opens {nextOpen}</span>
-                          </>
-                        )}
-                        {phone && (
-                          <>
-                            <span className="text-gray-300">·</span>
-                            <a
-                              href={`tel:${phone.replace(/\s/g, "")}`}
-                              className="text-gray-500 hover:text-[#002FA7] transition-colors"
-                              onClick={(e) => { e.stopPropagation(); trackInteraction(name, "call_click"); }}
-                            >
-                              {phone}
-                            </a>
-                          </>
-                        )}
-                      </div>
-
-                      {/* Row 5 - Editorial summary or review snippet */}
-                      {(summary || reviewText) && (
-                        <p className="text-xs text-gray-500 line-clamp-2 mb-3 flex-1">
-                          {summary ?? `"${reviewText}"`}
-                        </p>
-                      )}
-
-                      {/* Divider */}
-                      <div className="h-px bg-gray-100 mb-3" />
-
-                      {/* 3-column action strip */}
-                      <div className="grid grid-cols-3 gap-1.5">
-                        <a
-                          href={phone ? `tel:${phone.replace(/\s/g, "")}` : undefined}
-                          onClick={(e) => { e.stopPropagation(); trackInteraction(name, "call_click"); }}
-                          className={`inline-flex flex-col items-center justify-center gap-0.5 py-2 rounded-lg bg-[#fdbd18] text-[#0f172a] text-[11px] font-semibold hover:brightness-95 transition-all ${!phone ? "opacity-40 pointer-events-none" : ""}`}
-                        >
-                          <Phone className="w-3.5 h-3.5" />
-                          Call
-                        </a>
-                        <a
-                          href={website ?? undefined}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => { e.stopPropagation(); trackInteraction(name, "website_click"); }}
-                          className={`inline-flex flex-col items-center justify-center gap-0.5 py-2 rounded-lg bg-[#002FA7] text-white text-[11px] font-semibold hover:bg-[#001f7a] transition-colors ${!website ? "opacity-40 pointer-events-none" : ""}`}
-                        >
-                          <Globe className="w-3.5 h-3.5" />
-                          Website
-                        </a>
-                        <a
-                          href={directionsUrl ?? undefined}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => { e.stopPropagation(); trackInteraction(name, "directions_click"); }}
-                          className={`inline-flex flex-col items-center justify-center gap-0.5 py-2 rounded-lg bg-[#002FA7] text-white text-[11px] font-semibold hover:bg-[#001f7a] transition-colors ${!directionsUrl ? "opacity-40 pointer-events-none" : ""}`}
-                        >
-                          <Navigation className="w-3.5 h-3.5" />
-                          Directions
-                        </a>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ) : null}
         </div>
 
         {/* AEO answer block - appears after search results, before sidebar listings */}
@@ -856,7 +355,13 @@ export default function FindTradespeople() {
                 </div>
               </div>
             ) : tradespeople.length === 0 ? (
-              null
+              <div className="text-center py-12">
+                <p className="text-blue-900 font-semibold mb-1">No tradespeople are listed in this area yet.</p>
+                <p className="text-blue-900/70 text-sm mb-4">Be first to post a job and verified MyApproved tradespeople will come to you.</p>
+                <Button className="bg-[#fdbd18] hover:brightness-95 text-blue-900 font-bold" asChild>
+                  <Link href="/login/client">Post a Job</Link>
+                </Button>
+              </div>
             ) : derivedList.length === 0 ? (
               null
             ) : (

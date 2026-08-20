@@ -524,7 +524,7 @@ export default function Home() {
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Post, see price, relax.</p>
+            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Checked, priced, booked.</p>
           </div>
         </div>
       </section>

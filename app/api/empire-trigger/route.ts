@@ -2,12 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 /**
  * Trigger Empire for MyApproved (cross-repo linking).
- * POST /api/empire-trigger — calls Khamareclarke Empire webhook with projectId myapproved.
- * Requires EMPIRE_WEBHOOK_SECRET in env (same as on Empire dashboard).
+ * POST /api/empire-trigger — calls the Empire webhook with projectId myapproved.
+ * Requires EMPIRE_WEBHOOK_URL + EMPIRE_WEBHOOK_SECRET in env.
  */
-const EMPIRE_URL =
-  process.env.EMPIRE_WEBHOOK_URL ||
-  'https://khamareclarke.com/api/empire/webhook/trigger';
+const EMPIRE_URL = process.env.EMPIRE_WEBHOOK_URL || '';
 
 export async function POST(request: NextRequest) {
   try {

@@ -87,7 +87,7 @@ Only provision these if you want redundant SMS fallback:
 | `SMTP_USER` | `noreply@myapproved.com` | [x] On Vercel |
 | `SMTP_PASS` | GoDaddy → Workspace Email → noreply@myapproved.com → password | [ ] Manual |
 | `NOTIFICATION_FROM_EMAIL` | `noreply@myapproved.com` | [x] On Vercel |
-| `ADMIN_EMAIL` | `khamareclarke@gmail.com` | [x] On Vercel |
+| `ADMIN_EMAIL` | `admin-email@REDACTED` | [x] On Vercel |
 | `SUPPORT_EMAIL` | `support@myapproved.com` | [x] On Vercel |
 
 ### 1.6 Empire / Fleet Observability
@@ -95,7 +95,7 @@ Only provision these if you want redundant SMS fallback:
 | Variable | Source |
 |---|---|
 | `EMPIRE_WEBHOOK_SECRET` | Empire OS dashboard → Webhook secret |
-| `FLEET_INGEST_URL` | `https://www.khamareclarke.com/api/fleet/ingest` |
+| `FLEET_INGEST_URL` | `https://www.REDACTED.example/api/fleet/ingest` |
 | `FLEET_INGEST_SECRET` | Empire OS dashboard → Fleet ingest secret |
 | `EMPIRE_PROJECT_NAME` | Set to `MyApproved` |
 | `EMPIRE_ENV` | `production` |
@@ -150,7 +150,7 @@ Omit these (leave empty) to suppress fabricated aggregate ratings. There is no s
 
 | Variable | Value |
 |---|---|
-| `GOOGLE_SERVER_API_KEY` | `AIzaSyCF1cOkDX7XR_oR21r-P7Yys7pgapPJL4c` |
+| `GOOGLE_SERVER_API_KEY` | `AIza-…-REDACTED` |
 
 ### 2.2 Google Maps JavaScript API — [x] Done
 
@@ -160,19 +160,19 @@ Omit these (leave empty) to suppress fabricated aggregate ratings. There is no s
 
 | Variable | Value |
 |---|---|
-| `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | `AIzaSyDNptytS45ChY7pO1zqXOoDlmEvgNW4cI4` |
+| `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | `AIza-…-REDACTED` |
 
 ### 2.3 reCAPTCHA Enterprise — [x] Done
 
 - **API:** Enabled — `recaptchaenterprise.googleapis.com`
-- **Site Key:** `6Le2vH0tAAAAAGHhmnTPIky0sn6QBYaojkmiXaoO` (Website, score integration)
-- **Secret Key:** Same as server key (`AIzaSyCF1cOkDX7XR_oR21r-P7Yys7pgapPJL4c`) — restricted to `recaptchaenterprise.googleapis.com`
+- **Site Key:** `6Le-REDACTED` (Website, score integration)
+- **Secret Key:** Same as server key (`AIza-…-REDACTED`) — restricted to `recaptchaenterprise.googleapis.com`
 - **On Vercel:** Production + Preview
 
 | Variable | Value |
 |---|---|
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | `6Le2vH0tAAAAAGHhmnTPIky0sn6QBYaojkmiXaoO` |
-| `RECAPTCHA_SECRET_KEY` | `AIzaSyCF1cOkDX7XR_oR21r-P7Yys7pgapPJL4c` |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | `6Le-REDACTED` |
+| `RECAPTCHA_SECRET_KEY` | `AIza-…-REDACTED` |
 | `RECAPTCHA_PROJECT_ID` | `myapproved` |
 
 ### 2.4 Google Analytics 4
