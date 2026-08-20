@@ -69,9 +69,13 @@ export const metadata: Metadata = {
     google: 'ferjstUZHhIE6kYLP1O8Jptch0hICiQHHLWXpmH7Vk8',
   },
   icons: {
-    icon: '/logo-icon.svg',
-    shortcut: '/logo-icon.svg',
-    apple: '/logo-icon.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
 };
 const fixedHeaderStyles = `
