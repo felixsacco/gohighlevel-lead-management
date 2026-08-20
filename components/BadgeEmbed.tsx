@@ -46,7 +46,7 @@ export function BadgeEmbed({ slug, name }: { slug: string; name: string }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-bold text-[#0A2463]">Your verified badge</h2>
+        <h2 className="text-xl font-extrabold text-brand-navyDark">Your verified badge</h2>
         <p className="mt-1 text-sm text-gray-600">
           Add this to your website to show customers you&apos;re verified. It links
           back to your MyApproved profile, so it sends you enquiries too.
@@ -63,9 +63,9 @@ export function BadgeEmbed({ slug, name }: { slug: string; name: string }) {
               <button
                 key={v.id}
                 onClick={() => setVariant(v.id)}
-                className={`rounded-lg border px-3 py-1.5 text-sm ${
+                className={`rounded-xl border px-3 py-1.5 text-sm ${
                   variant === v.id
-                    ? "border-[#0A2463] bg-[#0A2463] text-white"
+                    ? "border-brand-navyDark bg-brand-navyDark text-white"
                     : "border-gray-300 text-gray-700 hover:border-gray-400"
                 }`}
               >
@@ -84,9 +84,9 @@ export function BadgeEmbed({ slug, name }: { slug: string; name: string }) {
               <button
                 key={w}
                 onClick={() => setWidth(w)}
-                className={`rounded-lg border px-3 py-1.5 text-sm ${
+                className={`rounded-xl border px-3 py-1.5 text-sm ${
                   width === w
-                    ? "border-[#0A2463] bg-[#0A2463] text-white"
+                    ? "border-brand-navyDark bg-brand-navyDark text-white"
                     : "border-gray-300 text-gray-700 hover:border-gray-400"
                 }`}
               >
@@ -112,12 +112,12 @@ export function BadgeEmbed({ slug, name }: { slug: string; name: string }) {
           </p>
           <button
             onClick={copy}
-            className="rounded-lg bg-[#FFB800] px-4 py-1.5 text-sm font-semibold text-[#0A2463] hover:bg-[#FFC933]"
+            className="rounded-xl bg-brand-amber px-4 py-1.5 text-sm font-semibold text-brand-navyDark hover:bg-brand-amber"
           >
             {copied ? "Copied" : "Copy code"}
           </button>
         </div>
-        <pre className="overflow-x-auto rounded-lg bg-[#111111] p-4 text-xs leading-relaxed text-gray-200">
+        <pre className="overflow-x-auto rounded-xl bg-[#111111] p-4 text-xs leading-relaxed text-gray-200">
           <code>{snippet}</code>
         </pre>
         <p className="mt-2 text-xs text-gray-500">

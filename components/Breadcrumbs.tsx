@@ -98,19 +98,19 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className = '' 
                 {index === 0 ? (
                   <Link
                     href={item.href}
-                    className="flex items-center text-blue-600 hover:text-blue-800 transition-colors bg-blue-50 px-3 py-1 rounded-md"
+                    className="flex items-center text-blue-600 hover:text-blue-800 transition-colors bg-blue-50 px-3 py-1 rounded-xl"
                   >
                     <Home className="w-4 h-4 mr-1" />
                     <span>{item.name}</span>
                   </Link>
                 ) : index === breadcrumbItems.length - 1 ? (
-                  <span className="text-gray-800 font-semibold bg-gray-100 px-3 py-1 rounded-md" aria-current="page">
+                  <span className="text-gray-800 font-semibold bg-gray-100 px-3 py-1 rounded-xl" aria-current="page">
                     {item.name}
                   </span>
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-blue-600 hover:text-blue-800 transition-colors bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-md"
+                    className="text-blue-600 hover:text-blue-800 transition-colors bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-xl"
                   >
                     {item.name}
                   </Link>

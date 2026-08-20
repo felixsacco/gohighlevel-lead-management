@@ -538,7 +538,7 @@ export default function AISupportChat({ userId, userType, userName }: AISupportC
         <button
           onClick={() => setIsOpen(true)}
           data-ai-chat-trigger
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-blue-700 hover:bg-blue-800 shadow-lg hover:shadow-xl transition-all duration-200 z-50 flex items-center justify-center border-2 border-white/20"
+          className="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-brand-navy hover:bg-brand-navy shadow-lg hover:shadow-xl transition-all duration-200 z-50 flex items-center justify-center border-2 border-white/20"
         >
           <MessageCircle className="w-6 h-6 text-white" />
         </button>
@@ -546,15 +546,15 @@ export default function AISupportChat({ userId, userType, userName }: AISupportC
 
       {/* AI Chat Panel - Fixed Bottom Right */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[380px] h-[560px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
+        <div className="fixed bottom-6 right-6 z-50 w-[380px] h-[560px] bg-white rounded-xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-blue-700 px-5 py-4 flex items-center justify-between flex-shrink-0">
+          <div className="bg-brand-navy px-5 py-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
                 <Bot className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="text-white font-bold text-sm">MyApproved AI</h3>
+                <h3 className="text-white font-extrabold text-sm">MyApproved AI</h3>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 bg-green-400 rounded-full"></span>
                   <span className="text-blue-200 text-xs">Online</span>
@@ -598,9 +598,9 @@ export default function AISupportChat({ userId, userType, userName }: AISupportC
                 className={`flex ${message.sender_type === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[85%] rounded-2xl px-4 py-3 ${
+                  className={`max-w-[85%] rounded-xl px-4 py-3 ${
                     message.sender_type === 'user'
-                      ? 'bg-blue-700 text-white rounded-br-md'
+                      ? 'bg-brand-navy text-white rounded-br-md'
                       : 'bg-gray-100 text-gray-900 rounded-bl-md'
                   }`}
                 >
@@ -613,7 +613,7 @@ export default function AISupportChat({ userId, userType, userName }: AISupportC
             
             {sending && (
               <div className="flex justify-start">
-                <div className="bg-gray-100 text-gray-900 rounded-2xl rounded-bl-md px-4 py-3">
+                <div className="bg-gray-100 text-gray-900 rounded-xl rounded-bl-md px-4 py-3">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
                       <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></span>
@@ -643,7 +643,7 @@ export default function AISupportChat({ userId, userType, userName }: AISupportC
                 onClick={sendMessage}
                 disabled={sending || !newMessage.trim()}
                 size="icon"
-                className="bg-blue-700 hover:bg-blue-800 text-white rounded-full h-10 w-10 flex-shrink-0"
+                className="bg-brand-navy hover:bg-brand-navy text-white rounded-full h-10 w-10 flex-shrink-0"
               >
                 <Send className="w-4 h-4" />
               </Button>

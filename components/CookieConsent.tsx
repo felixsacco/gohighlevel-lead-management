@@ -43,24 +43,24 @@ export default function CookieConsent() {
       <style jsx>{`
         @keyframes slideup { from { transform: translateY(8px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
       `}</style>
-      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-[#1A1A1A]/95 backdrop-blur-md shadow-2xl shadow-black/40 px-5 py-4">
+      <div className="w-full max-w-md rounded-xl border border-white/10 bg-[#1A1A1A]/95 backdrop-blur-md shadow-2xl shadow-black/40 px-5 py-4">
         <div className="flex flex-col gap-4">
           <p className="text-sm text-white/80">
             We use cookies to improve your experience. Read our
-            {' '}<Link href="/privacy" className="underline underline-offset-4 decoration-[#FFB800]/60 hover:text-white">Privacy</Link>
+            {' '}<Link href="/privacy" className="underline underline-offset-4 decoration-brand-amber/60 hover:text-white">Privacy</Link>
             {' '}and
-            {' '}<Link href="/cookies" className="underline underline-offset-4 decoration-[#FFB800]/60 hover:text-white">Cookies</Link>.
+            {' '}<Link href="/cookies" className="underline underline-offset-4 decoration-brand-amber/60 hover:text-white">Cookies</Link>.
           </p>
           <div className="flex items-center gap-2">
             <Button
               variant="outline"
-              className="h-9 flex-1 rounded-lg border-[#FFB800] bg-transparent text-[#FFB800] font-bold hover:bg-[#FFB800]/10 px-4 text-sm"
+              className="h-9 flex-1 rounded-xl border-brand-amber bg-transparent text-brand-amber font-bold hover:bg-brand-amber/10 px-4 text-sm"
               onClick={rejectNonEssential}
             >
               Reject
             </Button>
             <Button
-              className="h-9 flex-1 rounded-lg bg-[#FFB800] text-[#111111] font-bold hover:bg-[#FFC933] px-4 text-sm"
+              className="h-9 flex-1 rounded-xl bg-brand-amber text-[#111111] font-bold hover:bg-brand-amber px-4 text-sm"
               onClick={acceptAll}
             >
               Accept

@@ -136,9 +136,9 @@ export default function GetQuoteModal({ isOpen, onClose, tradesperson }: GetQuot
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-6 border-b">
-          <h2 className="text-xl font-semibold">Get Quote from {tradesperson.name}</h2>
+          <h2 className="text-xl font-extrabold">Get Quote from {tradesperson.name}</h2>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 transition-colors"
@@ -154,7 +154,7 @@ export default function GetQuoteModal({ isOpen, onClose, tradesperson }: GetQuot
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Quote Request Sent!</h3>
+            <h3 className="text-lg font-extrabold text-brand-navy mb-2">Quote Request Sent!</h3>
             <p className="text-gray-600">
               Your quote request has been sent to {tradesperson.name}. They will contact you soon with a detailed quote.
             </p>
@@ -167,8 +167,8 @@ export default function GetQuoteModal({ isOpen, onClose, tradesperson }: GetQuot
               </div>
             )}
 
-            <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-              <h3 className="font-medium text-blue-900 mb-2">Requesting quote from:</h3>
+            <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl">
+              <h3 className="font-extrabold text-brand-navy mb-2">Requesting quote from:</h3>
               <p className="text-blue-800">{tradesperson.name} - {tradesperson.trade}</p>
             </div>
 

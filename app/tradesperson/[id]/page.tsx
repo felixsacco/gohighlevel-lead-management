@@ -84,7 +84,7 @@ export default function TradespersonProfile() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+          <h1 className="text-2xl font-extrabold text-brand-navy mb-4">
             Tradesperson Not Found
           </h1>
           <p className="text-gray-600 mb-6">
@@ -147,7 +147,7 @@ export default function TradespersonProfile() {
                   <div className="flex-1 w-full">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-2">
                       <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-3 sm:mb-0">
-                        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 text-center sm:text-left">
+                        <h1 className="text-xl sm:text-2xl font-extrabold text-brand-navy text-center sm:text-left">
                           {tradesperson.name}
                         </h1>
                         {tradesperson.verified && (
@@ -215,7 +215,7 @@ export default function TradespersonProfile() {
             {/* Reviews Section */}
             <Card>
               <CardContent className="p-4 sm:p-6">
-                <h2 className="text-lg sm:text-xl font-bold mb-4">
+                <h2 className="text-lg sm:text-xl font-extrabold mb-4">
                   Reviews ({tradesperson.reviews})
                 </h2>
                 {tradesperson.reviewsData.length > 0 ? (
@@ -259,7 +259,7 @@ export default function TradespersonProfile() {
             {/* Contact Card */}
             <Card>
               <CardContent className="p-4 sm:p-6">
-                <h3 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Get in Touch</h3>
+                <h3 className="font-extrabold mb-3 sm:mb-4 text-sm sm:text-base">Get in Touch</h3>
                 <div className="space-y-3 sm:space-y-4">
                   <Button
                     className="w-full bg-yellow-500 hover:bg-yellow-600 text-black text-sm sm:text-base py-2 sm:py-3"
@@ -280,7 +280,7 @@ export default function TradespersonProfile() {
             {/* Stats Card */}
             <Card>
               <CardContent className="p-4 sm:p-6">
-                <h3 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Statistics</h3>
+                <h3 className="font-extrabold mb-3 sm:mb-4 text-sm sm:text-base">Statistics</h3>
                 <div className="space-y-2 sm:space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600 text-xs sm:text-sm">Total Reviews</span>

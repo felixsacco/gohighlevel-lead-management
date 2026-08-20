@@ -17,7 +17,7 @@ export default function BadgesPage() {
   return (
     <main className="min-h-screen bg-white px-6 py-16">
       <div className="mx-auto max-w-3xl">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#FFB800]">
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-amber">
           Trust badges
         </p>
         <h1 className="mt-2 text-4xl font-black tracking-tight text-[#111111]">
@@ -33,7 +33,7 @@ export default function BadgesPage() {
           {badges.map(({ icon, label }) => (
             <div
               key={label}
-              className="flex items-center gap-3 rounded-2xl border border-black/10 bg-neutral-50 px-4 py-4"
+              className="flex items-center gap-3 rounded-xl border border-black/10 bg-neutral-50 px-4 py-4"
             >
               <TrustBadge icon={icon} label={label} />
             </div>

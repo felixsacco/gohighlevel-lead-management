@@ -30,7 +30,7 @@ const AIExplainerSection = () => {
       subtitle: 'AI analyzes your requirements',
       description: 'Tell us what you need in plain English. Our AI understands your job requirements, urgency, location, and budget to find the perfect matches.',
       icon: Search,
-      color: 'from-blue-500 to-blue-700',
+      color: 'from-blue-500 to-brand-navy',
       features: [
         'Natural language processing',
         'Smart requirement extraction',
@@ -104,10 +104,10 @@ const AIExplainerSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-[#0056D2] text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-slate-900 via-brand-navy to-brand-navy text-white relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-[#FDBD18]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-20 left-20 w-96 h-96 bg-brand-amber/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-purple-500/5 to-transparent rounded-full blur-3xl animate-spin" style={{animationDuration: '30s'}}></div>
       </div>
@@ -116,16 +116,16 @@ const AIExplainerSection = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold mb-4 border border-white/20">
-            <Sparkles className="w-4 h-4 text-[#FDBD18]" />
+            <Sparkles className="w-4 h-4 text-brand-amber" />
             <span>AI-Powered Matching</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
-            How Our <span className="text-[#FDBD18]">AI</span> Finds Your
+            How Our <span className="text-brand-amber">AI</span> Finds Your
             <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">Perfect Tradesperson</span>
           </h2>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Advanced artificial intelligence that understands your needs and connects you with the right professionals in <span className="font-bold text-[#FDBD18]">under 60 seconds</span>.
+            Advanced artificial intelligence that understands your needs and connects you with the right professionals in <span className="font-bold text-brand-amber">under 60 seconds</span>.
           </p>
         </div>
 
@@ -146,12 +146,12 @@ const AIExplainerSection = () => {
                 >
                   <div className={`relative p-6 rounded-3xl border-2 transition-all duration-500 ${
                     isActive
-                      ? 'bg-white/10 backdrop-blur-sm border-[#FDBD18] shadow-2xl shadow-[#FDBD18]/20'
+                      ? 'bg-white/10 backdrop-blur-sm border-brand-amber shadow-2xl shadow-brand-amber/20'
                       : 'bg-white/5 backdrop-blur-sm border-white/20 hover:border-white/40 hover:bg-white/10'
                   }`}>
                     {/* Step number and icon */}
                     <div className="flex items-start gap-4 mb-4">
-                      <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center shadow-xl transition-all duration-500 ${
+                      <div className={`relative w-16 h-16 rounded-xl flex items-center justify-center shadow-xl transition-all duration-500 ${
                         isActive
                           ? `bg-gradient-to-br ${step.color} scale-110`
                           : 'bg-white/20 group-hover:bg-white/30'
@@ -159,7 +159,7 @@ const AIExplainerSection = () => {
                         <IconComponent className="w-8 h-8 text-white" />
                         <div className={`absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black transition-all duration-500 ${
                           isActive
-                            ? 'bg-[#FDBD18] text-[#0056D2] scale-110'
+                            ? 'bg-brand-amber text-brand-navy scale-110'
                             : 'bg-white/30 text-white'
                         }`}>
                           {step.id}
@@ -168,7 +168,7 @@ const AIExplainerSection = () => {
                       
                       <div className="flex-1">
                         <h3 className={`text-2xl font-black mb-1 transition-colors duration-300 ${
-                          isActive ? 'text-[#FDBD18]' : 'text-white group-hover:text-[#FDBD18]'
+                          isActive ? 'text-brand-amber' : 'text-white group-hover:text-brand-amber'
                         }`}>
                           {step.title}
                         </h3>
@@ -186,7 +186,7 @@ const AIExplainerSection = () => {
                       {step.features.map((feature, i) => (
                         <div key={i} className="flex items-center gap-2 text-sm text-blue-200">
                           <CheckCircle className={`w-4 h-4 transition-colors duration-300 ${
-                            isActive ? 'text-[#FDBD18]' : 'text-green-400'
+                            isActive ? 'text-brand-amber' : 'text-green-400'
                           }`} />
                           <span>{feature}</span>
                         </div>
@@ -195,7 +195,7 @@ const AIExplainerSection = () => {
 
                     {/* Active indicator */}
                     {isActive && (
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#FDBD18]/10 to-transparent pointer-events-none"></div>
+                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-brand-amber/10 to-transparent pointer-events-none"></div>
                     )}
                   </div>
                 </div>
@@ -211,7 +211,7 @@ const AIExplainerSection = () => {
                 {activeStep === 0 && (
                   <div className="space-y-6">
                     <div className="text-center mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-brand-navy rounded-xl flex items-center justify-center mx-auto mb-4 shadow-xl">
                         <Search className="w-8 h-8 text-white" />
                       </div>
                       <h4 className="text-xl font-bold text-white mb-2">Describe Your Job</h4>
@@ -220,24 +220,24 @@ const AIExplainerSection = () => {
                     
                     {/* Mock form */}
                     <div className="space-y-4">
-                      <div className="bg-white/20 rounded-2xl p-4 border border-white/30">
+                      <div className="bg-white/20 rounded-xl p-4 border border-white/30">
                         <div className="text-sm text-blue-200 mb-2">What do you need?</div>
                         <div className="text-white font-semibold">Emergency plumber needed for burst pipe in kitchen...</div>
                       </div>
                       
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white/20 rounded-2xl p-4 border border-white/30">
+                        <div className="bg-white/20 rounded-xl p-4 border border-white/30">
                           <div className="text-sm text-blue-200 mb-2">Location</div>
                           <div className="text-white font-semibold">London, SW1</div>
                         </div>
-                        <div className="bg-white/20 rounded-2xl p-4 border border-white/30">
+                        <div className="bg-white/20 rounded-xl p-4 border border-white/30">
                           <div className="text-sm text-blue-200 mb-2">Urgency</div>
                           <div className="text-red-400 font-semibold">🚨 URGENT</div>
                         </div>
                       </div>
                       
-                      <div className="bg-[#FDBD18]/20 rounded-2xl p-4 border border-[#FDBD18]/30">
-                        <div className="flex items-center gap-2 text-[#FDBD18] font-bold">
+                      <div className="bg-brand-amber/20 rounded-xl p-4 border border-brand-amber/30">
+                        <div className="flex items-center gap-2 text-brand-amber font-bold">
                           <img 
                             src="/logo-icon.svg" 
                             alt="MyApproved AI" 
@@ -259,7 +259,7 @@ const AIExplainerSection = () => {
                 {activeStep === 1 && (
                   <div className="space-y-6">
                     <div className="text-center mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
+                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-xl">
                         <img 
                           src="/logo-icon.svg" 
                           alt="MyApproved AI" 
@@ -278,13 +278,13 @@ const AIExplainerSection = () => {
                     
                     {/* Matching process */}
                     <div className="space-y-4">
-                      <div className="bg-purple-500/20 rounded-2xl p-4 border border-purple-400/30">
+                      <div className="bg-purple-500/20 rounded-xl p-4 border border-purple-400/30">
                         <div className="flex items-center justify-between mb-3">
                           <span className="text-white font-semibold">Scanning Database</span>
-                          <span className="text-[#FDBD18] font-bold">Identity-checked tradespeople</span>
+                          <span className="text-brand-amber font-bold">Identity-checked tradespeople</span>
                         </div>
                         <div className="w-full bg-white/20 rounded-full h-2">
-                          <div className="bg-gradient-to-r from-[#FDBD18] to-yellow-400 h-2 rounded-full animate-pulse" style={{width: '85%'}}></div>
+                          <div className="bg-gradient-to-r from-brand-amber to-yellow-400 h-2 rounded-full animate-pulse" style={{width: '85%'}}></div>
                         </div>
                       </div>
                       
@@ -305,7 +305,7 @@ const AIExplainerSection = () => {
                         </div>
                       </div>
                       
-                      <div className="bg-green-500/20 rounded-2xl p-4 border border-green-400/30">
+                      <div className="bg-green-500/20 rounded-xl p-4 border border-green-400/30">
                         <div className="flex items-center gap-2 text-green-400 font-bold">
                           <Target className="w-4 h-4" />
                           <span>3 perfect matches found!</span>
@@ -318,7 +318,7 @@ const AIExplainerSection = () => {
                 {activeStep === 2 && (
                   <div className="space-y-6">
                     <div className="text-center mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
+                      <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-xl">
                         <Users className="w-8 h-8 text-white" />
                       </div>
                       <h4 className="text-xl font-bold text-white mb-2">Get Instant Quotes</h4>
@@ -328,22 +328,22 @@ const AIExplainerSection = () => {
                     {/* Results */}
                     <div className="space-y-4">
                       {[1, 2, 3].map((i) => (
-                        <div key={i} className="bg-white/10 rounded-2xl p-4 border border-white/20 hover:bg-white/15 transition-colors duration-300">
+                        <div key={i} className="bg-white/10 rounded-xl p-4 border border-white/20 hover:bg-white/15 transition-colors duration-300">
                           <div className="flex items-start gap-4">
-                            <div className="w-12 h-12 bg-gradient-to-br from-[#0056D2] to-blue-700 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+                            <div className="w-12 h-12 bg-gradient-to-br from-brand-navy to-brand-navy rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
                               {i}
                             </div>
                             <div className="flex-1">
                               <div className="flex items-center justify-between mb-2">
                                 <div className="font-bold text-white">Elite Plumbing Services</div>
                                 <div className="flex items-center gap-1">
-                                  <Star className="w-4 h-4 text-[#FDBD18] fill-current" />
+                                  <Star className="w-4 h-4 text-brand-amber fill-current" />
                                   <span className="text-white font-bold">✓</span>
                                 </div>
                               </div>
                               <div className="text-blue-200 text-sm mb-2">Emergency specialist • 2 mins away</div>
                               <div className="flex items-center justify-between">
-                                <div className="text-[#FDBD18] font-black text-lg">£180-250</div>
+                                <div className="text-brand-amber font-black text-lg">£180-250</div>
                                 <div className="flex items-center gap-2">
                                   <MessageCircle className="w-4 h-4 text-green-400" />
                                   <span className="text-green-400 text-sm font-semibold">Available now</span>
@@ -354,9 +354,9 @@ const AIExplainerSection = () => {
                         </div>
                       ))}
                       
-                      <div className="bg-[#FDBD18]/20 rounded-2xl p-4 border border-[#FDBD18]/30 text-center">
-                        <div className="text-[#FDBD18] font-bold mb-2">🎉 All quotes received in 2 minutes!</div>
-                        <Button className="bg-gradient-to-r from-[#FDBD18] to-yellow-400 hover:from-yellow-400 hover:to-[#FDBD18] text-[#0056D2] font-black px-6 py-2 rounded-xl">
+                      <div className="bg-brand-amber/20 rounded-xl p-4 border border-brand-amber/30 text-center">
+                        <div className="text-brand-amber font-bold mb-2">🎉 All quotes received in 2 minutes!</div>
+                        <Button className="bg-gradient-to-r from-brand-amber to-yellow-400 hover:from-yellow-400 hover:to-brand-amber text-brand-navy font-black px-6 py-2 rounded-xl">
                           Choose Your Tradesperson
                         </Button>
                       </div>
@@ -366,20 +366,20 @@ const AIExplainerSection = () => {
               </div>
 
               {/* Floating stats */}
-              <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl p-4 border border-gray-100 animate-bounce">
+              <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-xl p-4 border border-gray-100 animate-bounce">
                 <div className="text-center">
-                  <div className="text-2xl font-black text-[#0056D2]">60s</div>
+                  <div className="text-2xl font-black text-brand-navy">60s</div>
                   <div className="text-xs text-gray-600 font-bold">Average Time</div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 border border-gray-100 animate-pulse">
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-4 border border-gray-100 animate-pulse">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
                     <CheckCircle className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-sm font-black text-[#0056D2]">Identity Checked</div>
+                    <div className="text-sm font-black text-brand-navy">Identity Checked</div>
                     <div className="text-xs text-gray-600">Identity Checked</div>
                   </div>
                 </div>
@@ -392,7 +392,7 @@ const AIExplainerSection = () => {
         <div className="text-center mt-16">
           <Button
             onClick={() => document.getElementById('ai-quote-trigger')?.click()}
-            className="bg-gradient-to-r from-[#FDBD18] to-yellow-400 hover:from-yellow-400 hover:to-[#FDBD18] text-[#0056D2] font-black px-8 py-4 rounded-2xl text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
+            className="bg-gradient-to-r from-brand-amber to-yellow-400 hover:from-yellow-400 hover:to-brand-amber text-brand-navy font-black px-8 py-4 rounded-xl text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
           >
             <Sparkles className="w-5 h-5 mr-3" />
             <span>Try Our AI Matching Now</span>

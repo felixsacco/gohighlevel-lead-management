@@ -33,11 +33,11 @@ export default function DebugPage() {
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6">Debug Tools</h1>
+      <h1 className="text-2xl font-extrabold mb-6">Debug Tools</h1>
       
       <div className="space-y-8">
-        <div className="p-6 bg-white rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Supabase Connection Test</h2>
+        <div className="p-6 bg-white rounded-xl shadow-md">
+          <h2 className="text-xl font-extrabold mb-4">Supabase Connection Test</h2>
           <Button 
             onClick={checkSupabaseConnection}
             disabled={loading}

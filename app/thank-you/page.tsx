@@ -8,7 +8,7 @@ import { Container } from "@/components/ui/Container";
 
 export default function ThankYouPage() {
   return (
-    <Section className="py-16 bg-gray-50">
+    <Section className="py-12 sm:py-16 bg-[#F1F5F9]">
       <Container size="narrow" className="text-center">
         <div className="flex justify-center mb-6">
           <div className="rounded-full bg-green-100 p-4">
@@ -16,7 +16,7 @@ export default function ThankYouPage() {
           </div>
         </div>
 
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl font-extrabold text-brand-navy mb-4" style={{ fontWeight: 800 }}>
           Thank You for Your Request!
         </h1>
 
@@ -26,8 +26,8 @@ export default function ThankYouPage() {
           tradespeople in your area.
         </p>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8 text-left">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">
+        <div className="bg-white p-4 sm:p-6 rounded-xl mb-8 text-left">
+          <h2 className="text-lg font-extrabold text-brand-navy mb-4" style={{ fontWeight: 800 }}>
             What Happens Next?
           </h2>
 
@@ -37,7 +37,7 @@ export default function ThankYouPage() {
                 <span className="text-blue-600 font-bold">1</span>
               </div>
               <div>
-                <h3 className="font-medium text-gray-900">
+                <h3 className="font-extrabold text-brand-navy" style={{ fontWeight: 800 }}>
                   We will review your request
                 </h3>
                 <p className="text-gray-600 text-sm">
@@ -51,7 +51,7 @@ export default function ThankYouPage() {
                 <span className="text-blue-600 font-bold">2</span>
               </div>
               <div>
-                <h3 className="font-medium text-gray-900">
+                <h3 className="font-extrabold text-brand-navy" style={{ fontWeight: 800 }}>
                   Match you with tradespeople
                 </h3>
                 <p className="text-gray-600 text-sm">
@@ -66,7 +66,7 @@ export default function ThankYouPage() {
                 <span className="text-blue-600 font-bold">3</span>
               </div>
               <div>
-                <h3 className="font-medium text-gray-900">
+                <h3 className="font-extrabold text-brand-navy" style={{ fontWeight: 800 }}>
                   Get quotes and book
                 </h3>
                 <p className="text-gray-600 text-sm">
@@ -77,21 +77,21 @@ export default function ThankYouPage() {
           </ol>
         </div>
 
-        <div className="bg-blue-50 p-6 rounded-lg border border-blue-100 mb-8">
-          <h2 className="text-lg font-medium text-gray-900 mb-3">
+        <div className="bg-[#F1F5F9] p-6 rounded-xl mb-8">
+          <h2 className="text-lg font-extrabold text-brand-navy mb-3" style={{ fontWeight: 800 }}>
             Need help right away?
           </h2>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
               href="mailto:support@myapproved.com"
-              className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-700 bg-white hover:bg-blue-50"
+              className="flex items-center justify-center px-4 py-2 border border-transparent rounded-xl shadow-sm text-sm font-medium text-blue-700 bg-white hover:bg-blue-50"
             >
               <Mail className="w-4 h-4 mr-2" />
               Email Us
             </a>
             <a
               href="tel:+441234567890"
-              className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+              className="flex items-center justify-center px-4 py-2 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-brand-navy hover:bg-brand-navy"
             >
               <Phone className="w-4 h-4 mr-2" />
               Call Us

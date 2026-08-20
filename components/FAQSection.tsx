@@ -130,13 +130,13 @@ const FAQSection = () => {
       case 'verification':
         return 'text-green-600';
       case 'pricing':
-        return 'text-[#FDBD18]';
+        return 'text-brand-amber';
       case 'insurance':
         return 'text-blue-600';
       case 'booking':
         return 'text-purple-600';
       case 'general':
-        return 'text-[#0056D2]';
+        return 'text-brand-navy';
       default:
         return 'text-gray-600';
     }
@@ -153,7 +153,7 @@ const FAQSection = () => {
       case 'booking':
         return 'bg-purple-50 border-purple-200';
       case 'general':
-        return 'bg-[#0056D2]/5 border-[#0056D2]/20';
+        return 'bg-brand-navy/5 border-brand-navy/20';
       default:
         return 'bg-gray-50 border-gray-200';
     }
@@ -163,19 +163,19 @@ const FAQSection = () => {
     <section className="py-20 bg-white relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-[#FDBD18]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-[#0056D2]/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-20 w-64 h-64 bg-brand-amber/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-brand-navy/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Enhanced header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-[#0056D2]/10 text-[#0056D2] px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 bg-brand-navy/10 text-brand-navy px-4 py-2 rounded-full text-sm font-semibold mb-4">
             <HelpCircle className="w-4 h-4" />
             <span>Frequently Asked Questions</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[#0056D2] mb-4">
-            Got <span className="text-[#FDBD18]">Questions?</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-brand-navy mb-4">
+            Got <span className="text-brand-amber">Questions?</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Find answers to the most common questions about our platform, verification process, and how to get the best results.
@@ -192,7 +192,7 @@ const FAQSection = () => {
                 <AccordionItem 
                   key={faq.id} 
                   value={faq.id}
-                  className="group bg-white rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  className="group bg-white rounded-xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
                 >
                   <AccordionTrigger className="px-6 py-6 hover:no-underline group-hover:bg-gray-50/50 transition-colors duration-300">
                     <div className="flex items-start gap-4 text-left w-full">
@@ -200,7 +200,7 @@ const FAQSection = () => {
                         <IconComponent className={`w-5 h-5 ${getCategoryColor(faq.category)}`} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-bold text-[#0056D2] group-hover:text-[#FDBD18] transition-colors duration-300 pr-4">
+                        <h3 className="text-lg font-extrabold text-brand-navy group-hover:text-brand-amber transition-colors duration-300 pr-4">
                           {faq.question}
                         </h3>
                       </div>
@@ -234,8 +234,8 @@ const FAQSection = () => {
 
         {/* Still have questions section */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-[#0056D2]/5 via-white to-[#FDBD18]/5 rounded-3xl p-8">
-            <h3 className="text-2xl font-black text-[#0056D2] mb-4">Still Have Questions?</h3>
+          <div className="bg-gradient-to-r from-brand-navy/5 via-white to-brand-amber/5 rounded-3xl p-8">
+            <h3 className="text-2xl font-black text-brand-navy mb-4">Still Have Questions?</h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
               Our customer support team is here to help. Get in touch and we'll respond within 2 hours during business hours.
             </p>
@@ -243,7 +243,7 @@ const FAQSection = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center px-6 py-3 rounded-2xl bg-gradient-to-r from-[#0056D2] to-blue-700 hover:from-blue-700 hover:to-[#0056D2] text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r from-brand-navy to-brand-navy hover:from-brand-navy hover:to-brand-navy text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 <span>Contact Support</span>
                 <ChevronDown className="w-4 h-4 ml-2 -rotate-90" />
@@ -251,7 +251,7 @@ const FAQSection = () => {
               
               <Link
                 href="/help"
-                className="inline-flex items-center px-6 py-3 rounded-2xl bg-white border-2 border-[#0056D2]/20 text-[#0056D2] font-bold hover:bg-[#0056D2]/5 hover:border-[#0056D2]/40 transition-all duration-300"
+                className="inline-flex items-center px-6 py-3 rounded-xl bg-white border-2 border-brand-navy/20 text-brand-navy font-bold hover:bg-brand-navy/5 hover:border-brand-navy/40 transition-all duration-300"
               >
                 <span>Help Center</span>
                 <HelpCircle className="w-4 h-4 ml-2" />

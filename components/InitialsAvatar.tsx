@@ -37,7 +37,7 @@ export default function InitialsAvatar({ initials, size = 'md', className = '' }
 
   return (
     <div 
-      className={`${sizeClass} ${colorClass} rounded-lg flex items-center justify-center text-white font-semibold ${className}`}
+      className={`${sizeClass} ${colorClass} rounded-xl flex items-center justify-center text-white font-semibold ${className}`}
       title={initials}
     >
       {initials}

@@ -15,8 +15,8 @@ export default function FileUploadTest() {
   };
 
   return (
-    <div className="p-4 border rounded-lg">
-      <h3 className="text-lg font-semibold mb-4">File Upload Test</h3>
+    <div className="p-4 border rounded-xl">
+      <h3 className="text-lg font-extrabold mb-4">File Upload Test</h3>
       
       {/* Method 1: Hidden input with label */}
       <div className="mb-4">
@@ -31,7 +31,7 @@ export default function FileUploadTest() {
         />
         <label 
           htmlFor="file-upload-1"
-          className="cursor-pointer inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+          className="cursor-pointer inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-xl shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
         >
           <Upload className="w-4 h-4 mr-2" />
           Choose Files (Method 1)

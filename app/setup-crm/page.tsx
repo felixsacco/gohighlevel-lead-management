@@ -112,10 +112,10 @@ export default function SetupCRMPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-brand-navy">
             <ExternalLink className="w-5 h-5" />
             GoHighLevel CRM OAuth Setup
           </CardTitle>
@@ -123,8 +123,8 @@ export default function SetupCRMPage() {
         <CardContent className="space-y-6">
           {/* Step 1: OAuth App Setup */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Step 1: Create OAuth App</h3>
-            <div className="p-4 bg-blue-50 rounded-lg">
+            <h3 className="text-lg font-extrabold text-brand-navy">Step 1: Create OAuth App</h3>
+            <div className="p-4 bg-blue-50 rounded-xl">
               <ol className="text-sm text-blue-800 space-y-2 list-decimal list-inside">
                 <li>Go to <a href="https://marketplace.gohighlevel.com" target="_blank" rel="noopener noreferrer" className="underline">GoHighLevel Marketplace</a></li>
                 <li>Sign up for a developer account</li>
@@ -143,8 +143,8 @@ export default function SetupCRMPage() {
 
           {/* Step 2: Environment Variables */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Step 2: Configure Environment Variables</h3>
-            <div className="p-4 bg-yellow-50 rounded-lg">
+            <h3 className="text-lg font-extrabold text-brand-navy">Step 2: Configure Environment Variables</h3>
+            <div className="p-4 bg-yellow-50 rounded-xl">
               <p className="text-sm text-yellow-800 mb-2">Add these to your <code className="bg-yellow-100 px-1 rounded">.env.local</code> file:</p>
               <div className="space-y-1 text-xs font-mono text-yellow-900">
                 <div>GOHIGHLEVEL_CLIENT_ID=your_client_id_here</div>
@@ -158,7 +158,7 @@ export default function SetupCRMPage() {
 
           {/* Step 3: Authorization */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Step 3: Authorize Application</h3>
+            <h3 className="text-lg font-extrabold text-brand-navy">Step 3: Authorize Application</h3>
             <p className="text-sm text-gray-600">
               Click the button below to authorize the application and get your access token.
             </p>
@@ -179,7 +179,7 @@ export default function SetupCRMPage() {
 
           {/* Step 4: Access Token */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Step 4: Enter Access Token</h3>
+            <h3 className="text-lg font-extrabold text-brand-navy">Step 4: Enter Access Token</h3>
             <p className="text-sm text-gray-600">
               After authorization, you'll receive an access token. Enter it below:
             </p>
@@ -207,7 +207,7 @@ export default function SetupCRMPage() {
 
           {/* Step 5: Location Selection */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Step 5: Select Location</h3>
+            <h3 className="text-lg font-extrabold text-brand-navy">Step 5: Select Location</h3>
             <p className="text-sm text-gray-600">
               Choose which GoHighLevel location to sync jobs to:
             </p>
@@ -231,7 +231,7 @@ export default function SetupCRMPage() {
 
           {/* Step 6: Test Connection */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Step 6: Test Connection</h3>
+            <h3 className="text-lg font-extrabold text-brand-navy">Step 6: Test Connection</h3>
             <p className="text-sm text-gray-600">
               Test your connection to ensure everything is working correctly.
             </p>
@@ -255,7 +255,7 @@ export default function SetupCRMPage() {
           {/* Results */}
           {result && (
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Results</h3>
+              <h3 className="text-lg font-extrabold text-brand-navy">Results</h3>
               <Alert variant={result.success ? "default" : "destructive"}>
                 <div className="flex items-center gap-2">
                   {result.success ? (
@@ -276,7 +276,7 @@ export default function SetupCRMPage() {
 
           {testResult && (
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Connection Test Results</h3>
+              <h3 className="text-lg font-extrabold text-brand-navy">Connection Test Results</h3>
               <Alert variant={testResult.success ? "default" : "destructive"}>
                 <div className="flex items-center gap-2">
                   {testResult.success ? (

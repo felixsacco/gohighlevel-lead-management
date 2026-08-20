@@ -139,7 +139,7 @@ export default function JobCompletionDialog({
               <div className="space-y-6">
                 <h4 className="font-semibold">Rate Tradespeople:</h4>
                 {acceptedTradespeople.map((application: any) => (
-                  <div key={application.tradesperson_id} className="border rounded-lg p-4 space-y-4">
+                  <div key={application.tradesperson_id} className="border rounded-xl p-4 space-y-4">
                     <div className="flex items-center justify-between">
                       <div>
                         <h5 className="font-medium">

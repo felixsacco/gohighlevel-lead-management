@@ -1,55 +1,33 @@
 # Email Setup Guide
 
-## Quick Setup for Real Email Sending
+MyApproved sends transactional email (verification codes, job alerts, notifications) via **GoDaddy SMTP** using `nodemailer`. There is no Gmail integration.
 
-### Step 1: Get Gmail App Password
+## Architecture
 
-1. Go to your Google Account settings: https://myaccount.google.com/
-2. Go to "Security" → "2-Step Verification" (enable if not already)
-3. Go to "App passwords"
-4. Generate a new app password for "Mail"
-5. Copy the 16-character password
+- **Library:** `lib/notifications/email.ts`
+- **Layout/templates:** `lib/notifications/email-layout.ts`, `lib/notifications/admin-inbox.ts`
+- **Transport:** TLS over `smtpout.secureserver.net:465`
 
-### Step 2: Update Email Configuration
+## Environment Variables
 
-Replace the email settings in `app/api/send-verification-email/route.ts`:
+Set these in `.env.local` (never commit real values — `.env` / `.env.example` are blank templates):
 
-```javascript
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'your-actual-gmail@gmail.com',    // Your Gmail address
-    pass: 'your-16-char-app-password'       // The app password you generated
-  }
-});
-```
+| Variable | Value | Notes |
+|---|---|---|
+| `SMTP_HOST` | `smtpout.secureserver.net` | GoDaddy Workspace Email SMTP |
+| `SMTP_PORT` | `465` | SSL. Falls back to code default. |
+| `SMTP_USER` | `noreply@myapproved.com` | Sending mailbox |
+| `SMTP_PASS` | *(GoDaddy mailbox password)* | Provisioned manually in the GoDaddy dashboard |
+| `NOTIFICATION_FROM_EMAIL` | `noreply@myapproved.com` | From address on outbound notifications |
+| `ADMIN_EMAIL` | your admin inbox | Internal alerts / dispute notifications |
+| `SUPPORT_EMAIL` | `support@myapproved.com` | User-facing support address |
 
-### Step 3: Test the System
+## How It Fails Safe
 
-1. Register a new account
-2. Check your email inbox
-3. Copy the 3-digit verification code
-4. Enter it on the verification page
-5. Account verified! ✅
+`lib/notifications/email.ts` guards on credential presence: if `SMTP_HOST`/`SMTP_USER`/`SMTP_PASS` are absent, it logs a warning and returns without throwing. No email is attempted without a configured credential.
 
-## Alternative: Use Environment Variables
+## Testing
 
-Create a `.env.local` file:
+Use the `/test-email` and `/test-email-admin` development routes to verify delivery. Trigger a registration or job submission to confirm end-to-end email delivery.
 
-```env
-GMAIL_USER=your-gmail@gmail.com
-GMAIL_PASS=your-app-password
-```
-
-Then update the code to:
-
-```javascript
-auth: {
-  user: process.env.GMAIL_USER,
-  pass: process.env.GMAIL_PASS
-}
-```
-
-## That's It!
-
-Now users will receive real emails in their inbox with verification codes! 
+> For the full current integration map see `docs/API_INVENTORY.md` (§3.3 GoDaddy SMTP).

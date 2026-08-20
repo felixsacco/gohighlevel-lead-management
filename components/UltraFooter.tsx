@@ -81,17 +81,17 @@ const UltraFooter = () => {
   ];
 
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: process.env.NEXT_PUBLIC_FACEBOOK_URL, color: 'hover:bg-blue-600' },
+    { name: 'Facebook', icon: Facebook, href: process.env.NEXT_PUBLIC_FACEBOOK_URL, color: 'hover:bg-brand-navy' },
     { name: 'Twitter', icon: Twitter, href: process.env.NEXT_PUBLIC_TWITTER_URL, color: 'hover:bg-sky-500' },
     { name: 'Instagram', icon: Instagram, href: process.env.NEXT_PUBLIC_INSTAGRAM_URL, color: 'hover:bg-pink-600' },
-    { name: 'LinkedIn', icon: Linkedin, href: process.env.NEXT_PUBLIC_LINKEDIN_URL, color: 'hover:bg-blue-700' },
+    { name: 'LinkedIn', icon: Linkedin, href: process.env.NEXT_PUBLIC_LINKEDIN_URL, color: 'hover:bg-brand-navy' },
     { name: 'YouTube', icon: Youtube, href: process.env.NEXT_PUBLIC_YOUTUBE_URL, color: 'hover:bg-red-600' }
   ].filter(link => link.href);
 
   const trustBadges = [
     { name: 'Identity Vetted', rating: 'ID Checked', reviews: 'Official Records', color: 'text-green-400' },
     { name: 'Public Liability', rating: '£2M Cover', reviews: 'Confirmed Active', color: 'text-blue-400' },
-    { name: 'Qualifications', rating: 'Certified', reviews: 'Official Registers', color: 'text-[#FDBD18]' },
+    { name: 'Qualifications', rating: 'Certified', reviews: 'Official Registers', color: 'text-brand-amber' },
     { name: 'Homeowners', rating: 'Free Use', reviews: 'No hidden fees', color: 'text-orange-400' }
   ];
 
@@ -104,10 +104,10 @@ const UltraFooter = () => {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-slate-900 via-[#0056D2] to-blue-900 text-white overflow-hidden">
+    <footer className="relative bg-gradient-to-br from-slate-900 via-brand-navy to-brand-navy text-white overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#FDBD18]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-brand-amber/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-purple-500/5 to-transparent rounded-full blur-3xl animate-spin" style={{animationDuration: '30s'}}></div>
       </div>
@@ -121,8 +121,8 @@ const UltraFooter = () => {
               {/* Logo and tagline */}
               <div>
                 <Link href="/" className="inline-flex items-center gap-4 group mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#FDBD18] to-yellow-400 rounded-3xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                    <Shield className="w-9 h-9 text-[#0056D2]" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-brand-amber to-yellow-400 rounded-3xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
+                    <Shield className="w-9 h-9 text-brand-navy" />
                   </div>
                   <div>
                     <div className="text-3xl font-black text-white">MyApproved</div>
@@ -141,19 +141,19 @@ const UltraFooter = () => {
                 <h4 className="font-black text-white text-lg mb-4">How we protect you</h4>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
-                    <div className="text-2xl font-black text-[#FDBD18]">✓</div>
+                    <div className="text-2xl font-black text-brand-amber">✓</div>
                     <div className="text-sm text-blue-200">Identity checked</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-black text-[#FDBD18]">✓</div>
+                    <div className="text-2xl font-black text-brand-amber">✓</div>
                     <div className="text-sm text-blue-200">Business verified</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-black text-[#FDBD18]">✓</div>
+                    <div className="text-2xl font-black text-brand-amber">✓</div>
                     <div className="text-sm text-blue-200">Insurance confirmed</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-black text-[#FDBD18]">✓</div>
+                    <div className="text-2xl font-black text-brand-amber">✓</div>
                     <div className="text-sm text-blue-200">Monitoring in place</div>
                   </div>
                 </div>
@@ -163,8 +163,8 @@ const UltraFooter = () => {
               <div className="space-y-4">
                 <h4 className="font-black text-white text-lg">Get in Touch</h4>
                 <div className="space-y-3">
-                  <Link href="tel:08001234567" className="flex items-center gap-4 text-blue-200 hover:text-[#FDBD18] transition-colors duration-300 group">
-                    <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center group-hover:bg-[#FDBD18]/20 transition-colors duration-300">
+                  <Link href="tel:08001234567" className="flex items-center gap-4 text-blue-200 hover:text-brand-amber transition-colors duration-300 group">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-brand-amber/20 transition-colors duration-300">
                       <Phone className="w-6 h-6" />
                     </div>
                     <div>
@@ -173,8 +173,8 @@ const UltraFooter = () => {
                     </div>
                   </Link>
                   
-                  <Link href="mailto:hello@myapproved.com" className="flex items-center gap-4 text-blue-200 hover:text-[#FDBD18] transition-colors duration-300 group">
-                    <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center group-hover:bg-[#FDBD18]/20 transition-colors duration-300">
+                  <Link href="mailto:hello@myapproved.com" className="flex items-center gap-4 text-blue-200 hover:text-brand-amber transition-colors duration-300 group">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-brand-amber/20 transition-colors duration-300">
                       <Mail className="w-6 h-6" />
                     </div>
                     <div>
@@ -184,7 +184,7 @@ const UltraFooter = () => {
                   </Link>
                   
                   <div className="flex items-center gap-4 text-blue-200">
-                    <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
                       <MapPin className="w-6 h-6" />
                     </div>
                     <div>
@@ -207,22 +207,22 @@ const UltraFooter = () => {
                         <li key={j}>
                           {link.href === '#' ? (
                             <button
-                              className="text-blue-200 hover:text-[#FDBD18] transition-colors duration-300 text-base group flex items-center gap-2"
+                              className="text-blue-200 hover:text-brand-amber transition-colors duration-300 text-base group flex items-center gap-2"
                             >
                               <span className="font-semibold">{link.name}</span>
                               {link.popular && (
-                                <span className="bg-[#FDBD18] text-[#0056D2] text-xs font-black px-2 py-1 rounded-full">HOT</span>
+                                <span className="bg-brand-amber text-brand-navy text-xs font-black px-2 py-1 rounded-full">HOT</span>
                               )}
                               <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                             </button>
                           ) : (
                             <Link
                               href={link.href}
-                              className="text-blue-200 hover:text-[#FDBD18] transition-colors duration-300 text-base group flex items-center gap-2"
+                              className="text-blue-200 hover:text-brand-amber transition-colors duration-300 text-base group flex items-center gap-2"
                             >
                               <span className="font-semibold">{link.name}</span>
                               {link.popular && (
-                                <span className="bg-[#FDBD18] text-[#0056D2] text-xs font-black px-2 py-1 rounded-full">HOT</span>
+                                <span className="bg-brand-amber text-brand-navy text-xs font-black px-2 py-1 rounded-full">HOT</span>
                               )}
                               <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                             </Link>
@@ -246,7 +246,7 @@ const UltraFooter = () => {
                 <p className="text-blue-200 text-lg">Get instant quotes and manage jobs on the go. Available on iOS and Android.</p>
                 <div className="flex items-center gap-4 mt-4 text-sm text-blue-200">
                   <div className="flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-[#FDBD18]" />
+                    <Shield className="w-4 h-4 text-brand-amber" />
                     <span>Identity-checked tradespeople</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -291,7 +291,7 @@ const UltraFooter = () => {
               <h4 className="font-black text-white text-xl text-center mb-8">Trusted & Verified</h4>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {trustBadges.map((badge, i) => (
-                  <div key={i} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-colors duration-300">
+                  <div key={i} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20 hover:bg-white/15 transition-colors duration-300">
                     <div className={`text-2xl font-black ${badge.color} mb-2`}>{badge.rating}</div>
                     <div className="text-white font-bold text-sm">{badge.name}</div>
                     <div className="text-blue-200 text-xs">{badge.reviews}</div>
@@ -313,7 +313,7 @@ const UltraFooter = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`w-12 h-12 bg-white/10 hover:bg-white/20 ${social.color} rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 text-white border border-white/20`}
+                      className={`w-12 h-12 bg-white/10 hover:bg-white/20 ${social.color} rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 text-white border border-white/20`}
                       aria-label={social.name}
                     >
                       <IconComponent className="w-6 h-6" />
@@ -327,7 +327,7 @@ const UltraFooter = () => {
                 <span className="text-blue-200 font-bold">We accept:</span>
                 <div className="flex items-center gap-2">
                   {paymentMethods.map((method, i) => (
-                    <div key={i} className="w-12 h-8 bg-white rounded-lg flex items-center justify-center text-lg shadow-lg">
+                    <div key={i} className="w-12 h-8 bg-white rounded-xl flex items-center justify-center text-lg shadow-lg">
                       {method.logo}
                     </div>
                   ))}
@@ -343,19 +343,19 @@ const UltraFooter = () => {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               {/* Legal links */}
               <div className="flex flex-wrap items-center gap-6 text-sm text-blue-200">
-                <Link href="/privacy" className="hover:text-[#FDBD18] transition-colors duration-300 font-semibold">
+                <Link href="/privacy" className="hover:text-brand-amber transition-colors duration-300 font-semibold">
                   Privacy Policy
                 </Link>
-                <Link href="/terms" className="hover:text-[#FDBD18] transition-colors duration-300 font-semibold">
+                <Link href="/terms" className="hover:text-brand-amber transition-colors duration-300 font-semibold">
                   Terms of Service
                 </Link>
-                <Link href="/cookies" className="hover:text-[#FDBD18] transition-colors duration-300 font-semibold">
+                <Link href="/cookies" className="hover:text-brand-amber transition-colors duration-300 font-semibold">
                   Cookie Policy
                 </Link>
-                <Link href="/accessibility" className="hover:text-[#FDBD18] transition-colors duration-300 font-semibold">
+                <Link href="/accessibility" className="hover:text-brand-amber transition-colors duration-300 font-semibold">
                   Accessibility
                 </Link>
-                <Link href="/sitemap" className="hover:text-[#FDBD18] transition-colors duration-300 font-semibold">
+                <Link href="/sitemap" className="hover:text-brand-amber transition-colors duration-300 font-semibold">
                   Sitemap
                 </Link>
               </div>
@@ -363,15 +363,15 @@ const UltraFooter = () => {
               {/* Certifications */}
               <div className="flex items-center gap-4 text-xs text-blue-300">
                 <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-[#FDBD18]" />
+                  <Shield className="w-4 h-4 text-brand-amber" />
                   <span className="font-semibold">FCA Regulated</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Lock className="w-4 h-4 text-[#FDBD18]" />
+                  <Lock className="w-4 h-4 text-brand-amber" />
                   <span className="font-semibold">SSL Secured</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Award className="w-4 h-4 text-[#FDBD18]" />
+                  <Award className="w-4 h-4 text-brand-amber" />
                   <span className="font-semibold">ISO 27001</span>
                 </div>
               </div>
@@ -396,7 +396,7 @@ const UltraFooter = () => {
                   <span>Data Protected</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Award className="w-4 h-4 text-[#FDBD18]" />
+                  <Award className="w-4 h-4 text-brand-amber" />
                   <span>Industry Leading</span>
                 </div>
               </div>

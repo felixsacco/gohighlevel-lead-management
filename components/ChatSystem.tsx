@@ -166,12 +166,12 @@ export default function ChatSystem({ userId, userType, isOpen, onClose }: ChatSy
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl h-[80vh] flex flex-col">
+      <div className="bg-white rounded-xl shadow-xl w-full max-w-4xl h-[80vh] flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b">
           <div className="flex items-center gap-2">
             <MessageCircle className="w-5 h-5" />
-            <h2 className="text-lg font-semibold">Chat Messages</h2>
+            <h2 className="text-lg font-extrabold">Chat Messages</h2>
             <Badge variant="secondary">{chatRooms.length} conversations</Badge>
           </div>
           <Button variant="ghost" size="sm" onClick={onClose}>
@@ -183,7 +183,7 @@ export default function ChatSystem({ userId, userType, isOpen, onClose }: ChatSy
           {/* Chat Rooms List */}
           <div className="w-1/3 border-r bg-gray-50">
             <div className="p-4">
-              <h3 className="font-medium mb-3">Conversations</h3>
+              <h3 className="font-extrabold mb-3">Conversations</h3>
               {loading ? (
                 <div className="text-center py-4">Loading...</div>
               ) : chatRooms.length === 0 ? (
@@ -195,7 +195,7 @@ export default function ChatSystem({ userId, userType, isOpen, onClose }: ChatSy
                   {chatRooms.map((room) => (
                     <div
                       key={room.id}
-                      className={`p-3 rounded-lg cursor-pointer mb-2 transition-colors ${
+                      className={`p-3 rounded-xl cursor-pointer mb-2 transition-colors ${
                         selectedRoom?.id === room.id
                           ? 'bg-blue-100 border border-blue-200'
                           : 'bg-white hover:bg-gray-100 border border-gray-200'
@@ -234,7 +234,7 @@ export default function ChatSystem({ userId, userType, isOpen, onClose }: ChatSy
                 <div className="p-4 border-b bg-gray-50">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="font-medium">
+                      <h3 className="font-extrabold">
                         {userType === 'client' 
                           ? `${selectedRoom.tradespeople?.first_name} ${selectedRoom.tradespeople?.last_name}`
                           : `${selectedRoom.clients?.first_name} ${selectedRoom.clients?.last_name}`
@@ -257,7 +257,7 @@ export default function ChatSystem({ userId, userType, isOpen, onClose }: ChatSy
                         className={`flex ${message.sender_type === userType ? 'justify-end' : 'justify-start'}`}
                       >
                         <div
-                          className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                          className={`max-w-xs lg:max-w-md px-4 py-2 rounded-xl ${
                             message.sender_type === userType
                               ? 'bg-blue-500 text-white'
                               : 'bg-gray-200 text-gray-900'

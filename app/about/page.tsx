@@ -30,24 +30,26 @@ export default function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* Hero */}
-      <section className="bg-[#1A3A8A] text-white pb-16 sm:pb-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-[#F5B301] text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
-            <Heart className="w-3.5 h-3.5" />
-            Our Mission
+      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-brand-amber text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
+              <Heart className="w-3.5 h-3.5" />
+              Our Mission
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4" style={{fontWeight: 800}}>About MyApproved</h1>
+            <p className="text-white/75 text-base sm:text-lg max-w-2xl mx-auto">
+              We're building the UK's most trusted platform for connecting homeowners with verified, approved tradespeople.
+            </p>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">About MyApproved</h1>
-          <p className="text-blue-200 text-lg max-w-2xl mx-auto">
-            We're building the UK's most trusted platform for connecting homeowners with verified, approved tradespeople.
-          </p>
         </div>
       </section>
 
       {/* Our Story */}
-      <section className="bg-white py-14">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Story</h2>
-          <div className="space-y-4 text-gray-700 text-base leading-relaxed">
+      <section className="bg-white py-12 sm:py-16 md:py-20 lg:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy mb-6" style={{fontWeight: 800}}>Our Story</h2>
+          <div className="max-w-3xl space-y-4 text-gray-600 text-base leading-relaxed">
             <p>
               MyApproved was founded after one too many homeowners had a bad experience hiring a tradesperson they couldn't properly vet. Whether it was unfinished work, no insurance, or simply no way to verify credentials — the problem was the same: there was no reliable way to know who you were letting into your home.
             </p>
@@ -62,11 +64,11 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-gray-50 py-14">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">What We Stand For</h2>
-            <p className="text-gray-500 text-sm">The principles behind everything we build</p>
+      <section className="bg-[#F1F5F9] py-12 sm:py-16 md:py-20 lg:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy mb-2" style={{fontWeight: 800}}>What We Stand For</h2>
+            <p className="text-gray-600 text-base sm:text-lg">The principles behind everything we build</p>
           </div>
           <div className="grid sm:grid-cols-3 gap-6">
             {[
@@ -78,7 +80,7 @@ export default function AboutPage() {
               {
                 icon: Users,
                 title: "Fair to Both Sides",
-                body: "Homeowners use the platform free of charge. Tradespeople pay a transparent subscription. No hidden commissions or surprise fees.",
+                body: "Homeowners use the platform free of charge. Tradespeople pay £4.99 a lead, pay as you go - no monthly subscription, no hidden commissions.",
               },
               {
                 icon: Award,
@@ -86,11 +88,11 @@ export default function AboutPage() {
                 body: "Reviews come from confirmed jobs only. Tradespeople cannot edit or remove them. What you read is what real customers experienced.",
               },
             ].map(({ icon: Icon, title, body }) => (
-              <div key={title} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 text-center">
-                <div className="w-12 h-12 bg-[#1A3A8A] rounded-xl flex items-center justify-center mx-auto mb-4">
+              <div key={title} className="bg-white rounded-xl p-4 sm:p-5 md:p-6 text-center">
+                <div className="w-12 h-12 bg-brand-navy rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
+                <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-2" style={{fontWeight: 800}}>{title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
@@ -99,25 +101,25 @@ export default function AboutPage() {
       </section>
 
       {/* Commitment checklist */}
-      <section className="bg-[#1A3A8A] py-14 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-brand-navy py-12 sm:py-16 md:py-20 lg:py-28 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-2xl font-bold mb-6">Our Commitment</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6" style={{fontWeight: 800}}>Our Commitment</h2>
               <ul className="space-y-3">
                 {[
                   "Rigorous verification for every tradesperson before listing",
                   "Public liability insurance required as a minimum",
                   "Trade qualifications and certifications checked",
                   "Reviews verified from real completed jobs only",
-                  "Transparent subscription pricing for tradespeople",
+                  "£4.99 a lead, pay as you go for tradespeople",
                   "Free to use for all homeowners — no fees, ever",
                   "Support available via email for homeowners and trades",
                   "Governed by English law, built for the UK market",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm">
-                    <CheckCircle className="w-4 h-4 text-[#F5B301] shrink-0 mt-0.5" />
-                    <span className="text-blue-100">{item}</span>
+                    <CheckCircle className="w-4 h-4 text-brand-amber shrink-0 mt-0.5" />
+                    <span className="text-white/75">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -126,12 +128,12 @@ export default function AboutPage() {
               {[
                 { label: "Trades covered", value: "33" },
                 { label: "UK-wide coverage", value: "Nationwide" },
-                { label: "Verification steps", value: "5-point" },
+                { label: "Verification checks", value: "4" },
                 { label: "Free for homeowners", value: "Always" },
               ].map(({ label, value }) => (
                 <div key={label} className="bg-white/10 rounded-xl p-5 text-center">
-                  <div className="text-2xl font-bold text-[#F5B301] mb-1">{value}</div>
-                  <div className="text-blue-200 text-xs">{label}</div>
+                  <div className="text-2xl font-bold text-brand-amber mb-1">{value}</div>
+                  <div className="text-blue-100 text-xs">{label}</div>
                 </div>
               ))}
             </div>
@@ -140,16 +142,16 @@ export default function AboutPage() {
       </section>
 
       {/* For tradespeople */}
-      <section className="bg-white py-12">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <section className="bg-white py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#F1F5F9] rounded-xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="font-bold text-gray-900 text-lg mb-1">Are you a tradesperson?</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1" style={{fontWeight: 800}}>Are you a tradesperson?</h3>
               <p className="text-gray-600 text-sm">Join the platform, get your profile verified, and start receiving leads from homeowners in your area.</p>
             </div>
             <Link
               href="/for-tradespeople"
-              className="shrink-0 bg-[#1A3A8A] hover:bg-[#152d6e] text-white font-bold px-6 py-2.5 rounded-lg text-sm transition-colors whitespace-nowrap"
+              className="shrink-0 bg-brand-navy hover:bg-brand-navy text-white font-bold px-8 sm:px-10 py-5 text-base sm:text-lg rounded-xl transition-colors whitespace-nowrap" style={{fontWeight: 800}}
             >
               Join MyApproved
             </Link>

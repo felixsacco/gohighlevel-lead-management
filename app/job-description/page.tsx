@@ -329,7 +329,7 @@ export default function JobDescriptionPage() {
           <div className="flex items-center justify-between relative">
             <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -z-10">
               <motion.div
-                className="h-full bg-blue-600"
+                className="h-full bg-brand-navy"
                 initial={{ width: "0%" }}
                 animate={{
                   width:
@@ -348,7 +348,7 @@ export default function JobDescriptionPage() {
                   variants={itemVariants}
                   className={`flex items-center justify-center w-12 h-12 rounded-full border-2 ${
                     currentStep >= step
-                      ? "bg-blue-600 border-blue-600 text-white"
+                      ? "bg-brand-navy border-blue-600 text-white"
                       : "bg-white border-gray-300 text-gray-500"
                   } font-semibold text-lg`}
                 >
@@ -372,10 +372,10 @@ export default function JobDescriptionPage() {
 
         <motion.div
           variants={itemVariants}
-          className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100"
+          className="bg-white shadow-xl rounded-xl overflow-hidden border border-gray-100"
         >
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6">
+          <div className="bg-gradient-to-r from-brand-navy to-brand-navy px-8 py-6">
             <div className="flex items-center">
               <Button
                 variant="ghost"
@@ -387,7 +387,7 @@ export default function JobDescriptionPage() {
                 <span className="sr-only">Back</span>
               </Button>
               <div className="ml-4">
-                <h1 className="text-2xl font-bold text-white">
+                <h1 className="text-2xl font-extrabold text-white">
                   {formData.trade} Services in {formData.postcode}
                 </h1>
                 <p className="text-blue-100 mt-1">
@@ -445,7 +445,7 @@ export default function JobDescriptionPage() {
               >
                 <div className="space-y-6">
                   <div className="bg-blue-50 p-5 rounded-xl border border-blue-100">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-extrabold text-brand-navy mb-3 flex items-center">
                       <Clock className="h-5 w-5 mr-2" />
                       Help us understand your project
                     </h3>
@@ -465,7 +465,7 @@ export default function JobDescriptionPage() {
                         <Textarea
                           id="description"
                           rows={6}
-                          className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 text-base leading-relaxed"
+                          className="w-full p-4 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 text-base leading-relaxed"
                           placeholder="Example: I need a kitchen remodel including new cabinets, countertops, and flooring. The space is approximately 12' x 15'."
                           value={description}
                           onChange={(e) => setDescription(e.target.value)}
@@ -479,7 +479,7 @@ export default function JobDescriptionPage() {
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-white p-4 rounded-lg border border-gray-200">
+                        <div className="bg-white p-4 rounded-xl border border-gray-200">
                           <h4 className="font-medium text-gray-900 mb-2 flex items-center">
                             <Calendar className="h-4 w-4 mr-2 text-blue-600" />
                             Timeline
@@ -488,7 +488,7 @@ export default function JobDescriptionPage() {
                             When would you like to start this project?
                           </p>
                           <select
-                            className="mt-2 w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="mt-2 w-full p-2 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             disabled={isEstimating}
                           >
                             <option>Flexible timing</option>
@@ -498,7 +498,7 @@ export default function JobDescriptionPage() {
                           </select>
                         </div>
 
-                        <div className="bg-white p-4 rounded-lg border border-gray-200">
+                        <div className="bg-white p-4 rounded-xl border border-gray-200">
                           <h4 className="font-medium text-gray-900 mb-2 flex items-center">
                             <Clock className="h-4 w-4 mr-2 text-blue-600" />
                             Project Type
@@ -507,7 +507,7 @@ export default function JobDescriptionPage() {
                             What best describes your project?
                           </p>
                           <select
-                            className="mt-2 w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="mt-2 w-full p-2 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             disabled={isEstimating}
                           >
                             <option>New installation</option>
@@ -533,7 +533,7 @@ export default function JobDescriptionPage() {
                   </Button>
                   <Button
                     type="submit"
-                    className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3 px-8 rounded-lg text-base shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5"
+                    className="bg-gradient-to-r from-brand-navy to-brand-navy hover:from-brand-navy hover:to-brand-navy text-white font-medium py-3 px-8 rounded-xl text-base shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5"
                     disabled={isEstimating || !description.trim()}
                   >
                     {isEstimating ? (
@@ -578,11 +578,11 @@ export default function JobDescriptionPage() {
                   className="bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-blue-400 p-6 rounded-xl"
                 >
                   <div className="flex items-start">
-                    <div className="flex-shrink-0 bg-blue-100 p-2 rounded-lg">
+                    <div className="flex-shrink-0 bg-blue-100 p-2 rounded-xl">
                       <Shield className="h-6 w-6 text-blue-600" />
                     </div>
                     <div className="ml-4">
-                      <h3 className="text-base font-semibold text-blue-800">
+                      <h3 className="text-base font-extrabold text-brand-navy">
                         Your Project Estimate
                       </h3>
                       <div className="mt-1 text-2xl font-bold text-blue-900">
@@ -598,7 +598,7 @@ export default function JobDescriptionPage() {
 
                 <div className="space-y-8">
                   <div className="border-b border-gray-200 pb-6">
-                    <h2 className="text-2xl font-bold text-gray-900">
+                    <h2 className="text-2xl font-extrabold text-brand-navy">
                       Contact Information
                     </h2>
                     <p className="mt-2 text-gray-600">
@@ -620,12 +620,12 @@ export default function JobDescriptionPage() {
                           (optional)
                         </span>
                       </label>
-                      <div className="relative rounded-md shadow-sm">
+                      <div className="relative rounded-xl shadow-sm">
                         <input
                           type="text"
                           name="name"
                           id="name"
-                          className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 placeholder-gray-400 transition-colors"
+                          className="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 placeholder-gray-400 transition-colors"
                           placeholder="John Smith"
                           value={formData.name}
                           onChange={handleInputChange}
@@ -647,13 +647,13 @@ export default function JobDescriptionPage() {
                         Email Address
                         <span className="ml-1 text-red-500">*</span>
                       </label>
-                      <div className="relative rounded-md shadow-sm">
+                      <div className="relative rounded-xl shadow-sm">
                         <input
                           type="email"
                           name="email"
                           id="email"
                           required
-                          className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 placeholder-gray-400 transition-colors"
+                          className="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 placeholder-gray-400 transition-colors"
                           placeholder="you@example.com"
                           value={formData.email}
                           onChange={handleInputChange}
@@ -678,12 +678,12 @@ export default function JobDescriptionPage() {
                           (optional)
                         </span>
                       </label>
-                      <div className="relative rounded-md shadow-sm">
+                      <div className="relative rounded-xl shadow-sm">
                         <input
                           type="tel"
                           name="phone"
                           id="phone"
-                          className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 placeholder-gray-400 transition-colors"
+                          className="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 placeholder-gray-400 transition-colors"
                           placeholder="+44 1234 567890"
                           value={formData.phone}
                           onChange={handleInputChange}
@@ -697,7 +697,7 @@ export default function JobDescriptionPage() {
                     </div>
 
                     {/* Privacy Notice */}
-                    <div className="bg-blue-50 p-4 rounded-lg">
+                    <div className="bg-blue-50 p-4 rounded-xl">
                       <p className="text-xs text-blue-700">
                         By submitting this form, you agree to our{" "}
                         <a
@@ -728,7 +728,7 @@ export default function JobDescriptionPage() {
                     </Button>
                     <Button
                       type="submit"
-                      className="w-full sm:w-auto justify-center px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-lg text-base shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5"
+                      className="w-full sm:w-auto justify-center px-8 py-3 bg-gradient-to-r from-brand-navy to-brand-navy hover:from-brand-navy hover:to-brand-navy text-white font-medium rounded-xl text-base shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (

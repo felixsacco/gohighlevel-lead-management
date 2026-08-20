@@ -14,9 +14,6 @@ import GetQuoteModal from "@/components/GetQuoteModal";
 import Link from "next/link";
 import ProgrammaticSchema from "@/components/ProgrammaticSchema";
 import AEOContentBlock from "@/components/AEOContentBlock";
-import { Section } from "@/components/ui/Section";
-import { Container } from "@/components/ui/Container";
-import styles from "./page.module.css";
 // (Header dropdown imports removed; Header is rendered globally in layout)
 
 interface Tradesperson {
@@ -236,34 +233,34 @@ export default function FindTradespeople() {
   const tradeSlug = selectedTrade.toLowerCase().replace(/\s+/g, "-");
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-brand-slate">
       {/* JSON-LD structured data - trade-aware, updates as user switches trade chips */}
       <ProgrammaticSchema
         tradeType={tradeSlug}
         city="United Kingdom"
       />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         {/* Trust strip */}
-        <div className="mb-4 sm:mb-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:gap-4 text-xs sm:text-sm text-blue-900">
-          <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-blue-50 px-2 sm:px-3 py-1 rounded-full ring-1 ring-blue-100">
-            <Shield className="w-3 h-3 sm:w-4 sm:h-4" /> 
+        <div className="mb-4 sm:mb-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:gap-4 text-xs sm:text-sm text-brand-navy">
+          <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-brand-slate px-2 sm:px-3 py-1 rounded-full ring-1 ring-gray-100">
+            <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
             <span className="hidden xs:inline">All Trades Verified</span>
             <span className="xs:hidden">Verified</span>
           </span>
-          <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-blue-50 px-2 sm:px-3 py-1 rounded-full ring-1 ring-blue-100">
+          <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-brand-slate px-2 sm:px-3 py-1 rounded-full ring-1 ring-gray-100">
             <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
             <span className="hidden xs:inline">Public liability insurance confirmed and monitored</span>
             <span className="xs:hidden">Insured</span>
           </span>
-          <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-blue-50 px-2 sm:px-3 py-1 rounded-full ring-1 ring-blue-100">
+          <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-brand-slate px-2 sm:px-3 py-1 rounded-full ring-1 ring-gray-100">
             <Shield className="w-3 h-3 sm:w-4 sm:h-4 text-green-400" />
             <span className="hidden xs:inline">Identity checked</span>
             <span className="xs:hidden">Verified</span>
           </span>
         </div>
         {/* Search and Filters */}
-        <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-blue-100 p-4 sm:p-6 mb-6 sm:mb-8">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-6 sm:mb-8">
           {/* Search Inputs */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
             {/* Trade/Service Search */}
@@ -289,7 +286,7 @@ export default function FindTradespeople() {
             {/* Search Button - opens AI matcher */}
             <div>
               <Button
-                className="h-11 sm:h-12 bg-[#FFB800] hover:bg-[#FFC933] text-[#0f172a] font-bold text-sm sm:text-base w-full"
+                className="h-11 sm:h-12 bg-brand-amber hover:bg-brand-amberDark text-black font-semibold rounded-xl text-sm sm:text-base w-full"
                 onClick={() => window.dispatchEvent(new CustomEvent("open-ai-quote"))}
               >
                 <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
@@ -303,7 +300,7 @@ export default function FindTradespeople() {
         <AEOContentBlock
           tradeType={tradeSlug}
           city="the UK"
-          className="rounded-xl sm:rounded-2xl border-blue-100 shadow-sm mb-6 sm:mb-8"
+          className="rounded-xl border-gray-100 shadow-sm mb-6 sm:mb-8"
         />
 
         {/* Results */}
@@ -321,14 +318,14 @@ export default function FindTradespeople() {
                   </div>
                 )}
                 {Array.from({ length: 4 }).map((_, i) => (
-                  <div key={i} className="rounded-2xl border border-blue-100 bg-white shadow-sm p-6 animate-pulse">
+                  <div key={i} className="rounded-xl border border-gray-100 bg-white shadow-sm p-6 animate-pulse">
                     <div className="flex items-start gap-4">
-                      <div className="w-20 h-20 rounded-xl bg-blue-100" />
+                      <div className="w-20 h-20 rounded-xl bg-brand-slate" />
                       <div className="flex-1 space-y-3">
-                        <div className="h-5 bg-blue-100 rounded w-1/3" />
-                        <div className="h-4 bg-blue-50 rounded w-1/2" />
-                        <div className="h-3 bg-blue-50 rounded w-3/4" />
-                        <div className="h-10 bg-blue-50 rounded w-full" />
+                        <div className="h-5 bg-brand-slate rounded w-1/3" />
+                        <div className="h-4 bg-brand-slate rounded w-1/2" />
+                        <div className="h-3 bg-brand-slate rounded w-3/4" />
+                        <div className="h-10 bg-brand-slate rounded w-full" />
                       </div>
                     </div>
                   </div>
@@ -338,7 +335,7 @@ export default function FindTradespeople() {
               <div className="text-center py-12">
                 <p className="text-red-600 mb-4">{error}</p>
                 <div className="flex gap-2 justify-center">
-                  <Button onClick={() => fetchTradespeople(1, false)} className="bg-[#002FA7] hover:bg-[#00207a]">
+                  <Button onClick={() => fetchTradespeople(1, false)} className="bg-brand-navy hover:bg-brand-navy">
                     Try Again
                   </Button>
                   <Button 
@@ -356,24 +353,23 @@ export default function FindTradespeople() {
               </div>
             ) : tradespeople.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-blue-900 font-semibold mb-1">No tradespeople are listed in this area yet.</p>
-                <p className="text-blue-900/70 text-sm mb-4">Be first to post a job and verified MyApproved tradespeople will come to you.</p>
-                <Button className="bg-[#fdbd18] hover:brightness-95 text-blue-900 font-bold" asChild>
+                <p className="text-brand-navy font-semibold mb-1">No tradespeople are listed in this area yet.</p>
+                <p className="text-slate-600 text-sm mb-4">Be first to post a job and verified MyApproved tradespeople will come to you.</p>
+                <Button className="bg-brand-amber hover:bg-brand-amberDark text-black font-semibold rounded-xl" asChild>
                   <Link href="/login/client">Post a Job</Link>
                 </Button>
               </div>
             ) : derivedList.length === 0 ? (
               null
             ) : (
-              (() => {
-                return derivedList.map((person) => {
-                  const ratingText = person.reviews > 0
-                    ? `${person.rating.toFixed(1)}`
-                    : "New on MyApproved";
-                  return (
-                    <Card
+              derivedList.map((person) => {
+                const ratingText = person.reviews > 0
+                  ? `${person.rating.toFixed(1)}`
+                  : "New on MyApproved";
+                return (
+                  <Card
                       key={person.id}
-                      className="rounded-xl sm:rounded-2xl border border-blue-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                      className="rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                     >
                       <CardContent className="p-3 sm:p-4 lg:p-6">
                         <div className="flex items-start gap-3 sm:gap-4">
@@ -391,7 +387,7 @@ export default function FindTradespeople() {
                             <img
                               src={person.image}
                               alt={person.name}
-                              className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg sm:rounded-xl object-cover ring-1 ring-blue-100"
+                              className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover ring-1 ring-gray-100"
                             />
                           ) : (
                             <InitialsAvatar
@@ -404,7 +400,7 @@ export default function FindTradespeople() {
                           <div className="flex-1 min-w-0">
                             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-2">
                               <div className="flex items-center gap-2">
-                                <h3 className="text-lg sm:text-xl font-extrabold text-blue-900 flex items-center gap-2">
+                                <h3 className="text-lg sm:text-xl font-extrabold text-brand-navy flex items-center gap-2">
                                   <span className="truncate">{person.name}</span>
                                   {person.verified && (
                                     <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" style={{ color: '#fdbd18' }} />
@@ -418,7 +414,7 @@ export default function FindTradespeople() {
                               </div>
                               <div className="text-left sm:text-right">
                                 {person.hourlyRate && (
-                                  <div className="text-base sm:text-lg font-bold text-blue-900">
+                                  <div className="text-base sm:text-lg font-bold text-brand-navy">
                                     {person.hourlyRate}
                                   </div>
                                 )}
@@ -426,28 +422,28 @@ export default function FindTradespeople() {
                             </div>
 
                             <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 text-xs sm:text-sm">
-                              <span className="bg-blue-50 px-2 sm:px-3 py-1 rounded-full font-semibold flex items-center gap-1 text-blue-900">
+                              <span className="bg-brand-slate px-2 sm:px-3 py-1 rounded-full font-semibold flex items-center gap-1 text-brand-navy">
                                 {ratingText}
                                 {person.reviews > 0 && (
                                   <Star className="inline w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
                                 )}
                                 {person.reviews > 0 && (
                                   <>
-                                    <span className="text-blue-700/70 hidden xs:inline">({person.reviews} reviews)</span>
-                                    <span className="text-blue-700/70 xs:hidden">({person.reviews})</span>
+                                    <span className="text-slate-600 hidden xs:inline">({person.reviews} reviews)</span>
+                                    <span className="text-slate-600 xs:hidden">({person.reviews})</span>
                                   </>
                                 )}
                               </span>
-                              <span className="bg-yellow-50 px-2 sm:px-3 py-1 rounded-full font-semibold inline-flex items-center gap-1 text-blue-900">
+                              <span className="bg-brand-slate px-2 sm:px-3 py-1 rounded-full font-semibold inline-flex items-center gap-1 text-brand-navy">
                                 {person.trade}
                               </span>
-                              <span className="bg-gray-100 px-2 sm:px-3 py-1 rounded-full font-semibold inline-flex items-center gap-1 text-blue-900">
-                                <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" /> 
+                              <span className="bg-brand-slate px-2 sm:px-3 py-1 rounded-full font-semibold inline-flex items-center gap-1 text-brand-navy">
+                                <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-brand-navy" />
                                 <span className="hidden xs:inline">{person.location}</span>
                                 <span className="xs:hidden truncate max-w-20">{person.location}</span>
                               </span>
                               {person.yearsExperience > 0 && (
-                                <span className="text-blue-800/80 font-medium">
+                                <span className="text-slate-600 font-medium">
                                   <span className="hidden sm:inline">{person.yearsExperience} years experience</span>
                                   <span className="sm:hidden">{person.yearsExperience}y exp</span>
                                 </span>
@@ -455,16 +451,16 @@ export default function FindTradespeople() {
                             </div>
 
                             {person.description && (
-                              <p className="text-blue-900/90 mb-3 sm:mb-4 text-sm sm:text-base line-clamp-2">
+                              <p className="text-slate-600 mb-3 sm:mb-4 text-sm sm:text-base line-clamp-2">
                                 {person.description}
                               </p>
                             )}
 
-                            <div className="w-full h-px bg-blue-50 my-2 sm:my-3" />
+                            <div className="w-full h-px bg-gray-100 my-2 sm:my-3" />
 
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3 sm:mt-4 gap-3">
                               <div className="flex flex-col sm:flex-row gap-2">
-                                <Button variant="outline" size="sm" className="border-blue-200 text-blue-900 hover:bg-blue-50 text-xs sm:text-sm" asChild>
+                                <Button variant="outline" size="sm" className="border-gray-100 text-brand-navy hover:bg-brand-slate text-xs sm:text-sm" asChild>
                                   <Link href={`/tradesperson/${person.id}`}>
                                     <span className="hidden sm:inline">View Profile</span>
                                     <span className="sm:hidden">View Profile</span>
@@ -472,7 +468,7 @@ export default function FindTradespeople() {
                                 </Button>
                                 <Button
                                   size="sm"
-                                  className="bg-[#fdbd18] hover:brightness-95 text-blue-900 font-bold inline-flex items-center text-xs sm:text-sm"
+                                  className="bg-brand-amber hover:bg-brand-amberDark text-black font-semibold rounded-xl inline-flex items-center text-xs sm:text-sm"
                                   onClick={() => handleGetQuote(person)}
                                 >
                                   <span className="hidden sm:inline">Get My Free Quote</span>
@@ -486,9 +482,8 @@ export default function FindTradespeople() {
                       </CardContent>
                     </Card>
                   );
-                });
-              })()
-            )}
+                })
+          )}
 
             {/* Load More */}
             {tradespeople.length > 0 && (
@@ -513,18 +508,19 @@ export default function FindTradespeople() {
           {/* Sidebar */}
           <div className="space-y-4 sm:space-y-6">
             {/* Featured CTA */}
-            <Card className="bg-gradient-to-br from-blue-900 to-blue-700 text-white border-0">
+            <Card className="bg-gradient-to-b from-brand-navyDark to-brand-navy text-white border-0">
               <CardContent className="p-4 sm:p-6">
                 <h3 className="font-extrabold text-lg sm:text-xl mb-1">Need Help Choosing?</h3>
-                <p className="text-blue-100 mb-3 sm:mb-4 text-xs sm:text-sm">Post your job for free and let verified tradespeople come to you with quotes.</p>
-                <Button className="w-full bg-[#fdbd18] hover:brightness-95 text-blue-900 font-bold text-sm sm:text-base" asChild>
+                <p className="text-slate-300 mb-3 sm:mb-4 text-xs sm:text-sm">Post your job for free and let verified tradespeople come to you with quotes.</p>
+                <Button className="w-full bg-brand-amber hover:bg-brand-amberDark text-black font-semibold text-sm sm:text-base" asChild>
                   <Link href="/login/client">Post a Job</Link>
                 </Button>
-                <span className="block mt-2 text-[10px] sm:text-[12px] text-blue-100">Same‑day responses from local pros</span>
+                <span className="block mt-2 text-[10px] sm:text-[12px] text-slate-300">Same‑day responses from local pros</span>
               </CardContent>
             </Card>
           </div>
         </div>
+      </div>
 
       {/* Get Quote Modal */}
       {selectedTradesperson && (
@@ -545,8 +541,8 @@ export default function FindTradespeople() {
       {/* Post a Job Modal */}
       <Dialog open={showPostJob} onOpenChange={setShowPostJob}>
         <DialogContent className="max-w-sm sm:max-w-lg mx-4">
-          <h3 className="text-lg sm:text-xl font-extrabold text-blue-900 mb-1">Post a Job</h3>
-          <p className="text-xs sm:text-sm text-blue-800/80 mb-3 sm:mb-4">Tell us what you need and get up to 3 free quotes.</p>
+          <h3 className="text-lg sm:text-xl font-extrabold text-brand-navy mb-1">Post a Job</h3>
+          <p className="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4">Tell us what you need and get up to 3 free quotes.</p>
           <div className="space-y-3">
             <Input
               placeholder="Trade (e.g., Electrician, Plumber)"
@@ -570,7 +566,7 @@ export default function FindTradespeople() {
           <div className="mt-4 flex flex-col sm:flex-row gap-2 justify-end">
             <Button variant="outline" onClick={() => setShowPostJob(false)} className="w-full sm:w-auto text-sm">Cancel</Button>
             <Button
-              className="bg-[#fdbd18] text-blue-900 font-bold hover:brightness-95 w-full sm:w-auto text-sm"
+              className="bg-brand-amber text-black font-semibold hover:bg-brand-amberDark rounded-xl w-full sm:w-auto text-sm"
               onClick={() => {
                 // TODO: submit to API
                 setShowPostJob(false);
@@ -579,15 +575,15 @@ export default function FindTradespeople() {
               Get 3 Free Quotes
             </Button>
           </div>
-          <span className="block mt-2 text-[10px] sm:text-[12px] text-blue-800/80">Same‑day responses from local pros</span>
+          <span className="block mt-2 text-[10px] sm:text-[12px] text-slate-600">Same‑day responses from local pros</span>
         </DialogContent>
       </Dialog>
 
       {/* Compare Modal */}
       <Dialog open={showCompareModal} onOpenChange={setShowCompareModal}>
         <DialogContent className="max-w-sm sm:max-w-4xl lg:max-w-6xl max-h-[90vh] overflow-y-auto mx-4">
-          <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-blue-900 mb-3 sm:mb-4">Compare Tradespeople</h3>
-          <p className="text-xs sm:text-sm text-blue-800/80 mb-4 sm:mb-6">Compare the selected tradespeople side by side to make the best choice.</p>
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-brand-navy mb-3 sm:mb-4">Compare Tradespeople</h3>
+          <p className="text-xs sm:text-sm text-slate-600 mb-4 sm:mb-6">Compare the selected tradespeople side by side to make the best choice.</p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {tradespeople.filter(p => compareSet.has(p.id)).map((person) => {
@@ -596,14 +592,14 @@ export default function FindTradespeople() {
                 : "New on MyApproved";
               
               return (
-                <Card key={person.id} className="border border-blue-100 bg-white shadow-sm">
+                <Card key={person.id} className="border border-gray-100 bg-white shadow-sm rounded-xl">
                   <CardContent className="p-4 sm:p-6">
                     <div className="text-center mb-3 sm:mb-4">
                       {person.image ? (
                         <img
                           src={person.image}
                           alt={person.name}
-                          className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg sm:rounded-xl object-cover ring-1 ring-blue-100 mx-auto mb-2 sm:mb-3"
+                          className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover ring-1 ring-gray-100 mx-auto mb-2 sm:mb-3"
                         />
                       ) : (
                         <InitialsAvatar
@@ -612,57 +608,57 @@ export default function FindTradespeople() {
                           className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-2 sm:mb-3"
                         />
                       )}
-                      <h4 className="text-lg sm:text-xl font-extrabold text-blue-900 flex items-center justify-center gap-2">
+                      <h4 className="text-lg sm:text-xl font-extrabold text-brand-navy flex items-center justify-center gap-2">
                         <span className="truncate">{person.name}</span>
                         {person.verified && (
                           <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" style={{ color: '#fdbd18' }} />
                         )}
                       </h4>
-                      <p className="text-blue-800/80 font-medium text-sm sm:text-base">{person.trade}</p>
+                      <p className="text-slate-600 font-medium text-sm sm:text-base">{person.trade}</p>
                     </div>
 
                     <div className="space-y-2 sm:space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="text-xs sm:text-sm font-medium text-blue-900">Rating</span>
+                        <span className="text-xs sm:text-sm font-medium text-brand-navy">Rating</span>
                         <div className="flex items-center gap-1">
-                          <span className="font-bold text-blue-900 text-xs sm:text-sm">{ratingText}</span>
+                          <span className="font-bold text-brand-navy text-xs sm:text-sm">{ratingText}</span>
                           {person.reviews > 0 && <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />}
                           {person.reviews > 0 && (
-                            <span className="text-xs sm:text-sm text-blue-700/70">({person.reviews})</span>
+                            <span className="text-xs sm:text-sm text-slate-600">({person.reviews})</span>
                           )}
                         </div>
                       </div>
 
                       <div className="flex justify-between items-center">
-                        <span className="text-xs sm:text-sm font-medium text-blue-900">Experience</span>
-                        <span className="text-xs sm:text-sm text-blue-800">{person.yearsExperience}y</span>
+                        <span className="text-xs sm:text-sm font-medium text-brand-navy">Experience</span>
+                        <span className="text-xs sm:text-sm text-slate-600">{person.yearsExperience}y</span>
                       </div>
 
                       {person.hourlyRate && (
                         <div className="flex justify-between items-center">
-                          <span className="text-xs sm:text-sm font-medium text-blue-900">Hourly Rate</span>
-                          <span className="text-xs sm:text-sm font-bold text-blue-900">{person.hourlyRate}</span>
+                          <span className="text-xs sm:text-sm font-medium text-brand-navy">Hourly Rate</span>
+                          <span className="text-xs sm:text-sm font-bold text-brand-navy">{person.hourlyRate}</span>
                         </div>
                       )}
 
                       {person.location && (
                         <div className="flex justify-between items-center">
-                          <span className="text-xs sm:text-sm font-medium text-blue-900">Location</span>
-                          <span className="text-xs sm:text-sm text-blue-800 flex items-center gap-1">
+                          <span className="text-xs sm:text-sm font-medium text-brand-navy">Location</span>
+                          <span className="text-xs sm:text-sm text-slate-600 flex items-center gap-1">
                             <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
                             <span className="truncate max-w-20 sm:max-w-none">{person.location}</span>
                           </span>
                         </div>
                       )}
 
-                      <div className="pt-2 sm:pt-3 border-t border-blue-50">
-                        <p className="text-xs sm:text-sm text-blue-900/90 mb-2 sm:mb-3 line-clamp-2">{person.description}</p>
-                        
+                      <div className="pt-2 sm:pt-3 border-t border-gray-100">
+                        <p className="text-xs sm:text-sm text-slate-600 mb-2 sm:mb-3 line-clamp-2">{person.description}</p>
+
                         <div className="flex flex-col sm:flex-row gap-2">
-                          <Button 
-                            variant="outline" 
-                            size="sm" 
-                            className="flex-1 border-blue-200 text-blue-900 hover:bg-blue-50 text-xs sm:text-sm"
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="flex-1 border-gray-100 text-brand-navy hover:bg-brand-slate text-xs sm:text-sm"
                             asChild
                           >
                             <Link href={`/tradesperson/${person.id}`}>
@@ -671,7 +667,7 @@ export default function FindTradespeople() {
                           </Button>
                           <Button
                             size="sm"
-                            className="flex-1 bg-[#fdbd18] hover:brightness-95 text-blue-900 font-bold text-xs sm:text-sm"
+                            className="flex-1 bg-brand-amber hover:bg-brand-amberDark text-black font-semibold rounded-xl text-xs sm:text-sm"
                             onClick={() => {
                               setSelectedTradesperson(person);
                               setShowQuoteModal(true);
@@ -686,15 +682,16 @@ export default function FindTradespeople() {
                   </CardContent>
                 </Card>
               );
-            })}
+            })
+          }
           </div>
 
           <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-end gap-2">
             <Button variant="outline" onClick={() => setShowCompareModal(false)} className="w-full sm:w-auto text-sm">
               Close
             </Button>
-            <Button 
-              className="bg-[#fdbd18] text-blue-900 font-bold hover:brightness-95 w-full sm:w-auto text-sm"
+            <Button
+              className="bg-brand-amber text-black font-semibold hover:bg-brand-amberDark rounded-xl w-full sm:w-auto text-sm"
               onClick={() => {
                 setShowCompareModal(false);
                 setCompareSet(new Set());
@@ -708,25 +705,24 @@ export default function FindTradespeople() {
 
       {/* Bottom Compare Strip */}
       {compareSet.size > 0 && (
-        <div className="fixed bottom-0 inset-x-0 bg-white border-t border-blue-100 shadow-2xl z-50">
-          <Container size="wide" className="py-2 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3">
+        <div className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-100 shadow-2xl z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3">
             <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto w-full sm:w-auto">
-              <span className="text-xs sm:text-sm font-semibold text-blue-900 flex-shrink-0">Selected ({compareSet.size}/3):</span>
+              <span className="text-xs sm:text-sm font-semibold text-brand-navy flex-shrink-0">Selected ({compareSet.size}/3):</span>
               {tradespeople.filter(p => compareSet.has(p.id)).map(p => (
-                <span key={p.id} className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded-full bg-blue-50 ring-1 ring-blue-100 text-blue-900 text-xs sm:text-sm flex-shrink-0">
+                <span key={p.id} className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded-full bg-brand-slate ring-1 ring-gray-100 text-brand-navy text-xs sm:text-sm flex-shrink-0">
                   <span className="truncate max-w-20 sm:max-w-none">{p.name}</span>
-                  <button className="text-blue-700 hover:text-blue-900 flex-shrink-0" onClick={() => toggleCompare(p.id)} aria-label={`Remove ${p.name}`}>×</button>
+                  <button className="text-slate-600 hover:text-brand-navy flex-shrink-0" onClick={() => toggleCompare(p.id)} aria-label={`Remove ${p.name}`}>×</button>
                 </span>
               ))}
             </div>
             <div className="flex items-center gap-2 w-full sm:w-auto">
-              <Button variant="outline" className="border-blue-200 text-blue-900 flex-1 sm:flex-none text-xs sm:text-sm" onClick={() => setCompareSet(new Set())}>Clear</Button>
-              <Button className="bg-[#fdbd18] text-blue-900 font-bold hover:brightness-95 flex-1 sm:flex-none text-xs sm:text-sm" onClick={() => setShowCompareModal(true)}>Compare</Button>
+              <Button variant="outline" className="border-gray-100 text-brand-navy flex-1 sm:flex-none text-xs sm:text-sm" onClick={() => setCompareSet(new Set())}>Clear</Button>
+              <Button className="bg-brand-amber text-black font-semibold hover:bg-brand-amberDark rounded-xl flex-1 sm:flex-none text-xs sm:text-sm" onClick={() => setShowCompareModal(true)}>Compare</Button>
             </div>
-          </Container>
+          </div>
         </div>
       )}
-    </div>
     </div>
   );
 }

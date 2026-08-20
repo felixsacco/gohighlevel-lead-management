@@ -111,7 +111,7 @@ export default async function LeadDetailPage({
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-blue-900 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-2">
               New {trade} lead{area ? ` in ${area}` : ""}
             </h1>
             <p className="text-sm text-blue-700/80 mb-6">
@@ -221,7 +221,7 @@ export default async function LeadDetailPage({
                   the first tradesperson who responds.
                 </p>
                 <div className="mt-4 flex flex-col sm:flex-row gap-2">
-                  <Button asChild className="bg-blue-700 hover:bg-blue-800">
+                  <Button asChild className="bg-brand-navy hover:bg-brand-navy">
                     <Link href={`/post-job`}>Submit your quote</Link>
                   </Button>
                   <Button asChild variant="outline">

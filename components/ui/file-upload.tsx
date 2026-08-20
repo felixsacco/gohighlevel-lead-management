@@ -62,7 +62,7 @@ export function FileUpload({
         </label>
       </div>
       
-      <div className="border border-gray-300 rounded-md p-4">
+      <div className="border border-gray-300 rounded-xl p-4">
         {value ? (
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded">
             <div className="flex items-center space-x-2">

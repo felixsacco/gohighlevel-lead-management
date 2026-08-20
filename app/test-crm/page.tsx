@@ -5,7 +5,7 @@ export default function TestCRMPage() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-extrabold text-brand-navy mb-2">
             GoHighLevel CRM Integration Test
           </h1>
           <p className="text-gray-600">
@@ -15,8 +15,8 @@ export default function TestCRMPage() {
         
         <CRMSyncTest />
         
-        <div className="mt-8 p-6 bg-blue-50 rounded-lg">
-          <h2 className="text-lg font-semibold text-blue-900 mb-2">
+        <div className="mt-8 p-6 bg-blue-50 rounded-xl">
+          <h2 className="text-lg font-extrabold text-brand-navy mb-2">
             Setup Instructions
           </h2>
           <ol className="text-sm text-blue-800 space-y-1 list-decimal list-inside">

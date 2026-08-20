@@ -101,7 +101,7 @@ export default function VerifyEmail() {
                 <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-4" />
                 <PartyPopper className="w-8 h-8 text-yellow-500 absolute -top-2 -right-2" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              <h2 className="text-3xl font-extrabold text-brand-navy mb-2">
                 Account Verified!
               </h2>
               <p className="text-gray-600 mb-4">
@@ -113,7 +113,7 @@ export default function VerifyEmail() {
               </p>
 
               {/* Success Details */}
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+              <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
                 <div className="flex items-center justify-center mb-2">
                   <Mail className="w-4 h-4 text-green-600 mr-2" />
                   <span className="text-sm font-medium text-green-800">
@@ -129,8 +129,8 @@ export default function VerifyEmail() {
               </div>
 
               {/* Next Steps */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                <h3 className="font-semibold text-blue-900 mb-2">
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+                <h3 className="font-extrabold text-brand-navy mb-2">
                   What is Next?
                 </h3>
                 <ul className="text-sm text-blue-800 space-y-1 text-left">
@@ -154,8 +154,8 @@ export default function VerifyEmail() {
               </div>
 
               {/* Brand Message */}
-              <div className="mt-6 p-4 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg text-white">
-                <h3 className="font-bold text-lg mb-1">MyApproved All</h3>
+              <div className="mt-6 p-4 bg-gradient-to-r from-brand-navy to-brand-navy rounded-xl text-white">
+                <h3 className="font-extrabold text-lg mb-1">MyApproved All</h3>
                 <p className="text-sm text-blue-100">
                   Connecting you with verified, reliable tradespeople in your
                   area.
@@ -167,7 +167,7 @@ export default function VerifyEmail() {
           {status === "error" && (
             <div className="text-center">
               <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-              <h2 className="text-xl font-bold text-gray-900 mb-2">
+              <h2 className="text-xl font-extrabold text-brand-navy mb-2">
                 Verification Failed
               </h2>
               <p className="text-gray-600 mb-6">
@@ -189,7 +189,7 @@ export default function VerifyEmail() {
           {status === "invalid" && (
             <div className="text-center">
               <Mail className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
-              <h2 className="text-xl font-bold text-gray-900 mb-2">
+              <h2 className="text-xl font-extrabold text-brand-navy mb-2">
                 Invalid Link
               </h2>
               <p className="text-gray-600 mb-6">

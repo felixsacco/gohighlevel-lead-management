@@ -62,7 +62,7 @@ const EnhancedHeader = () => {
       {/* Single fixed stack: promo bar + main nav + trust row (avoids overlap and eases body offset) */}
       <div className="fixed top-0 left-0 right-0 z-50 flex flex-col shadow-xl">
       <header
-        className="shrink-0 bg-[#0A2463] backdrop-blur-sm py-1 sm:py-2"
+        className="shrink-0 bg-brand-navyDark backdrop-blur-sm py-1 sm:py-2"
       >
         <div className="max-w-7xl mx-auto px-1 sm:px-2 lg:px-4">
           <div className="flex items-center justify-between">
@@ -85,7 +85,7 @@ const EnhancedHeader = () => {
                   <div className="text-sm sm:text-lg md:text-xl lg:text-2xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
                     MyApproved
                   </div>
-                  <div className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FFB800] to-[#FFB800] bg-clip-text text-transparent tracking-wider">TRUSTED TRADESPEOPLE</div>
+                  <div className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-brand-amber to-brand-amber bg-clip-text text-transparent tracking-wider">TRUSTED TRADESPEOPLE</div>
                 </div>
               </div>
             </Link>
@@ -102,7 +102,7 @@ const EnhancedHeader = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`group relative flex items-center gap-1 px-3 py-2 rounded-lg transition-all duration-300 font-medium text-sm hover:scale-105 ${
+                    className={`group relative flex items-center gap-1 px-3 py-2 rounded-xl transition-all duration-300 font-medium text-sm hover:scale-105 ${
                       isActive
                         ? 'bg-white/10 text-white shadow-lg backdrop-blur-md'
                         : 'text-blue-100 hover:text-white hover:bg-white/10'
@@ -120,7 +120,7 @@ const EnhancedHeader = () => {
                     <IconComponent className="w-3 h-3" />
                     <span>{item.label}</span>
                     {isActive && (
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#FFB800] rounded-full" />
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-brand-amber rounded-full" />
                     )}
                   </Link>
                 );
@@ -131,7 +131,7 @@ const EnhancedHeader = () => {
             <div className="hidden lg:flex items-center gap-3">
               <div className="flex flex-col items-center">
                 <Button
-                  className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all border-2 border-[#FFB800]"
+                  className="bg-brand-amber hover:bg-brand-amber text-black font-bold px-5 py-2 rounded-xl shadow-md hover:shadow-lg transition-all border-2 border-brand-amber"
                   style={{fontWeight: 800}}
                   onClick={() => window.dispatchEvent(new Event("open-ai-quote"))}
                 >
@@ -144,7 +144,7 @@ const EnhancedHeader = () => {
             {/* Mobile Menu Button - Mobile Responsive */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 sm:p-3 rounded-lg hover:bg-white/10 transition-colors duration-200 text-white"
+              className="lg:hidden p-2 sm:p-3 rounded-xl hover:bg-white/10 transition-colors duration-200 text-white"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? (
@@ -157,7 +157,7 @@ const EnhancedHeader = () => {
         </div>
         
         {/* Trust Bar - Simple Text */}
-        <div className="bg-[#0A2463] backdrop-blur-sm py-1.5 sm:py-2 shadow-lg">
+        <div className="bg-brand-navyDark backdrop-blur-sm py-1.5 sm:py-2 shadow-lg">
           <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
             <p className="text-center text-xs sm:text-sm text-gray-300">
               Free Quotes • No Obligation • Local Pros
@@ -181,7 +181,7 @@ const EnhancedHeader = () => {
               <div className="fixed top-0 right-0 h-full w-full max-w-xs sm:max-w-sm bg-white shadow-2xl border-l border-gray-100 transform transition-transform duration-300 ease-in-out z-[10000]">
             <div className="flex flex-col h-full">
               {/* Header - Mobile Responsive */}
-              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100 bg-[#0A2463]">
+              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100 bg-brand-navyDark">
                 <div className="flex items-center gap-4 sm:gap-5">
                   {/* Mobile Logo Lockup */}
                   <div>
@@ -198,13 +198,13 @@ const EnhancedHeader = () => {
                     />
                     <div className="hidden flex flex-col">
                       <div className="font-bold text-white text-2xl sm:text-3xl">MyApproved</div>
-                      <div className="text-base sm:text-lg text-[#FFB800] font-semibold tracking-wide uppercase">Trusted Tradespeople</div>
+                      <div className="text-base sm:text-lg text-brand-amber font-semibold tracking-wide uppercase">Trusted Tradespeople</div>
                     </div>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 rounded-lg hover:bg-white/20 transition-colors text-white"
+                  className="p-2 rounded-xl hover:bg-white/20 transition-colors text-white"
                 >
                   <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
@@ -228,7 +228,7 @@ const EnhancedHeader = () => {
                               document.getElementById('ai-quote-trigger')?.click();
                             }, 100);
                           }}
-                          className="w-full flex items-center gap-3 p-4 rounded-xl transition-all duration-200 hover:bg-gray-50 text-gray-700 hover:text-[#1A3A8A] border border-transparent"
+                          className="w-full flex items-center gap-3 p-4 rounded-xl transition-all duration-200 hover:bg-gray-50 text-gray-700 hover:text-brand-navy border border-transparent"
                         >
                           <IconComponent className="w-5 h-5 flex-shrink-0" />
                           <div className="flex-1 min-w-0">
@@ -255,8 +255,8 @@ const EnhancedHeader = () => {
                         }}
                         className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-200 ${
                           isActive
-                            ? 'bg-blue-50 text-[#1A3A8A] shadow-sm border border-blue-100'
-                            : 'hover:bg-gray-50 text-gray-700 hover:text-[#1A3A8A] border border-transparent'
+                            ? 'bg-blue-50 text-brand-navy shadow-sm border border-blue-100'
+                            : 'hover:bg-gray-50 text-gray-700 hover:text-brand-navy border border-transparent'
                         }`}
                       >
                         <IconComponent className="w-5 h-5 flex-shrink-0" />
@@ -271,11 +271,11 @@ const EnhancedHeader = () => {
 
                 {/* Login Options */}
                 <div className="mt-6 space-y-2">
-                  <h3 className="font-semibold text-gray-900 mb-3 text-sm">Account Access</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-3 text-sm">Account Access</h3>
                   <Link
                     href="/login/client"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 text-gray-700 hover:text-[#1A3A8A] transition-colors"
+                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-navy transition-colors"
                   >
                     <User className="w-4 h-4 flex-shrink-0" />
                     <span className="font-medium text-sm">Customer Login</span>
@@ -283,7 +283,7 @@ const EnhancedHeader = () => {
                   <Link
                     href="/login/trade"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 text-gray-700 hover:text-[#1A3A8A] transition-colors"
+                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-navy transition-colors"
                   >
                     <Wrench className="w-4 h-4 flex-shrink-0" />
                     <span className="font-medium text-sm">Tradesperson Login</span>
@@ -292,11 +292,11 @@ const EnhancedHeader = () => {
 
                 {/* Sign Up Options */}
                 <div className="mt-6 space-y-2">
-                  <h3 className="font-semibold text-gray-900 mb-3 text-sm">Create Account</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-3 text-sm">Create Account</h3>
                   <Link
                     href="/register/client"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 text-gray-700 hover:text-[#1A3A8A] transition-colors"
+                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-navy transition-colors"
                   >
                     <User className="w-4 h-4 flex-shrink-0" />
                     <span className="font-medium text-sm">Register as Customer</span>
@@ -304,7 +304,7 @@ const EnhancedHeader = () => {
                   <Link
                     href="/register/tradesperson"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 text-gray-700 hover:text-[#1A3A8A] transition-colors"
+                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-navy transition-colors"
                   >
                     <Wrench className="w-4 h-4 flex-shrink-0" />
                     <span className="font-medium text-sm">Register as Tradesperson</span>
@@ -313,10 +313,10 @@ const EnhancedHeader = () => {
 
                 {/* Contact */}
                 <div className="mt-6 p-3 bg-gradient-to-r from-blue-50 to-yellow-50 rounded-xl border border-blue-100">
-                  <h3 className="font-semibold text-gray-900 mb-2 text-sm">Need Help?</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-2 text-sm">Need Help?</h3>
                   <Link
                     href="tel:08001234567"
-                    className="flex items-center gap-2 text-[#1A3A8A] font-semibold hover:text-[#0A2463] transition-colors text-sm"
+                    className="flex items-center gap-2 text-brand-navy font-semibold hover:text-brand-navyDark transition-colors text-sm"
                   >
                     <Phone className="w-4 h-4 flex-shrink-0" />
                     <span>0800 123 4567</span>
@@ -329,7 +329,7 @@ const EnhancedHeader = () => {
               <div className="p-6 border-t border-gray-100 bg-gray-50/50">
                 <Button
                   asChild
-                  className="w-full bg-[#FFB800] hover:bg-[#FFB800] text-gray-900 font-bold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200"
+                  className="w-full bg-brand-amber hover:bg-brand-amber text-gray-900 font-bold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200"
                 >
                   <Link href="/instant-quote" onClick={() => setIsMobileMenuOpen(false)}>
                     <span>Get Free Quote</span>

@@ -1225,7 +1225,7 @@ export default function AdminDashboardPage() {
           <div className="flex justify-between items-center">
             <div>
               <div className="flex items-center gap-4">
-              <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+              <h1 className="text-3xl font-extrabold text-brand-navy">Admin Dashboard</h1>
               </div>
               <p className="text-gray-600">Manage tradespeople, jobs, and applications</p>
             </div>
@@ -2359,7 +2359,7 @@ export default function AdminDashboardPage() {
                 ) : supportTickets.length === 0 ? (
                   <div className="text-center py-12">
                     <HeadphonesIcon className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No support tickets</h3>
+                    <h3 className="text-lg font-extrabold text-brand-navy mb-2">No support tickets</h3>
                     <p className="text-gray-600 mb-4">
                       {supportStatus === "all" 
                         ? "No support tickets found"
@@ -2555,7 +2555,7 @@ export default function AdminDashboardPage() {
                 ) : disputes.length === 0 ? (
                   <div className="text-center py-12">
                     <AlertTriangle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No disputes found</h3>
+                    <h3 className="text-lg font-extrabold text-brand-navy mb-2">No disputes found</h3>
                     <p className="text-gray-600 mb-4">
                       {disputeStatus === "all" 
                         ? "No dispute issues have been submitted"
@@ -2977,7 +2977,7 @@ export default function AdminDashboardPage() {
              </DialogHeader>
              {selectedJobForUnflag && (
                <div className="space-y-4">
-                 <div className="bg-gray-50 p-3 rounded-lg">
+                 <div className="bg-gray-50 p-3 rounded-xl">
                    <h4 className="font-semibold mb-2 text-sm">Job Details:</h4>
                    <p className="text-sm text-gray-600 mb-1">
                      <strong>Trade:</strong> {selectedJobForUnflag.trade}
@@ -3077,7 +3077,7 @@ export default function AdminDashboardPage() {
             {selectedDispute && (
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-red-50 p-3 rounded-lg border border-red-200">
+                  <div className="bg-red-50 p-3 rounded-xl border border-red-200">
                     <h4 className="font-semibold mb-2 text-sm text-red-800">User Details:</h4>
                     <p className="text-sm text-red-700 mb-1">
                       <strong>Name:</strong> {selectedDispute.user_name}
@@ -3089,7 +3089,7 @@ export default function AdminDashboardPage() {
                       <strong>Type:</strong> {selectedDispute.user_type}
                     </p>
                   </div>
-                  <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
+                  <div className="bg-orange-50 p-3 rounded-xl border border-orange-200">
                     <h4 className="font-semibold mb-2 text-sm text-orange-800">Dispute Info:</h4>
                     <p className="text-sm text-orange-700 mb-1">
                       <strong>Priority:</strong> HIGH
@@ -3104,7 +3104,7 @@ export default function AdminDashboardPage() {
                 </div>
 
                 {selectedDispute.job_info && (
-                  <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                  <div className="bg-blue-50 p-3 rounded-xl border border-blue-200">
                     <h4 className="font-semibold mb-2 text-sm text-blue-800">Related Job:</h4>
                     <p className="text-sm text-blue-700 mb-1">
                       <strong>Trade:</strong> {selectedDispute.job_info.trade}
@@ -3118,7 +3118,7 @@ export default function AdminDashboardPage() {
                   </div>
                 )}
 
-                <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                <div className="bg-yellow-50 p-4 rounded-xl border border-yellow-200">
                   <h4 className="font-semibold mb-2 text-sm text-yellow-800">🚨 Dispute Details:</h4>
                   <p className="text-sm text-gray-700 whitespace-pre-line font-medium">{selectedDispute.original_message}</p>
                 </div>
@@ -3132,7 +3132,7 @@ export default function AdminDashboardPage() {
                       id="disputeStatus"
                       value={selectedDispute.status}
                       onChange={(e) => setSelectedDispute({...selectedDispute, status: e.target.value})}
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"
                     >
                       <option value="open">🚨 Open</option>
                       <option value="assigned">👤 Assigned</option>
@@ -3217,31 +3217,31 @@ export default function AdminDashboardPage() {
             ) : selectedTradesperson ? (
               <div className="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="bg-gray-50 rounded-xl p-3">
                     <p className="text-xs text-gray-500">Full Name</p>
                     <p className="font-medium">{selectedTradesperson.first_name} {selectedTradesperson.last_name}</p>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="bg-gray-50 rounded-xl p-3">
                     <p className="text-xs text-gray-500">Email</p>
                     <p className="font-medium">{selectedTradesperson.email}</p>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="bg-gray-50 rounded-xl p-3">
                     <p className="text-xs text-gray-500">Phone</p>
                     <p className="font-medium">{selectedTradesperson.phone || "—"}</p>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="bg-gray-50 rounded-xl p-3">
                     <p className="text-xs text-gray-500">Trade</p>
                     <p className="font-medium">{selectedTradesperson.trade || "—"}</p>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="bg-gray-50 rounded-xl p-3">
                     <p className="text-xs text-gray-500">Experience</p>
                     <p className="font-medium">{selectedTradesperson.years_experience ?? "—"} years</p>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="bg-gray-50 rounded-xl p-3">
                     <p className="text-xs text-gray-500">Hourly rate</p>
                     <p className="font-medium">£{selectedTradesperson.hourly_rate ?? "—"}</p>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-3 col-span-2">
+                  <div className="bg-gray-50 rounded-xl p-3 col-span-2">
                     <p className="text-xs text-gray-500">Address</p>
                     <p className="font-medium">{selectedTradesperson.address || "—"}</p>
                     <p className="text-sm text-gray-600 mt-1">
@@ -3257,7 +3257,7 @@ export default function AdminDashboardPage() {
                   ) : (
                     <div className="space-y-2">
                       {selectedTradespersonDocs.map((doc) => (
-                        <div key={doc.id} className="border rounded-lg p-3 flex items-start justify-between gap-3">
+                        <div key={doc.id} className="border rounded-xl p-3 flex items-start justify-between gap-3">
                           <div>
                             <p className="font-medium text-sm">{doc.doc_type || "document"}</p>
                             <p className="text-xs text-gray-500">{doc.file_path}</p>

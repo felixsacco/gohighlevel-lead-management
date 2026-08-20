@@ -17,12 +17,12 @@ export default function TestFileUploadPage() {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-2xl font-bold mb-6">File Upload Test Page</h1>
+      <h1 className="text-2xl font-extrabold mb-6">File Upload Test Page</h1>
       
       <div className="space-y-8">
         {/* Simple Test */}
-        <div className="p-4 border rounded-lg">
-          <h2 className="text-lg font-semibold mb-4">Simple File Upload Test</h2>
+        <div className="p-4 border rounded-xl">
+          <h2 className="text-lg font-extrabold mb-4">Simple File Upload Test</h2>
           
           <input
             type="file"
@@ -34,7 +34,7 @@ export default function TestFileUploadPage() {
           
           {selectedFiles.length > 0 && (
             <div className="mt-4">
-              <h3 className="font-medium mb-2">Selected Files ({selectedFiles.length}):</h3>
+              <h3 className="font-extrabold mb-2">Selected Files ({selectedFiles.length}):</h3>
               <ul className="space-y-1">
                 {selectedFiles.map((file, index) => (
                   <li key={index} className="text-sm text-gray-600">

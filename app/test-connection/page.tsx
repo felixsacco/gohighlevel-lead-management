@@ -22,7 +22,7 @@ export default function TestConnection() {
 
   return (
     <div className="container mx-auto py-10 px-4">
-      <h1 className="text-2xl font-bold mb-6">Supabase Connection Test</h1>
+      <h1 className="text-2xl font-extrabold mb-6">Supabase Connection Test</h1>
 
       <Button onClick={testConnection} disabled={loading} className="mb-6">
         {loading ? "Testing..." : "Test Connection"}
@@ -30,13 +30,13 @@ export default function TestConnection() {
 
       {result && (
         <div
-          className={`p-4 rounded-lg border ${
+          className={`p-4 rounded-xl border ${
             result.success
               ? "bg-green-50 border-green-200"
               : "bg-red-50 border-red-200"
           }`}
         >
-          <h2 className="font-semibold mb-2">
+          <h2 className="font-extrabold mb-2">
             {result.success
               ? "✅ Connection Successful"
               : "❌ Connection Failed"}
@@ -47,8 +47,8 @@ export default function TestConnection() {
         </div>
       )}
 
-      <div className="mt-8 bg-gray-50 p-4 rounded-lg">
-        <h3 className="font-semibold mb-2">Troubleshooting:</h3>
+      <div className="mt-8 bg-gray-50 p-4 rounded-xl">
+        <h3 className="font-extrabold mb-2">Troubleshooting:</h3>
         <ul className="list-disc list-inside space-y-1 text-sm">
           <li>Check if your Supabase project is active</li>
           <li>Verify the URL and API key are correct</li>

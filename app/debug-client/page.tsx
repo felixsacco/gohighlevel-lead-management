@@ -49,7 +49,7 @@ export default function DebugClientPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h3 className="font-semibold mb-2">LocalStorage Data:</h3>
+              <h3 className="font-extrabold mb-2">LocalStorage Data:</h3>
               <pre className="bg-gray-100 p-4 rounded text-sm overflow-auto">
                 {localStorageData}
               </pre>
@@ -62,7 +62,7 @@ export default function DebugClientPage() {
 
             {userData && (
               <div>
-                <h3 className="font-semibold mb-2">API Response:</h3>
+                <h3 className="font-extrabold mb-2">API Response:</h3>
                 <pre className="bg-gray-100 p-4 rounded text-sm overflow-auto">
                   {userData}
                 </pre>

@@ -365,7 +365,7 @@ export default function ClientDashboardPage() {
         <Container className="py-8 space-y-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">Client dashboard</h1>
+              <h1 className="text-2xl font-extrabold text-brand-navy">Client dashboard</h1>
               <p className="text-slate-600">
                 Welcome back{user.firstName ? `, ${user.firstName}` : ""}. Post a job or track existing work.
               </p>
@@ -585,7 +585,7 @@ export default function ClientDashboardPage() {
                                     return (
                                       <li
                                         key={app.id}
-                                        className="rounded-lg border border-slate-200 bg-white p-3 space-y-2"
+                                        className="rounded-xl border border-slate-200 bg-white p-3 space-y-2"
                                       >
                                         <div className="flex flex-wrap items-start justify-between gap-2">
                                           <div>
@@ -623,7 +623,7 @@ export default function ClientDashboardPage() {
                                           </p>
                                         ) : null}
                                         {app.quotation_notes ? (
-                                          <div className="text-xs rounded-md bg-slate-50 p-2 text-slate-700 border border-slate-100">
+                                          <div className="text-xs rounded-xl bg-slate-50 p-2 text-slate-700 border border-slate-100">
                                             <span className="font-semibold text-slate-900">Their message:</span>{" "}
                                             {app.quotation_notes}
                                           </div>

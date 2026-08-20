@@ -832,7 +832,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </header>
 
         {/* Hero */}
-        <div className="bg-gradient-to-br from-blue-900 to-blue-800 text-white pb-12 sm:pb-16 pt-8 sm:pt-12">
+        <div className="bg-gradient-to-br from-brand-navy to-brand-navy text-white pb-12 sm:pb-16 pt-8 sm:pt-12">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 mb-4">
               <span className="bg-yellow-500 text-blue-900 px-3 py-1 rounded-full text-sm font-bold">
@@ -842,7 +842,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <span className="text-blue-100">{post.readTime}</span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
               {post.title}
             </h1>
             
@@ -862,7 +862,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         {/* Main Content */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           {/* Introduction */}
-          <div className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 mb-8">
+          <div className="bg-white rounded-xl shadow-sm p-6 sm:p-8 mb-8">
             <div className="prose prose-lg max-w-none text-gray-600 whitespace-pre-line">
               {post.content.introduction}
             </div>
@@ -870,8 +870,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           {/* Sections */}
           {post.content.sections.map((section, index) => (
-            <section key={index} className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 mb-8">
-              <h2 className="text-2xl font-bold text-blue-900 mb-4">
+            <section key={index} className="bg-white rounded-xl shadow-sm p-6 sm:p-8 mb-8">
+              <h2 className="text-2xl font-extrabold text-brand-navy mb-4">
                 {section.heading}
               </h2>
               <div className="prose prose-lg max-w-none text-gray-600 whitespace-pre-line mb-6">
@@ -880,7 +880,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               
               {section.tips.length > 0 && (
                 <div className="bg-yellow-50 rounded-xl p-6">
-                  <h3 className="font-bold text-yellow-800 mb-3 flex items-center gap-2">
+                  <h3 className="font-extrabold text-yellow-800 mb-3 flex items-center gap-2">
                     <Clock className="w-5 h-5" />
                     Pro Tips
                   </h3>
@@ -898,8 +898,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           ))}
 
           {/* CTA Box */}
-          <div className="bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl p-6 sm:p-8 text-white mb-8">
-            <h2 className="text-2xl font-bold mb-4">
+          <div className="bg-gradient-to-br from-brand-navy to-brand-navy rounded-xl p-6 sm:p-8 text-white mb-8">
+            <h2 className="text-2xl font-extrabold mb-4">
               Need a Professional? Get Free Quotes Now
             </h2>
             <p className="text-blue-100 mb-6">
@@ -915,14 +915,14 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           {/* FAQs */}
-          <section className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 mb-8" data-speakable>
-            <h2 className="text-2xl font-bold text-blue-900 mb-6">
+          <section className="bg-white rounded-xl shadow-sm p-6 sm:p-8 mb-8" data-speakable>
+            <h2 className="text-2xl font-extrabold text-brand-navy mb-6">
               Frequently Asked Questions
             </h2>
             <div className="space-y-6">
               {post.content.faqs.map((faq, index) => (
                 <div key={index} className="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
-                  <h3 className="font-bold text-gray-900 mb-2">{faq.question}</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-2">{faq.question}</h3>
                   <p className="text-gray-600">{faq.answer}</p>
                 </div>
               ))}
@@ -931,18 +931,18 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           {/* Related Links */}
           {(relatedTradesData.length > 0 || relatedLocationsData.length > 0) && (
-            <section className="bg-gray-100 rounded-2xl p-6 sm:p-8">
-              <h2 className="text-xl font-bold text-blue-900 mb-4">Related Resources</h2>
+            <section className="bg-gray-100 rounded-xl p-6 sm:p-8">
+              <h2 className="text-xl font-extrabold text-brand-navy mb-4">Related Resources</h2>
               
               {relatedTradesData.length > 0 && (
                 <div className="mb-4">
-                  <h3 className="font-semibold text-gray-700 mb-2">Related Trades:</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-2">Related Trades:</h3>
                   <div className="flex flex-wrap gap-2">
                     {relatedTradesData.map(trade => (
                       <Link
                         key={trade!.slug}
                         href={`/find-tradespeople/${trade!.slug}`}
-                        className="inline-flex items-center gap-1 bg-white px-3 py-2 rounded-lg text-blue-600 hover:bg-blue-50 transition-colors"
+                        className="inline-flex items-center gap-1 bg-white px-3 py-2 rounded-xl text-blue-600 hover:bg-blue-50 transition-colors"
                       >
                         Find {trade!.plural}
                         <ArrowRight className="w-4 h-4" />
@@ -954,7 +954,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               
               {relatedLocationsData.length > 0 && (
                 <div>
-                  <h3 className="font-semibold text-gray-700 mb-2">Popular Locations:</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-2">Popular Locations:</h3>
                   <div className="flex flex-wrap gap-2">
                     {relatedLocationsData.map(location => {
                       const slug = location!.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
@@ -962,7 +962,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                         <Link
                           key={location!.name}
                           href={`/find-tradespeople?location=${slug}`}
-                          className="inline-flex items-center gap-1 bg-white px-3 py-2 rounded-lg text-blue-600 hover:bg-blue-50 transition-colors"
+                          className="inline-flex items-center gap-1 bg-white px-3 py-2 rounded-xl text-blue-600 hover:bg-blue-50 transition-colors"
                         >
                           Tradespeople in {location!.name}
                           <ArrowRight className="w-4 h-4" />

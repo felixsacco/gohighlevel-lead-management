@@ -137,8 +137,8 @@ export default function TestRegistrationPage() {
             </form>
 
             {result && (
-              <div className="mt-6 p-4 border rounded-lg">
-                <h3 className="font-semibold mb-2">Result:</h3>
+              <div className="mt-6 p-4 border rounded-xl">
+                <h3 className="font-extrabold mb-2">Result:</h3>
                 <pre className="text-sm bg-gray-100 p-2 rounded overflow-auto">
                   {JSON.stringify(result, null, 2)}
                 </pre>

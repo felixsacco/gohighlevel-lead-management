@@ -62,10 +62,10 @@ GOHIGHLEVEL_LOCATION_ID=${locationId}`;
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-brand-navy">
             <ExternalLink className="w-5 h-5" />
             GoHighLevel Private Integration Setup
           </CardTitle>
@@ -73,8 +73,8 @@ GOHIGHLEVEL_LOCATION_ID=${locationId}`;
         <CardContent className="space-y-6">
           {/* Step 1: Get Private Integration Token */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Step 1: Get Your Private Integration Token</h3>
-            <div className="p-4 bg-blue-50 rounded-lg">
+            <h3 className="text-lg font-extrabold text-brand-navy">Step 1: Get Your Private Integration Token</h3>
+            <div className="p-4 bg-blue-50 rounded-xl">
               <ol className="text-sm text-blue-800 space-y-2 list-decimal list-inside">
                 <li>Log in to your GoHighLevel account</li>
                 <li>Go to <strong>Settings</strong> (bottom left corner)</li>
@@ -88,7 +88,7 @@ GOHIGHLEVEL_LOCATION_ID=${locationId}`;
 
           {/* Step 2: Enter Credentials */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Step 2: Enter Your Credentials</h3>
+            <h3 className="text-lg font-extrabold text-brand-navy">Step 2: Enter Your Credentials</h3>
             
             <div className="space-y-4">
               <div className="space-y-2">
@@ -128,7 +128,7 @@ GOHIGHLEVEL_LOCATION_ID=${locationId}`;
 
           {/* Step 3: Test Connection */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Step 3: Test Connection</h3>
+            <h3 className="text-lg font-extrabold text-brand-navy">Step 3: Test Connection</h3>
             <p className="text-sm text-gray-600">
               Test your connection to ensure everything is working correctly.
             </p>
@@ -151,12 +151,12 @@ GOHIGHLEVEL_LOCATION_ID=${locationId}`;
 
           {/* Step 4: Environment Variables */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Step 4: Configure Environment Variables</h3>
+            <h3 className="text-lg font-extrabold text-brand-navy">Step 4: Configure Environment Variables</h3>
             <p className="text-sm text-gray-600">
               Add these to your <code className="bg-gray-100 px-1 rounded">.env.local</code> file:
             </p>
             
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-gray-50 rounded-xl">
               <div className="space-y-1 text-sm font-mono text-gray-900">
                 <div>GOHIGHLEVEL_API_KEY={apiKey || 'your_private_integration_token_here'}</div>
                 <div>GOHIGHLEVEL_LOCATION_ID={locationId || 'your_location_id_here'}</div>
@@ -176,7 +176,7 @@ GOHIGHLEVEL_LOCATION_ID=${locationId}`;
           {/* Test Results */}
           {testResult && (
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Test Results</h3>
+              <h3 className="text-lg font-extrabold text-brand-navy">Test Results</h3>
               <Alert variant={testResult.success ? "default" : "destructive"}>
                 <div className="flex items-center gap-2">
                   {testResult.success ? (
@@ -203,8 +203,8 @@ GOHIGHLEVEL_LOCATION_ID=${locationId}`;
           {/* Next Steps */}
           {testResult?.success && (
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Next Steps</h3>
-              <div className="p-4 bg-green-50 rounded-lg">
+              <h3 className="text-lg font-extrabold text-brand-navy">Next Steps</h3>
+              <div className="p-4 bg-green-50 rounded-xl">
                 <ol className="text-sm text-green-800 space-y-2 list-decimal list-inside">
                   <li>Copy the environment variables above</li>
                   <li>Add them to your <code className="bg-green-100 px-1 rounded">.env.local</code> file</li>

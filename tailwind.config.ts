@@ -41,6 +41,15 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
+        brand: {
+          navy: '#1A3A8A',
+          navyDark: '#0A2463',
+          amber: '#FFB800',
+          amberLight: '#FFC933',
+          amberDark: '#E0A100',
+          slate: '#F1F5F9',
+          ink: '#111111',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

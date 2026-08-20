@@ -283,7 +283,7 @@ export default function AEOContentBlock({
         {/* Q1 - Pricing intent */}
         <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
           <h2
-            className="text-base sm:text-lg font-extrabold text-[#002FA7] mb-1.5 leading-snug"
+            className="text-base sm:text-lg font-extrabold text-brand-navy mb-1.5 leading-snug"
             itemProp="name"
           >
             {q1}
@@ -304,7 +304,7 @@ export default function AEOContentBlock({
         {/* Q2 - Verification intent */}
         <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
           <h2
-            className="text-base sm:text-lg font-extrabold text-[#002FA7] mb-1.5 leading-snug"
+            className="text-base sm:text-lg font-extrabold text-brand-navy mb-1.5 leading-snug"
             itemProp="name"
           >
             {q2}

@@ -1,62 +1,38 @@
-# API Endpoints
+# API Routes
 
-This directory contains the API routes for the Trades Platform.
-
-## Available Endpoints
-
-### 1. Estimate Job Cost
-
-- **Endpoint:** `POST /api/estimate`
-- **Description:** Get an AI-powered cost estimate for a job description
-- **Request Body:**
-  ```json
-  {
-    "description": "string"
-  }
-  ```
-- **Response:**
-  ```json
-  {
-    "estimate": "string"
-  }
-  ```
-
-### 2. Submit Lead
-
-- **Endpoint:** `POST /api/leads`
-- **Description:** Submit a new lead with contact information and job details
-- **Request Body:**
-  ```json
-  {
-    "name": "string | null",
-    "email": "string",
-    "phone": "string | null",
-    "trade": "string",
-    "postcode": "string",
-    "description": "string",
-    "estimate": "string"
-  }
-  ```
-- **Response:**
-  ```json
-  {
-    "success": true,
-    "message": "Lead submitted successfully",
-    "data": {}
-  }
-  ```
+This directory contains the Next.js App Router route handlers for MyApproved. Each group is defined by a `route.ts` file inside a `app/api/...` folder.
 
 ## Environment Variables
 
-The following environment variables need to be set for the API to work properly:
+Required for the API to function:
 
-- `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase project URL
-- `SUPABASE_SERVICE_ROLE_KEY`: Your Supabase service role key
-- `OPENAI_API_KEY`: (Optional) Your OpenAI API key for real AI estimates
+- `NEXT_PUBLIC_SUPABASE_URL` — Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Supabase public key (client-side / low-privilege)
+- `SUPABASE_SERVICE_ROLE_KEY` — Supabase service-role key (admin routes only)
+
+AI estimate/quote routes are powered by the **Go backend** (Gemini/DeepSeek), not by an OpenAI key. There is no `OPENAI_API_KEY` in this codebase.
+
+## Key Route Groups
+
+| Group | Purpose |
+|---|---|
+| `app/api/trades/**` | Tradesperson registration (`service_role` access) |
+| `app/api/leads/**` | Lead submission, purchase, unlock |
+| `app/api/jobs/**` | Job submission, apply, auto-assign |
+| `app/api/crm/**` | GoHighLevel sync + OAuth callback |
+| `app/api/notifications/**` | Scheduled notification processing (QStash/CRON) |
+| `app/api/places/**` | Google Places search + diagnosis |
+| `app/api/empire-trigger/**` | Empire OS observability webhook |
+
+For the authoritative, up-to-date route inventory and integration matrix, see `docs/API_INVENTORY.md`.
+
+## Graceful Degradation
+
+All routes follow a **degrade-gracefully** pattern: missing keys produce a logged warning and an empty/no-op result — they never throw at build time or runtime. Reference implementations: `lib/companies-house.ts`, `lib/fleet/emitFleetIngest.ts`.
 
 ## Error Handling
 
-All API endpoints return appropriate HTTP status codes and error messages in the following format:
+Routes return consistent JSON error bodies:
 
 ```json
 {
@@ -67,4 +43,4 @@ All API endpoints return appropriate HTTP status codes and error messages in the
 
 ## Rate Limiting
 
-Consider implementing rate limiting in production to prevent abuse of the API endpoints. This can be done using a middleware like `next-rate-limiter` or at the server level.
+Rate limiting and abuse prevention are handled at the platform level (Vercel). reCAPTCHA Enterprise is used on login/registration and lead forms rather than a per-route rate limiter.

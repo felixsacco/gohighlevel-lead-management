@@ -589,7 +589,7 @@ export default function ClientLoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#1A3A8A] flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+    <div className="relative min-h-screen bg-brand-navy flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
       {/* Background Grid Pattern - matching homepage */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -606,21 +606,21 @@ export default function ClientLoginPage() {
       <Container size="wide" className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
         {/* Left: Login card (moved left) */}
         <div className="order-1 md:order-1 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-3xl blur-xl" />
-          <Card className="relative w-full rounded-3xl shadow-2xl border border-white/20 bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md">
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
+          <Card className="relative w-full rounded-3xl shadow-2xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md">
           <CardHeader className="text-center pb-4 sm:pb-6">
             {/* Brand text removed as requested */}
             {/* Trust badge - Matching Homepage */}
-            <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-[#FFB800] px-3 py-1.5 text-xs font-extrabold text-black border-2 border-[#FFB800]">
+            <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-brand-amber px-3 py-1.5 text-xs font-extrabold text-black border-2 border-brand-amber">
               <Star className="h-3.5 w-3.5 fill-yellow-600 text-yellow-700" />
               Business verified
             </div>
             <div className="flex items-center justify-center mb-3">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-md">
+              <div className="w-16 h-16 bg-gradient-to-r from-brand-navy to-brand-navy rounded-full flex items-center justify-center shadow-md">
                 <User className="w-8 h-8 text-white" />
               </div>
             </div>
-            <CardTitle className="text-[26px] sm:text-3xl font-bold text-[#FFB800] mb-1">
+            <CardTitle className="text-[26px] sm:text-3xl font-bold text-brand-amber mb-1">
               Sign in to your account
             </CardTitle>
             <p className="text-blue-100 text-sm sm:text-base">Manage bookings, messages, and saved pros.</p>
@@ -643,7 +643,7 @@ export default function ClientLoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="h-12 text-base bg-gradient-to-br from-blue-900 to-blue-800 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200"
+                    className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200"
                     required
                   />
                 </div>
@@ -664,7 +664,7 @@ export default function ClientLoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
-                    className="h-12 text-base bg-gradient-to-br from-blue-900 to-blue-800 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg pr-10 text-white placeholder:text-blue-200"
+                    className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl pr-10 text-white placeholder:text-blue-200"
                     required
                   />
                   <button
@@ -720,14 +720,14 @@ export default function ClientLoginPage() {
                   <span className="w-full border-t border-gray-200" />
                 </div>
                 <div className="relative flex justify-center text-xs">
-                  <span className="bg-blue-900/80 px-2 text-yellow-400">Enter your details</span>
+                  <span className="bg-brand-navy/80 px-2 text-yellow-400">Enter your details</span>
                 </div>
               </div>
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+                className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
               >
                 {isLoading ? (
                   <span className="inline-flex items-center gap-2">
@@ -765,13 +765,13 @@ export default function ClientLoginPage() {
 
               {/* Benefits bullets */}
               <ul className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 text-left">
-                <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-md px-2 py-1 backdrop-blur-sm">
+                <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
                   <CheckCircle className="h-4 w-4 text-green-400" /> No hidden fees
                 </li>
-                <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-md px-2 py-1 backdrop-blur-sm">
+                <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
                   <Shield className="h-4 w-4 text-blue-400" /> Secure login
                 </li>
-                <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-md px-2 py-1 backdrop-blur-sm">
+                <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
                   <Star className="h-4 w-4 text-yellow-400" /> Business verified
                 </li>
               </ul>
@@ -780,7 +780,7 @@ export default function ClientLoginPage() {
               <div className="mt-5">
                 <Link
                   href="/register/client"
-                  className="inline-flex items-center justify-center w-full h-11 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 text-sm font-semibold shadow hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200"
+                  className="inline-flex items-center justify-center w-full h-11 rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 text-sm font-semibold shadow hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200"
                 >
                   Create a free account
                 </Link>
@@ -796,7 +796,7 @@ export default function ClientLoginPage() {
           {/* UK Coverage Map Card - Professional Design */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
-            <div className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md shadow-2xl overflow-hidden">
+            <div className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md shadow-2xl overflow-hidden">
               {/* Real Leaflet Map */}
               <div className="relative w-full h-[340px] md:h-[400px]">
                 {/* Leaflet renders into this div */}
@@ -808,7 +808,7 @@ export default function ClientLoginPage() {
 
                 {/* ── Left panel: trade types available now ── */}
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 z-[999]">
-                  <div className="bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md border border-white/20 rounded-xl p-2.5 shadow-2xl min-w-[130px]">
+                  <div className="bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md border border-white/20 rounded-xl p-2.5 shadow-2xl min-w-[130px]">
                     <p className="text-[8px] font-black uppercase tracking-[0.18em] text-[#F5A623] mb-2 px-0.5">
                       Available Now
                     </p>
@@ -862,7 +862,7 @@ export default function ClientLoginPage() {
                         className="absolute pointer-events-none"
                         style={{ left: mapTooltip.x, top: mapTooltip.y - 10, transform: 'translate(-50%,-100%)' }}
                       >
-                        <div className="bg-gradient-to-br from-blue-900 to-blue-800 border border-white/20 rounded-xl shadow-2xl shadow-black/70 p-3 min-w-[210px]">
+                        <div className="bg-gradient-to-br from-brand-navy to-brand-navy border border-white/20 rounded-xl shadow-2xl shadow-black/70 p-3 min-w-[210px]">
                           {/* Trade type + verified badge */}
                           <div className="flex items-center justify-between mb-1.5">
                             <div className="flex items-center gap-1.5">
@@ -908,7 +908,7 @@ export default function ClientLoginPage() {
               </div>
 
               {/* Stats Bar at Bottom */}
-              <div className="bg-gradient-to-r from-blue-900/95 to-blue-800/95 backdrop-blur-md p-4 border-t border-white/10">
+              <div className="bg-gradient-to-r from-brand-navy/95 to-brand-navy/95 backdrop-blur-md p-4 border-t border-white/10">
                 <div className="grid grid-cols-3 divide-x divide-white/[0.08]">
                   <div className="text-center px-3">
                     <div className="text-xl sm:text-2xl font-black text-[#F5A623] tabular-nums">{onlineCount}+</div>
@@ -929,10 +929,10 @@ export default function ClientLoginPage() {
 
           {/* Hero-style feature cards */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-3xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
+            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h2 className="text-xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Why Choose MyApproved</h2>
+              <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Why Choose MyApproved</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm">
@@ -966,8 +966,8 @@ export default function ClientLoginPage() {
           </div>
 
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-2xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md rounded-2xl border border-white/20 p-4 shadow-xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-xl blur-xl" />
+            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-xl border border-white/20 p-4 shadow-xl">
               <div className="flex items-center justify-center gap-2 text-center">
                 <Shield className="h-5 w-5 text-green-400" />
                 <span className="text-lg font-bold text-white">Identity checked</span>

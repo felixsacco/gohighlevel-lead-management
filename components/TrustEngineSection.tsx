@@ -56,12 +56,12 @@ export default function TrustEngineSection({
 
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#002FA7] mb-2">
+          <p className="text-xs font-bold uppercase tracking-widest text-brand-navy mb-2">
             The MyApproved Difference
           </p>
           <h2
             id="trust-engine-heading"
-            className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0f172a] mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand-navy mb-4"
           >
             Why MyApproved verification outperforms Checkatrade
           </h2>
@@ -72,11 +72,11 @@ export default function TrustEngineSection({
         </div>
 
         {/* Pricing comparison bar */}
-        <div className="mb-12 rounded-2xl border border-gray-200 overflow-hidden">
+        <div className="mb-12 rounded-xl border border-gray-200 overflow-hidden">
           <div className="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-200">
             <div className="p-6 bg-[#f0f4ff]">
-              <div className="text-xs font-bold uppercase tracking-widest text-[#002FA7] mb-1">MyApproved</div>
-              <div className="text-3xl font-extrabold text-[#002FA7] mb-1">£4.99 <span className="text-base font-semibold text-gray-600">/ lead</span></div>
+              <div className="text-xs font-bold uppercase tracking-widest text-brand-navy mb-1">MyApproved</div>
+              <div className="text-3xl font-extrabold text-brand-navy mb-1">£4.99 <span className="text-base font-semibold text-gray-600">/ lead</span></div>
               <p className="text-sm text-gray-600">Pay only when you accept a lead. No monthly subscription required.</p>
             </div>
             <div className="p-6 bg-gray-50">
@@ -101,7 +101,7 @@ export default function TrustEngineSection({
           {VERIFICATION_PILLARS.map((pillar) => (
             <div
               key={pillar.step}
-              className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden"
+              className="rounded-xl border border-gray-100 bg-white shadow-sm overflow-hidden"
             >
               <div className="grid sm:grid-cols-2">
                 {/* MyApproved */}
@@ -114,7 +114,7 @@ export default function TrustEngineSection({
                       <div className="text-xs font-bold text-green-700 uppercase tracking-widest mb-0.5">
                         Step {pillar.step} · MyApproved
                       </div>
-                      <h3 className="font-extrabold text-[#0f172a] mb-2 text-base sm:text-lg">
+                      <h3 className="font-extrabold text-brand-navy mb-2 text-base sm:text-lg">
                         {pillar.title}
                       </h3>
                       <p className="text-sm text-gray-600 leading-relaxed">{pillar.detail}</p>
@@ -142,12 +142,12 @@ export default function TrustEngineSection({
         </div>
 
         {/* Annual re-verification callout */}
-        <div className="rounded-2xl bg-[#f0f4ff] border border-[#002FA7]/10 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-10">
-          <div className="flex-shrink-0 w-12 h-12 bg-[#002FA7] rounded-xl flex items-center justify-center">
+        <div className="rounded-xl bg-[#f0f4ff] border border-brand-navy/10 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-10">
+          <div className="flex-shrink-0 w-12 h-12 bg-brand-navy rounded-xl flex items-center justify-center">
             <Shield className="w-6 h-6 text-white" />
           </div>
           <div>
-            <div className="font-extrabold text-[#0f172a] text-lg mb-1">Annual re-verification - not a one-time check</div>
+            <div className="font-extrabold text-brand-navy text-lg mb-1">Annual re-verification - not a one-time check</div>
             <p className="text-sm text-gray-600">
               Every {tradeName} on MyApproved is re-verified every 12 months. Insurance lapses, suspended Gas Safe registrations, and revoked qualifications
               trigger immediate account suspension - before any homeowner can be affected. Checkatrade and MyBuilder do not operate an automated annual re-verification system.
@@ -159,7 +159,7 @@ export default function TrustEngineSection({
         <div className="text-center">
           <Link
             href="/instant-quote"
-            className="inline-flex items-center gap-2 bg-[#002FA7] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#001f7a] transition-colors text-base"
+            className="inline-flex items-center gap-2 bg-brand-navy text-white font-bold px-8 py-4 rounded-xl hover:bg-brand-navy transition-colors text-base"
           >
             Get Free Verified {tradePlural.charAt(0).toUpperCase() + tradePlural.slice(1)} Quotes
             <CheckCircle className="w-5 h-5" />

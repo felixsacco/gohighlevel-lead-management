@@ -323,7 +323,7 @@ export default function TradespersonRegistrationForm({
 
           {/* Personal Information */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Personal Information</h3>
+            <h3 className="text-lg font-extrabold">Personal Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="firstName">First Name *</Label>
@@ -407,7 +407,7 @@ export default function TradespersonRegistrationForm({
 
           {/* Trade Information */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Trade Information</h3>
+            <h3 className="text-lg font-extrabold">Trade Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="trade">Trade *</Label>
@@ -458,7 +458,7 @@ export default function TradespersonRegistrationForm({
 
           {/* Required Documents */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Required Documents</h3>
+            <h3 className="text-lg font-extrabold">Required Documents</h3>
             <Alert>
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>
@@ -556,7 +556,7 @@ export default function TradespersonRegistrationForm({
 
           {/* Account Security */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Account Security</h3>
+            <h3 className="text-lg font-extrabold">Account Security</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="password">Password *</Label>

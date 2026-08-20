@@ -185,7 +185,7 @@ const TradesCarousel = () => {
         <div className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5">
           <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-gray-900 flex-shrink-0" strokeWidth={1.5} />
           <div>
-            <h3 className="text-base sm:text-lg font-medium text-gray-900" style={{fontWeight: 500}}>{trade.name}</h3>
+            <h3 className="text-base sm:text-lg font-extrabold text-brand-navy" style={{fontWeight: 500}}>{trade.name}</h3>
             <p className="text-xs sm:text-sm text-gray-600">{trade.desc}</p>
           </div>
         </div>
@@ -299,11 +299,11 @@ export default function Home() {
       }) }} />
 
       {/* HERO SECTION — a public register for identity-checked tradespeople, not a marketing banner */}
-      <section className="relative bg-gradient-to-b from-[#0A2463] to-[#1A3A8A] text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
+      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
         {/* Brand background accents — subtle radial glow + amber grain */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
-          <div className="absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-[#1A3A8A]/35 blur-3xl" />
-          <div className="absolute -bottom-40 -right-24 h-[36rem] w-[36rem] rounded-full bg-[#FFB800]/10 blur-3xl" />
+          <div className="absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-brand-navy/35 blur-3xl" />
+          <div className="absolute -bottom-40 -right-24 h-[36rem] w-[36rem] rounded-full bg-brand-amber/10 blur-3xl" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
@@ -311,9 +311,9 @@ export default function Home() {
             {/* Hero Content - Centered */}
             <div className="text-center">
               {/* Register overline — a transparent pill with a single amber stroke */}
-              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-[#FFB800] mb-8 sm:mb-12">
-                <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-[#FFB800]/60" aria-hidden="true"></span>
-                <span className="relative px-7 py-1.5 border border-[#FFB800]/60">
+              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
+                <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-brand-amber/60" aria-hidden="true"></span>
+                <span className="relative px-7 py-1.5 border border-brand-amber/60">
                   <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" className="absolute left-2 top-1/2 -translate-y-1/2 shrink-0">
                     <defs>
                       <radialGradient id="screwL" cx="0.35" cy="0.3" r="1">
@@ -342,7 +342,7 @@ export default function Home() {
                   </svg>
                   <span className="relative z-10">Checked tradespeople across the UK</span>
                 </span>
-                <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-[#FFB800]/60" aria-hidden="true"></span>
+                <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-brand-amber/60" aria-hidden="true"></span>
               </p>
 
               {/* Headline — all white, underscored by a thin amber rule below the descender */}
@@ -402,12 +402,12 @@ export default function Home() {
                         e.stopPropagation();
                         setShowAIModal(true);
                       }}
-                      className="w-full px-4 py-4 sm:py-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FFB800] focus:ring-offset-0 rounded-full text-base sm:text-lg font-medium bg-transparent cursor-pointer text-center sm:text-left"
+                      className="w-full px-4 py-4 sm:py-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-amber focus:ring-offset-0 rounded-full text-base sm:text-lg font-medium bg-transparent cursor-pointer text-center sm:text-left"
                       readOnly
                     />
                   </div>
                   <Button
-                    className="rounded-full bg-[#FFB800] hover:bg-[#FFB800] text-[#0A2463] font-bold px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg w-auto sm:w-auto self-stretch sm:self-auto m-2 sm:m-0 transition-all duration-150 hover:-translate-y-px hover:shadow-md" style={{fontWeight: 800}}
+                    className="rounded-full bg-brand-amber hover:bg-brand-amber text-brand-navyDark font-bold px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg w-auto sm:w-auto self-stretch sm:self-auto m-2 sm:m-0 transition-all duration-150 hover:-translate-y-px hover:shadow-md" style={{fontWeight: 800}}
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowAIModal(true);
@@ -451,10 +451,10 @@ export default function Home() {
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1A3A8A] mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
               One Search. Every Trade.
             </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#1A3A8A]/80 max-w-3xl mx-auto font-semibold px-4">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-brand-navy/80 max-w-3xl mx-auto font-semibold px-4">
               One search covers every trade in your home.
             </p>
           </div>
@@ -466,14 +466,14 @@ export default function Home() {
           <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
             <Button
               size="lg"
-              className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+              className="bg-brand-amber hover:bg-brand-amber text-black font-bold border-2 border-brand-amber px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
               onClick={() => setShowAIModal(true)}
             >
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Instant quote in minutes.</p>
+            <p className="mt-3 text-sm sm:text-base text-brand-navy/70">Instant quote in minutes.</p>
           </div>
         </div>
       </section>
@@ -482,7 +482,7 @@ export default function Home() {
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-[#F1F5F9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1A3A8A] mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
               Why Homeowners Choose MyApproved
             </h2>
           </div>
@@ -490,25 +490,25 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
             {/* Benefit 1 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Checked before they're listed</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>Checked before they're listed</h3>
               <p className="text-sm sm:text-base text-gray-600">No tradesperson is listed until identity, business and insurance checks have passed.</p>
             </div>
 
             {/* Benefit 2 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>See the price before anyone calls</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>See the price before anyone calls</h3>
               <p className="text-sm sm:text-base text-gray-600">Get a costed quote from your job description, so no one has to talk you into a figure.</p>
             </div>
 
             {/* Benefit 3 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Booked into a real slot</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>Booked into a real slot</h3>
               <p className="text-sm sm:text-base text-gray-600">Your job goes into their diary, not a pile of callbacks.</p>
             </div>
 
             {/* Benefit 4 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2" style={{fontWeight: 700}}>Free, no obligation</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>Free, no obligation</h3>
               <p className="text-sm sm:text-base text-gray-600">Posting costs nothing. Quoting costs nothing.</p>
             </div>
           </div>
@@ -517,14 +517,14 @@ export default function Home() {
           <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
             <Button
               size="lg"
-              className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+              className="bg-brand-amber hover:bg-brand-amber text-black font-bold border-2 border-brand-amber px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
               onClick={() => setShowAIModal(true)}
             >
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Checked, priced, booked.</p>
+            <p className="mt-3 text-sm sm:text-base text-brand-navy/70">Checked, priced, booked.</p>
           </div>
         </div>
       </section>
@@ -533,10 +533,10 @@ export default function Home() {
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1A3A8A] mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
               Our Checks
             </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#1A3A8A] max-w-3xl mx-auto font-semibold px-4">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-brand-navy max-w-3xl mx-auto font-semibold px-4">
               Every tradesperson on MyApproved passes identity, business and insurance checks before they can take on work.
             </p>
           </div>
@@ -544,53 +544,53 @@ export default function Home() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {/* Check 1 */}
             <div className="text-center">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-2xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
                   <svg className="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                   </svg>
                 </div>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Photo ID</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Photo ID</h3>
               <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We confirm the person behind the profile is who they say they are, with photo ID verified against a live selfie.</p>
             </div>
 
             {/* Check 2 */}
             <div className="text-center">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-2xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
                   <svg className="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 2v8h8V4H6zm2 2h4v1H8V6zm0 2h4v1H8V8zm0 2h4v1H8v-1z" clipRule="evenodd" />
                   </svg>
                 </div>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Registered business</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Registered business</h3>
               <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We check the company exists on Companies House, the official UK register.</p>
             </div>
 
             {/* Check 3 */}
             <div className="text-center">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-2xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
                   <svg className="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                 </div>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Insurance</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Insurance</h3>
               <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We confirm the public liability cover is real and still in date, and monitor it so the listing is withdrawn if it lapses.</p>
             </div>
 
             {/* Check 4 */}
             <div className="text-center">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-2xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
                   <svg className="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 </div>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1A3A8A] mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Qualifications</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Qualifications</h3>
               <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We review the trade qualifications and accreditations they list against named certificate schemes.</p>
             </div>
           </div>
@@ -599,20 +599,20 @@ export default function Home() {
           <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
             <Button
               size="lg"
-              className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+              className="bg-brand-amber hover:bg-brand-amber text-black font-bold border-2 border-brand-amber px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
               style={{fontWeight: 800}}
               onClick={() => setShowAIModal(true)}
             >
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70 notranslate">Only MyApproved tradespeople get your job.</p>
+            <p className="mt-3 text-sm sm:text-base text-brand-navy/70 notranslate">Only MyApproved tradespeople get your job.</p>
           </div>
         </div>
       </section>
 
       {/* FOR TRADESPEOPLE SECTION */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-[#1A3A8A]">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
             {/* Left Column */}
@@ -625,29 +625,29 @@ export default function Home() {
               </p>
               <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
                   <span className="notranslate"><strong className="font-bold" style={{fontWeight: 700}}>Three tradespeople per job.</strong> You're quoting a real brief, not fighting a crowd for it.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
                   <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs go to the nearest.</strong> Matched by distance, so travel never eats your day.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
                   <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs drop into your calendar.</strong> Slots fill themselves, so jobs never clash.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
                   <span><strong className="font-bold" style={{fontWeight: 700}}>£4.99 a lead, pay as you go.</strong> Pay only when a lead is worth taking. Nothing ongoing.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFB800] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
                   <span><strong className="font-bold" style={{fontWeight: 700}}>Your marketing, handled.</strong> Website, SEO, paid ads, social, outreach, and reviews, taken off your plate.</span>
                 </li>
               </ul>
               <Button
                 size="lg"
-                className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg shadow-lg"
+                className="bg-brand-amber hover:bg-brand-amber text-black font-bold px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg shadow-lg"
                 style={{fontWeight: 800}}
                 asChild
               >
@@ -661,17 +661,17 @@ export default function Home() {
 
             {/* Right Column — job notification mockup */}
             <div>
-              <div className="bg-gray-50 rounded-2xl border border-gray-100 p-5 space-y-3 shadow-xl">
+              <div className="bg-gray-50 rounded-xl border border-gray-100 p-5 space-y-3 shadow-xl">
                 {/* Notification header */}
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wide">New job match · 2 min ago</span>
-                  <span className="w-5 h-5 rounded-full bg-[#FFB800] flex items-center justify-center text-[10px] font-bold text-black">1</span>
+                  <span className="w-5 h-5 rounded-full bg-brand-amber flex items-center justify-center text-[10px] font-bold text-black">1</span>
                 </div>
 
                 {/* Notification card */}
                 <div className="bg-white rounded-xl border border-gray-100 p-4 shadow-sm">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="bg-[#1A3A8A] text-white text-xs font-bold px-2.5 py-0.5 rounded-full">Plumber</span>
+                    <span className="bg-brand-navy text-white text-xs font-bold px-2.5 py-0.5 rounded-full">Plumber</span>
                     <span className="inline-flex items-center gap-1 text-xs text-gray-500">
                       <MapPin className="w-3.5 h-3.5" /> Leeds · LS4
                     </span>
@@ -689,7 +689,7 @@ export default function Home() {
                     </div>
                     <div className="text-right">
                       <p className="text-[10px] font-semibold text-gray-400">Your quote</p>
-                      <p className="text-lg font-bold text-[#1A3A8A]" style={{fontWeight: 800}}>£165</p>
+                      <p className="text-lg font-bold text-brand-navy" style={{fontWeight: 800}}>£165</p>
                     </div>
                   </div>
                 </div>
@@ -697,7 +697,7 @@ export default function Home() {
                 {/* Action */}
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-gray-400 font-medium">Quote it and it's in your diary</span>
-                  <span className="text-xs font-bold text-[#1A3A8A]">Quote in a tap →</span>
+                  <span className="text-xs font-bold text-brand-navy">Quote in a tap →</span>
                 </div>
               </div>
             </div>
@@ -709,17 +709,17 @@ export default function Home() {
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-[#F1F5F9]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1A3A8A] mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
               Common Questions
             </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#1A3A8A] font-semibold px-4">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-brand-navy font-semibold px-4">
               Answers to the things homeowners ask us most
             </p>
           </div>
 
           <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
             <AccordionItem value="item-1" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-brand-navy hover:text-brand-amber py-4 sm:py-6" style={{fontWeight: 700}}>
                 Is this just another directory anyone can pay to join?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
@@ -728,7 +728,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-2" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-brand-navy hover:text-brand-amber py-4 sm:py-6" style={{fontWeight: 700}}>
                 How do you check tradespeople?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
@@ -737,7 +737,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-3" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-brand-navy hover:text-brand-amber py-4 sm:py-6" style={{fontWeight: 700}}>
                 Will I get chased by dozens of companies trying to sell me a job?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
@@ -746,7 +746,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-4" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-brand-navy hover:text-brand-amber py-4 sm:py-6" style={{fontWeight: 700}}>
                 How is the price worked out?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
@@ -755,7 +755,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-5" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-brand-navy hover:text-brand-amber py-4 sm:py-6" style={{fontWeight: 700}}>
                 What happens if the job goes wrong?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
@@ -764,7 +764,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-6" className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6">
-              <AccordionTrigger className="text-base sm:text-lg font-bold text-[#1A3A8A] hover:text-[#FFB800] py-4 sm:py-6" style={{fontWeight: 700}}>
+              <AccordionTrigger className="text-base sm:text-lg font-bold text-brand-navy hover:text-brand-amber py-4 sm:py-6" style={{fontWeight: 700}}>
                 Do I have to pay anything before I see quotes?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
@@ -777,14 +777,14 @@ export default function Home() {
           <div className="text-center mt-8 sm:mt-12">
             <Button
               size="lg"
-              className="bg-[#FFB800] hover:bg-[#FFB800] text-black font-bold border-2 border-[#FFB800] px-8 sm:px-12 py-5 sm:py-7 text-lg sm:text-xl shadow-lg hover:shadow-xl transition-all"
+              className="bg-brand-amber hover:bg-brand-amber text-black font-bold border-2 border-brand-amber px-8 sm:px-12 py-5 sm:py-7 text-lg sm:text-xl shadow-lg hover:shadow-xl transition-all"
               style={{fontWeight: 800}}
               onClick={() => setShowAIModal(true)}
             >
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-[#1A3A8A]/70">Get your quotes now.</p>
+            <p className="mt-3 text-sm sm:text-base text-brand-navy/70">Get your quotes now.</p>
           </div>
         </div>
       </section>
@@ -794,10 +794,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* View local tradespeople in your area - Dropdown */}
           <div className="mb-8">
-            <div className="rounded-lg overflow-hidden">
+            <div className="rounded-xl overflow-hidden">
               <details className="group">
                 <summary className="flex items-center justify-between px-4 py-3 bg-[#F1F5F9] cursor-pointer list-none hover:bg-gray-200 transition-colors">
-                  <span className="text-lg font-bold text-[#1A3A8A]" style={{fontWeight: 700}}>View local tradespeople in your area</span>
+                  <span className="text-lg font-bold text-brand-navy" style={{fontWeight: 700}}>View local tradespeople in your area</span>
                   <ChevronDown className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="px-4 py-4 bg-[#F1F5F9]">
@@ -827,10 +827,10 @@ export default function Home() {
           <div className="pt-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Popular Jobs Dropdown */}
-              <div className="rounded-lg overflow-hidden">
+              <div className="rounded-xl overflow-hidden">
                 <details className="group">
                   <summary className="flex items-center justify-between px-4 py-3 bg-[#F1F5F9] cursor-pointer list-none hover:bg-gray-200 transition-colors">
-                    <span className="text-base font-bold text-[#1A3A8A]" style={{fontWeight: 700}}>Popular Jobs</span>
+                    <span className="text-base font-bold text-brand-navy" style={{fontWeight: 700}}>Popular Jobs</span>
                     <ChevronDown className="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform" />
                   </summary>
                   <div className="px-4 py-3 bg-[#F1F5F9]">
@@ -853,10 +853,10 @@ export default function Home() {
               </div>
 
               {/* Find Tradespeople Dropdown */}
-              <div className="rounded-lg overflow-hidden">
+              <div className="rounded-xl overflow-hidden">
                 <details className="group">
                   <summary className="flex items-center justify-between px-4 py-3 bg-[#F1F5F9] cursor-pointer list-none hover:bg-gray-200 transition-colors">
-                    <span className="text-base font-bold text-[#1A3A8A]" style={{fontWeight: 700}}>Find Tradespeople</span>
+                    <span className="text-base font-bold text-brand-navy" style={{fontWeight: 700}}>Find Tradespeople</span>
                     <ChevronDown className="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform" />
                   </summary>
                   <div className="px-4 py-3 bg-[#F1F5F9]">
@@ -879,10 +879,10 @@ export default function Home() {
               </div>
 
               {/* Find Out More Dropdown */}
-              <div className="rounded-lg overflow-hidden">
+              <div className="rounded-xl overflow-hidden">
                 <details className="group">
                   <summary className="flex items-center justify-between px-4 py-3 bg-[#F1F5F9] cursor-pointer list-none hover:bg-gray-200 transition-colors">
-                    <span className="text-base font-bold text-[#1A3A8A]" style={{fontWeight: 700}}>Find Out More</span>
+                    <span className="text-base font-bold text-brand-navy" style={{fontWeight: 700}}>Find Out More</span>
                     <ChevronDown className="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform" />
                   </summary>
                   <div className="px-4 py-3 bg-[#F1F5F9]">

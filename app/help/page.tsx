@@ -59,11 +59,11 @@ const faqCategories = [
       },
       {
         q: "What documents do I need?",
-        a: "You'll need proof of public liability insurance (minimum £1 million), relevant trade qualifications, and a valid form of ID. Some trades may require additional certifications such as Gas Safe or NICEIC registration.",
+        a: "You'll need proof of public liability insurance, relevant trade qualifications, and a valid form of ID. Some trades may require additional certifications such as Gas Safe or NICEIC registration.",
       },
       {
         q: "How much does it cost to join?",
-        a: "We offer a monthly subscription plan. Pricing is shown clearly at registration. There is no commission taken from jobs - you keep everything you earn.",
+        a: "Joining is £4.99 a lead, pay as you go. You only pay when a lead is worth taking - there are no monthly fees or subscription. There is no commission taken from jobs - you keep everything you earn.",
       },
     ],
   },
@@ -76,12 +76,12 @@ const faqCategories = [
         a: "Log into your account and go to your Dashboard. You can update your information, upload photos of your work, adjust availability, and manage notification settings.",
       },
       {
-        q: "How do I cancel my subscription?",
-        a: "You can cancel at any time from your account settings under Billing. Your profile stays active until the end of your current billing period and you will not be charged again.",
+        q: "How do I cancel or pause my account?",
+        a: "Because there is no ongoing subscription, you can pause taking new leads at any time from your account settings. You are only ever charged for the leads you choose to take.",
       },
       {
         q: "What payment methods do you accept?",
-        a: "All major credit and debit cards are accepted. Payments are processed securely through Stripe. We do not store your card details.",
+        a: "All major credit and debit cards are accepted. Payments are processed securely through our payment provider. We do not store your card details.",
       },
     ],
   },
@@ -91,51 +91,53 @@ export default function HelpPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#1A3A8A] text-white pb-16 sm:pb-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-[#FFB800] text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
-            <HelpCircle className="w-3.5 h-3.5" />
-            Help Centre
+      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-brand-amber text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
+              <HelpCircle className="w-3.5 h-3.5" />
+              Help Centre
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white" style={{fontWeight: 800}}>How Can We Help?</h1>
+            <p className="text-white/75 text-lg max-w-2xl mx-auto">
+              Answers for homeowners and tradespeople using MyApproved.
+            </p>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">How Can We Help?</h1>
-          <p className="text-blue-200 text-lg max-w-2xl mx-auto">
-            Answers for homeowners and tradespeople using MyApproved.
-          </p>
         </div>
       </section>
 
       {/* Contact card strip */}
-      <section className="bg-white border-b border-gray-100 py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-white py-12 sm:py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-3 gap-4">
-            <div className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 border border-gray-100">
-              <div className="w-9 h-9 bg-[#1A3A8A] rounded-lg flex items-center justify-center shrink-0">
+            <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 border border-gray-100 flex items-start gap-3">
+              <div className="w-9 h-9 bg-brand-navy rounded-xl flex items-center justify-center shrink-0">
                 <Mail className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="font-semibold text-gray-900 text-sm">Email Support</p>
-                <a href="mailto:support@myapproved.com" className="text-[#1A3A8A] text-sm font-medium">support@myapproved.com</a>
-                <p className="text-gray-400 text-xs mt-0.5">Reply within one business day</p>
+                <p className="text-base font-extrabold text-brand-navy" style={{fontWeight: 800}}>Email Support</p>
+                <a href="mailto:support@myapproved.com" className="text-brand-navy text-sm font-medium">support@myapproved.com</a>
+                <p className="text-gray-600 text-xs mt-0.5">Reply within one business day</p>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 border border-gray-100">
-              <div className="w-9 h-9 bg-[#1A3A8A] rounded-lg flex items-center justify-center shrink-0">
+            <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 border border-gray-100 flex items-start gap-3">
+              <div className="w-9 h-9 bg-brand-navy rounded-xl flex items-center justify-center shrink-0">
                 <Shield className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="font-semibold text-gray-900 text-sm">Verified Platform</p>
-                <p className="text-gray-700 text-sm">All tradespeople ID-checked</p>
-                <p className="text-gray-400 text-xs mt-0.5">Insurance &amp; qualifications verified</p>
+                <p className="text-base font-extrabold text-brand-navy" style={{fontWeight: 800}}>Verified Platform</p>
+                <p className="text-gray-600 text-sm">All tradespeople ID-checked</p>
+                <p className="text-gray-600 text-xs mt-0.5">Insurance &amp; qualifications verified</p>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 border border-gray-100">
-              <div className="w-9 h-9 bg-[#1A3A8A] rounded-lg flex items-center justify-center shrink-0">
+            <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 border border-gray-100 flex items-start gap-3">
+              <div className="w-9 h-9 bg-brand-navy rounded-xl flex items-center justify-center shrink-0">
                 <CheckCircle className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="font-semibold text-gray-900 text-sm">Free for Homeowners</p>
-                <p className="text-gray-700 text-sm">No fees to find &amp; hire</p>
-                <p className="text-gray-400 text-xs mt-0.5">Pay only the tradesperson</p>
+                <p className="text-base font-extrabold text-brand-navy" style={{fontWeight: 800}}>Free for Homeowners</p>
+                <p className="text-gray-600 text-sm">No fees to find &amp; hire</p>
+                <p className="text-gray-600 text-xs mt-0.5">Pay only the tradesperson</p>
               </div>
             </div>
           </div>
@@ -143,15 +145,15 @@ export default function HelpPage() {
       </section>
 
       {/* FAQ sections */}
-      <section className="bg-gray-50 py-14">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <section className="bg-[#F1F5F9] py-12 sm:py-16 md:py-20 lg:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           {faqCategories.map((cat) => (
-            <div key={cat.title} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 lg:p-8">
+            <div key={cat.title} className="bg-white rounded-xl border border-gray-100 p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-9 h-9 bg-[#1A3A8A] rounded-lg flex items-center justify-center">
+                <div className="w-9 h-9 bg-brand-navy rounded-xl flex items-center justify-center">
                   <cat.icon className="w-4 h-4 text-white" />
                 </div>
-                <h2 className="text-lg font-bold text-gray-900">{cat.title}</h2>
+                <h2 className="text-lg font-extrabold text-brand-navy" style={{fontWeight: 800}}>{cat.title}</h2>
               </div>
               <Accordion type="single" collapsible className="space-y-2">
                 {cat.questions.map((faq, i) => (
@@ -171,13 +173,13 @@ export default function HelpPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="bg-[#1A3A8A] py-12 text-center text-white">
-        <div className="max-w-xl mx-auto px-4">
-          <h2 className="text-xl font-bold mb-2">Still need help?</h2>
-          <p className="text-blue-200 text-sm mb-6">Our support team is happy to assist. Email us and we'll get back to you within one business day.</p>
+      <section className="bg-brand-navy py-12 sm:py-16 md:py-20 text-center text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 text-white" style={{fontWeight: 800}}>Still need help?</h2>
+          <p className="text-white/75 text-sm mb-6">Our support team is happy to assist. Email us and we'll get back to you within one business day.</p>
           <a
             href="mailto:support@myapproved.com"
-            className="inline-flex items-center gap-2 bg-[#FFB800] hover:bg-[#FFC933] text-black font-bold px-6 py-2.5 rounded-lg text-sm transition-colors"
+            className="inline-flex items-center gap-2 bg-brand-amber hover:bg-brand-amberDark text-black font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors"
           >
             <Mail className="w-4 h-4" />
             Email Support

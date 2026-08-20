@@ -94,11 +94,11 @@ export default function ClientQuoteRequests({ clientEmail, clientId }: ClientQuo
 
   const getStatusBadge = (request: QuoteRequest) => {
     if (request.admin_approved === false && request.status === 'admin_rejected') {
-      return <span className="inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold border bg-rose-100 text-rose-800 border-rose-200">Rejected</span>;
+      return <span className="inline-flex items-center rounded-xl px-2 py-1 text-xs font-semibold border bg-rose-100 text-rose-800 border-rose-200">Rejected</span>;
     } else if (request.admin_approved === true && !request.tradesperson_quoted) {
-      return <span className="inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold border bg-blue-100 text-blue-800 border-blue-200">Approved - Awaiting Quote</span>;
+      return <span className="inline-flex items-center rounded-xl px-2 py-1 text-xs font-semibold border bg-blue-100 text-blue-800 border-blue-200">Approved - Awaiting Quote</span>;
     } else if (request.tradesperson_quoted && !request.client_approved) {
-      return <span className="inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold border bg-amber-50 text-amber-800 border-amber-200">Quote Received</span>;
+      return <span className="inline-flex items-center rounded-xl px-2 py-1 text-xs font-semibold border bg-amber-50 text-amber-800 border-amber-200">Quote Received</span>;
     } else if (request.client_approved) {
       return (
         <Button disabled className="h-7 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold px-3">
@@ -106,7 +106,7 @@ export default function ClientQuoteRequests({ clientEmail, clientId }: ClientQuo
         </Button>
       );
     } else {
-      return <span className="inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold border bg-gray-100 text-gray-800 border-gray-200">Pending Admin Review</span>;
+      return <span className="inline-flex items-center rounded-xl px-2 py-1 text-xs font-semibold border bg-gray-100 text-gray-800 border-gray-200">Pending Admin Review</span>;
     }
   };
 
@@ -156,7 +156,7 @@ export default function ClientQuoteRequests({ clientEmail, clientId }: ClientQuo
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">My Quote Requests</h2>
+        <h2 className="text-2xl font-extrabold">My Quote Requests</h2>
         <button 
           onClick={fetchQuoteRequests}
           className="text-blue-600 hover:text-blue-800 text-sm font-medium"
@@ -192,7 +192,7 @@ export default function ClientQuoteRequests({ clientEmail, clientId }: ClientQuo
       ) : (
         <div className="grid gap-6">
           {quoteRequests.map((request) => (
-            <Card key={request.id} className="rounded-2xl border border-white/60 bg-white/95 backdrop-blur shadow-sm hover:shadow">
+            <Card key={request.id} className="rounded-xl border border-white/60 bg-white/95 backdrop-blur shadow-sm hover:shadow">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg font-bold">
@@ -243,7 +243,7 @@ export default function ClientQuoteRequests({ clientEmail, clientId }: ClientQuo
                   </div>
                 </div>
                 
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
                   <div className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 mr-2 flex-shrink-0" />
                     <p className="text-sm text-blue-800">{getStatusMessage(request)}</p>

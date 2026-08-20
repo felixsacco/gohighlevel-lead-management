@@ -90,7 +90,7 @@ export default function CRMSyncTest() {
         <CardContent className="space-y-6">
           {/* Connection Test */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">1. Test CRM Connection</h3>
+            <h3 className="text-lg font-extrabold">1. Test CRM Connection</h3>
             <p className="text-sm text-gray-600">
               Test your GoHighLevel API credentials and connection.
             </p>
@@ -112,7 +112,7 @@ export default function CRMSyncTest() {
 
           {/* Job Sync Test */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">2. Test Job Sync</h3>
+            <h3 className="text-lg font-extrabold">2. Test Job Sync</h3>
             <p className="text-sm text-gray-600">
               Test syncing a job submission to GoHighLevel CRM.
             </p>
@@ -242,7 +242,7 @@ export default function CRMSyncTest() {
 
           {/* Queue Management */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">3. Sync Queue Management</h3>
+            <h3 className="text-lg font-extrabold">3. Sync Queue Management</h3>
             <div className="flex gap-2">
               <Button onClick={handleRefreshQueue} variant="outline">
                 <RefreshCw className="w-4 h-4 mr-2" />
@@ -255,7 +255,7 @@ export default function CRMSyncTest() {
             </div>
             
             {queueStatus && (
-              <div className="p-4 bg-gray-50 rounded-lg">
+              <div className="p-4 bg-gray-50 rounded-xl">
                 <p className="text-sm font-medium">
                   Queue Status: {queueStatus.count} jobs pending
                 </p>
@@ -275,7 +275,7 @@ export default function CRMSyncTest() {
           {/* Results */}
           {result && (
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Results</h3>
+              <h3 className="text-lg font-extrabold">Results</h3>
               <Alert variant={result.success ? "default" : "destructive"}>
                 <div className="flex items-center gap-2">
                   {result.success ? (

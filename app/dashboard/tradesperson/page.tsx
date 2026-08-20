@@ -1350,10 +1350,10 @@ export default function TradespersonDashboardPage() {
 
             {/* Notification Dropdown */}
             {showNotifications && (
-              <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border z-50 max-h-96 overflow-y-auto notification-dropdown">
+              <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-lg border z-50 max-h-96 overflow-y-auto notification-dropdown">
                 <div className="p-4 border-b">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-gray-900">Notifications</h3>
+                    <h3 className="font-extrabold text-brand-navy">Notifications</h3>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -1381,7 +1381,7 @@ export default function TradespersonDashboardPage() {
                     notifications.map((notification) => (
                       <div
                         key={notification.id}
-                        className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b last:border-b-0"
+                        className="p-3 hover:bg-gray-50 rounded-xl cursor-pointer border-b last:border-b-0"
                         onClick={() => {
                           if (notification.type === "chat") {
                             setShowChat(true);
@@ -1460,10 +1460,10 @@ export default function TradespersonDashboardPage() {
           </div>
         </div>
         {/* Welcome Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 md:p-8 mb-4 text-white shadow-lg overflow-hidden">
+        <div className="bg-gradient-to-r from-brand-navy to-brand-navy rounded-xl p-6 md:p-8 mb-4 text-white shadow-lg overflow-hidden">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold mb-2">
+              <h1 className="text-2xl md:text-3xl font-extrabold mb-2">
                 Welcome back, {tradesperson?.first_name || user?.firstName || 'there'}!
               </h1>
               <p className="text-blue-100 mb-4">
@@ -1490,7 +1490,7 @@ export default function TradespersonDashboardPage() {
               </div>
             </div>
             <div className="hidden md:block">
-              <div className="bg-white/20 rounded-lg p-4 text-center">
+              <div className="bg-white/20 rounded-xl p-4 text-center">
                 <div className="text-2xl font-bold">{jobs.length}</div>
                 <div className="text-sm text-blue-100">Available Jobs</div>
               </div>
@@ -1505,7 +1505,7 @@ export default function TradespersonDashboardPage() {
                     {(tradesperson?.first_name || user?.firstName || 'TP').slice(0,1)}
                   </div>
                 )}
-                <label className="absolute -bottom-1 -right-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#fdbd18] text-blue-900 text-[10px] font-bold shadow cursor-pointer" aria-label="Upload avatar">
+                <label className="absolute -bottom-1 -right-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-amber text-blue-900 text-[10px] font-bold shadow cursor-pointer" aria-label="Upload avatar">
                   {uploadingAvatar ? '…' : '+'}
                   <input type="file" accept="image/*" className="hidden" onChange={onAvatarChange} />
                 </label>
@@ -1675,7 +1675,7 @@ export default function TradespersonDashboardPage() {
           <TabsContent value="available" className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-2xl font-extrabold text-brand-navy">
                   Available Jobs
                 </h2>
                 <p className="text-sm text-gray-600 mt-1">
@@ -1695,10 +1695,10 @@ export default function TradespersonDashboardPage() {
             </div>
 
             {jobs.length === 0 ? (
-              <Card className="rounded-2xl border border-white/60 bg-white/95 backdrop-blur text-center py-10 shadow-sm">
+              <Card className="rounded-xl border border-white/60 bg-white/95 backdrop-blur text-center py-10 shadow-sm">
                 <CardContent>
                   <Search className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">No open jobs available</h3>
+                  <h3 className="text-lg font-extrabold text-brand-navy mb-1">No open jobs available</h3>
                   <p className="text-gray-600 mb-4 max-w-md mx-auto">
                     There are currently no open jobs in your area that match your trade.
                   </p>
@@ -1713,8 +1713,8 @@ export default function TradespersonDashboardPage() {
                   <div className="text-[12px] text-gray-500">
                     Tips:
                     <div className="mt-1 grid sm:grid-cols-2 gap-2 max-w-2xl mx-auto">
-                      <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2">Widen your postcode radius in your profile.</div>
-                      <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2">Check back later—new jobs appear throughout the day.</div>
+                      <div className="rounded-xl border border-gray-200 bg-gray-50 px-3 py-2">Widen your postcode radius in your profile.</div>
+                      <div className="rounded-xl border border-gray-200 bg-gray-50 px-3 py-2">Check back later—new jobs appear throughout the day.</div>
                     </div>
                   </div>
                 </CardContent>
@@ -1746,7 +1746,7 @@ export default function TradespersonDashboardPage() {
                       <div className="p-6">
                         <div className="flex items-start justify-between mb-4">
                           <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                            <h3 className="text-lg font-extrabold text-brand-navy mb-1">
                               {job.trade}
                             </h3>
                             <p className="text-gray-600 text-sm line-clamp-2">
@@ -1793,7 +1793,7 @@ export default function TradespersonDashboardPage() {
                         <div className="space-y-2">
                         <Button
                           onClick={() => handleApplyToJob(job)}
-                          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                          className="w-full bg-gradient-to-r from-brand-navy to-brand-navy hover:from-brand-navy hover:to-brand-navy text-white"
                         >
                           <Plus className="w-4 h-4 mr-2" />
                           Apply Now
@@ -1818,13 +1818,13 @@ export default function TradespersonDashboardPage() {
 
           {/* Applied Jobs Tab */}
           <TabsContent value="applied" className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">Applied Jobs</h2>
+            <h2 className="text-2xl font-extrabold text-brand-navy">Applied Jobs</h2>
 
             {appliedJobs.length === 0 ? (
               <Card className="text-center py-12">
                 <CardContent>
                   <Clock className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-extrabold text-brand-navy mb-2">
                     No applications yet
                   </h3>
                   <p className="text-gray-600">
@@ -1843,7 +1843,7 @@ export default function TradespersonDashboardPage() {
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">
+                            <h3 className="text-lg font-extrabold text-brand-navy">
                               {application.jobs.trade}
                             </h3>
                             <Badge
@@ -1919,7 +1919,7 @@ export default function TradespersonDashboardPage() {
 
           {/* In Progress Jobs Tab */}
           <TabsContent value="in-progress" className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-extrabold text-brand-navy">
               In Progress Jobs
             </h2>
 
@@ -1927,7 +1927,7 @@ export default function TradespersonDashboardPage() {
               <Card className="text-center py-12">
                 <CardContent>
                   <TrendingUp className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-extrabold text-brand-navy mb-2">
                     No active jobs
                   </h3>
                   <p className="text-gray-600">
@@ -1946,7 +1946,7 @@ export default function TradespersonDashboardPage() {
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">
+                            <h3 className="text-lg font-extrabold text-brand-navy">
                               {job.trade}
                             </h3>
                             <Badge
@@ -2008,13 +2008,13 @@ export default function TradespersonDashboardPage() {
 
           {/* Completed Jobs Tab */}
           <TabsContent value="completed" className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">Completed Jobs</h2>
+            <h2 className="text-2xl font-extrabold text-brand-navy">Completed Jobs</h2>
 
             {completedJobs.length === 0 ? (
               <Card className="text-center py-12">
                 <CardContent>
                   <CheckCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-extrabold text-brand-navy mb-2">
                     No completed jobs
                   </h3>
                   <p className="text-gray-600">
@@ -2033,7 +2033,7 @@ export default function TradespersonDashboardPage() {
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">
+                            <h3 className="text-lg font-extrabold text-brand-navy">
                               {job.trade}
                             </h3>
                             <Badge
@@ -2097,7 +2097,7 @@ export default function TradespersonDashboardPage() {
                               {job.job_reviews.map((review: any) => (
                                 <div
                                   key={review.id}
-                                  className="bg-gray-50 rounded-lg p-3 mb-2"
+                                  className="bg-gray-50 rounded-xl p-3 mb-2"
                                 >
                                   <div className="flex items-center justify-between mb-2">
                                     <div className="flex items-center space-x-2">
@@ -2143,7 +2143,7 @@ export default function TradespersonDashboardPage() {
           {/* Quote Requests Tab */}
           <TabsContent value="quotes" className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-extrabold text-brand-navy">
                 Approved Quote Requests
               </h2>
               <div className="flex space-x-2">
@@ -2162,7 +2162,7 @@ export default function TradespersonDashboardPage() {
               <Card className="text-center py-12">
                 <CardContent>
                   <Clock className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-extrabold text-brand-navy mb-2">
                     No approved quote requests yet
                   </h3>
                   <p className="text-gray-600">
@@ -2182,7 +2182,7 @@ export default function TradespersonDashboardPage() {
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">
+                            <h3 className="text-lg font-extrabold text-brand-navy">
                               {qr.project_type || "Project"}
                             </h3>
                             <Badge
@@ -2262,7 +2262,7 @@ export default function TradespersonDashboardPage() {
                           <Button
                             onClick={() => submitQuoteForRequest(qr)}
                             disabled={quoteSubmittingId === qr.id}
-                            className="bg-blue-600 hover:bg-blue-700"
+                            className="bg-brand-navy hover:bg-brand-navy"
                           >
                             {quoteSubmittingId === qr.id
                               ? "Submitting..."
@@ -2296,7 +2296,7 @@ export default function TradespersonDashboardPage() {
 
           {selectedJob && (
             <div className="space-y-4">
-              <div className="bg-gray-50 p-4 rounded-lg">
+              <div className="bg-gray-50 p-4 rounded-xl">
                 <h4 className="font-semibold mb-2">Job Details:</h4>
                 <p className="text-sm text-gray-600 mb-2">
                   {selectedJob.job_description}
@@ -2347,7 +2347,7 @@ export default function TradespersonDashboardPage() {
                     variant="outline"
                     size="sm"
                     onClick={() => setShowAIHelp(!showAIHelp)}
-                    className="bg-gradient-to-r from-purple-500 to-blue-500 text-white border-0 hover:from-purple-600 hover:to-blue-600 shadow-md transition-all duration-200 shrink-0"
+                    className="bg-gradient-to-r from-purple-500 to-blue-500 text-white border-0 hover:from-purple-600 hover:to-brand-navy shadow-md transition-all duration-200 shrink-0"
                   >
                     <span className="mr-1">✨</span>
                     AI Help
@@ -2355,7 +2355,7 @@ export default function TradespersonDashboardPage() {
                 </div>
 
                 {/* Completion Percentage */}
-                <div className="bg-gradient-to-r from-blue-50 to-green-50 p-3 rounded-lg border">
+                <div className="bg-gradient-to-r from-blue-50 to-green-50 p-3 rounded-xl border">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-gray-700">Application Strength</span>
                     <span className={`text-sm font-bold ${
@@ -2389,7 +2389,7 @@ export default function TradespersonDashboardPage() {
                         <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
                           <span className="text-white text-xs">✨</span>
                         </div>
-                        <h4 className="text-sm font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                        <h4 className="text-sm font-bold bg-gradient-to-r from-purple-600 to-brand-navy bg-clip-text text-transparent">
                           AI Suggestions for {selectedJob.trade}
                         </h4>
                       </div>
@@ -2412,7 +2412,7 @@ export default function TradespersonDashboardPage() {
                       {getAISuggestions(selectedJob.trade, selectedJob.job_description).map((suggestion, index) => (
                         <div
                           key={index}
-                          className="group bg-white/80 backdrop-blur-sm p-2 sm:p-3 rounded-lg border border-purple-100 cursor-pointer hover:border-purple-300 hover:shadow-md transition-all duration-200"
+                          className="group bg-white/80 backdrop-blur-sm p-2 sm:p-3 rounded-xl border border-purple-100 cursor-pointer hover:border-purple-300 hover:shadow-md transition-all duration-200"
                           onClick={() => setQuotationNotes(suggestion)}
                         >
                           <div className="flex items-start space-x-2">
@@ -2448,7 +2448,7 @@ export default function TradespersonDashboardPage() {
                   </div>
               </div>
 
-                <div className="text-xs text-gray-500 space-y-2 bg-gray-50 p-3 rounded-lg">
+                <div className="text-xs text-gray-500 space-y-2 bg-gray-50 p-3 rounded-xl">
                   <p>💡 <strong>Tips for winning jobs:</strong></p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
                     <div className="flex items-start space-x-1">
@@ -2482,7 +2482,7 @@ export default function TradespersonDashboardPage() {
                 <Button
                   onClick={submitApplication}
                   disabled={applying || !quotationAmount || !quotationNotes.trim()}
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 order-1 sm:order-2"
+                  className="flex-1 bg-gradient-to-r from-brand-navy to-brand-navy hover:from-brand-navy hover:to-brand-navy order-1 sm:order-2"
                 >
                   {applying ? "Submitting..." : "Submit Application"}
                 </Button>
@@ -2506,7 +2506,7 @@ export default function TradespersonDashboardPage() {
           </DialogHeader>
           {selectedJobForFlag && (
             <div className="space-y-4">
-              <div className="bg-gray-50 p-3 rounded-lg">
+              <div className="bg-gray-50 p-3 rounded-xl">
                 <h4 className="font-semibold mb-2 text-sm">Job Details:</h4>
                 <p className="text-sm text-gray-600 mb-1">
                   <strong>Trade:</strong> {selectedJobForFlag.trade}

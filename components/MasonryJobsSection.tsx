@@ -229,33 +229,33 @@ const MasonryJobsSection = () => {
     <section className="py-20 bg-white relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-72 h-72 bg-[#FDBD18]/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#0056D2]/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-10 left-10 w-72 h-72 bg-brand-amber/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-brand-navy/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Enhanced header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#0056D2]/10 text-[#0056D2] px-4 py-2 rounded-full text-sm font-bold mb-4">
+          <div className="inline-flex items-center gap-2 bg-brand-navy/10 text-brand-navy px-4 py-2 rounded-full text-sm font-bold mb-4">
             <TrendingUp className="w-4 h-4" />
             <span>Live Job Requests</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[#0056D2] mb-4">
-            Jobs Available <span className="text-[#FDBD18]">Right Now</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-brand-navy mb-4">
+            Jobs Available <span className="text-brand-amber">Right Now</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Real customers posting jobs in your area. <span className="font-bold text-[#0056D2]">Get matched instantly</span> and start earning today.
+            Real customers posting jobs in your area. <span className="font-bold text-brand-navy">Get matched instantly</span> and start earning today.
           </p>
           
           {/* Live activity */}
           <div className="flex items-center justify-center gap-6 mt-6 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-gray-700">Live: <span className="font-bold text-[#0056D2]">new</span> jobs in your area</span>
+              <span className="text-gray-700">Live: <span className="font-bold text-brand-navy">new</span> jobs in your area</span>
             </div>
             <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-[#FDBD18]" />
-              <span className="text-gray-700"><span className="font-bold text-[#0056D2]">tradespeople</span> online now</span>
+              <Users className="w-4 h-4 text-brand-amber" />
+              <span className="text-gray-700"><span className="font-bold text-brand-navy">tradespeople</span> online now</span>
             </div>
           </div>
         </div>
@@ -272,7 +272,7 @@ const MasonryJobsSection = () => {
                 className={`group bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 p-6 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden ${getSizeClass(job.size)}`}
               >
                 {/* Background gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#FDBD18]/5 to-[#0056D2]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-amber/5 to-brand-navy/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 {/* Header with badges */}
                 <div className="relative z-10 flex items-start justify-between mb-4">
@@ -306,7 +306,7 @@ const MasonryJobsSection = () => {
                 {/* Job content */}
                 <div className="relative z-10 space-y-4">
                   <div>
-                    <h3 className="text-xl font-black text-[#0056D2] group-hover:text-[#FDBD18] transition-colors duration-300 mb-2">
+                    <h3 className="text-xl font-black text-brand-navy group-hover:text-brand-amber transition-colors duration-300 mb-2">
                       {job.title}
                     </h3>
                     <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
@@ -317,7 +317,7 @@ const MasonryJobsSection = () => {
                   {/* Location and budget */}
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm">
-                      <MapPin className="w-4 h-4 text-[#0056D2]" />
+                      <MapPin className="w-4 h-4 text-brand-navy" />
                       <span className="font-semibold text-gray-700">{job.location}</span>
                       <span className="text-gray-500">({job.postcode})</span>
                     </div>
@@ -327,7 +327,7 @@ const MasonryJobsSection = () => {
                         <Clock className="w-4 h-4 text-green-500" />
                         <span className="text-gray-600">{job.timeframe}</span>
                       </div>
-                      <div className="font-black text-[#0056D2] text-lg">
+                      <div className="font-black text-brand-navy text-lg">
                         {job.budget}
                       </div>
                     </div>
@@ -363,14 +363,14 @@ const MasonryJobsSection = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Star className="w-3 h-3 text-[#FDBD18] fill-current" />
+                      <Star className="w-3 h-3 text-brand-amber fill-current" />
                       <span className="font-semibold">Identity checked</span>
                     </div>
                   </div>
 
                   {/* CTA Button */}
                   <div className="pt-2">
-                    <Button className="w-full bg-gradient-to-r from-[#FDBD18] to-yellow-400 hover:from-yellow-400 hover:to-[#FDBD18] text-[#0056D2] font-black py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group-hover:shadow-[#FDBD18]/30">
+                    <Button className="w-full bg-gradient-to-r from-brand-amber to-yellow-400 hover:from-yellow-400 hover:to-brand-amber text-brand-navy font-black py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group-hover:shadow-brand-amber/30">
                       <span>Apply for This Job</span>
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                     </Button>
@@ -386,7 +386,7 @@ const MasonryJobsSection = () => {
           <div className="text-center mt-12">
             <Button
               onClick={() => setVisibleJobs(prev => prev + 6)}
-              className="bg-gradient-to-r from-[#0056D2] to-blue-700 hover:from-blue-700 hover:to-[#0056D2] text-white font-black px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
+              className="bg-gradient-to-r from-brand-navy to-brand-navy hover:from-brand-navy hover:to-brand-navy text-white font-black px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
             >
               <span>Load More Jobs</span>
               <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
@@ -395,27 +395,27 @@ const MasonryJobsSection = () => {
         )}
 
         {/* Bottom stats */}
-        <div className="mt-16 bg-gradient-to-r from-[#0056D2]/5 via-white to-[#FDBD18]/5 rounded-3xl p-8">
+        <div className="mt-16 bg-gradient-to-r from-brand-navy/5 via-white to-brand-amber/5 rounded-3xl p-8">
           <div className="text-center mb-6">
-            <h3 className="text-2xl font-black text-[#0056D2] mb-2">Why Tradespeople Choose Us</h3>
+            <h3 className="text-2xl font-black text-brand-navy mb-2">Why Tradespeople Choose Us</h3>
             <p className="text-gray-600">Join thousands earning more with quality leads</p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="text-3xl font-black text-[#0056D2] mb-1">£2M</div>
+              <div className="text-3xl font-black text-brand-navy mb-1">£2M</div>
               <div className="text-sm text-gray-600">Public liability cover</div>
             </div>
             <div>
-              <div className="text-3xl font-black text-[#0056D2] mb-1">Identity</div>
+              <div className="text-3xl font-black text-brand-navy mb-1">Identity</div>
               <div className="text-sm text-gray-600">Checked professionals</div>
             </div>
             <div>
-              <div className="text-3xl font-black text-[#0056D2] mb-1">Free</div>
+              <div className="text-3xl font-black text-brand-navy mb-1">Free</div>
               <div className="text-sm text-gray-600">To post a job</div>
             </div>
             <div>
-              <div className="text-3xl font-black text-[#0056D2] mb-1">3</div>
+              <div className="text-3xl font-black text-brand-navy mb-1">3</div>
               <div className="text-sm text-gray-600">Free quotes to compare</div>
             </div>
           </div>

@@ -75,7 +75,7 @@ export default function TabsSection() {
         {TABS[activeTab].jobs.map((col, colIdx) => (
           <div
             key={colIdx}
-            className="bg-white rounded-2xl shadow-lg border border-blue-100 p-6 flex flex-col gap-2 transition-transform duration-200 hover:-translate-y-1 hover:shadow-2xl focus-within:ring-2 focus-within:ring-yellow-400"
+            className="bg-white rounded-xl shadow-lg border border-blue-100 p-6 flex flex-col gap-2 transition-transform duration-200 hover:-translate-y-1 hover:shadow-2xl focus-within:ring-2 focus-within:ring-yellow-400"
             tabIndex={0}
             aria-label={`${TABS[activeTab].label} column ${colIdx + 1}`}
           >

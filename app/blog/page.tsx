@@ -157,10 +157,10 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-800 text-white pb-16 sm:pb-20">
+      <section className="bg-gradient-to-br from-brand-navy to-brand-navy text-white pb-16 sm:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6">
               Trades Blog & Advice Centre
             </h1>
             <p className="text-lg sm:text-xl text-blue-100">
@@ -180,7 +180,7 @@ export default function BlogPage() {
               key={category}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 index === 0 
-                  ? 'bg-blue-600 text-white' 
+                  ? 'bg-brand-navy text-white' 
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
               }`}
             >
@@ -192,16 +192,16 @@ export default function BlogPage() {
         {/* Featured Posts */}
         {featuredPosts.length > 0 && (
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-blue-900 mb-6">Featured Articles</h2>
+            <h2 className="text-2xl font-extrabold text-brand-navy mb-6">Featured Articles</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {featuredPosts.map(post => (
                 <Link 
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+                  className="group bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow"
                 >
                   <div className="aspect-video bg-gray-200 relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-navy to-brand-navy flex items-center justify-center">
                       <span className="text-white text-lg font-medium">{post.category}</span>
                     </div>
                     <div className="absolute top-4 left-4">
@@ -219,7 +219,7 @@ export default function BlogPage() {
                         {post.readTime}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-extrabold text-brand-navy mb-3 group-hover:text-blue-600 transition-colors">
                       {post.title}
                     </h3>
                     <p className="text-gray-600 mb-4 line-clamp-2">
@@ -243,7 +243,7 @@ export default function BlogPage() {
 
         {/* All Posts Grid */}
         <section>
-          <h2 className="text-2xl font-bold text-blue-900 mb-6">All Articles</h2>
+          <h2 className="text-2xl font-extrabold text-brand-navy mb-6">All Articles</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...featuredPosts, ...regularPosts].map(post => (
               <Link 
@@ -265,7 +265,7 @@ export default function BlogPage() {
                       {post.readTime}
                     </span>
                   </div>
-                  <h3 className="font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                  <h3 className="font-extrabold text-brand-navy mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
                   <p className="text-sm text-gray-600 mb-4 line-clamp-2 flex-1">
@@ -282,8 +282,8 @@ export default function BlogPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="mt-16 bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl p-8 sm:p-12 text-white text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+        <section className="mt-16 bg-gradient-to-br from-brand-navy to-brand-navy rounded-xl p-8 sm:p-12 text-white text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold mb-4">
             Ready to Start Your Project?
           </h2>
           <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">

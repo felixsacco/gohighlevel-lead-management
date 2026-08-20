@@ -155,7 +155,7 @@ export default function ReportIssuePage() {
     <Section>
       <Container className="py-10 max-w-2xl space-y-6">
         <div className="flex items-center justify-between gap-4">
-          <h1 className="text-2xl font-bold text-slate-900">Report an issue</h1>
+          <h1 className="text-2xl font-extrabold text-brand-navy">Report an issue</h1>
           <Button variant="outline" asChild>
             <Link href={user.type === "client" ? "/dashboard/client" : "/dashboard/tradesperson"}>
               Back to dashboard
@@ -305,7 +305,7 @@ export default function ReportIssuePage() {
               <p>
                 <strong>Details:</strong>
               </p>
-              <p className="whitespace-pre-wrap rounded-md bg-slate-50 p-3 border">{details}</p>
+              <p className="whitespace-pre-wrap rounded-xl bg-slate-50 p-3 border">{details}</p>
               <div className="flex gap-2 pt-2">
                 <Button variant="outline" onClick={() => setStep(3)}>
                   Back

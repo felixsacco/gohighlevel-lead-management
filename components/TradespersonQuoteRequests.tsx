@@ -96,7 +96,7 @@ export default function TradespersonQuoteRequests({ tradespersonId }: Tradespers
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">Quote Requests</h2>
+        <h2 className="text-2xl font-extrabold">Quote Requests</h2>
         <button 
           onClick={fetchQuoteRequests}
           className="text-blue-600 hover:text-blue-800 text-sm font-medium"
@@ -153,7 +153,7 @@ export default function TradespersonQuoteRequests({ tradespersonId }: Tradespers
                   </div>
                 </div>
                 
-                <div className="bg-green-50 p-4 rounded-lg">
+                <div className="bg-green-50 p-4 rounded-xl">
                   <div className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
                     <p className="text-sm text-green-800">{getStatusMessage(request)}</p>

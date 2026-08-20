@@ -61,7 +61,7 @@ const AnimatedServicesSlider = () => {
       responseTime: '2 mins',
       description: 'Emergency repairs, installations, and maintenance',
       isPopular: true,
-      gradient: 'from-blue-500 to-blue-700'
+      gradient: 'from-blue-500 to-brand-navy'
     },
     {
       id: 'electrician',
@@ -152,34 +152,34 @@ const AnimatedServicesSlider = () => {
     <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 right-20 w-64 h-64 bg-[#FDBD18]/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-[#0056D2]/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-20 right-20 w-64 h-64 bg-brand-amber/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-brand-navy/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Enhanced header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#FDBD18]/10 text-[#0056D2] px-4 py-2 rounded-full text-sm font-bold mb-4">
+          <div className="inline-flex items-center gap-2 bg-brand-amber/10 text-brand-navy px-4 py-2 rounded-full text-sm font-bold mb-4">
             <TrendingUp className="w-4 h-4" />
             <span>Most In-Demand Right Now</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[#0056D2] mb-4">
-            Popular <span className="text-[#FDBD18]">Services</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-brand-navy mb-4">
+            Popular <span className="text-brand-amber">Services</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            The services customers are booking most. <span className="font-bold text-[#0056D2]">Identity-checked professionals</span>,
-            instant quotes, and <span className="font-bold text-[#FDBD18]">public liability cover confirmed</span>.
+            The services customers are booking most. <span className="font-bold text-brand-navy">Identity-checked professionals</span>,
+            instant quotes, and <span className="font-bold text-brand-amber">public liability cover confirmed</span>.
           </p>
           
           {/* Live stats */}
           <div className="flex items-center justify-center gap-8 mt-6 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-gray-700">Live: <span className="font-bold text-[#0056D2]">new</span> jobs posted today</span>
+              <span className="text-gray-700">Live: <span className="font-bold text-brand-navy">new</span> jobs posted today</span>
             </div>
             <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-[#FDBD18]" />
-              <span className="text-gray-700"><span className="font-bold text-[#0056D2]">tradespeople</span> online now</span>
+              <Users className="w-4 h-4 text-brand-amber" />
+              <span className="text-gray-700"><span className="font-bold text-brand-navy">tradespeople</span> online now</span>
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ const AnimatedServicesSlider = () => {
                         {/* Popular badge */}
                         {service.isPopular && (
                           <div className="absolute top-4 right-4">
-                            <div className="bg-gradient-to-r from-[#FDBD18] to-yellow-400 text-[#0056D2] px-3 py-1 rounded-full text-xs font-black shadow-lg animate-pulse">
+                            <div className="bg-gradient-to-r from-brand-amber to-yellow-400 text-brand-navy px-3 py-1 rounded-full text-xs font-black shadow-lg animate-pulse">
                               🔥 HOT
                             </div>
                           </div>
@@ -212,11 +212,11 @@ const AnimatedServicesSlider = () => {
 
                         {/* Icon and header */}
                         <div className="relative z-10 mb-6">
-                          <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 mb-4`}>
+                          <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 mb-4`}>
                             <IconComponent className="w-8 h-8 text-white" />
                           </div>
                           
-                          <h3 className="text-2xl font-black text-[#0056D2] group-hover:text-[#FDBD18] transition-colors duration-300 mb-2">
+                          <h3 className="text-2xl font-black text-brand-navy group-hover:text-brand-amber transition-colors duration-300 mb-2">
                             {service.name}
                           </h3>
                           
@@ -233,7 +233,7 @@ const AnimatedServicesSlider = () => {
                               <span className="font-bold text-gray-700">{service.jobs} active jobs</span>
                             </div>
                             <div className="flex items-center gap-1">
-                              <Star className="w-4 h-4 text-[#FDBD18] fill-current" />
+                              <Star className="w-4 h-4 text-brand-amber fill-current" />
                               <span className="font-bold text-gray-700">Identity checked</span>
                             </div>
                           </div>
@@ -241,9 +241,9 @@ const AnimatedServicesSlider = () => {
                           <div className="flex items-center justify-between text-sm">
                             <div className="flex items-center gap-2">
                               <Clock className="w-4 h-4 text-blue-500" />
-                              <span className="text-gray-600">Response: <span className="font-bold text-[#0056D2]">{service.responseTime}</span></span>
+                              <span className="text-gray-600">Response: <span className="font-bold text-brand-navy">{service.responseTime}</span></span>
                             </div>
-                            <div className="font-black text-[#0056D2] text-lg">
+                            <div className="font-black text-brand-navy text-lg">
                               {service.avgPrice}
                             </div>
                           </div>
@@ -256,7 +256,7 @@ const AnimatedServicesSlider = () => {
 
                         {/* CTA Button */}
                         <div className="relative z-10">
-                          <div className="bg-gradient-to-r from-[#FDBD18] to-yellow-400 hover:from-yellow-400 hover:to-[#FDBD18] text-[#0056D2] font-black py-3 px-4 rounded-2xl text-center transition-all duration-300 hover:scale-105 shadow-lg group-hover:shadow-xl">
+                          <div className="bg-gradient-to-r from-brand-amber to-yellow-400 hover:from-yellow-400 hover:to-brand-amber text-brand-navy font-black py-3 px-4 rounded-xl text-center transition-all duration-300 hover:scale-105 shadow-lg group-hover:shadow-xl">
                             <div className="flex items-center justify-center gap-2">
                               <span>Get Instant Quote</span>
                               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -276,7 +276,7 @@ const AnimatedServicesSlider = () => {
           <button
             onClick={scrollPrev}
             disabled={!canScrollPrev}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-xl border border-gray-200 flex items-center justify-center text-[#0056D2] hover:bg-white hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed z-10"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-xl border border-gray-200 flex items-center justify-center text-brand-navy hover:bg-white hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed z-10"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
@@ -284,7 +284,7 @@ const AnimatedServicesSlider = () => {
           <button
             onClick={scrollNext}
             disabled={!canScrollNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-xl border border-gray-200 flex items-center justify-center text-[#0056D2] hover:bg-white hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed z-10"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-xl border border-gray-200 flex items-center justify-center text-brand-navy hover:bg-white hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed z-10"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
@@ -298,7 +298,7 @@ const AnimatedServicesSlider = () => {
               onClick={() => emblaApi && emblaApi.scrollTo(index)}
               className={`h-3 w-3 rounded-full transition-all duration-300 ${
                 index === selectedIndex
-                  ? 'bg-gradient-to-r from-[#FDBD18] to-yellow-400 scale-125 shadow-lg'
+                  ? 'bg-gradient-to-r from-brand-amber to-yellow-400 scale-125 shadow-lg'
                   : 'bg-gray-300 hover:bg-gray-400 hover:scale-110'
               }`}
             />
@@ -309,7 +309,7 @@ const AnimatedServicesSlider = () => {
         <div className="text-center mt-12">
           <Link
             href="/find-tradespeople"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#0056D2] to-blue-700 hover:from-blue-700 hover:to-[#0056D2] text-white font-black text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-brand-navy to-brand-navy hover:from-brand-navy hover:to-brand-navy text-white font-black text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
           >
             <span>Browse All Services</span>
             <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />

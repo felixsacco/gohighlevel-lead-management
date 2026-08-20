@@ -93,13 +93,13 @@ export default function LocalDisputesPage() {
             ) : disputes.length === 0 ? (
               <div className="text-center py-8">
                 <AlertTriangle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">No Local Disputes</h3>
+                <h3 className="text-lg font-extrabold text-brand-navy mb-2">No Local Disputes</h3>
                 <p className="text-gray-600">No disputes stored locally</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {disputes.map((dispute) => (
-                  <div key={dispute.id} className="border rounded-lg p-4 bg-white">
+                  <div key={dispute.id} className="border rounded-xl p-4 bg-white">
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <div className="flex items-center gap-2 mb-1">

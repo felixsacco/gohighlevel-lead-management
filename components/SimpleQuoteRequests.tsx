@@ -120,7 +120,7 @@ export default function SimpleQuoteRequests() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">Pending Quote Requests</h2>
+        <h2 className="text-2xl font-extrabold">Pending Quote Requests</h2>
         <Button onClick={fetchQuoteRequests} variant="outline">
           Refresh
         </Button>

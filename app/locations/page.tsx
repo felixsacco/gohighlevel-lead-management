@@ -92,7 +92,7 @@ const tier3 = LOCATIONS.filter((l) => l.priority === 3);
 const FAQS = [
   {
     q: "How do I find a verified tradesperson near me?",
-    a: "Use the location and trade grids below to browse verified professionals in your area. Every tradesperson on MyApproved is ID-verified, properly insured, and rated by genuine customers.",
+    a: "Use the location and trade grids below to browse verified professionals in your area. Every tradesperson passes four checks before they can appear: photo ID, registered business on Companies House, public liability insurance, and qualifications. We confirm the insurance is real and in date, and monitor it so the listing is withdrawn if it lapses.",
   },
   {
     q: "How much does it cost to get quotes from tradespeople?",
@@ -100,7 +100,7 @@ const FAQS = [
   },
   {
     q: "Which UK cities and towns are covered by MyApproved?",
-    a: "MyApproved covers all major UK cities including London, Manchester, Birmingham, Leeds, Glasgow, Liverpool, Sheffield, Bristol, Edinburgh, Cardiff, Belfast, and 40+ additional towns across England, Scotland, Wales, and Northern Ireland.",
+    a: "MyApproved covers all major UK cities including London, Manchester, Birmingham, Leeds, Glasgow, Liverpool, Sheffield, Bristol, Edinburgh, Cardiff, Belfast, and 40 additional towns across England, Scotland, Wales, and Northern Ireland.",
   },
   {
     q: "What trades are available on MyApproved?",
@@ -108,7 +108,7 @@ const FAQS = [
   },
   {
     q: "Are all tradespeople on MyApproved insured?",
-    a: "Yes. Every tradesperson must provide proof of public liability insurance before joining MyApproved. We also carry out identity verification and check trade qualifications such as Gas Safe and NICEIC registration.",
+    a: "Yes. Every tradesperson must hold public liability insurance that is confirmed as real and in date before listing. We also check photo ID, registered business on Companies House, and qualifications, and monitor the insurance so the listing is withdrawn if it lapses.",
   },
 ];
 
@@ -166,21 +166,21 @@ export default function LocationsPage() {
 
       <div className="min-h-screen bg-gray-50 overflow-x-hidden">
         {/* ── Hero ─────────────────────────────────────────────────────────── */}
-        <section className="bg-[#1A3A8A] text-white pt-8 sm:pt-12 pb-16 sm:pb-24 relative overflow-hidden">
+        <section className="bg-brand-navy text-white pt-8 sm:pt-12 pb-16 sm:pb-24 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10 pointer-events-none" aria-hidden>
-            <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#FFB800] blur-3xl -translate-y-1/2 translate-x-1/3" />
+            <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-amber blur-3xl -translate-y-1/2 translate-x-1/3" />
             <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-white blur-3xl translate-y-1/2 -translate-x-1/4" />
           </div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-[#FFB800] text-[#0f172a] px-4 py-2 rounded-full text-sm font-bold mb-6">
-              <MapPin className="w-4 h-4" /> 40+ UK Locations Covered
+            <div className="inline-flex items-center gap-2 bg-brand-amber text-black px-4 py-2 rounded-full text-sm font-bold mb-6">
+              <MapPin className="w-4 h-4" /> 50 UK Locations Covered
             </div>
             <h1
               className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight"
               style={{ fontWeight: 800 }}
             >
               Find Verified Tradespeople
-              <span className="block text-[#FFB800]">Anywhere in the UK</span>
+              <span className="block text-brand-amber">Anywhere in the UK</span>
             </h1>
             <p className="speakable-intro text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
               ID-checked, insured professionals for every trade - in every city and town across
@@ -189,11 +189,11 @@ export default function LocationsPage() {
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               {[
                 { icon: CheckCircle, text: "Every pro ID-verified" },
-                { icon: Shield, text: "Public liability insured" },
-                { icon: Star, text: "Genuine customer reviews" },
+                { icon: Shield, text: "Public liability insurance confirmed" },
+                { icon: Star, text: "Reviews from confirmed jobs" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="inline-flex items-center gap-1.5 text-sm text-blue-100 font-medium">
-                  <Icon className="w-4 h-4 text-[#FFB800]" /> {text}
+                  <Icon className="w-4 h-4 text-brand-amber" /> {text}
                 </span>
               ))}
             </div>
@@ -207,7 +207,7 @@ export default function LocationsPage() {
           {/* ── Popular Searches ─────────────────────────────────────────────── */}
           <section>
             <h2
-              className="text-2xl sm:text-3xl font-extrabold text-[#1A3A8A] mb-2"
+              className="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-2"
               style={{ fontWeight: 800 }}
             >
               Popular Searches
@@ -218,11 +218,11 @@ export default function LocationsPage() {
                 <Link
                   key={`${c.trade}-${c.location}`}
                   href={`/find-tradespeople/${c.trade}/${c.location}`}
-                  className="min-w-0 bg-white rounded-xl p-3 sm:p-4 border border-blue-100 hover:border-[#1A3A8A] hover:shadow-md transition-all group"
+                  className="min-w-0 bg-white rounded-xl p-3 sm:p-4 border border-gray-200 hover:border-brand-navy hover:shadow-md transition-all group"
                 >
                   <p
-                    className="font-bold text-[#1A3A8A] text-sm leading-snug group-hover:underline break-words"
-                    style={{ fontWeight: 700 }}
+                    className="font-bold text-brand-navy text-sm leading-snug group-hover:underline break-words"
+                    style={{ fontWeight: 800 }}
                   >
                     {c.tradeLabel} in {c.locationLabel}
                   </p>
@@ -237,7 +237,7 @@ export default function LocationsPage() {
           {/* ── Browse by Trade ───────────────────────────────────────────────── */}
           <section>
             <h2
-              className="text-2xl sm:text-3xl font-extrabold text-[#1A3A8A] mb-2"
+              className="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-2"
               style={{ fontWeight: 800 }}
             >
               Browse by Trade
@@ -254,8 +254,8 @@ export default function LocationsPage() {
                 return (
                   <div key={group.label}>
                     <h3
-                      className="text-sm font-bold text-[#1A3A8A]/60 uppercase tracking-widest mb-3"
-                      style={{ fontWeight: 700 }}
+                      className="text-sm font-bold text-brand-navy/60 uppercase tracking-widest mb-3"
+                      style={{ fontWeight: 800 }}
                     >
                       {group.label}
                     </h3>
@@ -264,11 +264,11 @@ export default function LocationsPage() {
                         <Link
                           key={trade.slug}
                           href={`/find-tradespeople/${trade.slug}`}
-                          className="min-w-0 bg-white rounded-xl p-3 sm:p-4 border border-blue-50 hover:border-[#1A3A8A] hover:shadow-md transition-all group text-center"
+                          className="min-w-0 bg-white rounded-xl p-3 sm:p-4 border border-gray-200 hover:border-brand-navy hover:shadow-md transition-all group text-center"
                         >
                           <p
-                            className="font-bold text-[#1A3A8A] text-sm group-hover:underline leading-snug break-words"
-                            style={{ fontWeight: 700 }}
+                            className="font-bold text-brand-navy text-sm group-hover:underline leading-snug break-words"
+                            style={{ fontWeight: 800 }}
                           >
                             {trade.plural}
                           </p>
@@ -287,7 +287,7 @@ export default function LocationsPage() {
           {/* ── Major UK Cities (Tier 1) ──────────────────────────────────────── */}
           <section>
             <h2
-              className="text-2xl sm:text-3xl font-extrabold text-[#1A3A8A] mb-2"
+              className="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-2"
               style={{ fontWeight: 800 }}
             >
               Major UK Cities
@@ -297,11 +297,11 @@ export default function LocationsPage() {
               {tier1.map((city) => (
                 <div
                   key={city.name}
-                  className="min-w-0 bg-white rounded-xl border border-blue-50 p-4 hover:shadow-md transition-all"
+                  className="min-w-0 bg-white rounded-xl border border-gray-200 p-4 hover:shadow-md transition-all"
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#FFB800] flex-shrink-0" />
-                    <p className="font-bold text-[#1A3A8A] text-sm" style={{ fontWeight: 700 }}>
+                    <MapPin className="w-3.5 h-3.5 text-brand-amber flex-shrink-0" />
+                    <p className="font-bold text-brand-navy text-sm" style={{ fontWeight: 800 }}>
                       {city.name}
                     </p>
                   </div>
@@ -314,7 +314,7 @@ export default function LocationsPage() {
                         <Link
                           key={tradeSlug}
                           href={`/find-tradespeople/${tradeSlug}/${toSlug(city.name)}`}
-                          className="text-xs text-[#1A3A8A] hover:text-[#FFB800] hover:underline flex items-center gap-1 transition-colors"
+                          className="text-xs text-brand-navy hover:text-brand-amber hover:underline flex items-center gap-1 transition-colors"
                         >
                           <ArrowRight className="w-3 h-3 flex-shrink-0" />
                           {tradeData.plural} in {city.name}
@@ -323,7 +323,7 @@ export default function LocationsPage() {
                     })}
                     <Link
                       href={`/find-tradespeople/plumber/${toSlug(city.name)}`}
-                      className="text-xs text-gray-400 hover:text-[#1A3A8A] mt-0.5 transition-colors"
+                      className="text-xs text-gray-400 hover:text-brand-navy mt-0.5 transition-colors"
                     >
                       + all trades →
                     </Link>
@@ -336,7 +336,7 @@ export default function LocationsPage() {
           {/* ── Large UK Towns (Tier 2) ───────────────────────────────────────── */}
           <section>
             <h2
-              className="text-2xl sm:text-3xl font-extrabold text-[#1A3A8A] mb-2"
+              className="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-2"
               style={{ fontWeight: 800 }}
             >
               Large UK Towns
@@ -347,11 +347,11 @@ export default function LocationsPage() {
                 <Link
                   key={city.name}
                   href={`/find-tradespeople/plumber/${toSlug(city.name)}`}
-                  className="min-w-0 bg-white rounded-xl border border-blue-50 p-3 sm:p-4 hover:border-[#1A3A8A] hover:shadow-md transition-all group"
+                  className="min-w-0 bg-white rounded-xl border border-gray-200 p-3 sm:p-4 hover:border-brand-navy hover:shadow-md transition-all group"
                 >
                   <p
-                    className="font-bold text-[#1A3A8A] text-sm group-hover:underline break-words"
-                    style={{ fontWeight: 700 }}
+                    className="font-bold text-brand-navy text-sm group-hover:underline break-words"
+                    style={{ fontWeight: 800 }}
                   >
                     {city.name}
                   </p>
@@ -364,7 +364,7 @@ export default function LocationsPage() {
           {/* ── More UK Towns (Tier 3) ────────────────────────────────────────── */}
           <section>
             <h2
-              className="text-2xl sm:text-3xl font-extrabold text-[#1A3A8A] mb-2"
+              className="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-2"
               style={{ fontWeight: 800 }}
             >
               More UK Towns &amp; Cities
@@ -375,12 +375,12 @@ export default function LocationsPage() {
                 <Link
                   key={city.name}
                   href={`/find-tradespeople/plumber/${toSlug(city.name)}`}
-                  className="min-w-0 bg-white rounded-lg p-3 text-center border border-blue-50 hover:bg-[#1A3A8A] hover:text-white hover:border-[#1A3A8A] hover:shadow-md transition-all group"
+                  className="min-w-0 bg-white rounded-xl p-3 text-center border border-gray-200 hover:bg-brand-navy hover:text-white hover:border-brand-navy hover:shadow-md transition-all group"
                 >
-                  <p className="text-sm font-semibold text-[#1A3A8A] group-hover:text-white break-words" style={{ fontWeight: 600 }}>
+                  <p className="text-sm font-semibold text-brand-navy group-hover:text-white break-words" style={{ fontWeight: 600 }}>
                     {city.name}
                   </p>
-                  <p className="text-xs text-gray-400 group-hover:text-blue-200 mt-0.5 break-words">
+                  <p className="text-xs text-gray-400 group-hover:text-gray-200 mt-0.5 break-words">
                     {city.region}
                   </p>
                 </Link>
@@ -391,23 +391,23 @@ export default function LocationsPage() {
           {/* ── FAQ / AEO Block ───────────────────────────────────────────────── */}
           <section>
             <h2
-              className="text-2xl sm:text-3xl font-extrabold text-[#1A3A8A] mb-6"
+              className="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6"
               style={{ fontWeight: 800 }}
             >
               Frequently Asked Questions
             </h2>
-            <div className="divide-y divide-gray-100 rounded-2xl border border-blue-50 overflow-hidden bg-white">
+            <div className="divide-y divide-gray-100 rounded-xl border border-gray-200 overflow-hidden bg-white">
               {FAQS.map(({ q, a }) => (
                 <details key={q} className="group">
-                  <summary className="flex items-center justify-between gap-4 cursor-pointer px-6 py-5 hover:bg-sky-50 transition-colors list-none">
-                    <span className="font-semibold text-[#1A3A8A] text-sm sm:text-base" style={{ fontWeight: 600 }}>
+                  <summary className="flex items-center justify-between gap-4 cursor-pointer px-6 py-5 hover:bg-gray-50 transition-colors list-none">
+                    <span className="font-semibold text-brand-navy text-sm sm:text-base" style={{ fontWeight: 600 }}>
                       {q}
                     </span>
-                    <span className="text-[#1A3A8A] flex-shrink-0 transition-transform group-open:rotate-45 text-xl font-light select-none">
+                    <span className="text-brand-navy flex-shrink-0 transition-transform group-open:rotate-45 text-xl font-light select-none">
                       +
                     </span>
                   </summary>
-                  <div className="px-6 pb-5 pt-1 text-sm text-gray-600 leading-relaxed border-t border-blue-50">
+                  <div className="px-6 pb-5 pt-1 text-sm text-gray-600 leading-relaxed border-t border-gray-100">
                     {a}
                   </div>
                 </details>
@@ -416,9 +416,9 @@ export default function LocationsPage() {
           </section>
 
           {/* ── CTA ───────────────────────────────────────────────────────────── */}
-          <section className="bg-[#1A3A8A] rounded-2xl p-8 sm:p-12 text-white text-center relative overflow-hidden">
+          <section className="bg-brand-navy rounded-xl p-8 sm:p-12 text-white text-center relative overflow-hidden">
             <div className="absolute inset-0 opacity-10 pointer-events-none" aria-hidden>
-              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#FFB800] blur-3xl -translate-y-1/3 translate-x-1/4" />
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-brand-amber blur-3xl -translate-y-1/3 translate-x-1/4" />
             </div>
             <div className="relative">
               <h2 className="text-2xl sm:text-3xl font-extrabold mb-3" style={{ fontWeight: 800 }}>
@@ -430,7 +430,7 @@ export default function LocationsPage() {
               </p>
               <Link
                 href="/instant-quote"
-                className="inline-flex items-center gap-2 bg-[#FFB800] hover:bg-[#FFC933] text-[#0f172a] font-bold px-8 py-4 rounded-xl text-base transition-all shadow-lg"
+                className="inline-flex items-center gap-2 bg-brand-amber hover:bg-brand-amberDark text-black font-semibold px-8 py-4 rounded-xl text-base transition-all shadow-lg"
                 style={{ fontWeight: 800 }}
               >
                 Get Free Quotes <ArrowRight className="w-4 h-4" />

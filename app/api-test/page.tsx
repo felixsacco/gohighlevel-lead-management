@@ -26,7 +26,7 @@ export default function APITest() {
 
   return (
     <div className="container p-8 mx-auto">
-      <h1 className="mb-6 text-2xl font-bold">Simple API Test</h1>
+      <h1 className="mb-6 text-2xl font-extrabold">Simple API Test</h1>
       
       <div className="space-y-6">
         <Button 

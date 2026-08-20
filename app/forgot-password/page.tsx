@@ -110,12 +110,13 @@ function ForgotPasswordContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#F1F5F9] flex items-center justify-center p-4">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex items-center justify-center mb-4">
-            <Key className="w-8 h-8 text-blue-600 mr-2" />
-            <CardTitle>Forgot Password</CardTitle>
+            <Key className="w-8 h-8 text-brand-navy mr-2" />
+            <CardTitle className="font-extrabold text-brand-navy" style={{ fontWeight: 800 }}>Forgot Password</CardTitle>
           </div>
           <p className="text-gray-600">
             Enter your email address and we will send you a link to reset your
@@ -153,7 +154,7 @@ function ForgotPasswordContent() {
               </Alert>
             )}
 
-            <Button type="submit" disabled={isLoading} className="w-full">
+            <Button type="submit" disabled={isLoading} className="w-full bg-brand-amber hover:bg-brand-amberDark text-black font-semibold">
               {isLoading ? "Sending..." : "Send Reset Link"}
             </Button>
 
@@ -179,6 +180,7 @@ function ForgotPasswordContent() {
           </form>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

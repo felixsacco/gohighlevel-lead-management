@@ -249,22 +249,22 @@ export default function ClientRegistration() {
 
   if (isEmailSent) {
     return (
-      <div className="relative min-h-screen bg-[#1A3A8A] flex items-center justify-center p-6 overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+      <div className="relative min-h-screen bg-brand-navy flex items-center justify-center p-6 overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #F5A623 1px, transparent 1px), linear-gradient(to bottom, #F5A623 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F5A623] rounded-full blur-[150px] opacity-10" />
         
         <div className="relative z-10">
           <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
-          <Card className="relative w-full max-w-2xl rounded-3xl border border-white/20 bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md shadow-2xl">
+          <Card className="relative w-full max-w-2xl rounded-3xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md shadow-2xl">
             <CardContent className="p-8 text-center">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
               <div className="mb-6">
                 <div className="flex items-center justify-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-400/30 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500/20 to-brand-navy/20 border border-blue-400/30 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm">
                     <Mail className="w-8 h-8 text-blue-400" />
                   </div>
                 </div>
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-2">
+                <h2 className="text-3xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-2">
                   Email Verification Sent!
                 </h2>
                 <p className="text-blue-100 mb-4">
@@ -278,7 +278,7 @@ export default function ClientRegistration() {
               </div>
 
               {/* Email Sent Message */}
-              <div className="bg-white/10 border border-white/20 rounded-lg p-6 mb-6 text-center backdrop-blur-sm">
+              <div className="bg-white/10 border border-white/20 rounded-xl p-6 mb-6 text-center backdrop-blur-sm">
                 <div className="flex items-center justify-center mb-4">
                   <div className="w-16 h-16 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/30 rounded-full flex items-center justify-center backdrop-blur-sm">
                     <Mail className="w-8 h-8 text-green-400" />
@@ -291,7 +291,7 @@ export default function ClientRegistration() {
                   We have sent a verification email to{" "}
                   <strong className="text-yellow-400">{formData.email}</strong>
                 </p>
-                <div className="bg-blue-500/20 border border-blue-400/30 rounded-lg p-4 mb-4 backdrop-blur-sm">
+                <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4 mb-4 backdrop-blur-sm">
                   <p className="text-sm text-blue-100">
                     <strong>Next Steps:</strong>
                   </p>
@@ -311,7 +311,7 @@ export default function ClientRegistration() {
               <div className="space-y-3">
                 <Button
                   asChild
-                  className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-lg shadow-lg"
+                  className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
                 >
                   <Link href={`/verify-captcha?email=${formData.email}`}>
                     Enter Verification Code
@@ -319,13 +319,13 @@ export default function ClientRegistration() {
                 </Button>
                 <Button
                   asChild
-                  className="w-full h-12 bg-white/10 border-2 border-white/20 hover:bg-white/20 hover:border-yellow-400/50 transition-all duration-200 text-white text-base font-semibold rounded-lg backdrop-blur-sm"
+                  className="w-full h-12 bg-white/10 border-2 border-white/20 hover:bg-white/20 hover:border-yellow-400/50 transition-all duration-200 text-white text-base font-semibold rounded-xl backdrop-blur-sm"
                 >
                   <Link href="/">Back to Home</Link>
                 </Button>
               </div>
 
-              <div className="mt-6 p-4 bg-blue-500/20 border border-blue-400/30 rounded-lg backdrop-blur-sm">
+              <div className="mt-6 p-4 bg-blue-500/20 border border-blue-400/30 rounded-xl backdrop-blur-sm">
                 <p className="text-sm text-blue-100">
                   <strong>Note:</strong> Check your email inbox for the
                   verification code. If you do not see it, check your spam
@@ -339,7 +339,7 @@ export default function ClientRegistration() {
     );
   }
     return (
-      <div className="relative min-h-screen bg-[#1A3A8A] flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+      <div className="relative min-h-screen bg-brand-navy flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #F5A623 1px, transparent 1px), linear-gradient(to bottom, #F5A623 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F5A623] rounded-full blur-[150px] opacity-10" />
 
@@ -348,7 +348,7 @@ export default function ClientRegistration() {
           {/* Left: Registration form */}
           <div className="order-1 md:order-1 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
-            <Card className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md shadow-2xl">
+            <Card className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md shadow-2xl">
               <CardHeader className="text-center pb-6">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
                 <div className="flex items-center justify-center mb-4">
@@ -360,12 +360,12 @@ export default function ClientRegistration() {
                     Back to Home
                   </Link>
                 </div>
-                <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-[#FFB800] px-3 py-1.5 text-xs font-extrabold text-black border-2 border-[#FFB800]">
+                <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-brand-amber px-3 py-1.5 text-xs font-extrabold text-black border-2 border-brand-amber">
                   <Star className="h-3.5 w-3.5 fill-yellow-600 text-yellow-700" />
                   Join Happy Customers
                 </div>
                 <div className="flex items-center justify-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-md">
+                  <div className="w-16 h-16 bg-gradient-to-r from-brand-navy to-brand-navy rounded-full flex items-center justify-center shadow-md">
                     <User className="w-8 h-8 text-white" />
                   </div>
                 </div>
@@ -408,7 +408,7 @@ export default function ClientRegistration() {
                       errors.firstName
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your first name"
                   />
                   {errors.firstName && (
@@ -437,7 +437,7 @@ export default function ClientRegistration() {
                       errors.lastName
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your last name"
                   />
                   {errors.lastName && (
@@ -466,7 +466,7 @@ export default function ClientRegistration() {
                     errors.email
                       ? "border-red-400/50"
                       : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                   placeholder="Enter your email address"
                 />
                 {errors.email && (
@@ -492,7 +492,7 @@ export default function ClientRegistration() {
                     errors.phone
                       ? "border-red-400/50"
                       : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                   placeholder="Enter your phone number"
                 />
                 {errors.phone && (
@@ -521,7 +521,7 @@ export default function ClientRegistration() {
                       errors.postcode
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your postcode"
                   />
                   {errors.postcode && (
@@ -550,7 +550,7 @@ export default function ClientRegistration() {
                       errors.address
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your full address"
                   />
                   {errors.address && (
@@ -583,7 +583,7 @@ export default function ClientRegistration() {
                         errors.password
                           ? "border-red-400/50"
                           : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
+                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
                       placeholder="Create a strong password"
                     />
                     <button
@@ -625,7 +625,7 @@ export default function ClientRegistration() {
                         errors.confirmPassword
                           ? "border-red-400/50"
                           : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
+                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
                       placeholder="Confirm your password"
                     />
                     <button
@@ -654,7 +654,7 @@ export default function ClientRegistration() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-lg shadow-lg"
+                className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
               >
                 {isLoading ? "Creating Account..." : "Create Account"}
               </Button>
@@ -679,10 +679,10 @@ export default function ClientRegistration() {
         {/* Right: Hero-style feature cards */}
         <div className="order-2 md:order-2 flex flex-col gap-6 relative z-10">
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-3xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
+            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h2 className="text-xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Why Choose MyApproved</h2>
+              <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Why Choose MyApproved</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm">
@@ -707,9 +707,9 @@ export default function ClientRegistration() {
           </div>
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
+            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h3 className="text-lg font-semibold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Everything you need</h3>
+              <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Everything you need</h3>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Secure messaging</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Quotes & bookings in one place</span></li>
@@ -720,9 +720,9 @@ export default function ClientRegistration() {
 
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-3xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
+            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h3 className="text-lg font-semibold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Peace of mind</h3>
+              <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Peace of mind</h3>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Insurance confirmed and monitored</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Clear pricing</span></li>
@@ -734,9 +734,9 @@ export default function ClientRegistration() {
           {/* How it works card */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-3xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-blue-900 to-blue-800 backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
+            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h3 className="text-lg font-semibold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">How it works</h3>
+              <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">How it works</h3>
               <ol className="space-y-4 text-sm">
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-blue-500/30 border border-blue-400/50 text-blue-300 text-xs font-bold backdrop-blur-sm">1</span>

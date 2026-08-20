@@ -141,7 +141,7 @@ export default function AdminQuoteRequests() {
         </p>
       </div>
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">Quote Requests</h2>
+        <h2 className="text-2xl font-extrabold">Quote Requests</h2>
         <Button onClick={fetchQuoteRequests} variant="outline">
           Refresh
         </Button>

@@ -50,8 +50,8 @@ const FullWidthCTAStripes = () => {
       description: 'Get instant quotes from identity-checked professionals with public liability cover confirmed. No more waiting weeks for callbacks or worrying about cowboy builders.',
       buttonText: 'Find Tradespeople',
       buttonAction: () => window.location.href = '/find-tradespeople',
-      gradient: 'from-[#0056D2] via-blue-600 to-blue-800',
-      hoverGradient: 'from-blue-800 via-blue-600 to-[#0056D2]',
+      gradient: 'from-brand-navy via-brand-navy to-brand-navy',
+      hoverGradient: 'from-brand-navy via-brand-navy to-brand-navy',
       icon: Search,
       stats: [
         { value: 'New', label: 'Jobs posted today' },
@@ -73,8 +73,8 @@ const FullWidthCTAStripes = () => {
       description: 'Join trusted tradespeople earning more with our platform. Get matched with customers who need your skills.',
       buttonText: 'Join MyApproved',
       buttonAction: () => window.location.href = '/register/tradesperson',
-      gradient: 'from-[#FDBD18] via-yellow-400 to-orange-400',
-      hoverGradient: 'from-orange-400 via-yellow-400 to-[#FDBD18]',
+      gradient: 'from-brand-amber via-yellow-400 to-orange-400',
+      hoverGradient: 'from-orange-400 via-yellow-400 to-brand-amber',
       icon: Users,
       stats: [
         { value: '£2M', label: 'Public liability cover' },
@@ -129,7 +129,7 @@ const FullWidthCTAStripes = () => {
             </div>
             {/* Floating elements */}
             <div className="absolute top-4 right-4 bg-white/20 rounded-xl p-2 animate-bounce">
-              <Star className="w-6 h-6 text-[#FDBD18]" />
+              <Star className="w-6 h-6 text-brand-amber" />
             </div>
             <div className="absolute bottom-4 left-4 bg-white/20 rounded-xl p-2 animate-pulse">
               <Shield className="w-6 h-6 text-green-400" />
@@ -152,7 +152,7 @@ const FullWidthCTAStripes = () => {
               <TrendingUp className="w-6 h-6 text-green-400" />
             </div>
             <div className="absolute bottom-4 left-4 bg-white/20 rounded-xl p-2 animate-pulse">
-              <Award className="w-6 h-6 text-[#FDBD18]" />
+              <Award className="w-6 h-6 text-brand-amber" />
             </div>
           </div>
         );
@@ -212,7 +212,7 @@ const FullWidthCTAStripes = () => {
                   {/* Header */}
                   <div className="space-y-4">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30">
+                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/30">
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <div className="text-white/80 font-semibold text-sm uppercase tracking-wider">
@@ -224,7 +224,7 @@ const FullWidthCTAStripes = () => {
                       {stripe.title}
                     </h2>
                     
-                    <h3 className="text-2xl md:text-3xl font-bold text-white/90 leading-relaxed">
+                    <h3 className="text-2xl md:text-3xl font-extrabold text-white/90 leading-relaxed">
                       {stripe.subtitle}
                     </h3>
                     
@@ -261,7 +261,7 @@ const FullWidthCTAStripes = () => {
                   <div className="pt-4">
                     <Button
                       onClick={stripe.buttonAction}
-                      className={`group bg-white hover:bg-gray-100 text-gray-900 font-black px-8 py-4 rounded-2xl text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105`}
+                      className={`group bg-white hover:bg-gray-100 text-gray-900 font-black px-8 py-4 rounded-xl text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105`}
                     >
                       <span>{stripe.buttonText}</span>
                       <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />

@@ -69,10 +69,10 @@ export default function SupabaseTest() {
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6">Supabase Connection Test</h1>
+      <h1 className="text-2xl font-extrabold mb-6">Supabase Connection Test</h1>
       
-      <div className="bg-white p-6 rounded-lg shadow">
-        <h2 className="text-lg font-semibold mb-4">Status</h2>
+      <div className="bg-white p-6 rounded-xl shadow">
+        <h2 className="text-lg font-extrabold mb-4">Status</h2>
         
         {status.loading ? (
           <p className="text-gray-500">Testing connection...</p>
@@ -134,8 +134,8 @@ export default function SupabaseTest() {
         )}
       </div>
       
-      <div className="mt-8 bg-white p-6 rounded-lg shadow">
-        <h2 className="text-lg font-semibold mb-4">Troubleshooting Tips</h2>
+      <div className="mt-8 bg-white p-6 rounded-xl shadow">
+        <h2 className="text-lg font-extrabold mb-4">Troubleshooting Tips</h2>
         
         <ul className="list-disc list-inside space-y-2">
           <li>Check that your <code>NEXT_PUBLIC_SUPABASE_URL</code> and <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> are correctly set in your <code>.env.local</code> file</li>

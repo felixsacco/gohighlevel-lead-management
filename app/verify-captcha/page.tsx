@@ -183,7 +183,7 @@ export default function VerifyCaptcha() {
                 <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-4" />
                 <Shield className="w-8 h-8 text-blue-500 absolute -top-2 -right-2" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Email Verified!</h2>
+              <h2 className="text-3xl font-extrabold text-brand-navy mb-2">Email Verified!</h2>
               <p className="text-gray-600 mb-4">
                 Your email address has been successfully verified.
               </p>
@@ -193,7 +193,7 @@ export default function VerifyCaptcha() {
             </div>
 
             {/* Success Details */}
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+            <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
               <div className="flex items-center justify-center mb-2">
                 <Mail className="w-4 h-4 text-green-600 mr-2" />
                 <span className="text-sm font-medium text-green-800">Email Verified</span>
@@ -216,8 +216,8 @@ export default function VerifyCaptcha() {
             </div>
 
             {/* Brand Message */}
-            <div className="mt-6 p-4 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg text-white">
-              <h3 className="font-bold text-lg mb-1">MyApproved All</h3>
+            <div className="mt-6 p-4 bg-gradient-to-r from-brand-navy to-brand-navy rounded-xl text-white">
+              <h3 className="font-extrabold text-lg mb-1">MyApproved All</h3>
               <p className="text-sm text-blue-100">
                 Connecting you with verified, reliable tradespeople in your area.
               </p>
@@ -239,7 +239,7 @@ export default function VerifyCaptcha() {
             </Link>
           </div>
           <div className="flex items-center justify-center mb-4">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center">
+            <div className="w-16 h-16 bg-gradient-to-r from-brand-navy to-brand-navy rounded-full flex items-center justify-center">
               <Key className="w-8 h-8 text-white" />
             </div>
           </div>
@@ -300,7 +300,7 @@ export default function VerifyCaptcha() {
             <div className="space-y-3">
               <Button 
                 type="submit" 
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                className="w-full bg-gradient-to-r from-brand-navy to-brand-navy hover:from-brand-navy hover:to-brand-navy text-white"
                 disabled={isLoading || attempts >= 3}
               >
                 {isLoading ? 'Verifying...' : 'Verify Email'}
@@ -318,7 +318,7 @@ export default function VerifyCaptcha() {
             </div>
           </form>
 
-          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
             <p className="text-sm text-blue-800">
               <strong>Need help?</strong> Check your email inbox and spam folder for the verification code.
             </p>

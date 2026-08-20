@@ -143,7 +143,7 @@ export default function SitemapPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#1A3A8A] text-white pb-16 sm:pb-20">
+      <section className="bg-brand-navy text-white pb-16 sm:pb-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl sm:text-4xl font-extrabold mb-3">Sitemap</h1>
           <p className="text-blue-200 text-lg">
@@ -163,21 +163,21 @@ export default function SitemapPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {sections.map((section) => (
-              <div key={section.title} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+              <div key={section.title} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-9 h-9 bg-[#1A3A8A] rounded-lg flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 bg-brand-navy rounded-xl flex items-center justify-center shrink-0">
                     <section.icon className="w-4 h-4 text-white" />
                   </div>
-                  <h2 className="font-bold text-gray-900">{section.title}</h2>
+                  <h2 className="font-extrabold text-brand-navy">{section.title}</h2>
                 </div>
                 <ul className="space-y-3">
                   {section.pages.map((page) => (
                     <li key={page.href}>
                       <Link
                         href={page.href}
-                        className="group flex flex-col hover:bg-gray-50 rounded-lg p-2 -mx-2 transition-colors"
+                        className="group flex flex-col hover:bg-gray-50 rounded-xl p-2 -mx-2 transition-colors"
                       >
-                        <span className="text-sm font-semibold text-[#1A3A8A] group-hover:text-[#FFB800] transition-colors">
+                        <span className="text-sm font-semibold text-brand-navy group-hover:text-brand-amber transition-colors">
                           {page.name}
                         </span>
                         <span className="text-xs text-gray-500 mt-0.5">{page.desc}</span>

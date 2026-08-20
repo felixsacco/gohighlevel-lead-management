@@ -88,8 +88,8 @@ const CTACardsSection = () => {
   return (
     <section className="py-20 bg-[#0A0A0A] relative overflow-hidden">
       {/* Ambient glow */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-[#F5B301]/4 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#F5B301]/3 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-brand-amber/4 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-brand-amber/3 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -101,17 +101,17 @@ const CTACardsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="inline-flex items-center gap-2 bg-[#F5B301]/10 border border-[#F5B301]/20 text-[#F5B301] px-4 py-2 rounded-full text-xs font-bold mb-5">
+          <div className="inline-flex items-center gap-2 bg-brand-amber/10 border border-brand-amber/20 text-brand-amber px-4 py-2 rounded-full text-xs font-bold mb-5">
             <Target className="w-3.5 h-3.5" />
             <span className="tracking-[0.08em] uppercase">Choose Your Path</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
             Ready to Get{' '}
-            <span className="text-[#F5B301]">Started?</span>
+            <span className="text-brand-amber">Started?</span>
           </h2>
           <p className="text-lg text-white/45 max-w-2xl leading-relaxed">
             Whether you need work done or want to grow your business, we&apos;ve got you covered.{' '}
-            <span className="text-[#F5B301] font-semibold">Join thousands</span> who trust MyApproved.
+            <span className="text-brand-amber font-semibold">Join thousands</span> who trust MyApproved.
           </p>
         </motion.div>
 
@@ -122,7 +122,7 @@ const CTACardsSection = () => {
             return (
               <motion.div
                 key={card.id}
-                className="group relative bg-[#161616] rounded-2xl border border-white/[0.06] hover:border-[#F5B301]/20 overflow-hidden transition-all duration-400"
+                className="group relative bg-[#161616] rounded-xl border border-white/[0.06] hover:border-brand-amber/20 overflow-hidden transition-all duration-400"
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -145,7 +145,7 @@ const CTACardsSection = () => {
                   {/* Badge */}
                   {card.badge && (
                     <div className="absolute top-4 right-4">
-                      <div className="bg-[#F5B301]/15 backdrop-blur-sm text-[#F5B301] px-2.5 py-1 rounded-full text-[0.65rem] font-black border border-[#F5B301]/25 tracking-wide">
+                      <div className="bg-brand-amber/15 backdrop-blur-sm text-brand-amber px-2.5 py-1 rounded-full text-[0.65rem] font-black border border-brand-amber/25 tracking-wide">
                         {card.badge}
                       </div>
                     </div>
@@ -153,8 +153,8 @@ const CTACardsSection = () => {
 
                   {/* Icon */}
                   <div className="absolute top-4 left-4">
-                    <div className="w-11 h-11 bg-[#F5B301]/15 backdrop-blur-sm rounded-xl flex items-center justify-center border border-[#F5B301]/25 group-hover:bg-[#F5B301]/25 transition-colors duration-300">
-                      <IconComponent className="w-5 h-5 text-[#F5B301]" />
+                    <div className="w-11 h-11 bg-brand-amber/15 backdrop-blur-sm rounded-xl flex items-center justify-center border border-brand-amber/25 group-hover:bg-brand-amber/25 transition-colors duration-300">
+                      <IconComponent className="w-5 h-5 text-brand-amber" />
                     </div>
                   </div>
 
@@ -176,7 +176,7 @@ const CTACardsSection = () => {
                 {/* Content */}
                 <div className="p-5 space-y-4">
                   <div>
-                    <h3 className="text-xl font-black text-white mb-2 group-hover:text-[#F5B301] transition-colors duration-300">
+                    <h3 className="text-xl font-black text-white mb-2 group-hover:text-brand-amber transition-colors duration-300">
                       {card.title}
                     </h3>
                     <p className="text-sm text-white/45 leading-relaxed">
@@ -189,7 +189,7 @@ const CTACardsSection = () => {
                     <div className="space-y-1.5">
                       {card.features.map((feature, i) => (
                         <div key={i} className="flex items-center gap-2 text-xs text-white/40">
-                          <div className="w-1.5 h-1.5 bg-[#F5B301] rounded-full shrink-0" />
+                          <div className="w-1.5 h-1.5 bg-brand-amber rounded-full shrink-0" />
                           <span>{feature}</span>
                         </div>
                       ))}
@@ -203,8 +203,8 @@ const CTACardsSection = () => {
                         href={card.href}
                         className={`group/btn w-full inline-flex items-center justify-center px-5 py-3.5 rounded-xl font-black text-sm transition-all duration-200 hover:scale-[1.02] ${
                           card.variant === 'primary'
-                            ? 'bg-[#F5B301] hover:bg-[#E8A900] text-[#111111] shadow-lg shadow-[#F5B301]/15'
-                            : 'bg-transparent border border-[#F5B301]/40 text-[#F5B301] hover:bg-[#F5B301] hover:text-[#111111] hover:border-[#F5B301]'
+                            ? 'bg-brand-amber hover:bg-brand-amberDark text-[#111111] shadow-lg shadow-brand-amber/15'
+                            : 'bg-transparent border border-brand-amber/40 text-brand-amber hover:bg-brand-amber hover:text-[#111111] hover:border-brand-amber'
                         }`}
                       >
                         <span>{card.buttonText}</span>
@@ -215,8 +215,8 @@ const CTACardsSection = () => {
                         onClick={card.onClick}
                         className={`group/btn w-full inline-flex items-center justify-center px-5 py-3.5 rounded-xl font-black text-sm transition-all duration-200 hover:scale-[1.02] ${
                           card.variant === 'primary'
-                            ? 'bg-[#F5B301] hover:bg-[#E8A900] text-[#111111] shadow-lg shadow-[#F5B301]/15'
-                            : 'bg-transparent border border-[#F5B301]/40 text-[#F5B301] hover:bg-[#F5B301] hover:text-[#111111] hover:border-[#F5B301]'
+                            ? 'bg-brand-amber hover:bg-brand-amberDark text-[#111111] shadow-lg shadow-brand-amber/15'
+                            : 'bg-transparent border border-brand-amber/40 text-brand-amber hover:bg-brand-amber hover:text-[#111111] hover:border-brand-amber'
                         }`}
                       >
                         <span>{card.buttonText}</span>
@@ -227,7 +227,7 @@ const CTACardsSection = () => {
                 </div>
 
                 {/* Gold edge glow on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#F5B301]/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-amber/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" />
               </motion.div>
             );
           })}
@@ -241,7 +241,7 @@ const CTACardsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8">
+          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-8">
             <p className="text-[0.65rem] font-bold tracking-[0.18em] uppercase text-white/25 text-center mb-6">
               Why Choose MyApproved?
             </p>
@@ -254,8 +254,8 @@ const CTACardsSection = () => {
                 { icon: Award, value: 'Re-checked', label: 'Time-limited checks' },
               ].map(({ icon: Icon, value, label }) => (
                 <div key={value} className="text-center">
-                  <div className="w-11 h-11 bg-[#F5B301]/10 border border-[#F5B301]/15 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <Icon className="w-5 h-5 text-[#F5B301]" />
+                  <div className="w-11 h-11 bg-brand-amber/10 border border-brand-amber/15 rounded-xl flex items-center justify-center mx-auto mb-3">
+                    <Icon className="w-5 h-5 text-brand-amber" />
                   </div>
                   <div className="font-bold text-white text-sm">{value}</div>
                   <div className="text-[0.7rem] text-white/35 mt-0.5">{label}</div>

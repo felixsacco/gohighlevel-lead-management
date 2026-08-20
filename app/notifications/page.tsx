@@ -96,7 +96,7 @@ export default function NotificationsPage() {
     <Section>
       <Container className="py-10 max-w-2xl space-y-6">
         <div className="flex items-center justify-between gap-4">
-          <h1 className="text-2xl font-bold text-slate-900">Notifications</h1>
+          <h1 className="text-2xl font-extrabold text-brand-navy">Notifications</h1>
           <Button variant="outline" asChild>
             <Link href={dashHref}>Dashboard</Link>
           </Button>

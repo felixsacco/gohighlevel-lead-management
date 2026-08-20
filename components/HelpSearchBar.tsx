@@ -21,7 +21,7 @@ export default function HelpSearchBar() {
         />
         <Button
           onClick={openMatcher}
-          className="absolute right-2 top-2 bg-[#F5B301] hover:bg-[#E8A900] text-black font-bold"
+          className="absolute right-2 top-2 bg-brand-amber hover:bg-brand-amberDark text-black font-bold"
         >
           Get Quotes
         </Button>

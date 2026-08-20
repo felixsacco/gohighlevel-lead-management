@@ -121,7 +121,7 @@ export default async function TradeLocationLiveResults({
     <section className="py-12 sm:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── Group 1: MyApproved members ── */}
-        <h2 className="text-xl sm:text-2xl font-extrabold text-[#002FA7] mb-2">
+        <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-2">
           MyApproved {tradePlural} in {locationName}
         </h2>
 
@@ -139,7 +139,7 @@ export default async function TradeLocationLiveResults({
                 className="bg-white rounded-xl border border-blue-100 p-5 shadow-sm"
               >
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="flex-1 font-bold text-[#002FA7] truncate">
+                  <span className="flex-1 font-bold text-brand-navy truncate">
                     {m.name}
                   </span>
                   {m.is_verified && (
@@ -176,7 +176,7 @@ export default async function TradeLocationLiveResults({
         {/* ── Group 2: Harvested businesses ── */}
         {prospects.length > 0 && (
           <>
-            <h3 className="text-lg font-bold text-gray-800 mb-2">
+            <h3 className="text-lg font-extrabold text-brand-navy mb-2">
               Other businesses in {locationName}
             </h3>
             <p className="text-xs text-gray-400 mb-4 flex items-center gap-1.5">

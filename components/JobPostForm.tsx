@@ -602,7 +602,7 @@ export default function JobPostForm({ onJobPosted }: JobPostFormProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => setShowAISuggestions(!showAISuggestions)}
-                  className="bg-gradient-to-r from-purple-500 to-blue-500 text-white border-0 hover:from-purple-600 hover:to-blue-600 shadow-md transition-all duration-200 transform hover:scale-105"
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 text-white border-0 hover:from-purple-600 hover:to-brand-navy shadow-md transition-all duration-200 transform hover:scale-105"
                 >
                   <span className="mr-1">✨</span>
                   AI Assistant
@@ -624,14 +624,14 @@ export default function JobPostForm({ onJobPosted }: JobPostFormProps) {
 
             {/* AI Suggestions Panel */}
             {showAISuggestions && formData.trade && (
-              <div className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-6 rounded-2xl border-2 border-purple-200 shadow-xl animate-in slide-in-from-top-2 duration-300">
+              <div className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200 shadow-xl animate-in slide-in-from-top-2 duration-300">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-sm">✨</span>
                     </div>
-                    <h4 className="text-lg font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                    <h4 className="text-lg font-bold bg-gradient-to-r from-purple-600 to-brand-navy bg-clip-text text-transparent">
                       AI Suggestions for {formData.trade}
                     </h4>
                   </div>
@@ -646,7 +646,7 @@ export default function JobPostForm({ onJobPosted }: JobPostFormProps) {
                   </Button>
                 </div>
                 
-                <p className="text-sm text-purple-700 mb-4 bg-white/50 p-3 rounded-lg border border-purple-200">
+                <p className="text-sm text-purple-700 mb-4 bg-white/50 p-3 rounded-xl border border-purple-200">
                   💡 <strong>Choose from these professional examples</strong> - Click any suggestion to instantly use it, then customize as needed!
                 </p>
                 

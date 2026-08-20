@@ -99,14 +99,14 @@ export default function JoinPage() {
   ];
 
   return (
-    <Section className="py-12 bg-gray-50">
+    <Section className="py-12 sm:py-16 bg-[#F1F5F9]">
       <Container size="wide">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+          <h1 className="text-4xl font-extrabold text-brand-navy sm:text-5xl sm:tracking-tight lg:text-6xl" style={{ fontWeight: 800 }}>
             Join MyApproved Today
           </h1>
-          <p className="mt-5 max-w-xl mx-auto text-xl text-gray-500">
+          <p className="mt-5 max-w-xl mx-auto text-xl text-gray-600">
             Connect with trusted local tradespeople or grow your business with
             quality leads
           </p>
@@ -118,17 +118,17 @@ export default function JoinPage() {
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-sm border border-gray-100"
+                className="bg-white p-4 sm:p-6 rounded-xl"
               >
                 <div className="flex items-center">
-                  <div className="flex-shrink-0 bg-blue-50 rounded-md p-2">
+                  <div className="flex-shrink-0 bg-[#F1F5F9] rounded-xl p-2">
                     {benefit.icon}
                   </div>
                   <div className="ml-4">
-                    <h3 className="text-lg font-medium text-gray-900">
+                    <h3 className="text-lg font-extrabold text-brand-navy" style={{ fontWeight: 800 }}>
                       {benefit.title}
                     </h3>
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-gray-600">
                       {benefit.description}
                     </p>
                   </div>
@@ -143,22 +143,22 @@ export default function JoinPage() {
           {plans.map((plan) => (
             <Card
               key={plan.id}
-              className={`relative overflow-hidden ${
-                plan.popular ? "ring-2 ring-blue-500" : ""
+              className={`relative overflow-hidden rounded-xl ${
+                plan.popular ? "ring-2 ring-brand-navy" : ""
               }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs font-semibold px-3 py-1 transform translate-x-2 -translate-y-2">
+                <div className="absolute top-0 right-0 bg-brand-navy text-white text-xs font-semibold px-3 py-1 rounded-full transform translate-x-2 -translate-y-2">
                   MOST POPULAR
                 </div>
               )}
               <CardHeader className="pb-4">
                 <div className="flex items-center">
-                  <div className="flex-shrink-0 p-2 bg-blue-100 rounded-lg">
+                  <div className="flex-shrink-0 p-2 bg-[#F1F5F9] rounded-xl">
                     {plan.icon}
                   </div>
                   <div className="ml-4">
-                    <CardTitle className="text-2xl font-bold text-gray-900">
+                    <CardTitle className="text-2xl text-brand-navy" style={{ fontWeight: 800 }}>
                       {plan.title}
                     </CardTitle>
                     <CardDescription className="mt-1 text-gray-600">
@@ -167,10 +167,10 @@ export default function JoinPage() {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="text-2xl text-brand-navy" style={{ fontWeight: 800 }}>
                     {plan.price}
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-600">
                     No credit card required
                   </p>
                 </div>
@@ -194,11 +194,12 @@ export default function JoinPage() {
                   <Link href={plan.href} className="block w-full">
                     <Button
                       size="lg"
-                      className={`w-full ${
+                      className={`w-full font-bold rounded-xl ${
                         plan.popular
-                          ? "bg-blue-600 hover:bg-blue-700"
-                          : "bg-gray-900 hover:bg-gray-800"
+                          ? "bg-brand-amber hover:bg-brand-amberDark text-black"
+                          : "bg-brand-navy hover:bg-brand-navy text-white"
                       }`}
+                      style={{ fontWeight: 800 }}
                     >
                       {plan.cta}
                     </Button>

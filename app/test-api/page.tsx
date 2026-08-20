@@ -65,19 +65,19 @@ export default function TestAPI() {
   
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6">API Testing</h1>
+      <h1 className="text-2xl font-extrabold mb-6">API Testing</h1>
       
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <div className="p-6 bg-white rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Test API Connection</h2>
+        <div className="p-6 bg-white rounded-xl shadow-md">
+          <h2 className="text-xl font-extrabold mb-4">Test API Connection</h2>
           <p className="mb-4 text-gray-600">Simple ping test to verify the API routes are accessible</p>
           <Button onClick={testAPIConnection} disabled={loading}>
             {loading ? 'Testing...' : 'Test API Connection'}
           </Button>
         </div>
         
-        <div className="p-6 bg-white rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Test User Creation</h2>
+        <div className="p-6 bg-white rounded-xl shadow-md">
+          <h2 className="text-xl font-extrabold mb-4">Test User Creation</h2>
           <p className="mb-4 text-gray-600">Tests Supabase user creation without file uploads</p>
           <Button onClick={testUserCreation} disabled={loading}>
             {loading ? 'Creating...' : 'Create Test User'}
