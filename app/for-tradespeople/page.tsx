@@ -7,6 +7,7 @@ import { CheckCircle, Users, TrendingUp, Shield, User, BadgeCheck } from "lucide
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
+import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 
 const benefits = [
   {
@@ -84,9 +85,7 @@ export default function ForTradespeople() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
-                For Tradespeople
-              </p>
+              <SectionHeaderPill>For Tradespeople</SectionHeaderPill>
               <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4" style={{fontWeight: 800}}>
                 Grow Your Trade Business with <span className="text-brand-amber">MyApproved</span>
               </h1>

@@ -2,6 +2,7 @@ import { generateMetadata } from '@/lib/seo';
 import { HelpCircle, ChevronDown, Search, Shield, Users, CreditCard } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
 import { Container } from '@/components/ui/Container';
+import SectionHeaderPill from '@/components/ui/SectionHeaderPill';
 
 export const metadata = generateMetadata('faq', {
   title: 'FAQ - Frequently Asked Questions About Hiring Tradespeople | MyApproved',
@@ -163,9 +164,7 @@ export default function FAQPage() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-brand-navy via-brand-navy to-[#0A2463] text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
           <Container size="narrow" className="relative text-center pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
-            <p className="text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
-              Instant Answers
-            </p>
+            <SectionHeaderPill>Instant Answers</SectionHeaderPill>
             <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4 text-white" style={{fontWeight: 800}}>
               Frequently Asked Questions
             </h1>

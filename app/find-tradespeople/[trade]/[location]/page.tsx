@@ -20,6 +20,7 @@ import TrustEngineSection from "@/components/TrustEngineSection";
 import TradeLocationLiveResults from "@/components/TradeLocationLiveResults";
 import HeroSearchTrigger from "@/components/HeroSearchTrigger";
 import { Button } from "@/components/ui/button";
+import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 import {
   Accordion,
   AccordionContent,
@@ -350,10 +351,7 @@ export default function FindTradeLocationPage({
         <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-                <MapPin className="w-4 h-4 text-brand-amber" />
-                {locationName} · {location?.region ?? "United Kingdom"}
-              </div>
+              <SectionHeaderPill>{locationName} · {location?.region ?? "United Kingdom"}</SectionHeaderPill>
 
               <h1
                 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4"

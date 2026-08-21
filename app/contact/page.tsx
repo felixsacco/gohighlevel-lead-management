@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Mail, MessageCircle, Send, CheckCircle, Clock, Shield } from "lucide-react";
+import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -37,9 +38,7 @@ export default function ContactPage() {
       <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
           <div className="text-center max-w-4xl mx-auto">
-            <p className="text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
-              Get in Touch
-            </p>
+            <SectionHeaderPill>Get in Touch</SectionHeaderPill>
             <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4 text-white" style={{fontWeight: 800}}>Contact Us</h1>
             <p className="text-white/75 text-lg max-w-2xl mx-auto">
               Have a question or need support? Send us a message and we'll get back to you within one business day.
