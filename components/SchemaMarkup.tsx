@@ -154,7 +154,7 @@ export const FAQSchema = {
       "name": "How do I get a competitive, verified trade quote through MyApproved?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Post your job on MyApproved for free - takes under 2 minutes. You describe the work, set your location, and up to 3 local tradespeople receive your enquiry. Each one has already passed MyApproved's checks: identity checked, business verified, and public liability insurance confirmed and monitored. You compare quotes and hire - no obligation, no hidden fees. Most homeowners receive their first quote within a few hours."
+        "text": "Post your job on MyApproved for free - takes under 2 minutes. You describe the work, set your location, and verified local tradespeople who match your job receive your enquiry. Each one has already passed MyApproved's checks: identity checked, business verified, and public liability insurance confirmed and monitored. They call you back with a fixed written quote - compare and hire with no obligation and no hidden fees. Most homeowners receive their first quote within a few hours."
       }
     },
     {

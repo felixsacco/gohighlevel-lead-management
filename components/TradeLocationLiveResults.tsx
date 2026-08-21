@@ -129,7 +129,7 @@ export default async function TradeLocationLiveResults({
           <p className="text-sm text-gray-500 mb-8">
             There are currently no MyApproved {tradePlural.toLowerCase()} listed
             in {locationName}. The businesses below are listed on Google and
-            have not been vetted by MyApproved.
+            have not undergone MyApproved's checks.
           </p>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
@@ -181,7 +181,7 @@ export default async function TradeLocationLiveResults({
             </h3>
             <p className="text-xs text-gray-400 mb-4 flex items-center gap-1.5">
               <Info className="w-3.5 h-3.5" />
-              These businesses have not been vetted by MyApproved.
+              These businesses have not undergone MyApproved's checks.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {prospects.map((p) => (

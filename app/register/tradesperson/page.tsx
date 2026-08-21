@@ -348,25 +348,23 @@ export default function TradespersonRegistration() {
       <div className="relative min-h-screen bg-brand-navy flex items-center justify-center p-6 overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #F5A623 1px, transparent 1px), linear-gradient(to bottom, #F5A623 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F5A623] rounded-full blur-[150px] opacity-10" />
-        
+
         <div className="relative z-10">
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
-          <Card className="relative w-full max-w-2xl rounded-3xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md shadow-2xl">
+          <Card className="relative w-full max-w-2xl rounded-3xl border border-white/20 bg-white backdrop-blur-md shadow-2xl">
             <CardContent className="p-8 text-center">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
               <div className="mb-6">
                 <div className="flex items-center justify-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/30 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm">
-                    <CheckCircle className="w-8 h-8 text-green-400" />
+                  <div className="w-16 h-16 bg-[#16A34A]/15 border border-[#16A34A]/30 rounded-full flex items-center justify-center shadow-lg">
+                    <CheckCircle className="w-8 h-8 text-[#16A34A]" />
                   </div>
                 </div>
-                <h2 className="text-3xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-2" style={{fontWeight: 800}}>
+                <h2 className="text-3xl font-extrabold text-brand-navy mb-2" style={{fontWeight: 800}}>
                   Registration Successful!
                 </h2>
-                <p className="text-blue-100 mb-4">
+                <p className="text-brand-navy mb-4">
                   Thank you for registering with MyApproved!
                 </p>
-                <p className="text-blue-200 text-sm mb-6">
+                <p className="text-gray-600 text-sm mb-6">
                   Your account is approved. Log in now to view available jobs and start applying.
                 </p>
               </div>
@@ -374,7 +372,8 @@ export default function TradespersonRegistration() {
               <div className="space-y-3">
                 <Button
                   asChild
-                  className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
+                  className="w-full h-12 bg-brand-amber hover:bg-brand-amberDark hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
+                  style={{fontWeight: 800}}
                 >
                   <Link href="/">Back to Home</Link>
                 </Button>
@@ -387,7 +386,7 @@ export default function TradespersonRegistration() {
   }
 
     return (
-      <div className="relative min-h-screen bg-brand-navy flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+      <div className="relative min-h-screen bg-gradient-to-b from-brand-navyDark to-brand-navy flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #F5A623 1px, transparent 1px), linear-gradient(to bottom, #F5A623 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F5A623] rounded-full blur-[150px] opacity-10" />
 
@@ -395,40 +394,38 @@ export default function TradespersonRegistration() {
         <Container size="wide" className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
           {/* Left: Registration form */}
           <div className="order-1 md:order-1 relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
-          <Card className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md shadow-2xl max-h-[90vh] overflow-y-auto">
+          <Card className="relative rounded-3xl border border-white/20 bg-white shadow-2xl max-h-[90vh] overflow-y-auto">
               <CardHeader className="text-center pb-6">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
                 <div className="flex items-center justify-center mb-4">
                   <Link
                     href="/"
-                    className="flex items-center text-yellow-400 hover:text-yellow-300 transition-colors"
+                    className="flex items-center text-brand-amber hover:text-brand-amberDark transition-colors"
                   >
                     <ArrowLeft className="w-5 h-5 mr-2" />
                     Back to Home
                   </Link>
                 </div>
                 <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-brand-amber px-3 py-1.5 text-xs font-extrabold text-black border-2 border-brand-amber">
-                  <Star className="h-3.5 w-3.5 fill-yellow-600 text-yellow-700" />
+                  <Star className="h-3.5 w-3.5 fill-black text-black" />
                   Join Trusted Tradespeople
                 </div>
                 <div className="flex items-center justify-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-brand-navy to-brand-navy rounded-full flex items-center justify-center shadow-md">
+                  <div className="w-16 h-16 bg-brand-navy rounded-full flex items-center justify-center shadow-md">
                     <User className="w-8 h-8 text-white" />
                   </div>
                 </div>
-                <CardTitle className="text-[26px] sm:text-3xl font-extrabold bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent mb-1" style={{fontWeight: 800}}>
+                <CardTitle className="text-[26px] sm:text-3xl font-extrabold text-brand-navy mb-1" style={{fontWeight: 800}}>
                   Create Tradesperson Account
                 </CardTitle>
-                <p className="text-blue-100 text-sm sm:text-base">
+                <p className="text-gray-600 text-sm sm:text-base">
                   Connect with customers and grow your business on our platform
                 </p>
               </CardHeader>
 
               <CardContent className="p-6">
             {errorMessage && (
-              <Alert className="mb-6 border-red-400/30 bg-red-500/20 backdrop-blur-sm">
-                <AlertDescription className="text-red-200">
+              <Alert className="mb-6 border-red-300 bg-red-50">
+                <AlertDescription className="text-red-700">
                   {errorMessage}
                 </AlertDescription>
               </Alert>
@@ -437,10 +434,10 @@ export default function TradespersonRegistration() {
             <form onSubmit={handleSubmit} className="space-y-6">
             {/* Subscription Plan */}
             <div className="space-y-4">
-              <h3 className="text-lg font-extrabold text-yellow-400 border-b border-white/20 pb-2">
+              <h3 className="text-lg font-extrabold text-brand-navy border-b border-gray-200 pb-2">
                 Choose Your Plan
               </h3>
-              <p className="text-sm text-blue-200">
+              <p className="text-sm text-gray-600">
                 Pick how you want to pay for the leads MyApproved sends you. You can change this later from your dashboard.
               </p>
 
@@ -450,48 +447,48 @@ export default function TradespersonRegistration() {
                   type="button"
                   onClick={() => handleInputChange("subscriptionPlan", "pay_per_lead")}
                   aria-pressed={formData.subscriptionPlan === "pay_per_lead"}
-                  className={`relative text-left rounded-xl p-4 border-2 transition-all backdrop-blur-sm ${
+                  className={`relative text-left rounded-xl p-4 border-2 transition-all ${
                     formData.subscriptionPlan === "pay_per_lead"
-                      ? "border-green-400 bg-green-400/15 shadow-xl ring-2 ring-green-400/40"
-                      : "border-white/20 bg-white/5 hover:border-green-400/50"
+                      ? "border-brand-amber bg-brand-amber/10 shadow-xl ring-2 ring-brand-amber/40"
+                      : "border-gray-200 bg-gray-50 hover:border-brand-amber/50"
                   }`}
                 >
                   <span
                     className={`absolute -top-2 left-3 inline-flex items-center gap-1 rounded-full text-[10px] font-bold px-2 py-0.5 shadow ${
                       formData.subscriptionPlan === "pay_per_lead"
-                        ? "bg-green-400 text-green-950"
-                        : "bg-blue-200 text-blue-900"
+                        ? "bg-brand-amber text-black"
+                        : "bg-brand-navy text-white"
                     }`}
                   >
                     Recommended · Free
                   </span>
                   <div className="flex items-center justify-between mb-1 mt-2">
-                    <span className="text-sm font-semibold text-blue-100">Pay Per Lead</span>
+                    <span className="text-sm font-semibold text-brand-navy">Pay Per Lead</span>
                     {formData.subscriptionPlan === "pay_per_lead" ? (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-green-300">
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-brand-navy">
                         <CheckCircle className="w-4 h-4" /> Selected
                       </span>
                     ) : (
-                      <span className="text-[11px] text-blue-200">Tap to select</span>
+                      <span className="text-[11px] text-gray-500">Tap to select</span>
                     )}
                   </div>
-                  <div className="text-2xl font-extrabold text-white">
-                    Free<span className="text-sm font-medium text-blue-200"> to join</span>
+                  <div className="text-2xl font-extrabold text-brand-navy">
+                    Free<span className="text-sm font-medium text-gray-600"> to join</span>
                   </div>
-                  <div className="mt-1 text-sm text-yellow-300 font-semibold">
+                  <div className="mt-1 text-sm text-brand-amber font-semibold">
                     £4.99 per lead
                   </div>
-                  <ul className="mt-3 space-y-1 text-xs text-blue-100">
+                  <ul className="mt-3 space-y-1 text-xs text-gray-600">
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-green-400 flex-shrink-0" />
+                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-[#16A34A] flex-shrink-0" />
                       <span>No card needed at signup</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-green-400 flex-shrink-0" />
+                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-[#16A34A] flex-shrink-0" />
                       <span>Pay £4.99 only when you unlock a lead</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-green-400 flex-shrink-0" />
+                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-[#16A34A] flex-shrink-0" />
                       <span>Cancel anytime</span>
                     </li>
                   </ul>
@@ -502,42 +499,42 @@ export default function TradespersonRegistration() {
                   type="button"
                   onClick={() => handleInputChange("subscriptionPlan", "unlimited_monthly")}
                   aria-pressed={formData.subscriptionPlan === "unlimited_monthly"}
-                  className={`relative text-left rounded-xl p-4 border-2 transition-all backdrop-blur-sm ${
+                  className={`relative text-left rounded-xl p-4 border-2 transition-all ${
                     formData.subscriptionPlan === "unlimited_monthly"
-                      ? "border-yellow-400 bg-yellow-400/10 shadow-xl ring-2 ring-yellow-400/40"
-                      : "border-white/20 bg-white/5 hover:border-yellow-400/50"
+                      ? "border-brand-amber bg-brand-amber/10 shadow-xl ring-2 ring-brand-amber/40"
+                      : "border-gray-200 bg-gray-50 hover:border-brand-amber/50"
                   }`}
                 >
-                  <span className="absolute -top-2 right-3 inline-flex items-center gap-1 rounded-full bg-yellow-400 text-blue-900 text-[10px] font-bold px-2 py-0.5 shadow">
+                  <span className="absolute -top-2 right-3 inline-flex items-center gap-1 rounded-full bg-brand-navy text-white text-[10px] font-bold px-2 py-0.5 shadow">
                     Heavy users
                   </span>
                   <div className="flex items-center justify-between mb-1 mt-2">
-                    <span className="text-sm font-semibold text-blue-100">Unlimited</span>
+                    <span className="text-sm font-semibold text-brand-navy">Unlimited</span>
                     {formData.subscriptionPlan === "unlimited_monthly" ? (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-yellow-300">
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-brand-navy">
                         <CheckCircle className="w-4 h-4" /> Selected
                       </span>
                     ) : (
-                      <span className="text-[11px] text-blue-200">Tap to select</span>
+                      <span className="text-[11px] text-gray-500">Tap to select</span>
                     )}
                   </div>
-                  <div className="text-2xl font-extrabold text-white">
-                    £1,000<span className="text-sm font-medium text-blue-200">/month</span>
+                  <div className="text-2xl font-extrabold text-brand-navy">
+                    £1,000<span className="text-sm font-medium text-gray-600">/month</span>
                   </div>
-                  <div className="mt-1 text-sm text-yellow-300 font-semibold">
+                  <div className="mt-1 text-sm text-brand-amber font-semibold">
                     Unlimited leads
                   </div>
-                  <ul className="mt-3 space-y-1 text-xs text-blue-100">
+                  <ul className="mt-3 space-y-1 text-xs text-gray-600">
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-green-400 flex-shrink-0" />
+                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-[#16A34A] flex-shrink-0" />
                       <span>All the leads you can handle</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-green-400 flex-shrink-0" />
+                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-[#16A34A] flex-shrink-0" />
                       <span>No per-lead fees</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-green-400 flex-shrink-0" />
+                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-[#16A34A] flex-shrink-0" />
                       <span>Priority placement in search</span>
                     </li>
                   </ul>
@@ -546,23 +543,23 @@ export default function TradespersonRegistration() {
 
               {/* No payment at signup — GHL handles invoicing */}
               {formData.subscriptionPlan === "unlimited_monthly" ? (
-                <div className="rounded-xl border border-yellow-400/40 bg-yellow-400/10 p-3 text-sm text-yellow-100">
-                  <strong className="block text-yellow-200">Heads up:</strong>
+                <div className="rounded-xl border border-brand-amber/40 bg-brand-amber/10 p-3 text-sm text-brand-navy">
+                  <strong className="block text-brand-navy">Heads up:</strong>
                   You are selecting the Unlimited plan at{" "}
                   <strong>£1,000 / month</strong>. After signup, GoHighLevel will
                   handle your payment and invoicing.{" "}
                   <button
                     type="button"
                     onClick={() => handleInputChange("subscriptionPlan", "pay_per_lead")}
-                    className="underline font-semibold hover:text-white"
+                    className="underline font-semibold hover:text-brand-amberDark"
                   >
                     Switch to the free Pay Per Lead plan instead
                   </button>
                   .
                 </div>
               ) : (
-                <div className="rounded-xl border border-green-400/30 bg-green-400/10 p-3 text-sm text-green-100">
-                  <strong className="block text-green-200">No payment at signup.</strong>
+                <div className="rounded-xl border border-[#16A34A]/30 bg-[#16A34A]/10 p-3 text-sm text-brand-navy">
+                  <strong className="block text-[#16A34A]">No payment at signup.</strong>
                   Your account will be created on the free Pay Per Lead plan.
                   You will only be charged <strong>£4.99</strong> per lead
                   you choose to unlock - no card details needed today.
@@ -570,19 +567,19 @@ export default function TradespersonRegistration() {
               )}
 
               {errors.subscriptionPlan && (
-                <p className="text-red-300 text-sm">{errors.subscriptionPlan}</p>
+                <p className="text-red-600 text-sm">{errors.subscriptionPlan}</p>
               )}
-              <p className="text-xs text-blue-300">
+              <p className="text-xs text-gray-500">
                 Billing is managed by GoHighLevel. No payment details are collected at signup.
               </p>
             </div>
 
             {/* Personal Information */}
             <div className="space-y-4">
-              <h3 className="text-lg font-extrabold text-yellow-400 border-b border-white/20 pb-2">Personal Information</h3>
+              <h3 className="text-lg font-extrabold text-brand-navy border-b border-gray-200 pb-2">Personal Information</h3>
               
                 <div>
-                <Label htmlFor="fullName" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                <Label htmlFor="fullName" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                     <User className="w-4 h-4 mr-2" />
                     Full Name *
                   </Label>
@@ -591,23 +588,23 @@ export default function TradespersonRegistration() {
                     type="text"
                   value={formData.fullName}
                   onChange={(e) => handleInputChange("fullName", e.target.value)}
-                    className={`h-12 text-base bg-white/10 border-2 ${
-                    errors.fullName ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    className={`h-12 text-base bg-white border-2 ${
+                    errors.fullName ? "border-red-400" : "border-gray-200 hover:border-brand-amber/50 focus:border-brand-amber"
+                    } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-2xl text-brand-navy placeholder:text-gray-400`}
                   placeholder="Enter your full name"
                 />
                 {errors.fullName && (
-                  <p className="text-red-300 text-sm mt-1">{errors.fullName}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.fullName}</p>
                   )}
                 </div>
 
                 <div>
-                <Label htmlFor="trade" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                <Label htmlFor="trade" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                   <Wrench className="w-4 h-4 mr-2" />
                     Trade/Profession *
                   </Label>
                 <Select value={formData.trade} onValueChange={(value) => handleInputChange("trade", value)}>
-                  <SelectTrigger className={`h-12 bg-white/10 border-2 ${errors.trade ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50"} text-white`}>
+                  <SelectTrigger className={`h-12 bg-white border-2 ${errors.trade ? "border-red-400" : "border-gray-200 hover:border-brand-amber/50"} text-brand-navy`}>
                     <SelectValue placeholder="Select your trade" />
                   </SelectTrigger>
                   <SelectContent>
@@ -617,17 +614,17 @@ export default function TradespersonRegistration() {
                   </SelectContent>
                 </Select>
                   {errors.trade && (
-                  <p className="text-red-300 text-sm mt-1">{errors.trade}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.trade}</p>
                   )}
                 </div>
 
               <div>
-                <Label htmlFor="yearsExperience" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                <Label htmlFor="yearsExperience" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                   <Briefcase className="w-4 h-4 mr-2" />
                   Years of Experience *
                 </Label>
                 <Select value={formData.yearsExperience} onValueChange={(value) => handleInputChange("yearsExperience", value)}>
-                  <SelectTrigger className={`h-12 bg-white/10 border-2 ${errors.yearsExperience ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50"} text-white`}>
+                  <SelectTrigger className={`h-12 bg-white border-2 ${errors.yearsExperience ? "border-red-400" : "border-gray-200 hover:border-brand-amber/50"} text-brand-navy`}>
                     <SelectValue placeholder="Select years of experience" />
                   </SelectTrigger>
                   <SelectContent>
@@ -639,12 +636,12 @@ export default function TradespersonRegistration() {
                   </SelectContent>
                 </Select>
                 {errors.yearsExperience && (
-                  <p className="text-red-300 text-sm mt-1">{errors.yearsExperience}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.yearsExperience}</p>
                 )}
               </div>
 
               <div>
-                <Label htmlFor="email" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                <Label htmlFor="email" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                   <Mail className="w-4 h-4 mr-2" />
                   Email Address *
                 </Label>
@@ -653,18 +650,18 @@ export default function TradespersonRegistration() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
-                  className={`h-12 text-base bg-white/10 border-2 ${
-                    errors.email ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  className={`h-12 text-base bg-white border-2 ${
+                    errors.email ? "border-red-400" : "border-gray-200 hover:border-brand-amber/50 focus:border-brand-amber"
+                  } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-2xl text-brand-navy placeholder:text-gray-400`}
                   placeholder="Enter your email address"
                 />
                 {errors.email && (
-                  <p className="text-red-300 text-sm mt-1">{errors.email}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.email}</p>
                 )}
               </div>
 
               <div>
-                <Label htmlFor="phone" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                <Label htmlFor="phone" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                   <Phone className="w-4 h-4 mr-2" />
                   Phone Number *
                 </Label>
@@ -673,23 +670,23 @@ export default function TradespersonRegistration() {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className={`h-12 text-base bg-white/10 border-2 ${
-                    errors.phone ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  className={`h-12 text-base bg-white border-2 ${
+                    errors.phone ? "border-red-400" : "border-gray-200 hover:border-brand-amber/50 focus:border-brand-amber"
+                  } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-2xl text-brand-navy placeholder:text-gray-400`}
                   placeholder="Enter your phone number"
                 />
                 {errors.phone && (
-                  <p className="text-red-300 text-sm mt-1">{errors.phone}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.phone}</p>
                 )}
               </div>
             </div>
 
             {/* Business Information */}
             <div className="space-y-4">
-              <h3 className="text-lg font-extrabold text-yellow-400 border-b border-white/20 pb-2">Business Information</h3>
+              <h3 className="text-lg font-extrabold text-brand-navy border-b border-gray-200 pb-2">Business Information</h3>
               
               <div>
-                <Label htmlFor="city" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                <Label htmlFor="city" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                   <MapPin className="w-4 h-4 mr-2" />
                   City *
                 </Label>
@@ -698,18 +695,18 @@ export default function TradespersonRegistration() {
                   type="text"
                   value={formData.city}
                   onChange={(e) => handleInputChange("city", e.target.value)}
-                  className={`h-12 text-base bg-white/10 border-2 ${
-                    errors.city ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  className={`h-12 text-base bg-white border-2 ${
+                    errors.city ? "border-red-400" : "border-gray-200 hover:border-brand-amber/50 focus:border-brand-amber"
+                  } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-2xl text-brand-navy placeholder:text-gray-400`}
                   placeholder="Enter your city"
                 />
                 {errors.city && (
-                  <p className="text-red-300 text-sm mt-1">{errors.city}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.city}</p>
                 )}
               </div>
 
                 <div>
-                <Label htmlFor="postcode" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                <Label htmlFor="postcode" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                     <MapPin className="w-4 h-4 mr-2" />
                     Postcode *
                   </Label>
@@ -718,25 +715,25 @@ export default function TradespersonRegistration() {
                     type="text"
                     value={formData.postcode}
                   onChange={(e) => handleInputChange("postcode", e.target.value.toUpperCase())}
-                    className={`h-12 text-base bg-white/10 border-2 ${
-                    errors.postcode ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    className={`h-12 text-base bg-white border-2 ${
+                    errors.postcode ? "border-red-400" : "border-gray-200 hover:border-brand-amber/50 focus:border-brand-amber"
+                    } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-2xl text-brand-navy placeholder:text-gray-400`}
                     placeholder="Enter your postcode"
                   />
                   {errors.postcode && (
-                  <p className="text-red-300 text-sm mt-1">{errors.postcode}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.postcode}</p>
                 )}
               </div>
             </div>
 
             {/* Required Documents */}
             <div className="space-y-4">
-              <h3 className="text-lg font-extrabold text-yellow-400 border-b border-white/20 pb-2">Required Documents</h3>
-              <p className="text-sm text-blue-200">All tradespeople must upload the following documents for verification:</p>
+              <h3 className="text-lg font-extrabold text-brand-navy border-b border-gray-200 pb-2">Required Documents</h3>
+              <p className="text-sm text-gray-600">All tradespeople must upload the following documents for verification:</p>
               
               {/* ID Document */}
               <div>
-                <Label className="text-sm font-semibold text-blue-100 mb-2 block">
+                <Label className="text-sm font-semibold text-brand-navy mb-2 block">
                   ID Documents (Passport/Driving License) *
                 </Label>
                 <div className="relative">
@@ -749,7 +746,7 @@ export default function TradespersonRegistration() {
                   />
                   <label
                     htmlFor="idDocument"
-                    className="flex items-center justify-center h-12 px-4 bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 rounded-xl cursor-pointer transition-all text-blue-100 hover:text-white"
+                    className="flex items-center justify-center h-12 px-4 bg-white border-2 border-gray-200 hover:border-brand-amber/50 rounded-xl cursor-pointer transition-all text-gray-600 hover:text-brand-navy"
                   >
                     <Upload className="w-4 h-4 mr-2" />
                     {idDocument ? idDocument.name : "Choose file"}
@@ -758,7 +755,7 @@ export default function TradespersonRegistration() {
                     <button
                       type="button"
                       onClick={() => setIdDocument(null)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-red-300 hover:text-red-200"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -768,7 +765,7 @@ export default function TradespersonRegistration() {
 
               {/* Insurance Document */}
               <div>
-                <Label className="text-sm font-semibold text-blue-100 mb-2 block">
+                <Label className="text-sm font-semibold text-brand-navy mb-2 block">
                   Insurance Document *
                 </Label>
                 <div className="relative">
@@ -781,7 +778,7 @@ export default function TradespersonRegistration() {
                   />
                   <label
                     htmlFor="insuranceDocument"
-                    className="flex items-center justify-center h-12 px-4 bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 rounded-xl cursor-pointer transition-all text-blue-100 hover:text-white"
+                    className="flex items-center justify-center h-12 px-4 bg-white border-2 border-gray-200 hover:border-brand-amber/50 rounded-xl cursor-pointer transition-all text-gray-600 hover:text-brand-navy"
                   >
                     <Upload className="w-4 h-4 mr-2" />
                     {insuranceDocument ? insuranceDocument.name : "Choose file"}
@@ -790,7 +787,7 @@ export default function TradespersonRegistration() {
                     <button
                       type="button"
                       onClick={() => setInsuranceDocument(null)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-red-300 hover:text-red-200"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -799,7 +796,7 @@ export default function TradespersonRegistration() {
                 </div>
 
                 <div>
-                <Label htmlFor="insuranceExpiry" className="text-sm font-semibold text-blue-100 mb-2 block">
+                <Label htmlFor="insuranceExpiry" className="text-sm font-semibold text-brand-navy mb-2 block">
                   Insurance Expiry Date *
                 </Label>
                 <Input
@@ -807,13 +804,13 @@ export default function TradespersonRegistration() {
                   type="date"
                   value={insuranceExpiry}
                   onChange={(e) => setInsuranceExpiry(e.target.value)}
-                  className="h-12 text-base bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 rounded-2xl text-white backdrop-blur-sm"
+                  className="h-12 text-base bg-white border-2 border-gray-200 hover:border-brand-amber/50 focus:border-brand-amber focus:ring-2 focus:ring-brand-amber/20 rounded-2xl text-brand-navy"
                 />
               </div>
 
               {/* Qualification Document */}
               <div>
-                <Label className="text-sm font-semibold text-blue-100 mb-2 block">
+                <Label className="text-sm font-semibold text-brand-navy mb-2 block">
                   Proof of Qualifications *
                 </Label>
                 <div className="relative">
@@ -826,7 +823,7 @@ export default function TradespersonRegistration() {
                   />
                   <label
                     htmlFor="qualificationDocument"
-                    className="flex items-center justify-center h-12 px-4 bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 rounded-xl cursor-pointer transition-all text-blue-100 hover:text-white"
+                    className="flex items-center justify-center h-12 px-4 bg-white border-2 border-gray-200 hover:border-brand-amber/50 rounded-xl cursor-pointer transition-all text-gray-600 hover:text-brand-navy"
                   >
                     <Upload className="w-4 h-4 mr-2" />
                     {qualificationDocument ? qualificationDocument.name : "Choose file"}
@@ -835,7 +832,7 @@ export default function TradespersonRegistration() {
                     <button
                       type="button"
                       onClick={() => setQualificationDocument(null)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-red-300 hover:text-red-200"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -844,7 +841,7 @@ export default function TradespersonRegistration() {
               </div>
 
               <div>
-                <Label htmlFor="qualificationNumber" className="text-sm font-semibold text-blue-100 mb-2 block">
+                <Label htmlFor="qualificationNumber" className="text-sm font-semibold text-brand-navy mb-2 block">
                   Qualification Number *
                   </Label>
                   <Input
@@ -852,7 +849,7 @@ export default function TradespersonRegistration() {
                     type="text"
                   value={qualificationNumber}
                   onChange={(e) => setQualificationNumber(e.target.value)}
-                className="h-12 text-base bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm"
+                className="h-12 text-base bg-white border-2 border-white/20 hover:border-brand-amber/50 focus:border-brand-amber focus:ring-2 focus:ring-brand-amber/20 rounded-2xl text-brand-navy placeholder:text-gray-400"
                   placeholder="Enter your qualification/certification number"
                 />
               </div>
@@ -861,7 +858,7 @@ export default function TradespersonRegistration() {
               {needsTradeCard && (
                 <>
                   <div>
-                    <Label className="text-sm font-semibold text-blue-100 mb-2 block">
+                    <Label className="text-sm font-semibold text-brand-navy mb-2 block">
                       Trade Card (Required for Plumbers, Electricians, Aircon Engineers) *
                     </Label>
                     <div className="relative">
@@ -874,7 +871,7 @@ export default function TradespersonRegistration() {
                       />
                       <label
                         htmlFor="tradeCardDocument"
-                        className="flex items-center justify-center h-12 px-4 bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 rounded-xl cursor-pointer transition-all text-blue-100 hover:text-white"
+                        className="flex items-center justify-center h-12 px-4 bg-white border-2 border-gray-200 hover:border-brand-amber/50 rounded-xl cursor-pointer transition-all text-gray-600 hover:text-brand-navy"
                       >
                         <Upload className="w-4 h-4 mr-2" />
                         {tradeCardDocument ? tradeCardDocument.name : "Choose file"}
@@ -883,7 +880,7 @@ export default function TradespersonRegistration() {
                         <button
                           type="button"
                           onClick={() => setTradeCardDocument(null)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-red-300 hover:text-red-200"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600"
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -892,7 +889,7 @@ export default function TradespersonRegistration() {
               </div>
 
                   <div>
-                    <Label htmlFor="tradeCardNumber" className="text-sm font-semibold text-blue-100 mb-2 block">
+                    <Label htmlFor="tradeCardNumber" className="text-sm font-semibold text-brand-navy mb-2 block">
                       Trade Card Number *
                     </Label>
                     <Input
@@ -900,7 +897,7 @@ export default function TradespersonRegistration() {
                       type="text"
                       value={tradeCardNumber}
                       onChange={(e) => setTradeCardNumber(e.target.value)}
-                      className="h-12 text-base bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm"
+                      className="h-12 text-base bg-white border-2 border-white/20 hover:border-brand-amber/50 focus:border-brand-amber focus:ring-2 focus:ring-brand-amber/20 rounded-2xl text-brand-navy placeholder:text-gray-400"
                       placeholder="Enter your trade card number"
                     />
                   </div>
@@ -910,10 +907,10 @@ export default function TradespersonRegistration() {
 
             {/* Account Setup */}
             <div className="space-y-4">
-              <h3 className="text-lg font-extrabold text-yellow-400 border-b border-white/20 pb-2">Account Setup</h3>
+              <h3 className="text-lg font-extrabold text-brand-navy border-b border-gray-200 pb-2">Account Setup</h3>
               
                 <div>
-                <Label htmlFor="password" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                <Label htmlFor="password" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                     <Lock className="w-4 h-4 mr-2" />
                     Password *
                   </Label>
@@ -923,27 +920,27 @@ export default function TradespersonRegistration() {
                       type={showPassword ? "text" : "password"}
                       value={formData.password}
                     onChange={(e) => handleInputChange("password", e.target.value)}
-                      className={`h-12 text-base bg-white/10 border-2 ${
-                      errors.password ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
+                      className={`h-12 text-base bg-white border-2 ${
+                      errors.password ? "border-red-400" : "border-gray-200 hover:border-brand-amber/50 focus:border-brand-amber"
+                      } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-2xl text-brand-navy placeholder:text-gray-400 pr-10`}
                       placeholder="Create a strong password"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-200 hover:text-white transition-colors"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-brand-navy transition-colors"
                     >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                   </div>
                   {errors.password && (
-                  <p className="text-red-300 text-sm mt-1">{errors.password}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.password}</p>
                   )}
-                <p className="text-xs text-blue-300 mt-1">Must be at least 8 characters with uppercase, lowercase, and number</p>
+                <p className="text-xs text-gray-500 mt-1">Must be at least 8 characters with uppercase, lowercase, and number</p>
                 </div>
 
                 <div>
-                <Label htmlFor="confirmPassword" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                <Label htmlFor="confirmPassword" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                     <Lock className="w-4 h-4 mr-2" />
                     Confirm Password *
                   </Label>
@@ -953,21 +950,21 @@ export default function TradespersonRegistration() {
                       type={showConfirmPassword ? "text" : "password"}
                       value={formData.confirmPassword}
                     onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
-                      className={`h-12 text-base bg-white/10 border-2 ${
-                      errors.confirmPassword ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
+                      className={`h-12 text-base bg-white border-2 ${
+                      errors.confirmPassword ? "border-red-400" : "border-gray-200 hover:border-brand-amber/50 focus:border-brand-amber"
+                      } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-2xl text-brand-navy placeholder:text-gray-400 pr-10`}
                       placeholder="Confirm your password"
                     />
                     <button
                       type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-200 hover:text-white transition-colors"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-brand-navy transition-colors"
                     >
                     {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                   </div>
                   {errors.confirmPassword && (
-                  <p className="text-red-300 text-sm mt-1">{errors.confirmPassword}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.confirmPassword}</p>
                   )}
                 </div>
 
@@ -978,15 +975,15 @@ export default function TradespersonRegistration() {
                   onCheckedChange={(checked) => handleInputChange("terms", checked === true)}
                   className="mt-1"
                 />
-                <label htmlFor="terms" className="text-sm text-blue-100">
+                <label htmlFor="terms" className="text-sm text-gray-600">
                   I agree to the{" "}
-                  <Link href="/terms" className="text-yellow-400 hover:text-yellow-300 underline">
+                  <Link href="/terms" className="text-brand-amber hover:text-brand-amberDark underline">
                     Terms and Conditions
                   </Link>
                 </label>
               </div>
               {errors.terms && (
-                <p className="text-red-300 text-sm mt-1">{errors.terms}</p>
+                <p className="text-red-600 text-sm mt-1">{errors.terms}</p>
               )}
               </div>
 
@@ -1008,11 +1005,11 @@ export default function TradespersonRegistration() {
 
               {/* Login Link */}
               <div className="text-center">
-                <p className="text-blue-100">
+                <p className="text-gray-600">
                   Already have an account?{" "}
                   <Link
                     href="/login/trade"
-                    className="text-yellow-400 hover:text-yellow-300 font-medium hover:underline"
+                    className="text-brand-amber hover:text-brand-amberDark font-medium hover:underline"
                   >
                     Login here
                   </Link>
@@ -1028,7 +1025,7 @@ export default function TradespersonRegistration() {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
               <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4" style={{fontWeight: 800}}>Why Choose MyApproved</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
@@ -1041,11 +1038,11 @@ export default function TradespersonRegistration() {
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-500/20 border border-yellow-400/30 backdrop-blur-sm">
-                    <Star className="h-5 w-5 text-yellow-400" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-amber/20 border border-brand-amber/30 backdrop-blur-sm">
+                    <Star className="h-5 w-5 text-brand-amber" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-yellow-400">Grow Your Business</p>
+                    <p className="text-sm font-semibold text-brand-amber">Grow Your Business</p>
                     <p className="text-sm text-blue-200">Connect with customers and expand your client base.</p>
                   </div>
                 </li>
@@ -1062,14 +1059,14 @@ export default function TradespersonRegistration() {
             </div>
           </div>
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-amber/20 to-brand-navy/20 rounded-3xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
               <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3" style={{fontWeight: 800}}>Everything you need</h3>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Secure messaging</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Quotes & bookings in one place</span></li>
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-yellow-400" /> <span className="text-blue-100">UK‑wide coverage</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-blue-100">UK‑wide coverage</span></li>
               </ul>
             </div>
           </div>
@@ -1077,19 +1074,19 @@ export default function TradespersonRegistration() {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-3xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
               <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3" style={{fontWeight: 800}}>Peace of mind</h3>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Identity-checked & insured pros</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Clear pricing</span></li>
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-yellow-400" /> <span className="text-blue-100">Dedicated support</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-blue-100">Dedicated support</span></li>
               </ul>
             </div>
           </div>
 
           {/* Trust strip */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-xl blur-xl" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-amber/20 to-brand-navy/20 rounded-xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-xl border border-white/20 p-4 shadow-xl">
               <div className="flex items-center justify-center gap-2 text-center">
                 <Shield className="h-5 w-5 text-green-400" />

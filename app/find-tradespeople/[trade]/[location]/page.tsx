@@ -16,9 +16,10 @@ import {
   generateTradeLocationSchema,
 } from "@/lib/seo-data";
 import AEOContentBlock from "@/components/AEOContentBlock";
-import TrustEngineSection from "@/components/TrustEngineSection";
 import TradeLocationLiveResults from "@/components/TradeLocationLiveResults";
 import HeroSearchTrigger from "@/components/HeroSearchTrigger";
+import GetQuotesButton from "@/components/GetQuotesButton";
+import HeroTrustBadges from "@/components/HeroTrustBadges";
 import { Button } from "@/components/ui/button";
 import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 import {
@@ -28,18 +29,82 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
-  Shield,
-  Star,
-  CheckCircle,
+  AirVent,
+  Archive,
+  Armchair,
   ArrowRight,
   BadgeCheck,
-  MapPin,
-  Clock,
-  FileText,
-  Search,
-  MessageSquare,
-  ThumbsUp,
+  Bath,
+  BatteryCharging,
+  Bird,
+  Boxes,
+  Bug,
+  Building2,
+  CalendarCheck,
+  Cctv,
+  CheckCircle,
   ChevronRight,
+  Cog,
+  CookingPot,
+  DoorClosed,
+  DoorOpen,
+  Droplet,
+  Droplets,
+  Fan,
+  Fence,
+  FileCheck,
+  Flame,
+  Flower2,
+  Frame,
+  Gauge,
+  Grid2x2,
+  Grid3x3,
+  Hammer,
+  HardHat,
+  Home,
+  House,
+  Key,
+  KeyRound,
+  Lamp,
+  LandPlot,
+  Layers,
+  LayoutPanelTop,
+  Leaf,
+  Lightbulb,
+  Lock,
+  MapPin,
+  Monitor,
+  Mountain,
+  PaintRoller,
+  Paintbrush,
+  Palette,
+  PencilRuler,
+  Plug,
+  PlugZap,
+  Radar,
+  RefreshCw,
+  Ruler,
+  Search,
+  Shield,
+  ShieldCheck,
+  ShowerHead,
+  Siren,
+  Sparkles,
+  SprayCan,
+  Sprout,
+  Stethoscope,
+  Sun,
+  Thermometer,
+  Tractor,
+  Trash2,
+  TreePine,
+  Tv,
+  Warehouse,
+  Waves,
+  Wifi,
+  Wind,
+  Wrench,
+  Zap,
 } from "lucide-react";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -54,16 +119,56 @@ function fromSlug(slug: string): string {
     .join(" ");
 }
 
-// ── Trade-specific cost breakdowns ────────────────────────────────────────────
-// Pricing varies by job, region, and market conditions, so MyApproved does not
-// publish fixed rate tables. Each verified professional issues a fixed, written
-// quote before any work begins.
-const getServiceCosts = (tradePlural: string) => [
-  { label: "Written quote", range: "Always free, no obligation" },
-  { label: "Cost of your job", range: `Compared from three written ${tradePlural.toLowerCase()} quotes` },
-  { label: "Quote accuracy", range: "Fixed before work begins" },
-  { label: "Hidden fees", range: "None — homeowners pay nothing" },
-];
+// ── Service icon mapping ───────────────────────────────────────────────────────
+// Each trade maps its `services` (in order) to an explicit, distinct icon so no
+// two cards in a row share a glyph and every icon is a precise visual match for
+// the service it labels. Fall back to the trade's first icon, then Wrench.
+type ServiceIcon = {
+  Icon: typeof Wrench;
+};
+
+const TRADE_SERVICE_ICONS: Record<string, (typeof Wrench)[]> = {
+  plumber: [Droplets, Flame, Bath, Wrench, Zap, Thermometer, ShowerHead, Droplet, Sparkles, Gauge],
+  electrician: [Zap, Plug, Grid3x3, Lightbulb, Zap, Stethoscope, Lamp, PlugZap, Search, Cctv],
+  builder: [House, Building2, Warehouse, Hammer, HardHat, Home, TreePine, DoorOpen, Sun, LandPlot],
+  roofer: [Hammer, House, Layers, Grid3x3, Droplets, Home, Ruler, Layers, Zap, Search],
+  carpenter: [Armchair, CookingPot, DoorOpen, Layers, Boxes, Ruler, Frame, Fence, Grid3x3, Archive],
+  "painter-decorator": [Paintbrush, Sun, PaintRoller, Ruler, Layers, SprayCan, Layers, Fence, Trash2, Palette],
+  "kitchen-fitter": [CookingPot, Grid3x3, Plug, Droplets, Zap, Grid2x2, Archive, PencilRuler, RefreshCw, Wrench],
+  "bathroom-fitter": [Bath, Waves, ShowerHead, Droplets, Bath, Grid2x2, Droplet, Thermometer, PencilRuler, Wrench],
+  tiler: [Grid3x3, LayoutPanelTop, Bath, CookingPot, Grid2x2, Mountain, Thermometer, Wrench, Droplets, PaintRoller],
+  flooring: [Layers, Grid3x3, Layers, Layers, Grid2x2, Sparkles, Wrench, Ruler, Boxes, Building2],
+  "gas-engineer": [Flame, Cog, Flame, ShieldCheck, Thermometer, Droplets, CookingPot, Flame, FileCheck, Zap],
+  plasterer: [PaintRoller, Layers, PaintRoller, Layers, Ruler, Hammer, Sun, Layers, Wrench, Shield],
+  locksmith: [DoorOpen, Lock, KeyRound, Lock, KeyRound, Key, Search, Shield, Lock, Key],
+  "window-fitter": [Frame, DoorOpen, Layers, Layers, Grid2x2, DoorClosed, DoorOpen, DoorOpen, Sun, Wrench],
+  "heating-engineer": [Thermometer, Flame, Gauge, Thermometer, Fan, Thermometer, Waves, Cog, Zap, CalendarCheck],
+  gardener: [TreePine, Sprout, Leaf, Flower2, LandPlot, Sparkles, Sprout, PencilRuler, Bug, Trash2],
+  landscaper: [PencilRuler, LandPlot, Fence, Fence, LandPlot, Leaf, Waves, Lightbulb, Grid3x3, Home],
+  fencer: [Fence, Wrench, DoorOpen, Grid2x2, Grid2x2, Grid2x2, Shield, DoorOpen, PaintRoller, Hammer],
+  "driveway-specialist": [Grid3x3, LandPlot, Droplets, Mountain, Layers, Grid3x3, Wrench, Sparkles, PaintRoller, Ruler],
+  cleaner: [Sparkles, Sparkles, DoorOpen, Building2, Layers, Armchair, Frame, CookingPot, HardHat, CalendarCheck],
+  "waste-removal": [Trash2, TreePine, HardHat, Armchair, Trash2, Tractor, Trash2, Boxes, Building2, RefreshCw],
+  "carpet-cleaner": [Layers, Sparkles, Armchair, Droplets, Wind, Shield, Building2, Wind, Wind, Layers],
+  "security-installer": [Cctv, Siren, Lock, Wifi, Shield, Radar, DoorOpen, Lightbulb, Lock, Cog],
+  "pest-control": [Bug, Bug, Bug, Bug, Bug, Bug, Bug, Bug, Bird, Shield],
+  "damp-specialist": [Search, Droplets, Droplets, Wind, Droplets, Wrench, Bug, Bug, Grid3x3, Wrench],
+  scaffolder: [Grid3x3, Layers, Home, Building2, Grid3x3, HardHat, ShieldCheck, PencilRuler, Trash2, Zap],
+  "chimney-sweep": [Wind, Search, Cctv, Bird, HardHat, Wind, FileCheck, Flame, Wrench, Cog],
+  "loft-insulation": [Thermometer, Layers, Layers, Wind, Search, Trash2, Grid3x3, Boxes, FileCheck, Shield],
+  "air-conditioning": [AirVent, Wrench, Cog, Thermometer, Grid3x3, Building2, Home, Wrench, Droplets, Search],
+  "solar-panel-installer": [Sun, Thermometer, BatteryCharging, Plug, PlugZap, ShieldCheck, Wrench, Wrench, Cog, Monitor],
+  handyman: [Wrench, Hammer, Ruler, Grid3x3, DoorOpen, Tv, Droplets, Zap, TreePine, Cog],
+  "loft-conversion": [House, House, Hammer, Sun, HardHat, Boxes, Thermometer, Frame, FileCheck, Ruler],
+  conservatory: [Home, Sun, Layers, Wrench, HardHat, Thermometer, Lightbulb, FileCheck, Layers, PencilRuler],
+};
+
+function getServiceIcon(tradeSlug: string, index: number): ServiceIcon {
+  const icons = TRADE_SERVICE_ICONS[tradeSlug];
+  if (icons && icons[index]) return { Icon: icons[index] };
+  if (icons && icons[0]) return { Icon: icons[0] };
+  return { Icon: Wrench };
+}
 
 // ── Static params ─────────────────────────────────────────────────────────────
 export async function generateStaticParams() {
@@ -95,7 +200,7 @@ export async function generateMetadata({
 
   return {
     title: `Verified ${trade.plural} in ${locationName} | Free Quotes | MyApproved`,
-    description: `Find ID-checked, fully-insured ${trade.plural.toLowerCase()} in ${locationName}. Compare free quotes from verified local professionals. All checks confirmed on the public profile.`,
+    description: `Find verified ${trade.plural.toLowerCase()} in ${locationName}. Every professional passes identity, business and insurance checks before listing, with each check confirmed on their public profile.`,
     alternates: {
       canonical: `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
     },
@@ -128,7 +233,6 @@ export default function FindTradeLocationPage({
   const locationName = location?.name ?? fromSlug(params.location);
 
   const schema = generateTradeLocationSchema(params.trade, params.location);
-  const serviceCosts = getServiceCosts(trade.plural);
 
   const relatedTrades = TRADES.filter(
     (t) => t.category === trade.category && t.slug !== trade.slug
@@ -137,7 +241,7 @@ export default function FindTradeLocationPage({
   const nearbyLocations = location
     ? LOCATIONS.filter(
         (l) => l.region === location.region && l.name !== location.name
-      ).slice(0, 6)
+      ).slice(0, 12)
     : [];
 
   const otherCities = LOCATIONS.filter(
@@ -147,19 +251,19 @@ export default function FindTradeLocationPage({
   const faqs = [
     {
       q: `How much does a ${trade.name.toLowerCase()} cost in ${locationName}?`,
-      a: `${trade.plural} in ${locationName} cost varies by job, region, and market conditions, so MyApproved does not publish fixed rate tables. Every ${trade.name.toLowerCase()} provides a fixed, written quote before work begins. No verbal estimates that change mid-job. Post your job free to get three comparable quotes from verified local professionals.`,
+      a: `${trade.plural} in ${locationName} typically charge ${trade.hourlyRate} per hour. Exact prices depend on the job itself, but you'll get a fixed, written quote before any work starts — so there are no surprises.`,
     },
     {
       q: `Are ${trade.plural.toLowerCase()} on MyApproved in ${locationName} insured?`,
-      a: `Yes. Every ${trade.name.toLowerCase()} on MyApproved must hold public liability insurance that is confirmed as real and in date before listing. We monitor that cover throughout, so the listing is withdrawn if it lapses.`,
+      a: `Yes. Every professional must hold public liability insurance that is confirmed real and in date before they're listed, and we keep monitoring that cover so the listing is withdrawn if it lapses.`,
     },
     {
       q: `How does MyApproved verify ${trade.plural.toLowerCase()} in ${locationName}?`,
-      a: `Every ${locationName} ${trade.name.toLowerCase()} passes four checks before they can appear: photo ID, registered business on Companies House, public liability insurance, and qualifications. We confirm the insurance is real and in date, and monitor it so the listing is withdrawn if it lapses.`,
+      a: `Before listing, each professional passes an identity check against photo ID, a business check through Companies House, and an insurance check — and that cover is monitored after they're listed.`,
     },
     {
       q: `How quickly can I get a ${trade.name.toLowerCase()} in ${locationName}?`,
-      a: `Post your job free and most ${locationName} homeowners get their first quote within a few hours. For emergency work, ${trade.plural.toLowerCase()} can usually respond within 1–2 hours. All quotes are free with no obligation.`,
+      a: `Most homeowners get their first quote within a few hours. For urgent work, professionals can often respond within 1–2 hours.`,
     },
   ];
 
@@ -178,7 +282,7 @@ export default function FindTradeLocationPage({
             "@type": "LocalBusiness",
             "@id": `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
             name: `${trade.name}s in ${locationName} | Verified & Approved | MyApproved`,
-            description: `Find insured, ID-checked ${trade.plural.toLowerCase()} in ${locationName}. Compare verified profiles, read reviews from confirmed jobs, and get free quotes on MyApproved.`,
+            description: `Find verified ${trade.plural.toLowerCase()} in ${locationName}. Compare profiles, read reviews from confirmed jobs, and get free quotes on MyApproved. Every ${trade.name.toLowerCase()} passes identity, business and insurance checks before listing.`,
             url: `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
             image: "https://myapproved.com/logo-icon.svg",
             logo: {
@@ -283,8 +387,8 @@ export default function FindTradeLocationPage({
               {
                 "@type": "HowToStep",
                 position: 2,
-                name: "Receive verified quotes",
-                text: `Three verified local ${trade.plural.toLowerCase()} send you fixed, written quotes.`,
+                name: "Verified tradespeople call you back",
+                text: `Verified local ${trade.plural.toLowerCase()} contact you directly to discuss the job and provide a fixed, written quote.`,
               },
               {
                 "@type": "HowToStep",
@@ -296,7 +400,7 @@ export default function FindTradeLocationPage({
                 "@type": "HowToStep",
                 position: 4,
                 name: "Hire with confidence",
-                text: `Every ${trade.name.toLowerCase()} is ID-checked and their public liability insurance is confirmed real and in date, and monitored.`,
+                text: `Every ${trade.name.toLowerCase()} passes identity, business and insurance checks before listing, and their public liability insurance is monitored.`,
               },
             ],
           }),
@@ -349,46 +453,60 @@ export default function FindTradeLocationPage({
 
         {/* ── Hero ── */}
         <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
-            <div className="max-w-4xl mx-auto text-center">
-              <SectionHeaderPill>{locationName} · {location?.region ?? "United Kingdom"}</SectionHeaderPill>
+          {/* Brand background accents — subtle radial glow + amber grain */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+            <div className="absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-brand-navy/35 blur-3xl" />
+            <div className="absolute -bottom-40 -right-24 h-[36rem] w-[36rem] rounded-full bg-brand-amber/10 blur-3xl" />
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-16 md:pt-28 md:pb-24">
+            <div className="max-w-5xl mx-auto text-center">
+              <SectionHeaderPill>Verified {trade.plural} · {locationName}</SectionHeaderPill>
 
               <h1
                 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4"
                 style={{ fontWeight: 800 }}
                 data-speakable
               >
-                Verified {trade.plural} in {locationName}
-                <span className="block text-xl sm:text-2xl font-semibold text-brand-amber mt-3">
-                  ID-Checked · Fully Insured · Verified Qualifications
+                Verified {trade.plural} in{" "}
+                <span className="relative inline-block whitespace-nowrap">
+                  <span className="text-white relative z-10">{locationName}</span>
+                  <svg viewBox="0 0 400 46" width="100%" aria-hidden="true" className="absolute inset-x-0 -bottom-[0.85em] w-full overflow-visible pointer-events-none z-0">
+                    <defs>
+                      <linearGradient id="paintStroke" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#FFB800"/>
+                        <stop offset="1" stop-color="#FFB800"/>
+                      </linearGradient>
+                      <linearGradient id="drip1" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#FFB800"/>
+                        <stop offset="1" stop-color="#E0A100"/>
+                      </linearGradient>
+                      <linearGradient id="drip2" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#FFB800"/>
+                        <stop offset="1" stop-color="#E0A100"/>
+                      </linearGradient>
+                      <linearGradient id="drip3" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#FFB800"/>
+                        <stop offset="1" stop-color="#E0A100"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M2 13c48-4 96-6 144-5s96 4 144 3 76-4 108-5v11c-32 2-72 5-108 6s-96-2-144-3-96 1-144 5z" fill="#0A2463" opacity="0.08" transform="translate(0 2)"/>
+                    <path d="M2 13c48-4 96-6 144-5s96 4 144 3 76-4 108-5v11c-32 2-72 5-108 6s-96-2-144-3-96 1-144 5z" fill="url(#paintStroke)"/>
+                    <path d="M88 18c-1 7-3 11-2 15 .6 3.6 3 4.4 5 4 2.4-.5 3.6-3.4 3-7-.7-4.4-2-8-2-12z" fill="url(#drip1)"/>
+                    <path d="M214 19c-1.4 10-3.4 16-2.4 21 .8 4.4 3.6 5.4 5.8 4.8 2.8-.8 4-4.4 3.2-9-1-5.6-2.6-11-2.6-16.8z" fill="url(#drip2)"/>
+                    <path d="M312 21c-.8 5-2 8-1.4 11 .5 2.6 2.2 3.2 3.8 2.9 1.8-.4 2.6-2.5 2.2-5-.5-3.2-1.6-6-1.6-8.9z" fill="url(#drip3)"/>
+                  </svg>
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Every {trade.name.toLowerCase()} on MyApproved is identity-checked and
-                insurance-confirmed before receiving a single lead in {locationName}.
-                Compare free quotes from professionals whose checks are confirmed on
-                their public profile, not self-declared.
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-12 sm:mb-16 max-w-[34rem] mx-auto font-normal px-4">
+                Compare identity-checked, insured {trade.plural.toLowerCase()} in {locationName} and get free, no-obligation quotes.
               </p>
 
-              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8">
-                {[
-                  { icon: BadgeCheck, label: "Government ID Verified", color: "text-[#16A34A]" },
-                  { icon: Shield, label: "Insurance Confirmed & Monitored", color: "text-brand-amber" },
-                  { icon: CheckCircle, label: "Qualifications Checked", color: "text-[#16A34A]" },
-                  { icon: Clock, label: "Quotes Within Hours", color: "text-blue-300" },
-                ].map(({ icon: Icon, label, color }) => (
-                  <span
-                    key={label}
-                    className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-3 sm:px-4 py-2 rounded-full text-sm font-medium"
-                  >
-                    <Icon className={`w-4 h-4 ${color}`} />
-                    {label}
-                  </span>
-                ))}
-              </div>
+              {/* Trust indicators — flat register entries, separated by a hairline */}
+              <HeroTrustBadges />
 
-              <HeroSearchTrigger />
+              <HeroSearchTrigger suggestions={trade.services} />
               <div className="flex justify-center mt-4">
                 <Link
                   href={`/find-tradespeople/${params.trade}`}
@@ -401,20 +519,25 @@ export default function FindTradeLocationPage({
           </div>
         </section>
 
-        {/* ── Stats bar ── */}
-        <div className="bg-white border-b border-gray-100 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100">
+        {/* ── Trust checks ── */}
+        <div className="bg-white border-b border-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
               {[
-                { value: "ID", label: "Identity Checked", sub: "against official records" },
-                { value: "4", label: "Checks Passed", sub: "before listing" },
-                { value: "Insured", label: "Cover Confirmed", sub: "real, in date & monitored" },
-                { value: "Free", label: "For Homeowners", sub: "no fees, ever" },
-              ].map(({ value, label, sub }) => (
-                <div key={label} className="py-4 sm:py-5 px-4 sm:px-6 text-center">
-                  <div className="text-xl sm:text-2xl font-extrabold text-brand-navy">{value}</div>
-                  <div className="text-xs sm:text-sm font-semibold text-brand-navy mt-0.5">{label}</div>
-                  <div className="text-xs text-slate-600 hidden sm:block mt-0.5">{sub}</div>
+                { title: "Identity checked", icon: BadgeCheck },
+                { title: "Registered business", icon: CheckCircle },
+                { title: "Insurance monitored", icon: Shield },
+              ].map(({ title, icon: Icon }) => (
+                <div
+                  key={title}
+                  className="flex flex-col items-center justify-center gap-3 text-center bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all p-6"
+                >
+                  <div className="w-11 h-11 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-sm sm:text-base font-extrabold text-brand-navy" style={{ fontWeight: 700 }}>
+                    {title}
+                  </span>
                 </div>
               ))}
             </div>
@@ -431,6 +554,16 @@ export default function FindTradeLocationPage({
           locationName={locationName}
         />
 
+        {/* CTA — follow the results list */}
+        <div className="bg-white py-12 sm:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <GetQuotesButton />
+            <p className="text-sm text-slate-500 mt-3">
+              Free · No obligation · 2-minute job post
+            </p>
+          </div>
+        </div>
+
         {/* ── AEO Answer Block ── */}
         <AEOContentBlock
           tradeType={params.trade}
@@ -438,133 +571,49 @@ export default function FindTradeLocationPage({
           className="rounded-none border-x-0"
         />
 
-        {/* ── How to Hire ── */}
-        <section className="py-12 sm:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-2" style={{ fontWeight: 800 }}>
-                How to Hire a Verified {trade.name} in {locationName}
-              </h2>
-              <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base">
-                Four steps, free, and it takes under 2 minutes.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  step: "01",
-                  icon: FileText,
-                  title: "Post your job",
-                  desc: `Describe the ${trade.name.toLowerCase()} work you need in ${locationName}. Set your budget and timeline. It is free and takes 2 minutes.`,
-                  color: "bg-brand-slate text-brand-navy",
-                },
-                {
-                  step: "02",
-                  icon: MessageSquare,
-                  title: "Receive verified quotes",
-                  desc: `Three local ${trade.plural.toLowerCase()} respond with fixed, written quotes. No verbal estimates that change mid-job.`,
-                  color: "bg-brand-slate text-brand-navy",
-                },
-                {
-                  step: "03",
-                  icon: Search,
-                  title: "Compare & choose",
-                  desc: "Review verified profiles, ratings from confirmed jobs, and itemised quotes. Message professionals directly, with no obligation.",
-                  color: "bg-brand-slate text-brand-navy",
-                },
-                {
-                  step: "04",
-                  icon: ThumbsUp,
-                  title: "Hire with confidence",
-                  desc: `Every ${trade.name.toLowerCase()} is ID-checked and their public liability insurance is confirmed real and in date, and monitored before listing.`,
-                  color: "bg-brand-slate text-brand-navy",
-                },
-              ].map(({ step, icon: Icon, title, desc, color }) => (
-                <div key={step} className="relative">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${color}`}>
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <div className="absolute top-0 right-0 text-5xl font-extrabold text-gray-100 leading-none select-none">
-                    {step}
-                  </div>
-                  <h3 className="font-extrabold text-brand-navy mb-2" style={{ fontWeight: 800 }}>{title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10">
-              <HeroSearchTrigger />
-              <p className="text-xs text-slate-600 mt-3 text-center">
-                Takes 2 minutes · Free · No obligation
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* ── Services ── */}
-        <section className="py-12 sm:py-16 bg-brand-slate">
+        <section className="py-16 sm:py-24 bg-brand-slate">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-2 text-center" style={{ fontWeight: 800 }}>
               {trade.name} Services in {locationName}
             </h2>
             <p className="text-sm text-slate-600 text-center mb-8 max-w-xl mx-auto">
-              Post any of the following and receive free quotes from verified {locationName}{" "}
-              {trade.plural.toLowerCase()}.
+              Post any of these jobs and receive free quotes from verified local pros.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-              {trade.services.map((service, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-xl p-4 text-center border border-gray-100 hover:border-brand-navy hover:shadow-sm transition-all"
-                >
-                  <CheckCircle className="w-5 h-5 text-[#16A34A] mx-auto mb-2" />
-                  <p className="text-sm font-semibold text-brand-navy leading-snug">
-                    {service}
-                  </p>
-                </div>
-              ))}
+              {trade.services.map((service, i) => {
+                const { Icon } = getServiceIcon(trade.slug, i);
+                return (
+                  <div
+                    key={i}
+                    className="bg-white rounded-xl p-4 text-center border border-gray-100 hover:border-brand-navy hover:shadow-sm transition-all"
+                  >
+                    <div className="w-10 h-10 bg-brand-slate rounded-xl flex items-center justify-center mx-auto mb-2">
+                      <Icon className="w-5 h-5 text-brand-amber" />
+                    </div>
+                    <p className="text-sm font-semibold text-brand-navy leading-snug">
+                      {service}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-10 text-center">
+              <GetQuotesButton />
+              <p className="text-sm text-slate-500 mt-3">
+                Free · No obligation · 2-minute job post
+              </p>
             </div>
           </div>
         </section>
 
-        {/* ── Pricing + Areas ── */}
-        <section className="py-12 sm:py-16 bg-white">
+        {/* ── Coverage Area ── */}
+        <section className="py-16 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-10 items-start">
-
-              {/* Pricing table */}
-              <div className="bg-brand-slate rounded-xl border border-gray-100 p-6 sm:p-8">
-                <h2 className="text-lg sm:text-xl font-extrabold text-brand-navy mb-1" style={{ fontWeight: 800 }}>
-                  {trade.name} Costs in {locationName}
-                </h2>
-                <p className="text-xs text-slate-600 mb-5">
-                  No fixed rate tables. Each verified professional issues a fixed, written quote before work begins.
-                </p>
-                <div className="divide-y divide-gray-100">
-                  {serviceCosts.map((row) => (
-                    <div
-                      key={row.label}
-                      className="flex justify-between items-center py-3 gap-4"
-                    >
-                      <span className="text-slate-600 text-sm">{row.label}</span>
-                      <span className="font-bold text-brand-navy text-sm whitespace-nowrap">
-                        {row.range}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 bg-brand-amber/10 border border-brand-amber/30 rounded-xl p-3">
-                  <p className="text-xs text-brand-navy font-medium">
-                    All MyApproved {trade.plural.toLowerCase()} provide a fixed, itemised written
-                    quote before work starts. No verbal estimates that increase mid-job.
-                  </p>
-                </div>
-              </div>
+            <div>
 
               {/* Coverage area */}
-              <div>
+              <div className="text-center">
                 <h2 className="text-lg sm:text-xl font-extrabold text-brand-navy mb-4" style={{ fontWeight: 800 }}>
                   {trade.plural} Covering {locationName} &amp; Nearby Areas
                 </h2>
@@ -574,17 +623,51 @@ export default function FindTradeLocationPage({
                     <p className="text-sm font-semibold text-slate-600 mb-3">
                       Postcode districts served:
                     </p>
-                    <div className="grid grid-cols-3 gap-2 mb-6">
-                      {location.postcodes.map((pc) => (
-                        <div
-                          key={pc}
-                          className="flex items-center gap-1.5 bg-brand-slate rounded-xl px-3 py-2.5 border border-gray-100"
-                        >
-                          <MapPin className="w-3 h-3 text-brand-amber flex-shrink-0" />
-                          <span className="text-sm font-bold text-brand-navy">{pc}</span>
-                        </div>
-                      ))}
-                    </div>
+                    {location.postcodes.length > 9 ? (
+                      <Accordion type="single" collapsible className="mb-6">
+                        <AccordionItem value="postcodes">
+                          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 mx-auto">
+                            {location.postcodes.slice(0, 9).map((pc) => (
+                              <div
+                                key={pc}
+                                className="flex items-center gap-1.5 bg-brand-slate rounded-xl px-3 py-2.5 border border-gray-100 justify-center"
+                              >
+                                <MapPin className="w-3 h-3 text-brand-amber flex-shrink-0" />
+                                <span className="text-sm font-bold text-brand-navy">{pc}</span>
+                              </div>
+                            ))}
+                          </div>
+                          <AccordionContent>
+                            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 pt-2 mx-auto">
+                              {location.postcodes.slice(9).map((pc) => (
+                                <div
+                                  key={pc}
+                                  className="flex items-center gap-1.5 bg-brand-slate rounded-xl px-3 py-2.5 border border-gray-100"
+                                >
+                                  <MapPin className="w-3 h-3 text-brand-amber flex-shrink-0" />
+                                  <span className="text-sm font-bold text-brand-navy">{pc}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </AccordionContent>
+                          <AccordionTrigger className="mt-2 text-sm font-semibold text-brand-navy">
+                            Show {location.postcodes.length - 9} more postcodes
+                          </AccordionTrigger>
+                        </AccordionItem>
+                      </Accordion>
+                    ) : (
+                      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 mb-6 mx-auto">
+                        {location.postcodes.map((pc) => (
+                          <div
+                            key={pc}
+                            className="flex items-center gap-1.5 bg-brand-slate rounded-xl px-3 py-2.5 border border-gray-100 justify-center"
+                          >
+                            <MapPin className="w-3 h-3 text-brand-amber flex-shrink-0" />
+                            <span className="text-sm font-bold text-brand-navy">{pc}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </>
                 )}
 
@@ -593,41 +676,81 @@ export default function FindTradeLocationPage({
                     <p className="text-sm font-semibold text-slate-600 mb-3">
                       Also serving nearby towns:
                     </p>
-                    <div className="flex flex-wrap gap-2">
-                      {nearbyLocations.map((nearby) => (
-                        <Link
-                          key={nearby.name}
-                          href={`/find-tradespeople/${params.trade}/${toSlug(nearby.name)}`}
-                          className="inline-flex items-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all"
-                        >
-                          {trade.plural} in {nearby.name}
-                          <ArrowRight className="w-3 h-3" />
-                        </Link>
-                      ))}
-                    </div>
+                    {nearbyLocations.length > 8 ? (
+                      <Accordion type="single" collapsible>
+                        <AccordionItem value="nearby">
+                          <div className="flex flex-wrap justify-center gap-2.5">
+                            {nearbyLocations.slice(0, 8).map((nearby) => (
+                              <Link
+                                key={nearby.name}
+                                href={`/find-tradespeople/${params.trade}/${toSlug(nearby.name)}`}
+                                className="inline-flex items-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3.5 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all whitespace-nowrap"
+                              >
+                                {trade.plural} in {nearby.name}
+                                <ArrowRight className="w-3 h-3 flex-shrink-0" />
+                              </Link>
+                            ))}
+                          </div>
+                          <AccordionContent>
+                            <div className="flex flex-wrap justify-center gap-2.5 pt-2">
+                              {nearbyLocations.slice(8).map((nearby) => (
+                                <Link
+                                  key={nearby.name}
+                                  href={`/find-tradespeople/${params.trade}/${toSlug(nearby.name)}`}
+                                  className="inline-flex items-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3.5 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all whitespace-nowrap"
+                                >
+                                  {trade.plural} in {nearby.name}
+                                  <ArrowRight className="w-3 h-3 flex-shrink-0" />
+                                </Link>
+                              ))}
+                            </div>
+                          </AccordionContent>
+                          <AccordionTrigger className="mt-2 text-sm font-semibold text-brand-navy">
+                            Show {nearbyLocations.length - 8} more nearby towns
+                          </AccordionTrigger>
+                        </AccordionItem>
+                      </Accordion>
+                    ) : (
+                      <div className="flex flex-wrap justify-center gap-2.5">
+                        {nearbyLocations.map((nearby) => (
+                          <Link
+                            key={nearby.name}
+                            href={`/find-tradespeople/${params.trade}/${toSlug(nearby.name)}`}
+                            className="inline-flex items-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3.5 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all whitespace-nowrap"
+                          >
+                            {trade.plural} in {nearby.name}
+                            <ArrowRight className="w-3 h-3 flex-shrink-0" />
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </>
                 )}
 
-                <div className="mt-8 bg-gradient-to-b from-brand-navyDark to-brand-navy rounded-xl p-5 text-white">
-                  <h3 className="font-extrabold mb-1 text-base" style={{ fontWeight: 800 }}>
-                    Need a {trade.name} in {locationName} today?
-                  </h3>
-                  <p className="text-slate-300 text-sm mb-4">
-                    Post your job free and receive three quotes from verified local{" "}
-                    {trade.plural.toLowerCase()}. No obligation. Compare and hire at your own pace.
+                <div className="mt-10">
+                  <GetQuotesButton />
+                  <p className="text-sm text-slate-500 mt-3">
+                    Free · No obligation · 2-minute job post
                   </p>
-                  <HeroSearchTrigger />
                 </div>
+
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── Trust Engine ── */}
-        <TrustEngineSection
-          tradeName={trade.name.toLowerCase()}
-          tradePlural={trade.plural.toLowerCase()}
-        />
+        {/* ── Standalone CTA ── */}
+        <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-navyDark to-brand-navy">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-white mb-6" style={{ fontWeight: 800 }}>
+              Need a {trade.name} in {locationName} today?
+            </h2>
+            <GetQuotesButton />
+            <p className="text-sm text-slate-300 mt-3">
+              Free · No obligation · 2-minute job post
+            </p>
+          </div>
+        </section>
 
         {/* ── FAQ Accordion ── */}
         <section className="py-12 sm:py-16 bg-white" data-speakable>
@@ -640,7 +763,7 @@ export default function FindTradeLocationPage({
                 <AccordionItem
                   key={i}
                   value={`faq-${i}`}
-                  className="bg-white rounded-xl border border-gray-100 px-5 data-[state=open]:bg-brand-slate data-[state=open]:border-gray-100 transition-colors"
+                  className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6 data-[state=open]:bg-brand-slate data-[state=open]:border-gray-200 transition-colors"
                 >
                   <AccordionTrigger className="text-left font-semibold text-brand-navy py-4 hover:no-underline text-sm sm:text-base">
                     {faq.q}
@@ -651,6 +774,12 @@ export default function FindTradeLocationPage({
                 </AccordionItem>
               ))}
             </Accordion>
+            <div className="mt-12 text-center">
+              <GetQuotesButton />
+              <p className="text-sm text-slate-500 mt-3">
+                Free · No obligation · 2-minute job post
+              </p>
+            </div>
           </div>
         </section>
 
@@ -674,6 +803,12 @@ export default function FindTradeLocationPage({
                     </span>
                   </Link>
                 ))}
+              </div>
+              <div className="mt-10 text-center">
+                <GetQuotesButton />
+                <p className="text-sm text-slate-500 mt-3">
+                  Free · No obligation · 2-minute job post
+                </p>
               </div>
             </div>
           </section>
@@ -705,45 +840,15 @@ export default function FindTradeLocationPage({
                   </Link>
                 ))}
               </div>
+              <div className="mt-10 text-center">
+                <GetQuotesButton />
+                <p className="text-sm text-slate-500 mt-3">
+                  Free · No obligation · 2-minute job post
+                </p>
+              </div>
             </div>
           </section>
         )}
-
-        {/* ── Final CTA ── */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-brand-navyDark to-brand-navy text-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-              <BadgeCheck className="w-4 h-4 text-[#16A34A]" />
-              Vetted local {trade.plural.toLowerCase()} in {locationName}
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
-              Ready to Find a Verified {trade.name} in {locationName}?
-            </h2>
-            <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
-              Post your job free. Get quotes from verified {trade.plural.toLowerCase()} in{" "}
-              {locationName}. No obligation, no hidden fees, no waiting on hold.
-            </p>
-
-            <div className="mb-8">
-              <HeroSearchTrigger />
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-300">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-[#16A34A]" /> Free to post
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-[#16A34A]" /> No obligation
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-[#16A34A]" /> Quotes within hours
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-[#16A34A]" /> All trades verified
-              </span>
-            </div>
-          </div>
-        </section>
 
       </div>
     </>

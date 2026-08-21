@@ -12,21 +12,21 @@ import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 const benefits = [
   {
     icon: Shield,
-    title: "£4.99 a lead, pay as you go",
+    title: "Only pay for leads you want",
     description:
-      "Pay only when a lead is worth taking. No subscription, no monthly fees, no lock-in.",
+      "You're never charged unless a lead is worth taking. No subscription, no monthly fees, no lock-in.",
   },
   {
     icon: BadgeCheck,
-    title: "Verified badge that converts",
+    title: "A badge that closes jobs",
     description:
-      "MyApproved independently verifies your photo ID, business, insurance, and qualifications - not self-declared. Homeowners can see exactly what was checked.",
+      "MyApproved verifies your identity, business and insurance before you appear. Homeowners see exactly what was checked.",
   },
   {
     icon: Users,
-    title: "Three tradespeople per job",
+    title: "Matched jobs, not a broadcast",
     description:
-      "Each job goes to a real three-person brief, matched by trade and location. No broadcast to dozens of competitors.",
+      "Each job is matched by trade and location, so you only see work worth taking. No broadcast to dozens of competitors.",
   },
 ];
 
@@ -35,8 +35,8 @@ const pricingPlans = [
     features: [
       "Free to register and verify",
       "Browse and apply to any job",
-      "Pay only £4.99 per accepted lead",
-      "No monthly commitment - cancel anytime",
+      "Pay only for the leads you accept",
+      "Cancel any time, no contract",
     ],
   },
 ];
@@ -83,75 +83,32 @@ export default function ForTradespeople() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-4xl mx-auto text-center">
             <div>
               <SectionHeaderPill>For Tradespeople</SectionHeaderPill>
-              <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4" style={{fontWeight: 800}}>
+              <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16" style={{fontWeight: 800}}>
                 Grow Your Trade Business with <span className="text-brand-amber">MyApproved</span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-white/75 mb-5">
-                Pay only when a lead is worth taking. MyApproved charges{" "}
-                <strong className="text-brand-amber">£4.99 per accepted lead</strong> - no contract, no monthly fees.
+                Pay only when a lead is worth taking.
               </p>
 
-              {/* Trust strip */}
-              <div className="mb-6 flex flex-wrap items-center gap-3 text-sm">
-                <span className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full ring-1 ring-white/20">
-                  <Shield className="w-4 h-4" /> Verified ID &amp; Insurance
-                </span>
-                <span className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full ring-1 ring-white/20">
-                  <BadgeCheck className="w-4 h-4 text-brand-amber" /> Identity checked &amp; business verified
-                </span>
-                <span className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full ring-1 ring-white/20">
-                  <Shield className="w-4 h-4" /> No monthly contract
-                </span>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"
                   className="bg-brand-amber hover:bg-brand-amberDark text-black font-semibold px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg shadow-lg"
                   style={{fontWeight: 700}}
                   asChild
                 >
-                  <Link href="/register/tradesperson">Get Started</Link>
+                  <Link href="/register/tradesperson">Sign Up</Link>
                 </Button>
                 <Button
                   size="lg"
                   className="bg-white text-brand-navy hover:bg-gray-100 font-semibold"
                   asChild
                 >
-                  <Link href="/contact">Contact Sales</Link>
+                  <Link href="/login/trade">Log In</Link>
                 </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="rounded-xl shadow-2xl bg-brand-navy/60 border border-brand-navy/40 p-6 space-y-4">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-blue-200 text-sm font-semibold">Your verified profile</span>
-                  <span className="inline-flex items-center gap-1 bg-brand-amber/20 text-brand-amber text-xs font-bold px-2 py-0.5 rounded-full">
-                    <Shield className="w-3 h-3" /> Verified
-                  </span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-xl bg-brand-amber/20 flex items-center justify-center">
-                    <BadgeCheck className="w-8 h-8 text-brand-amber" />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold text-white">Photo ID checked</div>
-                    <div className="text-blue-300 text-sm">Business verified on Companies House</div>
-                  </div>
-                </div>
-                <ul className="space-y-2 text-sm text-blue-100">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-brand-amber" /> Insurance confirmed and monitored
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-brand-amber" /> Qualifications reviewed
-                  </li>
-                </ul>
-                <div className="rounded-xl bg-white/10 p-3 text-center text-blue-200 text-sm">
-                  Three tradespeople per job, matched by trade and location
-                </div>
               </div>
             </div>
           </div>
@@ -177,13 +134,13 @@ export default function ForTradespeople() {
               <div className="flex items-center gap-2 mb-2 text-brand-navy font-semibold">
                 <Shield className="w-5 h-5 text-brand-amber" /> Verify
               </div>
-              <p className="text-slate-600 text-sm">Pass the four checks - photo ID, business, insurance, qualifications.</p>
+              <p className="text-slate-600 text-sm">Pass identity, business and insurance checks before you go live.</p>
             </div>
             <div className="rounded-xl bg-brand-slate p-4 sm:p-5 border border-gray-100">
               <div className="flex items-center gap-2 mb-2 text-brand-navy font-semibold">
                 <Users className="w-5 h-5 text-brand-amber" /> Get Leads
               </div>
-              <p className="text-slate-600 text-sm">Receive three-person briefs that match your trade and location.</p>
+              <p className="text-slate-600 text-sm">Receive job briefs that match your trade and location.</p>
             </div>
             <div className="rounded-xl bg-brand-slate p-4 sm:p-5 border border-gray-100">
               <div className="flex items-center gap-2 mb-2 text-brand-navy font-semibold">
@@ -191,6 +148,99 @@ export default function ForTradespeople() {
               </div>
               <p className="text-slate-600 text-sm">Win more work and grow your reputation with verified reviews.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Verification & Declination Section */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-[#F1F5F9]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
+              What we check before you're approved
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-brand-navy max-w-3xl mx-auto font-semibold px-4">
+              Every tradesperson passes the same checks before they're listed.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
+            {/* Identity */}
+            <div className="text-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
+                  <User className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
+                </div>
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Identity checked</h3>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Your photo ID is checked against a live selfie.</p>
+            </div>
+
+            {/* Business */}
+            <div className="text-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
+                  <BadgeCheck className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
+                </div>
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Business verified</h3>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Your company is confirmed on Companies House.</p>
+            </div>
+
+            {/* Insurance */}
+            <div className="text-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
+                  <Shield className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
+                </div>
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Insurance confirmed and monitored</h3>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Your public liability cover is checked and monitored.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Declination Section */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>
+              Why we decline you
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-brand-navy max-w-3xl mx-auto font-semibold px-4">
+              These are the reasons an application won't be approved.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <ul className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+              {[
+                "You can't legally do the work, such as gas work without a current Gas Safe registration.",
+                "A required check fails: photo ID, registered business or insurance.",
+                "Your documents don't hold up or appear falsified.",
+                "You're matched on UK sanctions or PEP screening lists.",
+                "You have a director disqualification, an undischarged bankruptcy or an IVA.",
+                "You were removed from MyApproved before and are re-applying under a new name or details.",
+                "Your insurance has lapsed or your certification has been withdrawn, and hasn't been replaced.",
+                "Your profile will be removed if the above isn't put right in time.",
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-3 bg-brand-slate rounded-xl border border-gray-100 p-4 sm:p-5">
+                  <div className="bg-white rounded-full p-1.5 flex items-center justify-center flex-shrink-0">
+                    <Shield className="w-5 h-5 text-[#DC2626]" />
+                  </div>
+                  <span className="text-slate-600 text-sm sm:text-base leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <p className="text-center text-xs text-gray-500 mt-10">
+              Verification is not a guarantee of workmanship. For full details of what is and isn't checked, see{" "}
+              <Link href="/verification" className="text-brand-navy underline hover:text-brand-amber transition-colors">
+                how we verify tradespeople
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>
@@ -234,7 +284,7 @@ export default function ForTradespeople() {
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{fontWeight: 800}}>Simple, fair pricing</h2>
             <p className="text-base sm:text-lg text-slate-600">
-              Join for free and pay only for the leads you accept. No subscription, no monthly fees.
+              Join for free and pay only for the leads you accept.
             </p>
           </div>
 
@@ -249,7 +299,7 @@ export default function ForTradespeople() {
                     <span className="text-lg text-gray-600 font-normal">/per lead</span>
                   </div>
                   <div className="inline-flex items-center gap-1 rounded-full bg-brand-amber/10 text-brand-navy px-3 py-1 ring-1 ring-brand-amber/30 text-sm">
-                    £4.99 per lead · no monthly subscription
+                    No monthly subscription
                   </div>
                 </div>
 
@@ -331,14 +381,14 @@ export default function ForTradespeople() {
               className="bg-brand-amber hover:bg-brand-amberDark text-black font-semibold"
               asChild
             >
-              <Link href="/register/tradesperson">Get Started</Link>
+              <Link href="/register/tradesperson">Sign Up</Link>
             </Button>
             <Button
               size="lg"
               className="bg-white text-brand-navy hover:bg-gray-100 font-semibold"
               asChild
             >
-              <Link href="/contact">Contact Sales</Link>
+              <Link href="/login/trade">Log In</Link>
             </Button>
           </div>
         </div>

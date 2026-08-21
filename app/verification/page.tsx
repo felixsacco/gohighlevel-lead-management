@@ -3,7 +3,6 @@ import Link from 'next/link';
 import {
   Shield,
   CheckCircle,
-  Award,
   UserCheck,
   CreditCard,
   ArrowRight,
@@ -18,22 +17,22 @@ import { Container } from '@/components/ui/Container';
 
 export const metadata = {
   title: 'How We Verify Tradespeople - MyApproved',
-  description: 'Every tradesperson passes four checks before listing: photo ID, registered business on Companies House, public liability insurance, and qualifications.',
+  description: "Every tradesperson passes identity, business and insurance checks before listing. Photo ID is verified against a live selfie, the business is confirmed on Companies House, and public liability insurance is confirmed and monitored.",
 };
 
 const checks = [
   {
     icon: UserCheck,
-    title: 'Photo ID',
+    title: 'Identity checked',
     body: 'We confirm who the tradesperson is before they can list.',
     points: [
-      'Identity checked against a photo ID',
+      'Photo ID verified against a live selfie',
       'Right to work in the UK confirmed',
     ],
   },
   {
     icon: Shield,
-    title: 'Registered Business',
+    title: 'Business verified',
     body: 'We confirm the business is real and active on Companies House.',
     points: [
       'Business reviewed on Companies House',
@@ -42,21 +41,12 @@ const checks = [
   },
   {
     icon: CreditCard,
-    title: 'Public Liability Insurance',
+    title: 'Insurance confirmed and monitored',
     body: 'We confirm the cover is real and in date, and monitor it throughout.',
     points: [
       'Insurance confirmed real and in date',
       'Insurer confirmed as FCA authorised',
       'Cover monitored and the listing is withdrawn if it lapses',
-    ],
-  },
-  {
-    icon: Award,
-    title: 'Qualifications',
-    body: 'Where work requires a registration, we confirm it and show the registration number.',
-    points: [
-      'Trade qualifications reviewed',
-      'Registration number shown where one is issued',
     ],
   },
 ];
@@ -90,7 +80,7 @@ export default function VerificationPage() {
               How We Verify Tradespeople
             </h1>
             <p className="text-xl lg:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-              Every tradesperson passes four checks before they can appear: photo ID, registered business on Companies House, public liability insurance, and qualifications.
+              Every tradesperson passes identity, business and insurance checks before they can appear.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-blue-200">
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-3 py-2 rounded-full">
@@ -110,19 +100,19 @@ export default function VerificationPage() {
         </div>
       </section>
 
-      {/* Four Checks */}
+      {/* Three Checks */}
       <Section>
         <Container size="wide">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-extrabold text-brand-navy mb-4">
-              Four Checks Before You Hire
+              Three Checks Before You Hire
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We confirm the insurance is real and in date, and monitor it so the listing is withdrawn if it lapses.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {checks.map(({ icon: Icon, title, body, points }) => (
               <Card key={title} className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="absolute top-0 left-0 w-full h-1 bg-brand-amber"></div>
@@ -160,7 +150,7 @@ export default function VerificationPage() {
             Ready to Find Tradespeople?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Hire with confidence knowing each tradesperson passes four checks before they can appear on the platform.
+            Hire with confidence knowing each tradesperson passes identity, business and insurance checks before they can appear on the platform.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-brand-amber hover:bg-[#E0A100] text-black font-bold">

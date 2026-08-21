@@ -41,7 +41,7 @@ export default function ContactPage() {
             <SectionHeaderPill>Get in Touch</SectionHeaderPill>
             <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4 text-white" style={{fontWeight: 800}}>Contact Us</h1>
             <p className="text-white/75 text-lg max-w-2xl mx-auto">
-              Have a question or need support? Send us a message and we'll get back to you within one business day.
+              Send us a message and we'll reply within one business day.
             </p>
           </div>
         </div>
@@ -66,9 +66,9 @@ export default function ContactPage() {
               },
               {
                 icon: Shield,
-                title: "Verified & Secure",
+                title: "Secure",
                 detail: "GDPR compliant",
-                sub: "Your data is always protected",
+                sub: "Your data is protected",
               },
             ].map(({ icon: Icon, title, detail, sub }) => (
               <div key={title} className="bg-white rounded-xl p-4 sm:p-5 md:p-6 border border-gray-100 flex items-start gap-4">
@@ -100,7 +100,6 @@ export default function ContactPage() {
           ) : (
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 lg:p-10">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy mb-1" style={{fontWeight: 800}}>Send a Message</h2>
-              <p className="text-gray-600 text-sm mb-8">All fields marked * are required.</p>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>

@@ -88,7 +88,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "What is the cheapest way to find a reliable plumber?",
-      a: "MyApproved is free for homeowners - post your job and receive up to 3 competitive quotes from local plumbers at no cost. You only pay the plumber for completed work. Comparing quotes saves homeowners an average of 15–25% vs. hiring the first plumber you find.",
+      a: "MyApproved is free for homeowners - post your job and verified local plumbers who match it will call you back with a competitive quote, at no cost to you. You only pay the plumber for completed work. Comparing quotes saves homeowners an average of 15–25% vs. hiring the first plumber you find.",
     },
   ],
   electrician: [
@@ -466,7 +466,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How quickly will I receive quotes from local tradespeople?",
-      a: "Most homeowners receive their first quote within a few hours of posting a job on MyApproved. Emergency trades such as plumbers, electricians, and locksmiths typically respond within 1–2 hours. You can compare up to 3 quotes before deciding - no obligation to accept.",
+      a: "Most homeowners receive their first quote within a few hours of posting a job on MyApproved. Emergency trades such as plumbers, electricians, and locksmiths typically respond within 1–2 hours. Verified tradespeople who match your job call you back with a fixed written quote - no obligation to accept.",
     },
   ],
 };

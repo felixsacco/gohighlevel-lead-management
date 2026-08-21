@@ -1,9 +1,57 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 
-export default function HeroSearchTrigger() {
+const DEFAULT_SUGGESTIONS = [
+  "Leak Repairs",
+  "Boiler Installation",
+  "Bathroom Fitting",
+  "Pipe Repairs",
+  "Emergency Plumbing",
+  "Central Heating",
+  "Tap Installation",
+  "Toilet Repairs",
+  "Shower Installation",
+  "Radiator Repairs",
+];
+
+export default function HeroSearchTrigger({
+  suggestions = DEFAULT_SUGGESTIONS,
+}: {
+  suggestions?: readonly string[];
+}) {
   const open = () => window.dispatchEvent(new CustomEvent("open-ai-quote"));
+
+  const [text, setText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (suggestions.length === 0) return;
+
+    const word = suggestions[wordIndex % suggestions.length];
+    const typingSpeed = deleting ? 25 : 70;
+
+    const timeout = setTimeout(() => {
+      if (!deleting) {
+        const next = word.slice(0, text.length + 1);
+        setText(next);
+        if (next === word) {
+          setTimeout(() => setDeleting(true), 1400);
+        }
+      } else {
+        const next = word.slice(0, text.length - 1);
+        setText(next);
+        if (next === "") {
+          setDeleting(false);
+          setWordIndex((i) => (i + 1) % suggestions.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [text, deleting, wordIndex, suggestions]);
 
   return (
     <div
@@ -17,10 +65,15 @@ export default function HeroSearchTrigger() {
         // narrow phones (e.g. iPhone SE).
         type="text"
         size={1}
+        value={text}
         placeholder="What work do you need doing?"
         readOnly
         onClick={open}
         className="flex-1 min-w-0 text-gray-700 placeholder-gray-400 bg-transparent focus:outline-none text-sm sm:text-base font-medium cursor-pointer"
+      />
+      <span
+        aria-hidden="true"
+        className="w-px h-5 bg-brand-amber self-center"
       />
       <button
         onClick={(e) => { e.stopPropagation(); open(); }}

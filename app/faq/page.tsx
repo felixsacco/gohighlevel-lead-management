@@ -20,7 +20,7 @@ const faqSchema = {
       "name": "How does MyApproved work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "MyApproved connects homeowners across the UK with verified tradespeople. Post your job or request quotes, receive responses from three local professionals matched to your trade and location, compare their profiles, then hire the right person - completely free for homeowners."
+        "text": "Post your job and verified tradespeople matched to your trade and location call you back with quotes. Compare their profiles, then hire the right person — free for homeowners."
       }
     },
     {
@@ -28,7 +28,7 @@ const faqSchema = {
       "name": "Is MyApproved free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Posting jobs and viewing quotes is completely free for homeowners. Tradespeople pay £4.99 a lead, pay as you go - homeowners never pay anything to use MyApproved."
+        "text": "Yes. Posting jobs and viewing quotes is free for homeowners. Tradespeople pay £4.99 a lead, pay as you go."
       }
     },
     {
@@ -36,7 +36,7 @@ const faqSchema = {
       "name": "How are tradespeople verified on MyApproved?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Every tradesperson passes four checks before they can appear: photo ID, registered business on Companies House, public liability insurance, and qualifications. We confirm the insurance is real and in date, and monitor it so the listing is withdrawn if it lapses."
+        "text": "Identity, business and insurance checks. Photo ID verified against a live selfie, a business registered on Companies House, and public liability insurance confirmed in date and monitored so the listing is withdrawn if it lapses."
       }
     },
     {
@@ -44,7 +44,7 @@ const faqSchema = {
       "name": "Are all tradespeople on MyApproved insured?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Every tradesperson on MyApproved must hold public liability insurance that is confirmed as real and in date before listing. We monitor that cover so the listing is withdrawn if it lapses."
+        "text": "Yes. Every listed tradesperson must hold public liability insurance, confirmed in date and monitored throughout — the listing is withdrawn if cover lapses."
       }
     },
     {
@@ -52,7 +52,7 @@ const faqSchema = {
       "name": "How much does it cost to hire a tradesperson through MyApproved?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Costs vary by trade and job. Post your job and get free, no-obligation quotes from three matched tradespeople to compare exact costs for your project."
+        "text": "Costs vary by trade and job. Post your job and get no-obligation quotes from matched tradespeople who call you back to compare."
       }
     },
     {
@@ -60,7 +60,7 @@ const faqSchema = {
       "name": "How quickly can I find a tradesperson near me?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Post your job and you'll receive a real three-person brief, matched by trade and location. Response times vary by trade and area."
+        "text": "Post your job and you'll receive a brief matched by trade and location. Verified tradespeople call you back; response times vary by trade and area."
       }
     },
     {
@@ -68,7 +68,7 @@ const faqSchema = {
       "name": "What if I'm not satisfied with the work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Talk to the tradesperson first. If it isn't resolved, contact our support team at support@myapproved.com and we'll help work toward a resolution."
+        "text": "Talk to the tradesperson first. If it isn't resolved, contact support@myapproved.com and we'll help work toward a resolution."
       }
     }
   ]
@@ -82,15 +82,15 @@ export default function FAQPage() {
       questions: [
         {
           question: 'How does MyApproved work?',
-          answer: 'MyApproved connects homeowners across the UK with verified tradespeople. Post your job or request quotes, receive responses from three local professionals matched to your trade and location, compare their profiles, then hire the right person - completely free for homeowners.'
+          answer: 'Post your job and verified tradespeople matched to your trade and location call you back with quotes. Compare profiles, then hire whoever fits.'
         },
         {
           question: 'Is MyApproved free to use?',
-          answer: 'Yes. Posting jobs and viewing quotes is completely free for homeowners. Tradespeople pay £4.99 a lead, pay as you go - homeowners never pay anything to use MyApproved.'
+          answer: 'Yes, free for homeowners — to post jobs and view quotes. Tradespeople pay £4.99 a lead, pay as you go.'
         },
         {
           question: 'How do I create an account?',
-          answer: 'Click "Sign Up" in the top right corner, choose whether you\'re a homeowner or tradesperson, fill in your details, and verify your email address.'
+          answer: 'Click "Sign Up" and choose homeowner or tradesperson, fill in your details, and verify your email.'
         }
       ]
     },
@@ -100,19 +100,19 @@ export default function FAQPage() {
       questions: [
         {
           question: 'How are tradespeople verified?',
-          answer: 'Every tradesperson passes four checks before they can appear: photo ID, registered business on Companies House, public liability insurance, and qualifications. We confirm the insurance is real and in date, and monitor it so the listing is withdrawn if it lapses.'
+          answer: 'Every tradesperson passes identity, business and insurance checks before they can appear: photo ID verified against a live selfie, a business registered on Companies House, and public liability insurance confirmed genuine and in date. Insurance stays monitored so the listing is withdrawn if it lapses.'
         },
         {
           question: 'How many quotes will I receive?',
-          answer: 'Each job goes to three tradespeople, matched by trade and location - a real three-person brief, not a broadcast to dozens.'
+          answer: 'It depends. Verified tradespeople who match your job will call you back to discuss it and provide a fixed, written quote.'
         },
         {
           question: 'How quickly will I get responses?',
-          answer: 'Post your job and you\'ll receive a real three-person brief, matched by trade and location. Response times vary by trade and area.'
+          answer: 'It varies by trade and area. We send you the brief as soon as your job is matched.'
         },
         {
           question: 'What can I see on a tradesperson\'s profile?',
-          answer: 'Every profile shows what has been checked - photo ID, business, insurance, and qualifications - so you can see exactly what was verified before you decide.'
+          answer: 'Exactly what was checked — identity, business and insurance — so you know before you decide.'
         }
       ]
     },
@@ -122,15 +122,15 @@ export default function FAQPage() {
       questions: [
         {
           question: 'How much does it cost to hire a tradesperson?',
-          answer: 'Costs vary by trade and job. Post your job and get free, no-obligation quotes from three matched tradespeople to compare exact costs for your project.'
+          answer: 'It depends on the trade and the job. Post your job and compare no-obligation quotes from matched tradespeople who call you back.'
         },
         {
           question: 'Are there any hidden fees?',
-          answer: 'No hidden fees for homeowners. The price you agree with the tradesperson is what you pay. MyApproved is completely free for homeowners to use.'
+          answer: 'No. The price you agree with the tradesperson is what you pay — using MyApproved costs homeowners nothing.'
         },
         {
           question: 'What if I\'m not satisfied with the work?',
-          answer: 'Talk to the tradesperson first. If it isn\'t resolved, contact our support team and we\'ll help work toward a resolution.'
+          answer: 'Talk to the tradesperson first. If it isn\'t resolved, email support@myapproved.com and we\'ll help.'
         }
       ]
     },
@@ -140,15 +140,15 @@ export default function FAQPage() {
       questions: [
         {
           question: 'Are all tradespeople insured?',
-          answer: 'Yes. Every tradesperson on MyApproved must hold public liability insurance that is confirmed as real and in date before listing. We monitor that cover so the listing is withdrawn if it lapses.'
+          answer: "Yes — public liability insurance is a condition of listing. We confirm it's in date and keep monitoring it."
         },
         {
           question: 'What if something goes wrong?',
-          answer: 'Contact our support team at support@myapproved.com. We take all reports seriously, and public liability cover is confirmed and monitored throughout.'
+          answer: 'Email support@myapproved.com. We take every report seriously, and public liability cover is confirmed and monitored throughout.'
         },
         {
           question: 'How do I report a problem?',
-          answer: 'Contact our support team immediately at support@myapproved.com. We take all reports seriously and investigate promptly.'
+          answer: 'Email support@myapproved.com. We take all reports seriously and investigate promptly.'
         }
       ]
     }
@@ -180,11 +180,9 @@ export default function FAQPage() {
                 </p>
                 <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                   <p className="text-sm text-blue-100 leading-relaxed" itemProp="text">
-                    Every tradesperson on MyApproved passes four checks before appearing on the platform:
-                    photo ID, registered business on Companies House, public liability insurance, and qualifications.
-                    We confirm the insurance is real and in date, and monitor it so the listing is withdrawn if it
-                    lapses. Homeowners across the UK can hire with confidence - every listed tradesperson is checked
-                    before they can receive a single quote request.
+                    Every tradesperson passes identity, business and insurance checks before anyone appears on
+                    the platform: photo ID verified against a live selfie, a business registered on Companies House,
+                    and public liability insurance confirmed and monitored so the listing is withdrawn if it lapses.
                   </p>
                 </div>
               </div>

@@ -606,13 +606,13 @@ export default function ClientLoginPage() {
       <Container size="wide" className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
         {/* Left: Login card (moved left) */}
         <div className="order-1 md:order-1 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
-          <Card className="relative w-full rounded-3xl shadow-2xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md">
+          <div className="absolute inset-0 bg-brand-amber/20 rounded-3xl blur-xl" />
+          <Card className="relative w-full rounded-3xl shadow-2xl border-2 border-gray-200 bg-white">
           <CardHeader className="text-center pb-4 sm:pb-6">
             {/* Brand text removed as requested */}
             {/* Trust badge - Matching Homepage */}
             <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-brand-amber px-3 py-1.5 text-xs font-extrabold text-black border-2 border-brand-amber">
-              <Star className="h-3.5 w-3.5 fill-yellow-600 text-yellow-700" />
+              <Star className="h-3.5 w-3.5 fill-black text-black" />
               Business verified
             </div>
             <div className="flex items-center justify-center mb-3">
@@ -620,10 +620,10 @@ export default function ClientLoginPage() {
                 <User className="w-8 h-8 text-white" />
               </div>
             </div>
-            <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight text-brand-amber mb-1" style={{ fontWeight: 700 }}>
+            <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight text-brand-navy mb-1" style={{ fontWeight: 800 }}>
               Sign in to your account
             </CardTitle>
-            <p className="text-blue-100 text-sm sm:text-base">Manage bookings, messages, and saved pros.</p>
+            <p className="text-gray-600 text-sm sm:text-base">Manage bookings, messages, and saved pros.</p>
           </CardHeader>
 
           <CardContent className="p-6">
@@ -631,7 +631,7 @@ export default function ClientLoginPage() {
               <div>
                 <Label
                   htmlFor="email"
-                  className="flex items-center mb-2 text-sm font-semibold text-blue-100"
+                  className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                 >
                   <Mail className="w-4 h-4 mr-2" />
                   Email Address
@@ -643,7 +643,7 @@ export default function ClientLoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200"
+                    className="h-12 text-base bg-white border-2 border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl text-brand-navy placeholder:text-gray-400"
                     required
                   />
                 </div>
@@ -652,7 +652,7 @@ export default function ClientLoginPage() {
               <div>
                 <Label
                   htmlFor="password"
-                  className="flex items-center mb-2 text-sm font-semibold text-blue-100"
+                  className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                 >
                   <Lock className="w-4 h-4 mr-2" />
                   Password
@@ -664,13 +664,13 @@ export default function ClientLoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
-                    className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl pr-10 text-white placeholder:text-blue-200"
+                    className="h-12 text-base bg-white border-2 border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl pr-10 text-brand-navy placeholder:text-gray-400"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-200 hover:text-white"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-brand-navy"
                     aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     {showPassword ? (
@@ -685,11 +685,11 @@ export default function ClientLoginPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Checkbox id="remember" checked={rememberMe} onCheckedChange={(c) => setRememberMe(c === true)} />
-                  <Label htmlFor="remember" className="text-sm text-blue-100">Remember me</Label>
+                  <Label htmlFor="remember" className="text-sm text-gray-600">Remember me</Label>
                 </div>
                 <Link
                   href="/forgot-password?type=client"
-                  className="text-sm text-yellow-400 hover:text-yellow-300 hover:underline font-medium"
+                  className="text-sm text-brand-amber hover:text-brand-amberDark hover:underline font-medium"
                 >
                   Forgot password?
                 </Link>
@@ -720,7 +720,7 @@ export default function ClientLoginPage() {
                   <span className="w-full border-t border-gray-200" />
                 </div>
                 <div className="relative flex justify-center text-xs">
-                  <span className="bg-brand-navy/80 px-2 text-yellow-400">Enter your details</span>
+                  <span className="bg-white px-2 text-brand-amber">Enter your details</span>
                 </div>
               </div>
 
@@ -741,39 +741,39 @@ export default function ClientLoginPage() {
               </Button>
 
               <div className="text-center space-y-2">
-                <p className="text-sm text-blue-100">
+                <p className="text-sm text-gray-600">
                   Do not have a client account?{" "}
                   <Link
                     href="/register/client"
-                    className="text-yellow-400 hover:text-yellow-300 hover:underline font-medium"
+                    className="text-brand-amber hover:text-brand-amberDark hover:underline font-medium"
                   >
                     Register here
                   </Link>
                 </p>
-                <p className="text-sm text-blue-100">
+                <p className="text-sm text-gray-600">
                   Are you a tradesperson?{" "}
                   <Link
                     href="/login/trade"
-                    className="text-yellow-400 hover:text-yellow-300 hover:underline font-medium"
+                    className="text-brand-amber hover:text-brand-amberDark hover:underline font-medium"
                   >
                     Login here
                   </Link>
                 </p>
                 <div className="pt-1">
-                  <Link href="/contact" className="text-xs text-blue-200 hover:text-white underline">Need help? Contact support</Link>
+                  <Link href="/contact" className="text-xs text-gray-500 hover:text-brand-navy underline">Need help? Contact support</Link>
                 </div>
               </div>
 
               {/* Benefits bullets */}
               <ul className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 text-left">
-                <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
-                  <CheckCircle className="h-4 w-4 text-green-400" /> No hidden fees
+                <li className="flex items-center gap-2 text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1">
+                  <CheckCircle className="h-4 w-4 text-green-600" /> No hidden fees
                 </li>
-                <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
-                  <Shield className="h-4 w-4 text-blue-400" /> Secure login
+                <li className="flex items-center gap-2 text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1">
+                  <Shield className="h-4 w-4 text-brand-navy" /> Secure login
                 </li>
-                <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
-                  <Star className="h-4 w-4 text-yellow-400" /> Business verified
+                <li className="flex items-center gap-2 text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1">
+                  <Star className="h-4 w-4 text-brand-amber" /> Business verified
                 </li>
               </ul>
 
@@ -797,7 +797,7 @@ export default function ClientLoginPage() {
         <div className="order-2 md:order-2 flex flex-col gap-6 relative z-10">
           {/* UK Coverage Map Card - Professional Design */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-amber/20 to-brand-navy/20 rounded-3xl blur-xl" />
             <div className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md shadow-2xl overflow-hidden">
               {/* Real Leaflet Map */}
               <div className="relative w-full h-[340px] md:h-[400px]">
@@ -933,7 +933,7 @@ export default function ClientLoginPage() {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
               <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Why Choose MyApproved</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
@@ -946,11 +946,11 @@ export default function ClientLoginPage() {
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-500/20 border border-yellow-400/30 backdrop-blur-sm">
-                    <Star className="h-5 w-5 text-yellow-400" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-amber/20 border border-brand-amber/30 backdrop-blur-sm">
+                    <Star className="h-5 w-5 text-brand-amber" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-yellow-400">Reviewed by UK customers</p>
+                    <p className="text-sm font-semibold text-brand-amber">Reviewed by UK customers</p>
                     <p className="text-sm text-blue-200">Customer reviews available on each listed business.</p>
                   </div>
                 </li>
@@ -968,7 +968,7 @@ export default function ClientLoginPage() {
           </div>
 
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-xl blur-xl" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-amber/20 to-brand-navy/20 rounded-xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-xl border border-white/20 p-4 shadow-xl">
               <div className="flex items-center justify-center gap-2 text-center">
                 <Shield className="h-5 w-5 text-green-400" />

@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Mail, Shield, CheckCircle, Users, Wrench, Star, Award, HelpCircle, ArrowRight } from "lucide-react";
+import { Mail, Users, Wrench, Star, Award } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import HelpTrustBadges from "@/components/HelpTrustBadges";
 
 export const metadata = {
   title: "Help Centre | MyApproved",
@@ -19,7 +20,7 @@ const faqCategories = [
       },
       {
         q: "How do I get a quote?",
-        a: "Click 'Get Quote' on any tradesperson's profile or use our instant quote tool. Describe your job and location and we'll connect you with verified professionals who can respond with accurate quotes.",
+        a: "Describe your job and your location and submit it. It goes to verified tradespeople who match your trade or area, and they call you back to arrange the work. Posting a job and seeing quotes is free.",
       },
       {
         q: "Is MyApproved free for homeowners?",
@@ -27,7 +28,7 @@ const faqCategories = [
       },
       {
         q: "How quickly can I expect a response?",
-        a: "Many tradespeople respond within a few hours. Response times are shown on their profiles. For urgent work, look for tradespeople with a fast response badge.",
+        a: "Once you submit your job it goes straight to verified tradespeople who match your trade or postcode area, and they contact you directly by phone. You hear from them, not from us.",
       },
     ],
   },
@@ -37,7 +38,7 @@ const faqCategories = [
     questions: [
       {
         q: "How do I know a tradesperson is verified?",
-        a: "All tradespeople on MyApproved go through identity verification, insurance checks, and qualification reviews before their profile goes live. Verified badges on profiles confirm this.",
+        a: "No tradesperson is listed until their identity, business and insurance checks have passed. We confirm their photo ID against a live selfie, check the business is registered on Companies House, and confirm their public liability insurance is genuine and in date. The IDENTITY CHECKED and INSURANCE VERIFIED badges on a profile confirm this.",
       },
       {
         q: "What if I'm not happy with the work?",
@@ -94,8 +95,10 @@ export default function HelpPage() {
       <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
           <div className="text-center max-w-4xl mx-auto">
-            <p className="text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
-              Help Centre
+            <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
+              <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-brand-amber/60" aria-hidden="true"></span>
+              <span className="relative px-7 py-1.5 border border-brand-amber/60">Help Centre</span>
+              <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-brand-amber/60" aria-hidden="true"></span>
             </p>
             <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4 text-white" style={{fontWeight: 800}}>How Can We Help?</h1>
             <p className="text-white/75 text-lg max-w-2xl mx-auto">
@@ -108,38 +111,7 @@ export default function HelpPage() {
       {/* Contact card strip */}
       <section className="bg-white py-12 sm:py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-3 gap-4">
-            <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 border border-gray-100 flex items-start gap-3">
-              <div className="w-9 h-9 bg-brand-navy rounded-xl flex items-center justify-center shrink-0">
-                <Mail className="w-4 h-4 text-white" />
-              </div>
-              <div>
-                <p className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy" style={{fontWeight: 800}}>Email Support</p>
-                <a href="mailto:support@myapproved.com" className="text-brand-navy text-sm font-medium">support@myapproved.com</a>
-                <p className="text-gray-600 text-xs mt-0.5">Reply within one business day</p>
-              </div>
-            </div>
-            <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 border border-gray-100 flex items-start gap-3">
-              <div className="w-9 h-9 bg-brand-navy rounded-xl flex items-center justify-center shrink-0">
-                <Shield className="w-4 h-4 text-white" />
-              </div>
-              <div>
-                <p className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy" style={{fontWeight: 800}}>Verified Platform</p>
-                <p className="text-gray-600 text-sm">All tradespeople ID-checked</p>
-                <p className="text-gray-600 text-xs mt-0.5">Insurance &amp; qualifications verified</p>
-              </div>
-            </div>
-            <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 border border-gray-100 flex items-start gap-3">
-              <div className="w-9 h-9 bg-brand-navy rounded-xl flex items-center justify-center shrink-0">
-                <CheckCircle className="w-4 h-4 text-white" />
-              </div>
-              <div>
-                <p className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy" style={{fontWeight: 800}}>Free for Homeowners</p>
-                <p className="text-gray-600 text-sm">No fees to find &amp; hire</p>
-                <p className="text-gray-600 text-xs mt-0.5">Pay only the tradesperson</p>
-              </div>
-            </div>
-          </div>
+          <HelpTrustBadges />
         </div>
       </section>
 

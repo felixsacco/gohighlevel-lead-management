@@ -55,8 +55,8 @@ export default function ThankYouPage() {
                   Match you with tradespeople
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  We will connect you with up to 3 verified professionals in
-                  your area.
+                  We will connect you with verified professionals in your area
+                  who will call you back with a quote.
                 </p>
               </div>
             </li>

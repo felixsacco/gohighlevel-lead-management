@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Get Free Quotes from Verified Tradespeople | MyApproved UK",
-  description: "Post your job and get up to 3 free quotes from ID-checked, insured tradespeople in your area. Compare prices, read reviews, and hire with confidence. Takes 2 minutes.",
+  description: "Post your job and get free quotes from identity-checked, insured tradespeople in your area. They call you back, you compare prices, read reviews, and hire with confidence. Takes 2 minutes.",
   keywords: "free quotes tradespeople UK, instant tradesperson quote, compare trade quotes, get quotes plumber electrician builder UK",
   alternates: { canonical: "https://myapproved.com/instant-quote" },
   openGraph: {
     title: "Get Free Quotes from Verified Tradespeople | MyApproved",
-    description: "Post your job free. Receive up to 3 quotes from insured, ID-checked local tradespeople. Compare and hire - no obligation.",
+    description: "Post your job free. Receive quotes from insured, identity-checked local tradespeople who call you back. Compare and hire - no obligation.",
     url: "https://myapproved.com/instant-quote",
     siteName: "MyApproved",
     locale: "en_GB",
@@ -32,7 +32,7 @@ export default function InstantQuoteLayout({ children }: { children: React.React
             "@id": "https://myapproved.com/instant-quote",
             "url": "https://myapproved.com/instant-quote",
             "name": "Get Free Quotes from Verified Tradespeople",
-            "description": "Post your home improvement job and receive up to 3 free quotes from ID-checked, insured local tradespeople across the UK.",
+            "description": "Post your home improvement job and receive free quotes from identity-checked, insured local tradespeople across the UK.",
             "breadcrumb": {
               "@type": "BreadcrumbList",
               "itemListElement": [

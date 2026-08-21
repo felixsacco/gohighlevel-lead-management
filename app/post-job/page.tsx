@@ -67,7 +67,7 @@ export default function PostJobPage() {
               {
                 step: "2",
                 title: "Receive Free Quotes",
-                desc: "Three tradespeople will respond with competitive quotes for your job.",
+                desc: "Verified tradespeople who match your job will call you back with competitive quotes.",
               },
               {
                 step: "3",
@@ -110,7 +110,7 @@ export default function PostJobPage() {
               {
                 icon: Users,
                 title: 'Multiple Quotes',
-                description: 'Receive up to 3 competitive quotes to compare prices and services',
+                description: 'Receive competitive quotes from verified tradespeople who call you back',
               },
               {
                 icon: CheckCircle,

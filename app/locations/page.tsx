@@ -92,7 +92,7 @@ const tier3 = LOCATIONS.filter((l) => l.priority === 3);
 const FAQS = [
   {
     q: "How do I find a verified tradesperson near me?",
-    a: "Use the location and trade grids below to browse verified professionals in your area. Every tradesperson passes four checks before they can appear: photo ID, registered business on Companies House, public liability insurance, and qualifications. We confirm the insurance is real and in date, and monitor it so the listing is withdrawn if it lapses.",
+    a: "Use the location and trade grids below to browse verified professionals in your area. Every tradesperson passes identity, business and insurance checks before they can appear: photo ID verified against a live selfie, a business registered on Companies House, and public liability insurance confirmed real and in date. We monitor the insurance so the listing is withdrawn if it lapses.",
   },
   {
     q: "How much does it cost to get quotes from tradespeople?",
@@ -108,7 +108,7 @@ const FAQS = [
   },
   {
     q: "Are all tradespeople on MyApproved insured?",
-    a: "Yes. Every tradesperson must hold public liability insurance that is confirmed as real and in date before listing. We also check photo ID, registered business on Companies House, and qualifications, and monitor the insurance so the listing is withdrawn if it lapses.",
+    a: "Yes. Every tradesperson must hold public liability insurance that is confirmed as real and in date before listing. Everyone also passes identity and business checks — photo ID verified against a live selfie and a business registered on Companies House — and we monitor the insurance so the listing is withdrawn if it lapses.",
   },
 ];
 

@@ -15,7 +15,6 @@ import {
   MessageSquare,
   Users,
   ShieldCheck,
-  Sparkles,
   TrendingUp,
   ChevronDown,
   Droplets,
@@ -265,7 +264,7 @@ export default function Home() {
         "inLanguage": "en-GB",
         "potentialAction": { "@type": "SearchAction", "target": { "@type": "EntryPoint", "urlTemplate": "https://myapproved.com/find-tradespeople?search={search_term_string}" }, "query-input": "required name=search_term_string" }
       }) }} />
-      {/* Organization JSON-LD - entity establishment for AI knowledge graphs */}
+      {/* Organization JSON-LD - entity establishment for knowledge graphs */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Organization",
@@ -282,7 +281,7 @@ export default function Home() {
           process.env.NEXT_PUBLIC_INSTAGRAM_URL
         ].filter(Boolean)
       }) }} />
-      {/* Speakable - voice search / AI assistant extraction targets */}
+      {/* Speakable - voice search / assistant extraction targets */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebPage",
@@ -473,7 +472,7 @@ export default function Home() {
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-brand-navy/70">Instant quote in minutes.</p>
+            <p className="mt-3 text-sm sm:text-base text-brand-navy/70">Free, no obligation.</p>
           </div>
         </div>
       </section>
@@ -496,8 +495,8 @@ export default function Home() {
 
             {/* Benefit 2 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>See the price before anyone calls</h3>
-              <p className="text-sm sm:text-base text-gray-600">Get a costed quote from your job description, so no one has to talk you into a figure.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>A costed range up front</h3>
+              <p className="text-sm sm:text-base text-gray-600">Get a price range from your job description before anyone calls, so you know what to expect.</p>
             </div>
 
             {/* Benefit 3 */}
@@ -626,11 +625,11 @@ export default function Home() {
               <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span className="notranslate"><strong className="font-bold" style={{fontWeight: 700}}>Three tradespeople per job.</strong> You're quoting a real brief, not fighting a crowd for it.</span>
+                  <span className="notranslate"><strong className="font-bold" style={{fontWeight: 700}}>Only verified tradespeople get your job.</strong> Every match has passed identity, business and insurance checks before it reaches you.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs go to the nearest.</strong> Matched by distance, so travel never eats your day.</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>Matched by trade and area.</strong> We match your job to verified tradespeople in your trade, or who cover your postcode within 50 miles.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
@@ -741,7 +740,7 @@ export default function Home() {
                 Will I get chased by dozens of companies trying to sell me a job?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
-                No. We send each job to three tradespeople, matched by what you need and who can actually get to you. That's a real three-person brief, not a broadcast to everyone in your postcode. So you get a few relevant quotes, not a phone that won't stop ringing.
+                No. Your job only goes to tradespeople who have passed verification and who match your trade or your postcode area. They then contact you directly by phone. So you hear from a few relevant, checked tradespeople — not a broadcast to everyone in your postcode.
               </AccordionContent>
             </AccordionItem>
 
@@ -750,7 +749,7 @@ export default function Home() {
                 How is the price worked out?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
-                You describe the job and give us your location, and we turn that into a costed quote. So the first number you see is based on the work you've described, not on a salesperson trying to talk you up from nothing. You can compare it against other quotes before anyone calls. You never pay MyApproved for a quote.
+                You describe the job and give us your location, and we turn that into a costed price range to give you a sense of the work involved. The exact price is then agreed with the tradesperson after they've discussed the job with you by phone. You never pay MyApproved for a quote.
               </AccordionContent>
             </AccordionItem>
 
@@ -784,7 +783,7 @@ export default function Home() {
               Get Quotes
               <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
             </Button>
-            <p className="mt-3 text-sm sm:text-base text-brand-navy/70">Get your quotes now.</p>
+            <p className="mt-3 text-sm sm:text-base text-brand-navy/70">Post your job and speak to verified tradespeople.</p>
           </div>
         </div>
       </section>
@@ -906,7 +905,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI QUOTE FORM MODAL */}
+      {/* QUOTE FORM MODAL */}
       <AIQuoteForm
         isOpen={showAIModal}
         onClose={() => setShowAIModal(false)}

@@ -75,7 +75,7 @@ const AIExplainerSection = () => {
       ],
       visual: {
         type: 'results',
-        content: '3 quotes received in 2 minutes'
+        content: 'Verified tradespeople call you back'
       }
     }
   ];

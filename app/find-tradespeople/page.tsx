@@ -3,6 +3,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { Search, MapPin, Star, Shield, CheckCircle, ChevronRight } from "lucide-react";
+import { ShieldCheck as ShieldCheckFill, SealCheck as SealCheckFill } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -58,8 +59,6 @@ export default function FindTradespeople() {
   const [onlyVerified, setOnlyVerified] = useState(false);
   const [onlyAvailableToday, setOnlyAvailableToday] = useState(false); // responseMins < 15
   const [minRating, setMinRating] = useState<number | null>(null); // e.g. 4.8
-  // AI shortlist
-  const [aiShortlist, setAiShortlist] = useState(false);
   // Compare selection (max 3)
   const [compareSet, setCompareSet] = useState<Set<string>>(new Set());
   const [showCompareModal, setShowCompareModal] = useState(false);
@@ -78,7 +77,6 @@ export default function FindTradespeople() {
     setOnlyVerified(false);
     setOnlyAvailableToday(false);
     setMinRating(null);
-    setAiShortlist(false);
     setMinYearsFlag(false);
     setMinReviews100Flag(false);
   };
@@ -201,19 +199,8 @@ export default function FindTradespeople() {
       // intentionally a no-op until a real availability field is added.
       return true;
     });
-    if (!aiShortlist) return filtered;
-    const parseMiles = (d?: string) => {
-      if (!d) return Number.POSITIVE_INFINITY;
-      const m = parseFloat(d.replace(/[^0-9.]/g, ""));
-      return isNaN(m) ? Number.POSITIVE_INFINITY : m;
-    };
-    filtered.sort((a, b) => {
-      const r = (b.rating || 0) - (a.rating || 0);
-      if (r !== 0) return r;
-      return parseMiles(a.distance) - parseMiles(b.distance);
-    });
-    return filtered.slice(0, 3);
-  }, [tradespeople, onlyVerified, onlyAvailableToday, minRating, aiShortlist, minYearsFlag, minReviews100Flag]);
+    return filtered;
+  }, [tradespeople, onlyVerified, onlyAvailableToday, minRating, minYearsFlag, minReviews100Flag]);
 
   useEffect(() => {
     setPagination((prev) => ({ ...prev, page: 1 }));
@@ -244,19 +231,12 @@ export default function FindTradespeople() {
         {/* Trust strip */}
         <div className="mb-4 sm:mb-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:gap-4 text-xs sm:text-sm text-brand-navy">
           <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-brand-slate px-2 sm:px-3 py-1 rounded-full ring-1 ring-gray-100">
-            <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="hidden xs:inline">All Trades Verified</span>
-            <span className="xs:hidden">Verified</span>
+            <ShieldCheckFill weight="fill" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-navy" />
+            <span className="font-bold tracking-wide notranslate">IDENTITY CHECKED</span>
           </span>
           <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-brand-slate px-2 sm:px-3 py-1 rounded-full ring-1 ring-gray-100">
-            <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="hidden xs:inline">Public liability insurance confirmed and monitored</span>
-            <span className="xs:hidden">Insured</span>
-          </span>
-          <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-brand-slate px-2 sm:px-3 py-1 rounded-full ring-1 ring-gray-100">
-            <Shield className="w-3 h-3 sm:w-4 sm:h-4 text-green-400" />
-            <span className="hidden xs:inline">Identity checked</span>
-            <span className="xs:hidden">Verified</span>
+            <SealCheckFill weight="fill" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-navy" />
+            <span className="font-bold tracking-wide notranslate">INSURANCE VERIFIED</span>
           </span>
         </div>
         {/* Search and Filters */}
@@ -283,7 +263,7 @@ export default function FindTradespeople() {
               />
             </div>
             
-            {/* Search Button - opens AI matcher */}
+            {/* Search Button - opens the quote form */}
             <div>
               <Button
                 className="h-11 sm:h-12 bg-brand-amber hover:bg-brand-amberDark text-black font-semibold rounded-xl text-sm sm:text-base w-full"
@@ -515,7 +495,6 @@ export default function FindTradespeople() {
                 <Button className="w-full bg-brand-amber hover:bg-brand-amberDark text-black font-semibold text-sm sm:text-base" asChild>
                   <Link href="/login/client">Post a Job</Link>
                 </Button>
-                <span className="block mt-2 text-[10px] sm:text-[12px] text-slate-300">Same‑day responses from local pros</span>
               </CardContent>
             </Card>
           </div>
@@ -542,7 +521,7 @@ export default function FindTradespeople() {
       <Dialog open={showPostJob} onOpenChange={setShowPostJob}>
         <DialogContent className="max-w-sm sm:max-w-lg mx-4">
           <h3 className="text-lg sm:text-xl font-extrabold text-brand-navy mb-1">Post a Job</h3>
-          <p className="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4">Tell us what you need and get up to 3 free quotes.</p>
+          <p className="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4">Tell us what you need, and verified tradespeople will call you back.</p>
           <div className="space-y-3">
             <Input
               placeholder="Trade (e.g., Electrician, Plumber)"
@@ -572,10 +551,9 @@ export default function FindTradespeople() {
                 setShowPostJob(false);
               }}
             >
-              Get 3 Free Quotes
+              Submit Job
             </Button>
           </div>
-          <span className="block mt-2 text-[10px] sm:text-[12px] text-slate-600">Same‑day responses from local pros</span>
         </DialogContent>
       </Dialog>
 

@@ -353,7 +353,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
               {[
                 {
                   q: `How much does a ${trade.name.toLowerCase()} cost in the UK?`,
-                  a: `${trade.plural} in the UK typically charge ${trade.hourlyRate} per hour. The cost depends on your region, the size of the job, and the materials used. Every MyApproved ${trade.name.toLowerCase()} gives you a fixed, written quote before work starts. No verbal estimates that climb once the job begins. Post your job free to compare up to 3 quotes from verified local professionals.`,
+                  a: `${trade.plural} in the UK typically charge ${trade.hourlyRate} per hour. The cost depends on your region, the size of the job, and the materials used. Every MyApproved ${trade.name.toLowerCase()} gives you a fixed, written quote before work starts. No verbal estimates that climb once the job begins. Post your job free and verified local professionals will call you back with quotes.`,
                 },
                 {
                   q: `Are all ${trade.plural.toLowerCase()} on MyApproved verified?`,
@@ -428,8 +428,8 @@ export default function FindTradePage({ params }: { params: { trade: string } })
               Ready to Find a Verified {trade.name}?
             </h2>
             <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
-              Post your job free and get up to 3 quotes from verified{" "}
-              {trade.plural.toLowerCase()} near you. No obligation and no hidden fees.
+              Post your job free and verified{" "}
+              {trade.plural.toLowerCase()} near you will call you back with quotes. No obligation and no hidden fees.
             </p>
             <div className="mb-8">
               <HeroSearchTrigger />
