@@ -21,7 +21,7 @@ export default function PostJobPage() {
             <Briefcase className="w-4 h-4" />
             Find Perfect Tradespeople
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white">
+          <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-6 px-2 sm:px-4 text-white" style={{fontWeight: 800}}>
             Post Your Job
           </h1>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
@@ -42,7 +42,7 @@ export default function PostJobPage() {
             </div>
           </div>
 
-          <AIQuoteTriggerButton className="inline-flex items-center justify-center gap-2 bg-brand-amber hover:brightness-95 text-black font-bold px-10 py-5 text-xl rounded-xl transition-colors shadow-lg">
+          <AIQuoteTriggerButton className="inline-flex items-center justify-center gap-2 bg-brand-amber hover:bg-brand-amberDark text-black font-semibold px-10 py-5 text-xl rounded-xl transition-colors shadow-lg">
             Get Free Quotes Now
             <ArrowRight className="w-5 h-5" />
           </AIQuoteTriggerButton>
@@ -54,7 +54,7 @@ export default function PostJobPage() {
       <Section>
         <Container size="wide">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-brand-navy mb-3">How It Works</h2>
+            <h2 className="text-3xl font-extrabold text-brand-navy mb-3" style={{fontWeight: 800}}>How It Works</h2>
             <p className="text-gray-500">Three simple steps to find your perfect tradesperson</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -79,7 +79,7 @@ export default function PostJobPage() {
                 <div className="w-12 h-12 rounded-full bg-brand-navy text-white font-extrabold text-xl flex items-center justify-center mx-auto mb-4">
                   {item.step}
                 </div>
-                <h3 className="text-lg font-extrabold text-brand-navy mb-2">{item.title}</h3>
+                <h3 className="text-lg font-extrabold text-brand-navy mb-2" style={{fontWeight: 800}}>{item.title}</h3>
                 <p className="text-gray-500 text-sm">{item.desc}</p>
               </div>
             ))}
@@ -97,7 +97,7 @@ export default function PostJobPage() {
       <Section className="bg-gray-50">
         <Container size="wide">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-brand-navy mb-3">Why Post on MyApproved?</h2>
+            <h2 className="text-3xl font-extrabold text-brand-navy mb-3" style={{fontWeight: 800}}>Why Post on MyApproved?</h2>
             <p className="text-gray-500">Post your job and compare quotes from checked tradespeople</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -120,7 +120,7 @@ export default function PostJobPage() {
             ].map((benefit, index) => (
               <div key={index} className="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                 <benefit.icon className="w-12 h-12 text-brand-navy mx-auto mb-4" />
-                <h3 className="text-xl font-extrabold text-brand-navy mb-2">{benefit.title}</h3>
+                <h3 className="text-xl font-extrabold text-brand-navy mb-2" style={{fontWeight: 800}}>{benefit.title}</h3>
                 <p className="text-gray-500">{benefit.description}</p>
               </div>
             ))}

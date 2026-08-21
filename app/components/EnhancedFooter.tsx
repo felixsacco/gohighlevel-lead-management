@@ -62,7 +62,7 @@ const EnhancedFooter = () => {
           <div className="lg:col-span-2">
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl flex items-center justify-center">
                   <span className="text-white font-bold text-lg">A</span>
                 </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
@@ -76,15 +76,15 @@ const EnhancedFooter = () => {
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-4 mb-8">
-                <div className="text-center bg-slate-800/50 rounded-lg p-3">
+                <div className="text-center bg-slate-800/50 rounded-xl p-3">
                   <div className="text-xl font-bold text-yellow-400">✓</div>
                   <div className="text-xs text-slate-400">Identity checked</div>
                 </div>
-                <div className="text-center bg-slate-800/50 rounded-lg p-3">
+                <div className="text-center bg-slate-800/50 rounded-xl p-3">
                   <div className="text-xl font-bold text-blue-400">✓</div>
                   <div className="text-xs text-slate-400">Business verified</div>
                 </div>
-                <div className="text-center bg-slate-800/50 rounded-lg p-3">
+                <div className="text-center bg-slate-800/50 rounded-xl p-3">
                   <div className="text-xl font-bold text-green-400">✓</div>
                   <div className="text-xs text-slate-400">Insurance confirmed</div>
                 </div>
@@ -191,7 +191,7 @@ const EnhancedFooter = () => {
                   <Link
                     key={index}
                     href={social.href}
-                    className={`w-10 h-10 bg-slate-700/50 rounded-lg flex items-center justify-center text-slate-400 ${social.color} transition-all duration-200 hover:scale-110 hover:bg-slate-600/50`}
+                    className={`w-10 h-10 bg-slate-700/50 rounded-xl flex items-center justify-center text-slate-400 ${social.color} transition-all duration-200 hover:scale-110 hover:bg-slate-600/50`}
                   >
                     <social.icon className="w-4 h-4" />
                   </Link>

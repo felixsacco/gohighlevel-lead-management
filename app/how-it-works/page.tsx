@@ -180,14 +180,14 @@ export default function HowItWorks() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-brand-amber text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
               <CheckCircle className="w-3.5 h-3.5" />
               How It Works
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4" style={{fontWeight: 800}}>
+            <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] text-white mb-12 sm:mb-16 px-2 sm:px-4" style={{fontWeight: 800}}>
               The Simple Way to Hire <span className="text-brand-amber">Trusted Tradespeople</span>
             </h1>
             <p className="text-white/75 text-base sm:text-lg max-w-2xl mx-auto">

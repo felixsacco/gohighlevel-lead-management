@@ -360,7 +360,7 @@ export default function TradespersonRegistration() {
                     <CheckCircle className="w-8 h-8 text-green-400" />
                   </div>
                 </div>
-                <h2 className="text-3xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-2">
+                <h2 className="text-3xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-2" style={{fontWeight: 800}}>
                   Registration Successful!
                 </h2>
                 <p className="text-blue-100 mb-4">
@@ -417,7 +417,7 @@ export default function TradespersonRegistration() {
                     <User className="w-8 h-8 text-white" />
                   </div>
                 </div>
-                <CardTitle className="text-[26px] sm:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent mb-1">
+                <CardTitle className="text-[26px] sm:text-3xl font-extrabold bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent mb-1" style={{fontWeight: 800}}>
                   Create Tradesperson Account
                 </CardTitle>
                 <p className="text-blue-100 text-sm sm:text-base">
@@ -593,7 +593,7 @@ export default function TradespersonRegistration() {
                   onChange={(e) => handleInputChange("fullName", e.target.value)}
                     className={`h-12 text-base bg-white/10 border-2 ${
                     errors.fullName ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                   placeholder="Enter your full name"
                 />
                 {errors.fullName && (
@@ -655,7 +655,7 @@ export default function TradespersonRegistration() {
                   onChange={(e) => handleInputChange("email", e.target.value)}
                   className={`h-12 text-base bg-white/10 border-2 ${
                     errors.email ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                   placeholder="Enter your email address"
                 />
                 {errors.email && (
@@ -675,7 +675,7 @@ export default function TradespersonRegistration() {
                   onChange={(e) => handleInputChange("phone", e.target.value)}
                   className={`h-12 text-base bg-white/10 border-2 ${
                     errors.phone ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                   placeholder="Enter your phone number"
                 />
                 {errors.phone && (
@@ -700,7 +700,7 @@ export default function TradespersonRegistration() {
                   onChange={(e) => handleInputChange("city", e.target.value)}
                   className={`h-12 text-base bg-white/10 border-2 ${
                     errors.city ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                   placeholder="Enter your city"
                 />
                 {errors.city && (
@@ -720,7 +720,7 @@ export default function TradespersonRegistration() {
                   onChange={(e) => handleInputChange("postcode", e.target.value.toUpperCase())}
                     className={`h-12 text-base bg-white/10 border-2 ${
                     errors.postcode ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your postcode"
                   />
                   {errors.postcode && (
@@ -807,7 +807,7 @@ export default function TradespersonRegistration() {
                   type="date"
                   value={insuranceExpiry}
                   onChange={(e) => setInsuranceExpiry(e.target.value)}
-                  className="h-12 text-base bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 rounded-xl text-white backdrop-blur-sm"
+                  className="h-12 text-base bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 rounded-2xl text-white backdrop-blur-sm"
                 />
               </div>
 
@@ -852,7 +852,7 @@ export default function TradespersonRegistration() {
                     type="text"
                   value={qualificationNumber}
                   onChange={(e) => setQualificationNumber(e.target.value)}
-                  className="h-12 text-base bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm"
+                className="h-12 text-base bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm"
                   placeholder="Enter your qualification/certification number"
                 />
               </div>
@@ -900,7 +900,7 @@ export default function TradespersonRegistration() {
                       type="text"
                       value={tradeCardNumber}
                       onChange={(e) => setTradeCardNumber(e.target.value)}
-                      className="h-12 text-base bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm"
+                      className="h-12 text-base bg-white/10 border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm"
                       placeholder="Enter your trade card number"
                     />
                   </div>
@@ -925,7 +925,7 @@ export default function TradespersonRegistration() {
                     onChange={(e) => handleInputChange("password", e.target.value)}
                       className={`h-12 text-base bg-white/10 border-2 ${
                       errors.password ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
+                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
                       placeholder="Create a strong password"
                     />
                     <button
@@ -955,7 +955,7 @@ export default function TradespersonRegistration() {
                     onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
                       className={`h-12 text-base bg-white/10 border-2 ${
                       errors.confirmPassword ? "border-red-400/50" : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
+                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
                       placeholder="Confirm your password"
                     />
                     <button
@@ -994,7 +994,8 @@ export default function TradespersonRegistration() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
+                className="w-full h-12 bg-brand-amber hover:bg-brand-amberDark hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
+                style={{fontWeight: 800}}
               >
                 {isLoading
                   ? formData.subscriptionPlan === "unlimited_monthly"
@@ -1028,7 +1029,7 @@ export default function TradespersonRegistration() {
             <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Why Choose MyApproved</h2>
+              <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4" style={{fontWeight: 800}}>Why Choose MyApproved</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm">
@@ -1064,7 +1065,7 @@ export default function TradespersonRegistration() {
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Everything you need</h3>
+              <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3" style={{fontWeight: 800}}>Everything you need</h3>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Secure messaging</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Quotes & bookings in one place</span></li>
@@ -1077,7 +1078,7 @@ export default function TradespersonRegistration() {
             <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-3xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Peace of mind</h3>
+              <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3" style={{fontWeight: 800}}>Peace of mind</h3>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Identity-checked & insured pros</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Clear pricing</span></li>

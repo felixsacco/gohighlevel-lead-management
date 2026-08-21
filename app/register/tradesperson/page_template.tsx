@@ -281,7 +281,7 @@ export default function ClientRegistration() {
               </div>
 
               {/* Email Sent Message */}
-              <div className="bg-white/10 border border-white/20 rounded-lg p-6 mb-6 text-center backdrop-blur-sm">
+              <div className="bg-white/10 border border-white/20 rounded-xl p-6 mb-6 text-center backdrop-blur-sm">
                 <div className="flex items-center justify-center mb-4">
                   <div className="w-16 h-16 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/30 rounded-full flex items-center justify-center backdrop-blur-sm">
                     <Mail className="w-8 h-8 text-green-400" />
@@ -294,7 +294,7 @@ export default function ClientRegistration() {
                   We have sent a verification email to{" "}
                   <strong className="text-yellow-400">{formData.email}</strong>
                 </p>
-                <div className="bg-blue-500/20 border border-blue-400/30 rounded-lg p-4 mb-4 backdrop-blur-sm">
+                <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4 mb-4 backdrop-blur-sm">
                   <p className="text-sm text-blue-100">
                     <strong>Next Steps:</strong>
                   </p>
@@ -314,7 +314,7 @@ export default function ClientRegistration() {
               <div className="space-y-3">
                 <Button
                   asChild
-                  className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-lg shadow-lg"
+                  className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
                 >
                   <Link href={`/verify-captcha?email=${formData.email}`}>
                     Enter Verification Code
@@ -322,13 +322,13 @@ export default function ClientRegistration() {
                 </Button>
                 <Button
                   asChild
-                  className="w-full h-12 bg-white/10 border-2 border-white/20 hover:bg-white/20 hover:border-yellow-400/50 transition-all duration-200 text-white text-base font-semibold rounded-lg backdrop-blur-sm"
+                  className="w-full h-12 bg-white/10 border-2 border-white/20 hover:bg-white/20 hover:border-yellow-400/50 transition-all duration-200 text-white text-base font-semibold rounded-xl backdrop-blur-sm"
                 >
                   <Link href="/">Back to Home</Link>
                 </Button>
               </div>
 
-              <div className="mt-6 p-4 bg-blue-500/20 border border-blue-400/30 rounded-lg backdrop-blur-sm">
+              <div className="mt-6 p-4 bg-blue-500/20 border border-blue-400/30 rounded-xl backdrop-blur-sm">
                 <p className="text-sm text-blue-100">
                   <strong>Note:</strong> Check your email inbox for the
                   verification code. If you do not see it, check your spam
@@ -415,7 +415,7 @@ export default function ClientRegistration() {
                       errors.firstName
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your first name"
                   />
                   {errors.firstName && (
@@ -444,7 +444,7 @@ export default function ClientRegistration() {
                       errors.lastName
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your last name"
                   />
                   {errors.lastName && (
@@ -473,7 +473,7 @@ export default function ClientRegistration() {
                     errors.email
                       ? "border-red-400/50"
                       : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                   placeholder="Enter your email address"
                 />
                 {errors.email && (
@@ -499,7 +499,7 @@ export default function ClientRegistration() {
                     errors.phone
                       ? "border-red-400/50"
                       : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                   placeholder="Enter your phone number"
                 />
                 {errors.phone && (
@@ -528,7 +528,7 @@ export default function ClientRegistration() {
                       errors.postcode
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your postcode"
                   />
                   {errors.postcode && (
@@ -557,7 +557,7 @@ export default function ClientRegistration() {
                       errors.address
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your full address"
                   />
                   {errors.address && (
@@ -590,7 +590,7 @@ export default function ClientRegistration() {
                         errors.password
                           ? "border-red-400/50"
                           : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
+                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
                       placeholder="Create a strong password"
                     />
                     <button
@@ -632,7 +632,7 @@ export default function ClientRegistration() {
                         errors.confirmPassword
                           ? "border-red-400/50"
                           : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-lg text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
+                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
                       placeholder="Confirm your password"
                     />
                     <button
@@ -661,7 +661,7 @@ export default function ClientRegistration() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-lg shadow-lg"
+                className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
               >
                 {isLoading ? "Creating Account..." : "Create Account"}
               </Button>

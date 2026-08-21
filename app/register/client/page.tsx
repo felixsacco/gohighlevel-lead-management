@@ -311,7 +311,8 @@ export default function ClientRegistration() {
               <div className="space-y-3">
                 <Button
                   asChild
-                  className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
+                  className="w-full h-12 bg-brand-amber hover:bg-brand-amberDark hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
+                style={{ fontWeight: 800 }}
                 >
                   <Link href={`/verify-captcha?email=${formData.email}`}>
                     Enter Verification Code
@@ -369,7 +370,7 @@ export default function ClientRegistration() {
                     <User className="w-8 h-8 text-white" />
                   </div>
                 </div>
-                <CardTitle className="text-[26px] sm:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent mb-1">
+                <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent mb-1" style={{ fontWeight: 700 }}>
                   Create Client Account
                 </CardTitle>
                 <p className="text-blue-100 text-sm sm:text-base">
@@ -408,7 +409,7 @@ export default function ClientRegistration() {
                       errors.firstName
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your first name"
                   />
                   {errors.firstName && (
@@ -437,7 +438,7 @@ export default function ClientRegistration() {
                       errors.lastName
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your last name"
                   />
                   {errors.lastName && (
@@ -466,7 +467,7 @@ export default function ClientRegistration() {
                     errors.email
                       ? "border-red-400/50"
                       : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                   placeholder="Enter your email address"
                 />
                 {errors.email && (
@@ -492,7 +493,7 @@ export default function ClientRegistration() {
                     errors.phone
                       ? "border-red-400/50"
                       : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                   placeholder="Enter your phone number"
                 />
                 {errors.phone && (
@@ -521,7 +522,7 @@ export default function ClientRegistration() {
                       errors.postcode
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your postcode"
                   />
                   {errors.postcode && (
@@ -550,7 +551,7 @@ export default function ClientRegistration() {
                       errors.address
                         ? "border-red-400/50"
                         : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
                     placeholder="Enter your full address"
                   />
                   {errors.address && (
@@ -583,7 +584,7 @@ export default function ClientRegistration() {
                         errors.password
                           ? "border-red-400/50"
                           : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
+                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
                       placeholder="Create a strong password"
                     />
                     <button
@@ -625,7 +626,7 @@ export default function ClientRegistration() {
                         errors.confirmPassword
                           ? "border-red-400/50"
                           : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
+                      } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
                       placeholder="Confirm your password"
                     />
                     <button
@@ -654,7 +655,8 @@ export default function ClientRegistration() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
+                className="w-full h-12 bg-brand-amber hover:bg-brand-amberDark hover:scale-105 transition-all duration-200 text-black text-base font-semibold rounded-xl shadow-lg"
+                style={{ fontWeight: 800 }}
               >
                 {isLoading ? "Creating Account..." : "Create Account"}
               </Button>

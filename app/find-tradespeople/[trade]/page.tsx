@@ -142,10 +142,10 @@ export default function FindTradePage({ params }: { params: { trade: string } })
         </nav>
 
         {/* Hero */}
-        <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden pb-16 sm:pb-20 pt-4 sm:pt-6">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
             <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4" style={{fontWeight: 800}}>
+              <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4" style={{fontWeight: 800}}>
                 Find Verified {trade.plural} Near You
                 <span className="block text-xl sm:text-2xl font-semibold text-brand-amber mt-2">
                   ID-Checked · Insured · Real Reviews
@@ -266,7 +266,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                   <div className="absolute top-0 right-0 text-5xl font-extrabold text-gray-100 leading-none select-none">
                     {step}
                   </div>
-                  <h3 className="font-extrabold text-brand-navy mb-2">{title}</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-2" style={{fontWeight: 800}}>{title}</h3>
                   <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
                 </div>
               ))}
@@ -346,7 +346,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
         {/* ── FAQ Accordion ── */}
         <section className="py-12 sm:py-16 bg-white" data-speakable>
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-8 text-center">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-8 text-center" style={{fontWeight: 800}}>
               Frequently Asked Questions
             </h2>
             <Accordion type="single" collapsible className="space-y-3">
@@ -403,7 +403,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                     href={`/find-tradespeople/${rt.slug}`}
                     className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow group"
                   >
-                    <h3 className="font-extrabold text-brand-navy mb-1 group-hover:text-brand-navy">
+                    <h3 className="font-extrabold text-brand-navy mb-1 group-hover:text-brand-navy" style={{fontWeight: 800}}>
                       {rt.plural}
                     </h3>
                     <p className="text-sm text-slate-600 mb-3">{rt.description.slice(0, 80)}…</p>
@@ -424,7 +424,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
               <Shield className="w-4 h-4 text-green-400" />
               Identity checked and public liability insurance confirmed and monitored
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4" style={{fontWeight: 800}}>
               Ready to Find a Verified {trade.name}?
             </h2>
             <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-2xl mx-auto">

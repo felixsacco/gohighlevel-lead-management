@@ -219,9 +219,9 @@ export default function EmailVerification() {
             </div>
 
             {/* Email Preview */}
-            <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6 text-left max-w-md mx-auto shadow-lg">
+            <div className="bg-white border border-gray-200 rounded-xl p-6 mb-6 text-left max-w-md mx-auto shadow-lg">
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center text-white font-bold mr-3 shadow-lg">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl flex items-center justify-center text-white font-bold mr-3 shadow-lg">
                   <span className="text-lg">MA</span>
                 </div>
                 <div>
@@ -268,7 +268,7 @@ export default function EmailVerification() {
                 <Link href="/">Back to Home</Link>
               </Button>
             </div>
-            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
               <p className="text-sm text-blue-800">
                 <strong>Welcome to MyApproved All!</strong> Your account has
                 been created successfully. Please verify your email to get

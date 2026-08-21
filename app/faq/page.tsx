@@ -161,13 +161,12 @@ export default function FAQPage() {
       />
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-brand-navy via-brand-navy to-[#0A2463] text-white overflow-hidden pt-8 sm:pt-12 pb-16">
-          <Container size="narrow" className="relative text-center">
-            <div className="inline-flex items-center gap-2 bg-brand-amber/10 px-4 py-2 rounded-full text-sm font-medium text-brand-amber mb-6">
-              <HelpCircle className="w-4 h-4" />
+        <section className="relative bg-gradient-to-br from-brand-navy via-brand-navy to-[#0A2463] text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
+          <Container size="narrow" className="relative text-center pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
+            <p className="text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
               Instant Answers
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white" style={{fontWeight: 800}}>
+            </p>
+            <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4 text-white" style={{fontWeight: 800}}>
               Frequently Asked Questions
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
@@ -204,14 +203,14 @@ export default function FAQPage() {
                     <div className="w-12 h-12 bg-brand-amber/10 rounded-xl flex items-center justify-center">
                       <category.icon className="w-6 h-6 text-brand-navy" />
                     </div>
-                    <h2 className="text-2xl font-extrabold text-brand-navy" style={{fontWeight: 800}}>{category.title}</h2>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy" style={{fontWeight: 800}}>{category.title}</h2>
                   </div>
 
                   <div className="space-y-4">
                     {category.questions.map((faq, index) => (
                       <details key={index} className="group border border-gray-200 rounded-xl">
                         <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-                          <h3 className="font-extrabold text-brand-navy" style={{fontWeight: 800}}>{faq.question}</h3>
+                          <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy" style={{fontWeight: 800}}>{faq.question}</h3>
                           <ChevronDown className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" />
                         </summary>
                         <div className="px-4 pb-4">
@@ -229,7 +228,7 @@ export default function FAQPage() {
         {/* Contact Support */}
         <section className="py-16 bg-gray-50">
           <Container size="narrow" className="text-center">
-            <h2 className="text-3xl font-extrabold text-brand-navy mb-4" style={{fontWeight: 800}}>Still have questions?</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy mb-4" style={{fontWeight: 800}}>Still have questions?</h2>
             <p className="text-gray-600 mb-8">
               Can't find the answer you're looking for? Our support team is here to help.
             </p>

@@ -563,7 +563,7 @@ export default function LoginPage() {
                     <User className="w-8 h-8 text-white" />
                   </div>
                 </div>
-                <CardTitle className="text-[26px] sm:text-3xl font-bold text-brand-amber mb-1">
+                <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight text-brand-amber mb-1" style={{ fontWeight: 700 }}>
                   Sign in to your account
                 </CardTitle>
                 <p className="text-blue-100 text-sm sm:text-base">Manage bookings, messages, and saved pros.</p>
@@ -586,7 +586,7 @@ export default function LoginPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter your email"
-                        className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl text-white placeholder:text-blue-200"
+                        className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200"
                         required
                       />
                     </div>
@@ -607,7 +607,7 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter your password"
-                        className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-xl pr-10 text-white placeholder:text-blue-200"
+                        className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl pr-10 text-white placeholder:text-blue-200"
                         required
                       />
                       <button
@@ -670,7 +670,8 @@ export default function LoginPage() {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+                    className="w-full h-12 bg-brand-amber hover:bg-brand-amberDark text-black text-base font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+                    style={{ fontWeight: 800 }}
                   >
                     {isLoading ? (
                       <span className="inline-flex items-center gap-2">
@@ -723,7 +724,8 @@ export default function LoginPage() {
                   <div className="mt-5">
                     <Link
                       href="/register/client"
-                      className="inline-flex items-center justify-center w-full h-11 rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 text-sm font-semibold shadow hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200"
+                      className="inline-flex items-center justify-center w-full h-11 rounded-xl bg-brand-amber hover:bg-brand-amberDark text-black text-sm font-semibold shadow transition-colors"
+                      style={{ fontWeight: 800 }}
                     >
                       Create a free account
                     </Link>

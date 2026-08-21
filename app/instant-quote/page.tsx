@@ -15,8 +15,8 @@ export default function InstantQuotePage() {
         <Zap className="w-3.5 h-3.5" />
         Instant Quote
       </div>
-      <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-4" style={{ fontWeight: 800 }}>Get Your Free Quote</h1>
-      <p className="text-gray-600 text-base mb-8 max-w-md">
+      <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] text-white mb-12 sm:mb-16 px-2 sm:px-4" style={{ fontWeight: 800 }}>Get Your Free Quote</h1>
+      <p className="text-white/75 text-base mb-8 max-w-md">
         Tell us about your job and we'll match you with verified, approved tradespeople in your area.
       </p>
       <button

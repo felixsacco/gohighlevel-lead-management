@@ -91,14 +91,13 @@ export default function HelpPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28">
+      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-brand-amber text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
-              <HelpCircle className="w-3.5 h-3.5" />
+            <p className="text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
               Help Centre
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white" style={{fontWeight: 800}}>How Can We Help?</h1>
+            </p>
+            <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4 text-white" style={{fontWeight: 800}}>How Can We Help?</h1>
             <p className="text-white/75 text-lg max-w-2xl mx-auto">
               Answers for homeowners and tradespeople using MyApproved.
             </p>
@@ -115,7 +114,7 @@ export default function HelpPage() {
                 <Mail className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="text-base font-extrabold text-brand-navy" style={{fontWeight: 800}}>Email Support</p>
+                <p className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy" style={{fontWeight: 800}}>Email Support</p>
                 <a href="mailto:support@myapproved.com" className="text-brand-navy text-sm font-medium">support@myapproved.com</a>
                 <p className="text-gray-600 text-xs mt-0.5">Reply within one business day</p>
               </div>
@@ -125,7 +124,7 @@ export default function HelpPage() {
                 <Shield className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="text-base font-extrabold text-brand-navy" style={{fontWeight: 800}}>Verified Platform</p>
+                <p className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy" style={{fontWeight: 800}}>Verified Platform</p>
                 <p className="text-gray-600 text-sm">All tradespeople ID-checked</p>
                 <p className="text-gray-600 text-xs mt-0.5">Insurance &amp; qualifications verified</p>
               </div>
@@ -135,7 +134,7 @@ export default function HelpPage() {
                 <CheckCircle className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="text-base font-extrabold text-brand-navy" style={{fontWeight: 800}}>Free for Homeowners</p>
+                <p className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy" style={{fontWeight: 800}}>Free for Homeowners</p>
                 <p className="text-gray-600 text-sm">No fees to find &amp; hire</p>
                 <p className="text-gray-600 text-xs mt-0.5">Pay only the tradesperson</p>
               </div>
@@ -153,7 +152,7 @@ export default function HelpPage() {
                 <div className="w-9 h-9 bg-brand-navy rounded-xl flex items-center justify-center">
                   <cat.icon className="w-4 h-4 text-white" />
                 </div>
-                <h2 className="text-lg font-extrabold text-brand-navy" style={{fontWeight: 800}}>{cat.title}</h2>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy" style={{fontWeight: 800}}>{cat.title}</h2>
               </div>
               <Accordion type="single" collapsible className="space-y-2">
                 {cat.questions.map((faq, i) => (
@@ -175,7 +174,7 @@ export default function HelpPage() {
       {/* Bottom CTA */}
       <section className="bg-brand-navy py-12 sm:py-16 md:py-20 text-center text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 text-white" style={{fontWeight: 800}}>Still need help?</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 text-white" style={{fontWeight: 800}}>Still need help?</h2>
           <p className="text-white/75 text-sm mb-6">Our support team is happy to assist. Email us and we'll get back to you within one business day.</p>
           <a
             href="mailto:support@myapproved.com"

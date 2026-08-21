@@ -842,7 +842,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <span className="text-blue-100">{post.readTime}</span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+            <h1 className="text-[2rem] sm:text-4xl md:text-5xl font-extrabold mb-6 leading-[1.05] tracking-[-0.02em]" style={{ fontWeight: 800 }}>
               {post.title}
             </h1>
             
@@ -871,7 +871,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           {/* Sections */}
           {post.content.sections.map((section, index) => (
             <section key={index} className="bg-white rounded-xl shadow-sm p-6 sm:p-8 mb-8">
-              <h2 className="text-2xl font-extrabold text-brand-navy mb-4">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-4 leading-tight tracking-[-0.01em]" style={{ fontWeight: 800 }}>
                 {section.heading}
               </h2>
               <div className="prose prose-lg max-w-none text-gray-600 whitespace-pre-line mb-6">
@@ -880,7 +880,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               
               {section.tips.length > 0 && (
                 <div className="bg-yellow-50 rounded-xl p-6">
-                  <h3 className="font-extrabold text-yellow-800 mb-3 flex items-center gap-2">
+                  <h3 className="text-lg font-extrabold text-yellow-800 mb-3 flex items-center gap-2 tracking-tight" style={{ fontWeight: 800 }}>
                     <Clock className="w-5 h-5" />
                     Pro Tips
                   </h3>
@@ -899,14 +899,14 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           {/* CTA Box */}
           <div className="bg-gradient-to-br from-brand-navy to-brand-navy rounded-xl p-6 sm:p-8 text-white mb-8">
-            <h2 className="text-2xl font-extrabold mb-4">
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-4 leading-tight tracking-[-0.01em]" style={{ fontWeight: 800 }}>
               Need a Professional? Get Free Quotes Now
             </h2>
             <p className="text-blue-100 mb-6">
               Connect with verified tradespeople in your area. Compare quotes, read reviews, 
               and hire with confidence.
             </p>
-            <Button className="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold px-8 py-6" asChild>
+            <Button className="bg-brand-amber hover:bg-brand-amberDark text-black font-semibold px-8 py-6 rounded-xl transition-colors" style={{ fontWeight: 800 }} asChild>
               <Link href="/instant-quote">
                 <MessageSquare className="mr-2 w-5 h-5" />
                 Get Your Free Quote
@@ -916,13 +916,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           {/* FAQs */}
           <section className="bg-white rounded-xl shadow-sm p-6 sm:p-8 mb-8" data-speakable>
-            <h2 className="text-2xl font-extrabold text-brand-navy mb-6">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6 leading-tight tracking-[-0.01em]" style={{ fontWeight: 800 }}>
               Frequently Asked Questions
             </h2>
             <div className="space-y-6">
               {post.content.faqs.map((faq, index) => (
                 <div key={index} className="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
-                  <h3 className="font-extrabold text-brand-navy mb-2">{faq.question}</h3>
+                  <h3 className="text-lg font-extrabold text-brand-navy mb-2 tracking-tight" style={{ fontWeight: 800 }}>{faq.question}</h3>
                   <p className="text-gray-600">{faq.answer}</p>
                 </div>
               ))}
@@ -932,17 +932,17 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           {/* Related Links */}
           {(relatedTradesData.length > 0 || relatedLocationsData.length > 0) && (
             <section className="bg-gray-100 rounded-xl p-6 sm:p-8">
-              <h2 className="text-xl font-extrabold text-brand-navy mb-4">Related Resources</h2>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-4 leading-tight tracking-[-0.01em]" style={{ fontWeight: 800 }}>Related Resources</h2>
               
               {relatedTradesData.length > 0 && (
                 <div className="mb-4">
-                  <h3 className="font-extrabold text-brand-navy mb-2">Related Trades:</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-2 tracking-tight" style={{ fontWeight: 800 }}>Related Trades:</h3>
                   <div className="flex flex-wrap gap-2">
                     {relatedTradesData.map(trade => (
                       <Link
                         key={trade!.slug}
                         href={`/find-tradespeople/${trade!.slug}`}
-                        className="inline-flex items-center gap-1 bg-white px-3 py-2 rounded-xl text-blue-600 hover:bg-blue-50 transition-colors"
+                        className="inline-flex items-center gap-1 bg-white px-3 py-2 rounded-xl text-brand-navy font-semibold hover:bg-brand-amber hover:text-black transition-colors" style={{ fontWeight: 700 }}
                       >
                         Find {trade!.plural}
                         <ArrowRight className="w-4 h-4" />
@@ -954,7 +954,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               
               {relatedLocationsData.length > 0 && (
                 <div>
-                  <h3 className="font-extrabold text-brand-navy mb-2">Popular Locations:</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-2 tracking-tight" style={{ fontWeight: 800 }}>Popular Locations:</h3>
                   <div className="flex flex-wrap gap-2">
                     {relatedLocationsData.map(location => {
                       const slug = location!.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
@@ -962,7 +962,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                         <Link
                           key={location!.name}
                           href={`/find-tradespeople?location=${slug}`}
-                          className="inline-flex items-center gap-1 bg-white px-3 py-2 rounded-xl text-blue-600 hover:bg-blue-50 transition-colors"
+                          className="inline-flex items-center gap-1 bg-white px-3 py-2 rounded-xl text-brand-navy font-semibold hover:bg-brand-amber hover:text-black transition-colors" style={{ fontWeight: 700 }}
                         >
                           Tradespeople in {location!.name}
                           <ArrowRight className="w-4 h-4" />

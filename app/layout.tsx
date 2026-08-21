@@ -124,7 +124,7 @@ export default function RootLayout({
         {/* Skip-to-content - accessibility + crawl efficiency: bots skip nav DOM immediately */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#002FA7] focus:text-white focus:rounded-md focus:text-sm focus:font-semibold"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#002FA7] focus:text-white focus:rounded-xl focus:text-sm focus:font-semibold"
         >
           Skip to main content
         </a>

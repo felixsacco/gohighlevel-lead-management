@@ -82,7 +82,7 @@ export default function VerifyEmail() {
               Back to Home
             </Link>
           </div>
-          <CardTitle className="text-2xl font-bold text-gray-900">
+          <CardTitle className="text-2xl font-bold tracking-tight text-gray-900" style={{ fontWeight: 700 }}>
             Email Verification
           </CardTitle>
         </CardHeader>
@@ -101,7 +101,7 @@ export default function VerifyEmail() {
                 <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-4" />
                 <PartyPopper className="w-8 h-8 text-yellow-500 absolute -top-2 -right-2" />
               </div>
-              <h2 className="text-3xl font-extrabold text-brand-navy mb-2">
+              <h2 className="text-3xl font-extrabold text-brand-navy mb-2" style={{ fontWeight: 800 }}>
                 Account Verified!
               </h2>
               <p className="text-gray-600 mb-4">
@@ -144,7 +144,8 @@ export default function VerifyEmail() {
               <div className="space-y-3">
                 <Button
                   asChild
-                  className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white"
+                  className="w-full bg-brand-amber hover:bg-brand-amberDark text-black font-semibold"
+                  style={{ fontWeight: 800 }}
                 >
                   <Link href="/login/client">Login to Your Account</Link>
                 </Button>

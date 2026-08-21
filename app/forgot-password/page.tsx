@@ -116,7 +116,7 @@ function ForgotPasswordContent() {
         <CardHeader className="text-center">
           <div className="flex items-center justify-center mb-4">
             <Key className="w-8 h-8 text-brand-navy mr-2" />
-            <CardTitle className="font-extrabold text-brand-navy" style={{ fontWeight: 800 }}>Forgot Password</CardTitle>
+            <CardTitle className="font-bold tracking-tight text-brand-navy" style={{ fontWeight: 700 }}>Forgot Password</CardTitle>
           </div>
           <p className="text-gray-600">
             Enter your email address and we will send you a link to reset your
@@ -136,7 +136,7 @@ function ForgotPasswordContent() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="pl-10"
+                  className="pl-10 rounded-2xl"
                   required
                 />
               </div>
@@ -154,7 +154,7 @@ function ForgotPasswordContent() {
               </Alert>
             )}
 
-            <Button type="submit" disabled={isLoading} className="w-full bg-brand-amber hover:bg-brand-amberDark text-black font-semibold">
+            <Button type="submit" disabled={isLoading} className="w-full bg-brand-amber hover:bg-brand-amberDark text-black font-semibold" style={{ fontWeight: 800 }}>
               {isLoading ? "Sending..." : "Send Reset Link"}
             </Button>
 

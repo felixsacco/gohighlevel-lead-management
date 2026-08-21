@@ -34,14 +34,13 @@ export default function ContactPage() {
       />
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28">
+      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-brand-amber text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
-              <MessageCircle className="w-3.5 h-3.5" />
+            <p className="text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
               Get in Touch
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white" style={{fontWeight: 800}}>Contact Us</h1>
+            </p>
+            <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4 text-white" style={{fontWeight: 800}}>Contact Us</h1>
             <p className="text-white/75 text-lg max-w-2xl mx-auto">
               Have a question or need support? Send us a message and we'll get back to you within one business day.
             </p>
@@ -96,12 +95,12 @@ export default function ContactPage() {
               <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="w-7 h-7 text-green-600" />
               </div>
-              <h2 className="text-2xl font-extrabold text-brand-navy mb-2" style={{fontWeight: 800}}>Message Sent</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy mb-2" style={{fontWeight: 800}}>Message Sent</h2>
               <p className="text-gray-600">Thanks for reaching out. We'll reply to <strong>{form.email}</strong> within one business day.</p>
             </div>
           ) : (
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 lg:p-10">
-              <h2 className="text-2xl font-extrabold text-brand-navy mb-1" style={{fontWeight: 800}}>Send a Message</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-navy mb-1" style={{fontWeight: 800}}>Send a Message</h2>
               <p className="text-gray-600 text-sm mb-8">All fields marked * are required.</p>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
