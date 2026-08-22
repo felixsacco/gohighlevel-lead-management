@@ -8,8 +8,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Eye, EyeOff, Mail, Lock, User, Shield, Star, CheckCircle, Loader2, MapPin, Clock } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
+import { SectionHeaderPill } from "@/components/ui/SectionHeaderPill";
 import { Container } from "@/components/ui/Container";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -328,6 +330,7 @@ export default function ClientLoginPage() {
     const init = async () => {
       try {
         const L = (await import('leaflet')).default;
+        await import('leaflet.markercluster');
         if (!active || !mapContainerRef.current) return;
 
         // Leaflet CSS (once)
@@ -337,6 +340,18 @@ export default function ClientLoginPage() {
           link.rel = 'stylesheet';
           link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
           document.head.appendChild(link);
+        }
+        if (!document.getElementById('markercluster-css')) {
+          const mcLink = document.createElement('link');
+          mcLink.id = 'markercluster-css';
+          mcLink.rel = 'stylesheet';
+          mcLink.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css';
+          document.head.appendChild(mcLink);
+          const mcDefLink = document.createElement('link');
+          mcDefLink.id = 'markercluster-default-css';
+          mcDefLink.rel = 'stylesheet';
+          mcDefLink.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css';
+          document.head.appendChild(mcDefLink);
         }
         // Custom styles - ping animation + control overrides
         if (!document.getElementById('leaflet-map-styles')) {
@@ -384,10 +399,14 @@ export default function ClientLoginPage() {
         map.on('click', () => map.scrollWheelZoom.enable());
         map.on('mouseout', () => map.scrollWheelZoom.disable());
 
-        // CartoDB Voyager - light, colourful, detailed tiles (Google Maps style)
+        // CartoDB Positron - light, minimalist tiles (modern SaaS look)
         L.tileLayer(
-          'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          { subdomains: 'abc', maxZoom: 19, attribution: '© OpenStreetMap contributors' }
+          'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+          {
+            subdomains: 'abcd',
+            maxZoom: 20,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          }
         ).addTo(map);
 
         map.setView([54.2, -3.5], 5);
@@ -410,11 +429,9 @@ export default function ClientLoginPage() {
             iconAnchor: [sz / 2, sz / 2],
           });
 
-        const allMarkers: { m: any; minZ: number }[] = [];
+        const allMarkers: L.Marker[] = [];
 
         // ── Zoom 5: one dot per city, cycling all 6 trade colours ─────────
-        // 190 cities × 1 dot = 190 clean dots spread across the UK.
-        // All 6 colours are distributed evenly (every 6th city repeats).
         ukCities.forEach((city, idx) => {
           const tc      = tradeCategories[idx % tradeCategories.length];
           const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
@@ -423,72 +440,56 @@ export default function ClientLoginPage() {
           const reviews = 48 + (idx * 17) % 290;
           const respTime = RESPONSE_TIMES[idx % RESPONSE_TIMES.length];
 
-          const m = L.marker([city.lat, city.lon], { icon: makeDot(tc.color, 9) });
+          const m = L.marker([city.lat, city.lon], { icon: makeDot(tc.color, 11) });
           m.on('mouseover', () => {
             const pt = map.latLngToContainerPoint([city.lat, city.lon]);
             setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
           });
           m.on('mouseout', () => setMapTooltip(null));
           m.on('click',    () => handleMarkerClick(tc.name, city.name));
-          allMarkers.push({ m, minZ: 5 });
-          m.addTo(map);
+          allMarkers.push(m);
         });
 
-        // ── Zoom 6: 3 more dots per city (next 3 trade colours) ───────────
-        // Tight offsets so they cluster naturally around each city centre.
-        const z6Off = [[0.06,0.04],[-0.05,0.07],[0.07,-0.04]];
-        ukCities.forEach((city, idx) => {
-          z6Off.forEach(([dlat, dlon], oi) => {
-            const tc  = tradeCategories[(idx + oi + 1) % tradeCategories.length];
-            const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
-            const bizName = names[(idx + oi) % names.length];
-            const rating  = parseFloat((4.5 + ((idx + oi) % 5) * 0.1).toFixed(1));
-            const reviews = 48 + ((idx * 13 + oi * 9) % 290);
-            const respTime = RESPONSE_TIMES[(idx + oi) % RESPONSE_TIMES.length];
-            const lat = city.lat + dlat;
-            const lon = city.lon + dlon;
-            const m = L.marker([lat, lon], { icon: makeDot(tc.color, 8) });
-            m.on('mouseover', () => {
-              const pt = map.latLngToContainerPoint([lat, lon]);
-              setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
-            });
-            m.on('mouseout', () => setMapTooltip(null));
-            m.on('click',    () => handleMarkerClick(tc.name, city.name));
-            allMarkers.push({ m, minZ: 6 });
+        // ── Branded marker clustering ─────────────────────────────────────
+        // Group nearby city dots into numbered navy/amber aggregate badges
+        // at country & regional zoom levels.
+        const clusterIcon = (count: number): L.DivIcon => {
+          const size = count < 10 ? 26 : count < 100 ? 30 : 36;
+          return L.divIcon({
+            html: `<div style="
+              position:relative;
+              width:${size}px;height:${size}px;
+              display:flex;align-items:center;justify-content:center;
+              border-radius:9999px;
+              background:rgba(255,255,255,0.96);
+              border:2px solid rgba(10,36,99,0.14);
+              box-shadow:0 2px 8px rgba(10,36,99,0.22),0 0 0 2px rgba(255,255,255,0.95);
+            ">
+              <span style="
+                color:#0A2463;
+                font-weight:800;
+                font-size:${count < 10 ? 11 : count < 100 ? 10 : 9}px;
+                line-height:1;
+                letter-spacing:-0.01em;
+                font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;
+              ">${count}</span>
+            </div>`,
+            className: '',
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2],
           });
+        };
+
+        const cluster = L.markerClusterGroup({
+          maxClusterRadius: 64,
+          showCoverageOnHover: false,
+          spiderfyOnMaxZoom: false,
+          disableClusteringAtZoom: 9,
+          iconCreateFunction: (c) => clusterIcon(c.getChildCount()),
         });
 
-        // ── Zoom 7: remaining 3 colours + sub-district spread ─────────────
-        const z7Off = [[-0.07,0.04],[0.04,-0.06],[-0.03,-0.07]];
-        ukCities.forEach((city, idx) => {
-          z7Off.forEach(([dlat, dlon], oi) => {
-            const tc  = tradeCategories[(idx + oi + 4) % tradeCategories.length];
-            const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
-            const bizName = names[(idx + oi + 2) % names.length];
-            const rating  = parseFloat((4.5 + ((idx + oi + 2) % 5) * 0.1).toFixed(1));
-            const reviews = 48 + ((idx * 11 + oi * 7) % 290);
-            const respTime = RESPONSE_TIMES[(idx + oi + 2) % RESPONSE_TIMES.length];
-            const lat = city.lat + dlat;
-            const lon = city.lon + dlon;
-            const m = L.marker([lat, lon], { icon: makeDot(tc.color, 7) });
-            m.on('mouseover', () => {
-              const pt = map.latLngToContainerPoint([lat, lon]);
-              setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
-            });
-            m.on('mouseout', () => setMapTooltip(null));
-            m.on('click',    () => handleMarkerClick(tc.name, city.name));
-            allMarkers.push({ m, minZ: 7 });
-          });
-        });
-
-        // Progressive zoom disclosure on zoomend
-        map.on('zoomend', () => {
-          const z = map.getZoom();
-          allMarkers.forEach(({ m, minZ }) => {
-            if (z >= minZ) { if (!map.hasLayer(m)) m.addTo(map); }
-            else           { if (map.hasLayer(m))  m.removeFrom(map); }
-          });
-        });
+        cluster.addLayers(allMarkers);
+        map.addLayer(cluster);
 
         map.invalidateSize();
         mapInstanceRef.current = map;
@@ -589,7 +590,7 @@ export default function ClientLoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-brand-navy flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+    <div className="relative min-h-screen bg-brand-slate flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
       {/* Background Grid Pattern - matching homepage */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -607,23 +608,20 @@ export default function ClientLoginPage() {
         {/* Left: Login card (moved left) */}
         <div className="order-1 md:order-1 relative">
           <div className="absolute inset-0 bg-brand-amber/20 rounded-3xl blur-xl" />
-          <Card className="relative w-full rounded-3xl shadow-2xl border-2 border-gray-200 bg-white">
+          <Card className="relative w-full rounded-3xl bg-sky-50 border border-gray-100 shadow-xl">
           <CardHeader className="text-center pb-4 sm:pb-6">
-            {/* Brand text removed as requested */}
             {/* Trust badge - Matching Homepage */}
-            <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-brand-amber px-3 py-1.5 text-xs font-extrabold text-black border-2 border-brand-amber">
-              <Star className="h-3.5 w-3.5 fill-black text-black" />
-              Business verified
+            <div className="mx-auto mb-3 flex justify-center">
+              <SectionHeaderPill variant="navy">Approved Customers Only</SectionHeaderPill>
             </div>
             <div className="flex items-center justify-center mb-3">
               <div className="w-16 h-16 bg-gradient-to-r from-brand-navy to-brand-navy rounded-full flex items-center justify-center shadow-md">
-                <User className="w-8 h-8 text-white" />
+                <Image src="/logo-icon.svg" alt="MyApproved logo" width={40} height={40} className="w-10 h-10" />
               </div>
             </div>
             <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight text-brand-navy mb-1" style={{ fontWeight: 800 }}>
-              Sign in to your account
+              Customer Login
             </CardTitle>
-            <p className="text-gray-600 text-sm sm:text-base">Manage bookings, messages, and saved pros.</p>
           </CardHeader>
 
           <CardContent className="p-6">
@@ -764,30 +762,6 @@ export default function ClientLoginPage() {
                 </div>
               </div>
 
-              {/* Benefits bullets */}
-              <ul className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 text-left">
-                <li className="flex items-center gap-2 text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1">
-                  <CheckCircle className="h-4 w-4 text-green-600" /> No hidden fees
-                </li>
-                <li className="flex items-center gap-2 text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1">
-                  <Shield className="h-4 w-4 text-brand-navy" /> Secure login
-                </li>
-                <li className="flex items-center gap-2 text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1">
-                  <Star className="h-4 w-4 text-brand-amber" /> Business verified
-                </li>
-              </ul>
-
-              {/* Primary CTA under login for better focus */}
-              <div className="mt-5">
-                <Link
-                  href="/register/client"
-                  className="inline-flex items-center justify-center w-full h-11 rounded-xl bg-brand-amber hover:bg-brand-amberDark text-black text-sm font-semibold shadow transition-colors"
-                  style={{ fontWeight: 800 }}
-                >
-                  Create a free account
-                </Link>
-              </div>
-
             </form>
           </CardContent>
           </Card>
@@ -810,8 +784,8 @@ export default function ClientLoginPage() {
 
                 {/* ── Left panel: trade types available now ── */}
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 z-[999]">
-                  <div className="bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md border border-white/20 rounded-xl p-2.5 shadow-2xl min-w-[130px]">
-                    <p className="text-[8px] font-black uppercase tracking-[0.18em] text-[#F5A623] mb-2 px-0.5">
+                  <div className="bg-white/90 backdrop-blur-lg border border-gray-100 shadow-xl rounded-2xl p-3 min-w-[132px]">
+                    <p className="text-[8px] font-black uppercase tracking-[0.18em] text-brand-navy mb-2 px-0.5">
                       Available Now
                     </p>
                     {[
@@ -831,10 +805,10 @@ export default function ClientLoginPage() {
                           className="w-2 h-2 rounded-full shrink-0 animate-pulse"
                           style={{ backgroundColor: t.color }}
                         />
-                        <span className="text-[10px] text-white/70 font-medium flex-1 leading-none">
+                        <span className="text-[10px] text-brand-navy/70 font-medium flex-1 leading-none">
                           {t.label}
                         </span>
-                        <span className="text-[10px] font-black text-[#F5A623] pl-1">
+                        <span className="text-[10px] font-black text-brand-navy pl-1">
                           {t.count}
                         </span>
                       </div>
@@ -934,47 +908,36 @@ export default function ClientLoginPage() {
             <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
-              <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Why Choose MyApproved</h2>
+              <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Your Customer Dashboard</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm">
-                    <Shield className="h-5 w-5 text-blue-400" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
+                    <Shield className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Business verified</p>
-                    <p className="text-sm text-blue-200">Identity, business and insurance checks passed before listing.</p>
+                    <p className="text-sm font-semibold text-white">Keep Your Details Current</p>
+                    <p className="text-sm text-blue-200">Update your contact details and service area so pros can reach you.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-amber/20 border border-brand-amber/30 backdrop-blur-sm">
-                    <Star className="h-5 w-5 text-brand-amber" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
+                    <Star className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-brand-amber">Reviewed by UK customers</p>
-                    <p className="text-sm text-blue-200">Customer reviews available on each listed business.</p>
+                    <p className="text-sm font-semibold text-white">Track Your Bookings</p>
+                    <p className="text-sm text-blue-200">Review messages and manage your saved pros in one place.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20 border border-green-400/30 backdrop-blur-sm">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
+                    <CheckCircle className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Instant Booking</p>
-                    <p className="text-sm text-blue-200">Connect and book trusted local specialists in minutes.</p>
+                    <p className="text-sm font-semibold text-white">Leave Reviews</p>
+                    <p className="text-sm text-blue-200">Share your experience to help other customers choose with confidence.</p>
                   </div>
                 </li>
               </ul>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-amber/20 to-brand-navy/20 rounded-xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-xl border border-white/20 p-4 shadow-xl">
-              <div className="flex items-center justify-center gap-2 text-center">
-                <Shield className="h-5 w-5 text-green-400" />
-                <span className="text-lg font-bold text-white">Identity checked</span>
-                <span className="text-blue-200">public liability insurance confirmed and monitored</span>
-              </div>
             </div>
           </div>
           </div>

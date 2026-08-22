@@ -17,11 +17,12 @@ import {
   ArrowLeft,
   CheckCircle,
   ChevronDown,
-  Wrench,
   Star,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
+import { SectionHeaderPill } from "@/components/ui/SectionHeaderPill";
 import { Container } from "@/components/ui/Container";
 import { supabase } from "@/lib/supabase-client";
 
@@ -249,7 +250,7 @@ export default function ClientRegistration() {
 
   if (isEmailSent) {
     return (
-      <div className="relative min-h-screen bg-brand-navy flex items-center justify-center p-6 overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+      <div className="relative min-h-screen bg-brand-slate flex items-center justify-center p-6 overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #F5A623 1px, transparent 1px), linear-gradient(to bottom, #F5A623 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F5A623] rounded-full blur-[150px] opacity-10" />
         
@@ -340,7 +341,7 @@ export default function ClientRegistration() {
     );
   }
     return (
-      <div className="relative min-h-screen bg-brand-navy flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+      <div className="relative min-h-screen bg-brand-slate flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #F5A623 1px, transparent 1px), linear-gradient(to bottom, #F5A623 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F5A623] rounded-full blur-[150px] opacity-10" />
 
@@ -349,39 +350,35 @@ export default function ClientRegistration() {
           {/* Left: Registration form */}
           <div className="order-1 md:order-1 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
-            <Card className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md shadow-2xl">
+            <Card className="relative rounded-3xl bg-sky-50 border border-gray-100 shadow-xl">
               <CardHeader className="text-center pb-6">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
                 <div className="flex items-center justify-center mb-4">
                   <Link
                     href="/"
-                    className="flex items-center text-yellow-400 hover:text-yellow-300 transition-colors"
+                    className="flex items-center text-brand-amber hover:text-brand-amberDark transition-colors"
                   >
                     <ArrowLeft className="w-5 h-5 mr-2" />
                     Back to Home
                   </Link>
                 </div>
-                <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-brand-amber px-3 py-1.5 text-xs font-extrabold text-black border-2 border-brand-amber">
-                  <Star className="h-3.5 w-3.5 fill-yellow-600 text-yellow-700" />
-                  Join Happy Customers
+                <div className="mx-auto mb-3 flex justify-center">
+                  <SectionHeaderPill variant="navy">Approved Customers Only</SectionHeaderPill>
                 </div>
                 <div className="flex items-center justify-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-brand-navy to-brand-navy rounded-full flex items-center justify-center shadow-md">
-                    <User className="w-8 h-8 text-white" />
+                  <div className="w-16 h-16 bg-brand-navy rounded-full flex items-center justify-center shadow-md">
+                    <Image src="/logo-icon.svg" alt="MyApproved logo" width={40} height={40} className="w-10 h-10" />
                   </div>
                 </div>
-                <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent mb-1" style={{ fontWeight: 700 }}>
+                <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight text-brand-navy mb-1" style={{ fontWeight: 800 }}>
                   Create Client Account
                 </CardTitle>
-                <p className="text-blue-100 text-sm sm:text-base">
-                  Join thousands of satisfied customers who trust our platform
-                </p>
               </CardHeader>
 
               <CardContent className="p-6">
             {errorMessage && (
-              <Alert className="mb-6 border-red-400/30 bg-red-500/20 backdrop-blur-sm">
-                <AlertDescription className="text-red-200">
+              <Alert className="mb-6 border-red-400/50 bg-red-50">
+                <AlertDescription className="text-red-700">
                   {errorMessage}
                 </AlertDescription>
               </Alert>
@@ -393,7 +390,7 @@ export default function ClientRegistration() {
                 <div>
                   <Label
                     htmlFor="firstName"
-                    className="flex items-center mb-2 text-sm font-semibold text-blue-100"
+                    className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                   >
                     <User className="w-4 h-4 mr-2" />
                     First Name *
@@ -405,15 +402,15 @@ export default function ClientRegistration() {
                     onChange={(e) =>
                       handleInputChange("firstName", e.target.value)
                     }
-                    className={`h-12 text-base bg-white/10 border-2 ${
+                    className={`h-12 text-base bg-white border-2 ${
                       errors.firstName
                         ? "border-red-400/50"
-                        : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                        : "border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber"
+                    } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl text-brand-navy placeholder:text-gray-400`}
                     placeholder="Enter your first name"
                   />
                   {errors.firstName && (
-                    <p className="text-red-300 text-sm mt-1">
+                    <p className="text-red-600 text-sm mt-1">
                       {errors.firstName}
                     </p>
                   )}
@@ -422,7 +419,7 @@ export default function ClientRegistration() {
                 <div>
                   <Label
                     htmlFor="lastName"
-                    className="flex items-center mb-2 text-sm font-semibold text-blue-100"
+                    className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                   >
                     <User className="w-4 h-4 mr-2" />
                     Last Name *
@@ -434,15 +431,15 @@ export default function ClientRegistration() {
                     onChange={(e) =>
                       handleInputChange("lastName", e.target.value)
                     }
-                    className={`h-12 text-base bg-white/10 border-2 ${
+                    className={`h-12 text-base bg-white border-2 ${
                       errors.lastName
                         ? "border-red-400/50"
-                        : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                        : "border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber"
+                    } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl text-brand-navy placeholder:text-gray-400`}
                     placeholder="Enter your last name"
                   />
                   {errors.lastName && (
-                    <p className="text-red-300 text-sm mt-1">
+                    <p className="text-red-600 text-sm mt-1">
                       {errors.lastName}
                     </p>
                   )}
@@ -453,7 +450,7 @@ export default function ClientRegistration() {
               <div>
                 <Label
                   htmlFor="email"
-                  className="flex items-center mb-2 text-sm font-semibold text-gray-700"
+                  className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                 >
                   <Mail className="w-4 h-4 mr-2" />
                   Email Address *
@@ -463,15 +460,15 @@ export default function ClientRegistration() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
-                  className={`h-12 text-base bg-white/10 border-2 ${
+                  className={`h-12 text-base bg-white border-2 ${
                     errors.email
                       ? "border-red-400/50"
-                      : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                      : "border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber"
+                  } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl text-brand-navy placeholder:text-gray-400`}
                   placeholder="Enter your email address"
                 />
                 {errors.email && (
-                  <p className="text-red-300 text-sm mt-1">{errors.email}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.email}</p>
                 )}
               </div>
 
@@ -479,7 +476,7 @@ export default function ClientRegistration() {
               <div>
                 <Label
                   htmlFor="phone"
-                  className="flex items-center mb-2 text-sm font-semibold text-gray-700"
+                  className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Phone Number *
@@ -489,15 +486,15 @@ export default function ClientRegistration() {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className={`h-12 text-base bg-white/10 border-2 ${
+                  className={`h-12 text-base bg-white border-2 ${
                     errors.phone
                       ? "border-red-400/50"
-                      : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                  } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                      : "border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber"
+                  } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl text-brand-navy placeholder:text-gray-400`}
                   placeholder="Enter your phone number"
                 />
                 {errors.phone && (
-                  <p className="text-red-300 text-sm mt-1">{errors.phone}</p>
+                  <p className="text-red-600 text-sm mt-1">{errors.phone}</p>
                 )}
               </div>
 
@@ -506,7 +503,7 @@ export default function ClientRegistration() {
                 <div>
                   <Label
                     htmlFor="postcode"
-                    className="flex items-center mb-2 text-sm font-semibold text-blue-100"
+                    className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                   >
                     <MapPin className="w-4 h-4 mr-2" />
                     Postcode *
@@ -518,15 +515,15 @@ export default function ClientRegistration() {
                     onChange={(e) =>
                       handleInputChange("postcode", e.target.value)
                     }
-                    className={`h-12 text-base bg-white/10 border-2 ${
+                    className={`h-12 text-base bg-white border-2 ${
                       errors.postcode
                         ? "border-red-400/50"
-                        : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                        : "border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber"
+                    } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl text-brand-navy placeholder:text-gray-400`}
                     placeholder="Enter your postcode"
                   />
                   {errors.postcode && (
-                    <p className="text-red-300 text-sm mt-1">
+                    <p className="text-red-600 text-sm mt-1">
                       {errors.postcode}
                     </p>
                   )}
@@ -535,7 +532,7 @@ export default function ClientRegistration() {
                 <div>
                   <Label
                     htmlFor="address"
-                    className="flex items-center mb-2 text-sm font-semibold text-blue-100"
+                    className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                   >
                     <MapPin className="w-4 h-4 mr-2" />
                     Address *
@@ -547,15 +544,15 @@ export default function ClientRegistration() {
                     onChange={(e) =>
                       handleInputChange("address", e.target.value)
                     }
-                    className={`h-12 text-base bg-white/10 border-2 ${
+                    className={`h-12 text-base bg-white border-2 ${
                       errors.address
                         ? "border-red-400/50"
-                        : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
-                    } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm`}
+                        : "border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber"
+                    } focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl text-brand-navy placeholder:text-gray-400`}
                     placeholder="Enter your full address"
                   />
                   {errors.address && (
-                    <p className="text-red-300 text-sm mt-1">
+                    <p className="text-red-600 text-sm mt-1">
                       {errors.address}
                     </p>
                   )}
@@ -567,7 +564,7 @@ export default function ClientRegistration() {
                 <div>
                   <Label
                     htmlFor="password"
-                    className="flex items-center mb-2 text-sm font-semibold text-blue-100"
+                    className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                   >
                     <Lock className="w-4 h-4 mr-2" />
                     Password *
@@ -580,17 +577,17 @@ export default function ClientRegistration() {
                       onChange={(e) =>
                         handleInputChange("password", e.target.value)
                       }
-                      className={`h-12 text-base bg-white/10 border-2 ${
+                      className={`h-12 text-base bg-white border-2 ${
                         errors.password
                           ? "border-red-400/50"
-                          : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
+                          : "border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber"
                       } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
                       placeholder="Create a strong password"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-200 hover:text-white transition-colors"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-brand-navy transition-colors"
                     >
                       {showPassword ? (
                         <EyeOff className="w-4 h-4" />
@@ -600,7 +597,7 @@ export default function ClientRegistration() {
                     </button>
                   </div>
                   {errors.password && (
-                    <p className="text-red-300 text-sm mt-1">
+                    <p className="text-red-600 text-sm mt-1">
                       {errors.password}
                     </p>
                   )}
@@ -609,7 +606,7 @@ export default function ClientRegistration() {
                 <div>
                   <Label
                     htmlFor="confirmPassword"
-                    className="flex items-center mb-2 text-sm font-semibold text-blue-100"
+                    className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                   >
                     <Lock className="w-4 h-4 mr-2" />
                     Confirm Password *
@@ -622,10 +619,10 @@ export default function ClientRegistration() {
                       onChange={(e) =>
                         handleInputChange("confirmPassword", e.target.value)
                       }
-                      className={`h-12 text-base bg-white/10 border-2 ${
+                      className={`h-12 text-base bg-white border-2 ${
                         errors.confirmPassword
                           ? "border-red-400/50"
-                          : "border-white/20 hover:border-yellow-400/50 focus:border-yellow-400"
+                          : "border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber"
                       } focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200 backdrop-blur-sm pr-10`}
                       placeholder="Confirm your password"
                     />
@@ -634,7 +631,7 @@ export default function ClientRegistration() {
                       onClick={() =>
                         setShowConfirmPassword(!showConfirmPassword)
                       }
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-200 hover:text-white transition-colors"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-brand-navy transition-colors"
                     >
                       {showConfirmPassword ? (
                         <EyeOff className="w-4 h-4" />
@@ -644,7 +641,7 @@ export default function ClientRegistration() {
                     </button>
                   </div>
                   {errors.confirmPassword && (
-                    <p className="text-red-300 text-sm mt-1">
+                    <p className="text-red-600 text-sm mt-1">
                       {errors.confirmPassword}
                     </p>
                   )}
@@ -663,11 +660,11 @@ export default function ClientRegistration() {
 
               {/* Login Link */}
               <div className="text-center">
-                <p className="text-blue-100">
+                <p className="text-gray-600">
                   Already have an account?{" "}
                   <Link
                     href="/login/client"
-                    className="text-yellow-400 hover:text-yellow-300 font-medium hover:underline"
+                    className="text-brand-amber hover:text-brand-amberDark font-medium hover:underline"
                   >
                     Login here
                   </Link>
@@ -687,21 +684,21 @@ export default function ClientRegistration() {
               <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Why Choose MyApproved</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm">
-                    <CheckCircle className="h-5 w-5 text-blue-400" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
+                    <CheckCircle className="h-5 w-5" />
                   </span>
                   <div>
                     <p className="text-sm font-semibold text-white">Verified Professionals</p>
-                    <p className="text-sm text-blue-200">Identity, business and insurance checks for complete peace of mind.</p>
+                    <p className="text-sm text-blue-200">Identity, business and insurance checks passed before a pro is listed.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20 border border-green-400/30 backdrop-blur-sm">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
+                    <Star className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Instant Booking</p>
-                    <p className="text-sm text-blue-200">Connect and book trusted local specialists in minutes.</p>
+                    <p className="text-sm font-semibold text-white">Book With Confidence</p>
+                    <p className="text-sm text-blue-200">Compare quotes and book trusted local specialists in minutes.</p>
                   </div>
                 </li>
               </ul>
@@ -726,9 +723,9 @@ export default function ClientRegistration() {
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
               <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Peace of mind</h3>
               <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Insurance confirmed and monitored</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Public liability insurance verified and kept current</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Clear pricing</span></li>
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-yellow-400" /> <span className="text-blue-100">Dedicated support</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-blue-100">Dedicated support</span></li>
               </ul>
             </div>
           </div>

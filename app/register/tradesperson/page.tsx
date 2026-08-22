@@ -23,10 +23,11 @@ import {
   Upload,
   File,
   X,
-  Shield,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
+import { SectionHeaderPill } from "@/components/ui/SectionHeaderPill";
 import { Container } from "@/components/ui/Container";
 import {
   Select,
@@ -345,12 +346,12 @@ export default function TradespersonRegistration() {
 
   if (isSuccess) {
     return (
-      <div className="relative min-h-screen bg-brand-navy flex items-center justify-center p-6 overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+      <div className="relative min-h-screen bg-brand-slate flex items-center justify-center p-6 overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #F5A623 1px, transparent 1px), linear-gradient(to bottom, #F5A623 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F5A623] rounded-full blur-[150px] opacity-10" />
 
         <div className="relative z-10">
-          <Card className="relative w-full max-w-2xl rounded-3xl border border-white/20 bg-white backdrop-blur-md shadow-2xl">
+          <Card className="relative w-full max-w-2xl rounded-3xl bg-sky-50 border border-gray-100 shadow-xl">
             <CardContent className="p-8 text-center">
               <div className="mb-6">
                 <div className="flex items-center justify-center mb-4">
@@ -386,7 +387,7 @@ export default function TradespersonRegistration() {
   }
 
     return (
-      <div className="relative min-h-screen bg-gradient-to-b from-brand-navyDark to-brand-navy flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+      <div className="relative min-h-screen bg-brand-slate flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(to right, #F5A623 1px, transparent 1px), linear-gradient(to bottom, #F5A623 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F5A623] rounded-full blur-[150px] opacity-10" />
 
@@ -394,7 +395,7 @@ export default function TradespersonRegistration() {
         <Container size="wide" className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
           {/* Left: Registration form */}
           <div className="order-1 md:order-1 relative">
-          <Card className="relative rounded-3xl border border-white/20 bg-white shadow-2xl max-h-[90vh] overflow-y-auto">
+          <Card className="relative rounded-3xl bg-sky-50 border border-gray-100 shadow-xl max-h-[90vh] overflow-y-auto">
               <CardHeader className="text-center pb-6">
                 <div className="flex items-center justify-center mb-4">
                   <Link
@@ -405,21 +406,17 @@ export default function TradespersonRegistration() {
                     Back to Home
                   </Link>
                 </div>
-                <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-brand-amber px-3 py-1.5 text-xs font-extrabold text-black border-2 border-brand-amber">
-                  <Star className="h-3.5 w-3.5 fill-black text-black" />
-                  Join Trusted Tradespeople
+                <div className="mx-auto mb-3 flex justify-center">
+                  <SectionHeaderPill variant="navy">Approved Tradespeople Only</SectionHeaderPill>
                 </div>
                 <div className="flex items-center justify-center mb-4">
                   <div className="w-16 h-16 bg-brand-navy rounded-full flex items-center justify-center shadow-md">
-                    <User className="w-8 h-8 text-white" />
+                    <Image src="/logo-icon.svg" alt="MyApproved logo" width={40} height={40} className="w-10 h-10" />
                   </div>
                 </div>
                 <CardTitle className="text-[26px] sm:text-3xl font-extrabold text-brand-navy mb-1" style={{fontWeight: 800}}>
                   Create Tradesperson Account
                 </CardTitle>
-                <p className="text-gray-600 text-sm sm:text-base">
-                  Connect with customers and grow your business on our platform
-                </p>
               </CardHeader>
 
               <CardContent className="p-6">
@@ -1026,33 +1023,33 @@ export default function TradespersonRegistration() {
             <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
             <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
-              <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4" style={{fontWeight: 800}}>Why Choose MyApproved</h2>
+              <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4" style={{fontWeight: 800}}>Grow Your Business</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm">
-                    <CheckCircle className="h-5 w-5 text-blue-400" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
+                    <CheckCircle className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Verified Platform</p>
-                    <p className="text-sm text-blue-200">Join a trusted network of professionals with verified customers.</p>
+                    <p className="text-sm font-semibold text-white">Reach Verified Customers</p>
+                    <p className="text-sm text-blue-200">Join a trusted network of customers who value approved pros.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-amber/20 border border-brand-amber/30 backdrop-blur-sm">
-                    <Star className="h-5 w-5 text-brand-amber" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
+                    <Star className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-brand-amber">Grow Your Business</p>
-                    <p className="text-sm text-blue-200">Connect with customers and expand your client base.</p>
+                    <p className="text-sm font-semibold text-white">Build Your Reviews</p>
+                    <p className="text-sm text-blue-200">Collect ratings that help you win more local work.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20 border border-green-400/30 backdrop-blur-sm">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
+                    <Briefcase className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Easy Management</p>
-                    <p className="text-sm text-blue-200">Manage quotes, bookings, and customer communications in one place.</p>
+                    <p className="text-sm font-semibold text-white">Manage Jobs Neatly</p>
+                    <p className="text-sm text-blue-200">Respond to requests and track work from one dashboard.</p>
                   </div>
                 </li>
               </ul>
@@ -1081,18 +1078,6 @@ export default function TradespersonRegistration() {
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Clear pricing</span></li>
                 <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-blue-100">Dedicated support</span></li>
               </ul>
-            </div>
-          </div>
-
-          {/* Trust strip */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-amber/20 to-brand-navy/20 rounded-xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-xl border border-white/20 p-4 shadow-xl">
-              <div className="flex items-center justify-center gap-2 text-center">
-                <Shield className="h-5 w-5 text-green-400" />
-                <span className="text-lg font-bold text-white">Identity checked</span>
-                <span className="text-blue-200">public liability insurance confirmed and monitored</span>
-              </div>
             </div>
           </div>
           </div>

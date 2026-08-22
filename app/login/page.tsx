@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Eye, EyeOff, Mail, Lock, User, Shield, Star, CheckCircle, Loader2, MapPin, Clock } from "lucide-react";
+import { ShieldCheck as ShieldCheckFill, SealCheck as SealCheckFill } from "@phosphor-icons/react";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
@@ -301,6 +302,7 @@ export default function LoginPage() {
     const init = async () => {
       try {
         const L = (await import('leaflet')).default;
+        await import('leaflet.markercluster');
         if (!active || !mapContainerRef.current) return;
 
         if (!document.getElementById('leaflet-css')) {
@@ -309,6 +311,18 @@ export default function LoginPage() {
           link.rel = 'stylesheet';
           link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
           document.head.appendChild(link);
+        }
+        if (!document.getElementById('markercluster-css')) {
+          const mcLink = document.createElement('link');
+          mcLink.id = 'markercluster-css';
+          mcLink.rel = 'stylesheet';
+          mcLink.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css';
+          document.head.appendChild(mcLink);
+          const mcDefLink = document.createElement('link');
+          mcDefLink.id = 'markercluster-default-css';
+          mcDefLink.rel = 'stylesheet';
+          mcDefLink.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css';
+          document.head.appendChild(mcDefLink);
         }
         if (!document.getElementById('leaflet-map-styles')) {
           const style = document.createElement('style');
@@ -355,8 +369,12 @@ export default function LoginPage() {
         map.on('mouseout', () => map.scrollWheelZoom.disable());
 
         L.tileLayer(
-          'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          { subdomains: 'abc', maxZoom: 19, attribution: '© OpenStreetMap contributors' }
+          'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+          {
+            subdomains: 'abcd',
+            maxZoom: 20,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          }
         ).addTo(map);
 
         map.setView([54.2, -3.5], 5);
@@ -376,7 +394,7 @@ export default function LoginPage() {
             iconAnchor: [sz / 2, sz / 2],
           });
 
-        const allMarkers: { m: any; minZ: number }[] = [];
+        const allMarkers: L.Marker[] = [];
 
         ukCities.forEach((city, idx) => {
           const tc      = tradeCategories[idx % tradeCategories.length];
@@ -386,68 +404,55 @@ export default function LoginPage() {
           const reviews = 48 + (idx * 17) % 290;
           const respTime = RESPONSE_TIMES[idx % RESPONSE_TIMES.length];
 
-          const m = L.marker([city.lat, city.lon], { icon: makeDot(tc.color, 9) });
+          const m = L.marker([city.lat, city.lon], { icon: makeDot(tc.color, 11) });
           m.on('mouseover', () => {
             const pt = map.latLngToContainerPoint([city.lat, city.lon]);
             setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
           });
           m.on('mouseout', () => setMapTooltip(null));
           m.on('click',    () => handleMarkerClick(tc.name, city.name));
-          allMarkers.push({ m, minZ: 5 });
-          m.addTo(map);
+          allMarkers.push(m);
         });
 
-        const z6Off = [[0.06,0.04],[-0.05,0.07],[0.07,-0.04]];
-        ukCities.forEach((city, idx) => {
-          z6Off.forEach(([dlat, dlon], oi) => {
-            const tc  = tradeCategories[(idx + oi + 1) % tradeCategories.length];
-            const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
-            const bizName = names[(idx + oi) % names.length];
-            const rating  = parseFloat((4.5 + ((idx + oi) % 5) * 0.1).toFixed(1));
-            const reviews = 48 + ((idx * 13 + oi * 9) % 290);
-            const respTime = RESPONSE_TIMES[(idx + oi) % RESPONSE_TIMES.length];
-            const lat = city.lat + dlat;
-            const lon = city.lon + dlon;
-            const m = L.marker([lat, lon], { icon: makeDot(tc.color, 8) });
-            m.on('mouseover', () => {
-              const pt = map.latLngToContainerPoint([lat, lon]);
-              setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
-            });
-            m.on('mouseout', () => setMapTooltip(null));
-            m.on('click',    () => handleMarkerClick(tc.name, city.name));
-            allMarkers.push({ m, minZ: 6 });
+        // Branded marker clustering: groups nearby city dots into clean,
+        // numbered navy/amber aggregate badges at country & regional zoom.
+        const clusterIcon = (count: number): L.DivIcon => {
+          const size = count < 10 ? 26 : count < 100 ? 30 : 36;
+          return L.divIcon({
+            html: `<div style="
+              position:relative;
+              width:${size}px;height:${size}px;
+              display:flex;align-items:center;justify-content:center;
+              border-radius:9999px;
+              background:rgba(255,255,255,0.96);
+              border:2px solid rgba(10,36,99,0.14);
+              box-shadow:0 2px 8px rgba(10,36,99,0.22),0 0 0 2px rgba(255,255,255,0.95);
+            ">
+              <span style="
+                color:#0A2463;
+                font-weight:800;
+                font-size:${count < 10 ? 11 : count < 100 ? 10 : 9}px;
+                line-height:1;
+                letter-spacing:-0.01em;
+                font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;
+              ">${count}</span>
+            </div>`,
+            className: '',
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2],
           });
+        };
+
+        const cluster = L.markerClusterGroup({
+          maxClusterRadius: 64,
+          showCoverageOnHover: false,
+          spiderfyOnMaxZoom: false,
+          disableClusteringAtZoom: 9,
+          iconCreateFunction: (c) => clusterIcon(c.getChildCount()),
         });
 
-        const z7Off = [[-0.07,0.04],[0.04,-0.06],[-0.03,-0.07]];
-        ukCities.forEach((city, idx) => {
-          z7Off.forEach(([dlat, dlon], oi) => {
-            const tc  = tradeCategories[(idx + oi + 4) % tradeCategories.length];
-            const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
-            const bizName = names[(idx + oi + 2) % names.length];
-            const rating  = parseFloat((4.5 + ((idx + oi + 2) % 5) * 0.1).toFixed(1));
-            const reviews = 48 + ((idx * 11 + oi * 7) % 290);
-            const respTime = RESPONSE_TIMES[(idx + oi + 2) % RESPONSE_TIMES.length];
-            const lat = city.lat + dlat;
-            const lon = city.lon + dlon;
-            const m = L.marker([lat, lon], { icon: makeDot(tc.color, 7) });
-            m.on('mouseover', () => {
-              const pt = map.latLngToContainerPoint([lat, lon]);
-              setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
-            });
-            m.on('mouseout', () => setMapTooltip(null));
-            m.on('click',    () => handleMarkerClick(tc.name, city.name));
-            allMarkers.push({ m, minZ: 7 });
-          });
-        });
-
-        map.on('zoomend', () => {
-          const z = map.getZoom();
-          allMarkers.forEach(({ m, minZ }) => {
-            if (z >= minZ) { if (!map.hasLayer(m)) m.addTo(map); }
-            else           { if (map.hasLayer(m))  m.removeFrom(map); }
-          });
-        });
+        cluster.addLayers(allMarkers);
+        map.addLayer(cluster);
 
         map.invalidateSize();
         mapInstanceRef.current = map;
@@ -533,7 +538,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-brand-navy flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+    <div className="relative min-h-screen bg-brand-slate flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
       {/* Background Grid Pattern */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -552,21 +557,28 @@ export default function LoginPage() {
           {/* Left: Login card */}
           <div className="order-1 md:order-1 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
-            <Card className="relative w-full rounded-3xl shadow-2xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md">
+            <Card className="relative w-full rounded-3xl bg-sky-50 border border-gray-100 shadow-xl">
               <CardHeader className="text-center pb-4 sm:pb-6">
-                <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-brand-amber px-3 py-1.5 text-xs font-extrabold text-black border-2 border-brand-amber">
-                  <Star className="h-3.5 w-3.5 fill-yellow-600 text-yellow-700" />
-                  Every member identity, business and insurance checked
+                <div className="mx-auto mb-3 inline-flex flex-nowrap justify-center rounded-full border border-brand-navy/10 bg-white px-2 py-1.5 text-xs font-bold shadow-sm">
+                  <div className="inline-flex items-center gap-1.5 whitespace-nowrap px-2 text-brand-navy sm:px-3">
+                    <ShieldCheckFill weight="fill" className="h-4 w-4 text-brand-navy" aria-hidden="true" />
+                    <span className="font-extrabold tracking-wide notranslate">IDENTITY CHECKED</span>
+                  </div>
+                  <div className="mx-1 self-stretch border-l border-brand-navy/10" />
+                  <div className="inline-flex items-center gap-1.5 whitespace-nowrap px-2 text-brand-navy sm:px-3">
+                    <SealCheckFill weight="fill" className="h-4 w-4 text-brand-navy" aria-hidden="true" />
+                    <span className="font-extrabold tracking-wide notranslate">INSURANCE VERIFIED</span>
+                  </div>
                 </div>
                 <div className="flex items-center justify-center mb-3">
                   <div className="w-16 h-16 bg-gradient-to-r from-brand-navy to-brand-navy rounded-full flex items-center justify-center shadow-md">
                     <User className="w-8 h-8 text-white" />
                   </div>
                 </div>
-                <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight text-brand-amber mb-1" style={{ fontWeight: 700 }}>
+                <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight text-brand-navy mb-1" style={{ fontWeight: 800 }}>
                   Sign in to your account
                 </CardTitle>
-                <p className="text-blue-100 text-sm sm:text-base">Manage bookings, messages, and saved pros.</p>
+                <p className="text-gray-600 text-sm sm:text-base">Manage bookings, messages, and saved pros.</p>
               </CardHeader>
 
               <CardContent className="p-6">
@@ -574,7 +586,7 @@ export default function LoginPage() {
                   <div>
                     <Label
                       htmlFor="email"
-                      className="flex items-center mb-2 text-sm font-semibold text-blue-100"
+                      className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                     >
                       <Mail className="w-4 h-4 mr-2" />
                       Email Address
@@ -586,7 +598,7 @@ export default function LoginPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter your email"
-                        className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200"
+                        className="h-12 text-base bg-white border-2 border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl text-brand-navy placeholder:text-gray-400"
                         required
                       />
                     </div>
@@ -595,7 +607,7 @@ export default function LoginPage() {
                   <div>
                     <Label
                       htmlFor="password"
-                      className="flex items-center mb-2 text-sm font-semibold text-blue-100"
+                      className="flex items-center mb-2 text-sm font-semibold text-brand-navy"
                     >
                       <Lock className="w-4 h-4 mr-2" />
                       Password
@@ -607,13 +619,13 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter your password"
-                        className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl pr-10 text-white placeholder:text-blue-200"
+                        className="h-12 text-base bg-white border-2 border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl pr-10 text-brand-navy placeholder:text-gray-400"
                         required
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-200 hover:text-white"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-brand-navy"
                         aria-label={showPassword ? "Hide password" : "Show password"}
                       >
                         {showPassword ? (
@@ -628,11 +640,11 @@ export default function LoginPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Checkbox id="remember" checked={rememberMe} onCheckedChange={(c) => setRememberMe(c === true)} />
-                      <Label htmlFor="remember" className="text-sm text-blue-100">Remember me</Label>
+                      <Label htmlFor="remember" className="text-sm text-brand-navy">Remember me</Label>
                     </div>
                     <Link
                       href="/forgot-password"
-                      className="text-sm text-yellow-400 hover:text-yellow-300 hover:underline font-medium"
+                      className="text-sm text-brand-amber hover:text-brand-amberDark hover:underline font-medium"
                     >
                       Forgot password?
                     </Link>
@@ -663,7 +675,7 @@ export default function LoginPage() {
                       <span className="w-full border-t border-gray-200" />
                     </div>
                     <div className="relative flex justify-center text-xs">
-                      <span className="bg-brand-navy/80 px-2 text-yellow-400">Enter your details</span>
+                      <span className="bg-white px-2 text-brand-amber">Enter your details</span>
                     </div>
                   </div>
 
@@ -684,39 +696,39 @@ export default function LoginPage() {
                   </Button>
 
                   <div className="text-center space-y-2">
-                    <p className="text-sm text-blue-100">
+                    <p className="text-sm text-gray-600">
                       Do not have an account?{" "}
                       <Link
                         href="/register/client"
-                        className="text-yellow-400 hover:text-yellow-300 hover:underline font-medium"
+                        className="text-brand-amber hover:text-brand-amberDark hover:underline font-medium"
                       >
                         Register here
                       </Link>
                     </p>
-                    <p className="text-sm text-blue-100">
+                    <p className="text-sm text-gray-600">
                       Are you a tradesperson?{" "}
                       <Link
                         href="/login/trade"
-                        className="text-yellow-400 hover:text-yellow-300 hover:underline font-medium"
+                        className="text-brand-amber hover:text-brand-amberDark hover:underline font-medium"
                       >
                         Login here
                       </Link>
                     </p>
                     <div className="pt-1">
-                      <Link href="/contact" className="text-xs text-blue-200 hover:text-white underline">Need help? Contact support</Link>
+                      <Link href="/contact" className="text-xs text-gray-400 hover:text-brand-navy underline">Need help? Contact support</Link>
                     </div>
                   </div>
 
                   {/* Benefits bullets */}
                   <ul className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 text-left">
-                    <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
-                      <CheckCircle className="h-4 w-4 text-green-400" /> No hidden fees
+                    <li className="flex items-center gap-2 text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1">
+                      <CheckCircle className="h-4 w-4 text-green-600" /> No hidden fees
                     </li>
-                    <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
-                      <Shield className="h-4 w-4 text-blue-400" /> Secure login
+                    <li className="flex items-center gap-2 text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1">
+                      <Shield className="h-4 w-4 text-brand-navy" /> Secure login
                     </li>
-                    <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
-                      <Star className="h-4 w-4 text-yellow-400" /> Business-verified pros
+                    <li className="flex items-center gap-2 text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1">
+                      <Star className="h-4 w-4 text-brand-amber" /> Business-verified pros
                     </li>
                   </ul>
 
@@ -750,8 +762,8 @@ export default function LoginPage() {
 
                   {/* Left panel: trade types */}
                   <div className="absolute left-3 top-1/2 -translate-y-1/2 z-[999]">
-                    <div className="bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md border border-white/20 rounded-xl p-2.5 shadow-2xl min-w-[130px]">
-                      <p className="text-[8px] font-black uppercase tracking-[0.18em] text-[#F5A623] mb-2 px-0.5">
+                    <div className="bg-white/90 backdrop-blur-lg border border-gray-100 shadow-xl rounded-2xl p-3 min-w-[132px]">
+                      <p className="text-[8px] font-black uppercase tracking-[0.18em] text-brand-navy mb-2 px-0.5">
                         Available Now
                       </p>
                       {[
@@ -771,10 +783,10 @@ export default function LoginPage() {
                             className="w-2 h-2 rounded-full shrink-0 animate-pulse"
                             style={{ backgroundColor: t.color }}
                           />
-                          <span className="text-[10px] text-white/70 font-medium flex-1 leading-none">
+                          <span className="text-[10px] text-brand-navy/70 font-medium flex-1 leading-none">
                             {t.label}
                           </span>
-                          <span className="text-[10px] font-black text-[#F5A623] pl-1">
+                          <span className="text-[10px] font-black text-brand-navy pl-1">
                             {t.count}
                           </span>
                         </div>
@@ -788,7 +800,7 @@ export default function LoginPage() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                     </span>
-                    <span className="text-[10px] font-extrabold text-[#111111] tracking-wide">Live Coverage</span>
+                    <span className="text-[10px] font-extrabold text-brand-navy tracking-wide">Live Coverage</span>
                   </div>
 
                   {/* Framer Motion hover tooltip */}
@@ -812,7 +824,7 @@ export default function LoginPage() {
                                   {mapTooltip.trade}
                                 </span>
                               </div>
-                              <span className="text-[8px] font-black text-[#F5A623] bg-[#F5A623]/10 border border-[#F5A623]/20 px-1.5 py-0.5 rounded-full">
+                              <span className="text-[8px] font-black text-brand-amber bg-brand-amber/10 border border-brand-amber/20 px-1.5 py-0.5 rounded-full">
                                 ✓ Business-verified
                               </span>
                             </div>
@@ -821,21 +833,21 @@ export default function LoginPage() {
                             </p>
                             <div className="flex items-center gap-0.5 mb-2">
                               {[1,2,3,4,5].map(i => (
-                                <Star key={i} className={`w-3 h-3 ${i <= Math.floor(mapTooltip.rating) ? 'text-[#F5A623] fill-[#F5A623]' : 'text-white/15'}`} />
+                                <Star key={i} className={`w-3 h-3 ${i <= Math.floor(mapTooltip.rating) ? 'text-brand-amber fill-brand-amber' : 'text-white/15'}`} />
                               ))}
-                              <span className="text-xs font-black text-[#F5A623] ml-1">{mapTooltip.rating}</span>
+                              <span className="text-xs font-black text-brand-amber ml-1">{mapTooltip.rating}</span>
                               <span className="text-[10px] text-white/30 ml-1">({mapTooltip.reviews})</span>
                             </div>
                             <div className="flex items-center justify-between text-[10px] text-white/40">
                               <span className="flex items-center gap-1">
-                                <MapPin className="w-3 h-3 text-[#F5A623]/60" />{mapTooltip.city}
+                                <MapPin className="w-3 h-3 text-brand-amber/60" />{mapTooltip.city}
                               </span>
                               <span className="flex items-center gap-1">
                                 <Clock className="w-3 h-3" />{mapTooltip.responseTime}
                               </span>
                             </div>
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[99%]"
-                              style={{ width:0, height:0, borderLeft:'6px solid transparent', borderRight:'6px solid transparent', borderTop:'6px solid #1e3a8a' }}
+                              style={{ width:0, height:0, borderLeft:'6px solid transparent', borderRight:'6px solid transparent', borderTop:'6px solid #0A2463' }}
                             />
                           </div>
                         </motion.div>
@@ -848,15 +860,15 @@ export default function LoginPage() {
                 <div className="bg-gradient-to-r from-brand-navy/95 to-brand-navy/95 backdrop-blur-md p-4 border-t border-white/10">
                   <div className="grid grid-cols-3 divide-x divide-white/[0.08]">
                     <div className="text-center px-3">
-                      <div className="text-xl sm:text-2xl font-black text-[#F5A623] tabular-nums">{onlineCount}+</div>
+                      <div className="text-xl sm:text-2xl font-black text-brand-amber tabular-nums">{onlineCount}+</div>
                       <div className="text-[10px] text-white/40 font-medium mt-0.5">Online Now</div>
                     </div>
                     <div className="text-center px-3">
-                      <div className="text-xl sm:text-2xl font-black text-[#F5A623]">ID✓</div>
+                      <div className="text-xl sm:text-2xl font-black text-brand-amber">ID✓</div>
                       <div className="text-[10px] text-white/40 font-medium mt-0.5">Identity checked</div>
                     </div>
                     <div className="text-center px-3">
-                      <div className="text-xl sm:text-2xl font-black text-[#F5A623]">24/7</div>
+                      <div className="text-xl sm:text-2xl font-black text-brand-amber">24/7</div>
                       <div className="text-[10px] text-white/40 font-medium mt-0.5">Support</div>
                     </div>
                   </div>

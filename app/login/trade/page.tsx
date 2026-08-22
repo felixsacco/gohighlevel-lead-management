@@ -7,10 +7,12 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Eye, EyeOff, Mail, Lock, User, Shield, Star, CheckCircle, Loader2, MapPin, Clock, Wrench } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, Shield, Star, CheckCircle, Loader2, MapPin, Clock } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
+import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/lib/supabase-client";
@@ -136,6 +138,61 @@ export default function TradespersonLoginPage() {
     { name: "Torquay",          lat: 50.4619, lon: -3.5251 },
     { name: "Taunton",          lat: 51.0132, lon: -3.1067 },
     { name: "Yeovil",           lat: 50.9435, lon: -2.6417 },
+    { name: "Chelmsford",       lat: 51.7356, lon:  0.4685 },
+    { name: "Watford",          lat: 51.6562, lon: -0.3904 },
+    { name: "Slough",           lat: 51.5105, lon: -0.5950 },
+    { name: "Eastbourne",       lat: 50.7680, lon:  0.2905 },
+    { name: "Hastings",         lat: 50.8543, lon:  0.5720 },
+    { name: "Basildon",         lat: 51.5724, lon:  0.4708 },
+    { name: "Stevenage",        lat: 51.9038, lon: -0.2026 },
+    { name: "St Albans",        lat: 51.7527, lon: -0.3395 },
+    { name: "Crawley",          lat: 51.1091, lon: -0.1872 },
+    { name: "Worthing",         lat: 50.8145, lon: -0.3719 },
+    { name: "Southend-on-Sea",  lat: 51.5459, lon:  0.7077 },
+    { name: "Bury",             lat: 53.5933, lon: -2.2967 },
+    { name: "Oldham",           lat: 53.5417, lon: -2.1171 },
+    { name: "Wigan",            lat: 53.5449, lon: -2.6311 },
+    { name: "Crewe",            lat: 53.0987, lon: -2.4446 },
+    { name: "Birkenhead",       lat: 53.3934, lon: -3.0141 },
+    { name: "Southport",        lat: 53.6469, lon: -3.0101 },
+    { name: "Kendal",           lat: 54.3280, lon: -2.7489 },
+    { name: "Hartlepool",       lat: 54.6854, lon: -1.2148 },
+    { name: "Stockton-on-Tees", lat: 54.5685, lon: -1.3162 },
+    { name: "Croydon",          lat: 51.3762, lon: -0.0982 },
+    { name: "Bromley",          lat: 51.4056, lon:  0.0143 },
+    { name: "Ayr",              lat: 55.4586, lon: -4.6292 },
+    { name: "Kilmarnock",       lat: 55.6125, lon: -4.4957 },
+    { name: "Hamilton",         lat: 55.7790, lon: -4.0542 },
+    { name: "Falkirk",          lat: 56.0010, lon: -3.7850 },
+    { name: "Dunfermline",      lat: 56.0719, lon: -3.4392 },
+    { name: "Rhyl",             lat: 53.3191, lon: -3.4916 },
+    { name: "Bangor",           lat: 53.2270, lon: -4.1290 },
+    { name: "Llandudno",        lat: 53.3240, lon: -3.8270 },
+    { name: "Aberystwyth",      lat: 52.4153, lon: -4.0820 },
+    { name: "Carmarthen",       lat: 51.8570, lon: -4.3120 },
+    { name: "Llanelli",         lat: 51.6840, lon: -4.1630 },
+    { name: "Bridgend",         lat: 51.5060, lon: -3.5780 },
+    { name: "Newry",            lat: 54.1740, lon: -6.3370 },
+    { name: "Coleraine",        lat: 55.1310, lon: -6.6740 },
+    { name: "Fort William",     lat: 56.8198, lon: -5.1052 },
+    { name: "Oban",             lat: 56.4152, lon: -5.4710 },
+    { name: "Galashiels",       lat: 55.6140, lon: -2.8070 },
+    { name: "Dumfries",         lat: 55.0709, lon: -3.6051 },
+    { name: "Stranraer",        lat: 54.9015, lon: -5.0237 },
+    { name: "Holyhead",         lat: 53.3094, lon: -4.6328 },
+    { name: "Pwllheli",         lat: 52.8873, lon: -4.4183 },
+    { name: "Fishguard",        lat: 51.9944, lon: -4.9767 },
+    { name: "Tenby",            lat: 51.6720, lon: -4.7040 },
+    { name: "Brecon",           lat: 51.9480, lon: -3.3910 },
+    { name: "Enniskillen",      lat: 54.3460, lon: -7.6400 },
+    { name: "Omagh",            lat: 54.5980, lon: -7.2980 },
+    { name: "Ballymena",        lat: 54.8660, lon: -6.2820 },
+    { name: "Bury St Edmunds",  lat: 52.2469, lon:  0.7100 },
+    { name: "Kingston upon Hull", lat: 53.7680, lon: -0.3360 },
+    { name: "Penzance",         lat: 50.1188, lon: -5.5370 },
+    { name: "Truro",            lat: 50.2590, lon: -5.0510 },
+    { name: "Barnstaple",       lat: 51.0780, lon: -4.0580 },
+    { name: "St Austell",       lat: 50.3360, lon: -4.7960 },
   ], []);
 
   const handleMarkerClick = (trade: string, city: string) => {
@@ -160,6 +217,7 @@ export default function TradespersonLoginPage() {
     const init = async () => {
       try {
         const L = (await import("leaflet")).default;
+        const extraMarkers = await import("leaflet-extra-markers");
         if (!active || !mapContainerRef.current) return;
 
         if (!document.getElementById("leaflet-css")) {
@@ -202,92 +260,56 @@ export default function TradespersonLoginPage() {
         map.on("click",    () => map.scrollWheelZoom.enable());
         map.on("mouseout", () => map.scrollWheelZoom.disable());
 
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          subdomains: "abc", maxZoom: 19, attribution: "© OpenStreetMap contributors",
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+          subdomains: "abcd", maxZoom: 20,
+          attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> &copy; <a href=\"https://carto.com/attributions\">CARTO</a>",
         }).addTo(map);
 
-        map.setView([54.2, -3.5], 5);
+        map.setView([54.5, -3.2], 5);
 
-        const makeDot = (color: string, sz: number) =>
-          L.divIcon({
-            html: `<div style="width:${sz}px;height:${sz}px;background:${color};border-radius:50%;border:1.5px solid rgba(255,255,255,0.8);box-shadow:0 1px 4px rgba(0,0,0,0.55),0 0 7px ${color}70;cursor:pointer;"></div>`,
-            className: "", iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2],
-          });
+        const makeMarker = (color: string) =>
+          new extraMarkers.Icon({
+            svg: extraMarkers.PinCircle,
+            color,
+            contentColor: "#ffffff",
+            accentColor: "#ffffff",
+            scale: 0.62,
+            origin: "bottom",
+            shadow: "cast",
+          }) as unknown as L.Icon;
 
-        const allMarkers: { m: any; minZ: number }[] = [];
-
-        const z5 = [[0,0],[0.12,0.07],[-0.09,0.13],[0.14,-0.07],[-0.13,-0.08],[0.04,0.15]];
-        const z6 = [[0.06,0.04],[-0.05,0.07],[0.07,-0.04]];
-        const z7 = [[-0.07,0.04],[0.04,-0.06],[-0.03,-0.07]];
-
+        const allMarkers: L.Marker[] = [];
+        // Pick roughly one trade per sampled town, striding evenly through the
+        // full (north-to-south) list rather than fanning six pins per town.
         ukCities.forEach((city, idx) => {
-          tradeCategories.forEach((tc, tcIdx) => {
-            const [dlat, dlon] = z5[tcIdx];
-            const lat = city.lat + dlat, lon = city.lon + dlon;
-            const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
-            const bizName = names[(idx + tcIdx) % names.length];
-            const rating  = parseFloat((4.5 + ((idx + tcIdx) % 5) * 0.1).toFixed(1));
-            const reviews = 48 + ((idx * 17 + tcIdx * 11) % 290);
-            const respTime = RESPONSE_TIMES[(idx + tcIdx) % RESPONSE_TIMES.length];
-            const m = L.marker([lat, lon], { icon: makeDot(tc.color, 9) });
-            m.on("mouseover", () => {
-              const pt = map.latLngToContainerPoint([lat, lon]);
-              setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
-            });
-            m.on("mouseout", () => setMapTooltip(null));
-            m.on("click",    () => handleMarkerClick(tc.name, city.name));
-            allMarkers.push({ m, minZ: 5 });
-            m.addTo(map);
+          // Sample one pin every 8th town; this keeps coverage nationwide
+          // without a dense band clustering around central England.
+          if (idx % 8 !== 0) return;
+
+          // Deterministic-ish scatter so neighbouring pins aren't the same
+          // trade or colour (mixes the six trades across the map).
+          const tc = tradeCategories[(idx * 5 + 1) % tradeCategories.length];
+          const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
+          const bizName = names[(idx * 3) % names.length];
+          const rating  = parseFloat((4.5 + ((idx * 7) % 5) * 0.1).toFixed(1));
+          const reviews = 48 + ((idx * 17 + 5) % 290);
+          const respTime = RESPONSE_TIMES[(idx * 5) % RESPONSE_TIMES.length];
+          // No coordinate jitter — pin sits exactly on the town centre.
+          const lat = city.lat;
+          const lon = city.lon;
+          const m = L.marker([lat, lon], { icon: makeMarker(tc.color) });
+          m.on("mouseover", () => {
+            const pt = map.latLngToContainerPoint([lat, lon]);
+            setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
           });
+          m.on("mouseout", () => setMapTooltip(null));
+          m.on("click",    () => handleMarkerClick(tc.name, city.name));
+          allMarkers.push(m);
         });
 
-        ukCities.forEach((city, idx) => {
-          z6.forEach(([dlat, dlon], oi) => {
-            const tc = tradeCategories[(idx + oi + 1) % tradeCategories.length];
-            const lat = city.lat + dlat, lon = city.lon + dlon;
-            const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
-            const bizName = names[(idx + oi) % names.length];
-            const rating  = parseFloat((4.5 + ((idx + oi) % 5) * 0.1).toFixed(1));
-            const reviews = 48 + ((idx * 13 + oi * 9) % 290);
-            const respTime = RESPONSE_TIMES[(idx + oi) % RESPONSE_TIMES.length];
-            const m = L.marker([lat, lon], { icon: makeDot(tc.color, 8) });
-            m.on("mouseover", () => {
-              const pt = map.latLngToContainerPoint([lat, lon]);
-              setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
-            });
-            m.on("mouseout", () => setMapTooltip(null));
-            m.on("click",    () => handleMarkerClick(tc.name, city.name));
-            allMarkers.push({ m, minZ: 6 });
-          });
-        });
-
-        ukCities.forEach((city, idx) => {
-          z7.forEach(([dlat, dlon], oi) => {
-            const tc = tradeCategories[(idx + oi + 4) % tradeCategories.length];
-            const lat = city.lat + dlat, lon = city.lon + dlon;
-            const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
-            const bizName = names[(idx + oi + 2) % names.length];
-            const rating  = parseFloat((4.5 + ((idx + oi + 2) % 5) * 0.1).toFixed(1));
-            const reviews = 48 + ((idx * 11 + oi * 7) % 290);
-            const respTime = RESPONSE_TIMES[(idx + oi + 2) % RESPONSE_TIMES.length];
-            const m = L.marker([lat, lon], { icon: makeDot(tc.color, 7) });
-            m.on("mouseover", () => {
-              const pt = map.latLngToContainerPoint([lat, lon]);
-              setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
-            });
-            m.on("mouseout", () => setMapTooltip(null));
-            m.on("click",    () => handleMarkerClick(tc.name, city.name));
-            allMarkers.push({ m, minZ: 7 });
-          });
-        });
-
-        map.on("zoomend", () => {
-          const z = map.getZoom();
-          allMarkers.forEach(({ m, minZ }) => {
-            if (z >= minZ) { if (!map.hasLayer(m)) m.addTo(map); }
-            else           { if (map.hasLayer(m))  m.removeFrom(map); }
-          });
-        });
+        // No clustering — every town's coloured pins are shown individually,
+        // spread nationwide.
+        allMarkers.forEach((m) => m.addTo(map));
 
         map.invalidateSize();
         mapInstanceRef.current = map;
@@ -361,7 +383,7 @@ export default function TradespersonLoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-brand-navy flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
+    <div className="relative min-h-screen bg-brand-slate flex flex-col items-center justify-center overflow-hidden -mt-[var(--header-height)] pt-[120px] sm:pt-[140px] pb-16">
       {/* Background grid */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -378,27 +400,25 @@ export default function TradespersonLoginPage() {
           {/* ── Left: Login card ── */}
           <div className="order-1 md:order-1 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
-            <Card className="relative w-full rounded-3xl shadow-2xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md">
+            <Card className="relative w-full rounded-3xl bg-sky-50 border border-gray-100 shadow-xl">
               <CardHeader className="text-center pb-4 sm:pb-6">
-                <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-brand-amber px-3 py-1.5 text-xs font-extrabold text-black border-2 border-brand-amber">
-                  <Star className="h-3.5 w-3.5 fill-yellow-600 text-yellow-700" />
-                  Join Trusted Tradespeople
+                <div className="mx-auto mb-3 flex justify-center">
+                  <SectionHeaderPill variant="navy">Approved Tradespeople Only</SectionHeaderPill>
                 </div>
                 <div className="flex items-center justify-center mb-3">
                   <div className="w-16 h-16 bg-gradient-to-r from-brand-navy to-brand-navy rounded-full flex items-center justify-center shadow-md">
-                    <Wrench className="w-8 h-8 text-white" />
+                    <Image src="/logo-icon.svg" alt="MyApproved logo" width={40} height={40} className="w-10 h-10" />
                   </div>
                 </div>
-                <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight text-brand-amber mb-1" style={{ fontWeight: 700 }}>
+                <CardTitle className="text-[26px] sm:text-3xl font-bold tracking-tight text-brand-navy mb-1" style={{ fontWeight: 800 }}>
                   Tradesperson Login
                 </CardTitle>
-                <p className="text-blue-100 text-sm sm:text-base">Access your dashboard, jobs, and earnings.</p>
               </CardHeader>
 
               <CardContent className="p-6">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <Label htmlFor="email" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                    <Label htmlFor="email" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                       <Mail className="w-4 h-4 mr-2" />
                       Email Address
                     </Label>
@@ -408,13 +428,13 @@ export default function TradespersonLoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
-                      className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl text-white placeholder:text-blue-200"
+                      className="h-12 text-base bg-white border-2 border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl text-brand-navy placeholder:text-gray-400"
                       required
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="password" className="flex items-center mb-2 text-sm font-semibold text-blue-100">
+                    <Label htmlFor="password" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
                       <Lock className="w-4 h-4 mr-2" />
                       Password
                     </Label>
@@ -425,13 +445,13 @@ export default function TradespersonLoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter your password"
-                        className="h-12 text-base bg-gradient-to-br from-brand-navy to-brand-navy border-2 border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 rounded-2xl pr-10 text-white placeholder:text-blue-200"
+                        className="h-12 text-base bg-white border-2 border-gray-300 hover:border-brand-amber/50 focus:border-brand-amber focus:ring-2 focus:ring-brand-amber/20 transition-all duration-200 rounded-xl pr-10 text-brand-navy placeholder:text-gray-400"
                         required
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-200 hover:text-white"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-navy"
                         aria-label={showPassword ? "Hide password" : "Show password"}
                       >
                         {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
@@ -442,9 +462,9 @@ export default function TradespersonLoginPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Checkbox id="remember" checked={rememberMe} onCheckedChange={(c) => setRememberMe(c === true)} />
-                      <Label htmlFor="remember" className="text-sm text-blue-100">Remember me</Label>
+                      <Label htmlFor="remember" className="text-sm text-brand-navy">Remember me</Label>
                     </div>
-                    <Link href="/forgot-password?type=tradesperson" className="text-sm text-yellow-400 hover:text-yellow-300 hover:underline font-medium">
+                    <Link href="/forgot-password?type=tradesperson" className="text-sm text-brand-navy hover:text-brand-navyDark hover:underline font-medium">
                       Forgot password?
                     </Link>
                   </div>
@@ -460,7 +480,7 @@ export default function TradespersonLoginPage() {
                       <span className="w-full border-t border-gray-200" />
                     </div>
                     <div className="relative flex justify-center text-xs">
-                      <span className="bg-brand-navy/80 px-2 text-yellow-400">Enter your details</span>
+                      <span className="bg-white px-2 text-brand-navy">Enter your details</span>
                     </div>
                   </div>
 
@@ -479,43 +499,23 @@ export default function TradespersonLoginPage() {
                   </Button>
 
                   <div className="text-center space-y-2">
-                    <p className="text-sm text-blue-100">
+                    <p className="text-sm text-gray-600">
                       Don&apos;t have an account?{" "}
-                      <Link href="/register/tradesperson" className="text-yellow-400 hover:text-yellow-300 hover:underline font-medium">
+                      <Link href="/register/tradesperson" className="text-brand-navy hover:text-brand-navyDark hover:underline font-medium">
                         Register here
                       </Link>
                     </p>
-                    <p className="text-sm text-blue-100">
+                    <p className="text-sm text-gray-600">
                       Are you a customer?{" "}
-                      <Link href="/login/client" className="text-yellow-400 hover:text-yellow-300 hover:underline font-medium">
+                      <Link href="/login/client" className="text-brand-navy hover:text-brand-navyDark hover:underline font-medium">
                         Login here
                       </Link>
                     </p>
                     <div className="pt-1">
-                      <Link href="/contact" className="text-xs text-blue-200 hover:text-white underline">Need help? Contact support</Link>
+                      <Link href="/contact" className="text-xs text-gray-400 hover:text-brand-navy underline">Need help? Contact support</Link>
                     </div>
                   </div>
-
-                  <ul className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 text-left">
-                    <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
-                      <CheckCircle className="h-4 w-4 text-green-400" /> No hidden fees
-                    </li>
-                    <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
-                      <Shield className="h-4 w-4 text-blue-400" /> Secure login
-                    </li>
-                    <li className="flex items-center gap-2 text-xs text-blue-100 bg-white/10 border border-white/20 rounded-xl px-2 py-1 backdrop-blur-sm">
-                      <Star className="h-4 w-4 text-yellow-400" /> Top-rated pros
-                    </li>
-                  </ul>
-
-                  <Link
-                    href="/register/tradesperson"
-                    className="inline-flex items-center justify-center w-full h-11 rounded-xl bg-brand-amber hover:bg-brand-amberDark text-black text-sm font-semibold shadow transition-colors"
-                    style={{ fontWeight: 800 }}
-                  >
-                    Create a free account
-                  </Link>
-                </form>
+              </form>
               </CardContent>
             </Card>
           </div>
@@ -532,40 +532,13 @@ export default function TradespersonLoginPage() {
                 <div className="relative w-full h-[340px] md:h-[400px]">
                   <div ref={mapContainerRef} className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }} />
 
-                  {/* Available Now panel */}
-                  <div className="absolute left-3 top-1/2 -translate-y-1/2 z-[999]">
-                    <div className="bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md border border-white/20 rounded-xl p-2.5 shadow-2xl min-w-[130px]">
-                      <p className="text-[8px] font-black uppercase tracking-[0.18em] text-[#F5A623] mb-2 px-0.5">
-                        Available Now
-                      </p>
-                      {[
-                        { color: "#3b82f6", label: "Plumbers",      count: 247 },
-                        { color: "#F5A623", label: "Electricians",  count: 189 },
-                        { color: "#22c55e", label: "Builders",      count: 156 },
-                        { color: "#a855f7", label: "Cleaners",      count: 210 },
-                        { color: "#ef4444", label: "Roofers",       count: 98  },
-                        { color: "#38bdf8", label: "Carpenters",    count: 112 },
-                        { color: "#fb923c", label: "Painters",      count: 134 },
-                        { color: "#10b981", label: "Gas Engineers", count: 143 },
-                        { color: "#f472b6", label: "Handymen",      count: 178 },
-                        { color: "#8b5cf6", label: "Tilers",        count: 89  },
-                      ].map((t) => (
-                        <div key={t.label} className="flex items-center gap-1.5 py-[3px]">
-                          <div className="w-2 h-2 rounded-full shrink-0 animate-pulse" style={{ backgroundColor: t.color }} />
-                          <span className="text-[10px] text-white/70 font-medium flex-1 leading-none">{t.label}</span>
-                          <span className="text-[10px] font-black text-[#F5A623] pl-1">{t.count}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
                   {/* Live badge */}
                   <div className="absolute top-3 right-3 z-[999] bg-white rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-lg shadow-black/20">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                     </span>
-                    <span className="text-[10px] font-extrabold text-[#111111] tracking-wide">Live Coverage</span>
+                    <span className="text-[10px] font-extrabold text-brand-navy tracking-wide">Live Coverage</span>
                   </div>
 
                   {/* Framer Motion tooltip */}
@@ -587,22 +560,22 @@ export default function TradespersonLoginPage() {
                                 <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: mapTooltip.color }} />
                                 <span className="text-[9px] font-black uppercase tracking-[0.13em] text-white/50">{mapTooltip.trade}</span>
                               </div>
-                              <span className="text-[8px] font-black text-[#F5A623] bg-[#F5A623]/10 border border-[#F5A623]/20 px-1.5 py-0.5 rounded-full">✓ VERIFIED</span>
+                              <span className="text-[8px] font-black text-brand-amber bg-brand-amber/10 border border-brand-amber/20 px-1.5 py-0.5 rounded-full">✓ VERIFIED</span>
                             </div>
                             <p className="text-xs font-bold text-white leading-snug mb-2">{mapTooltip.name}</p>
                             <div className="flex items-center gap-0.5 mb-2">
                               {[1,2,3,4,5].map(i => (
-                                <Star key={i} className={`w-3 h-3 ${i <= Math.floor(mapTooltip.rating) ? "text-[#F5A623] fill-[#F5A623]" : "text-white/15"}`} />
+                                <Star key={i} className={`w-3 h-3 ${i <= Math.floor(mapTooltip.rating) ? "text-brand-amber fill-brand-amber" : "text-white/15"}`} />
                               ))}
-                              <span className="text-xs font-black text-[#F5A623] ml-1">{mapTooltip.rating}</span>
+                              <span className="text-xs font-black text-brand-amber ml-1">{mapTooltip.rating}</span>
                               <span className="text-[10px] text-white/30 ml-1">({mapTooltip.reviews})</span>
                             </div>
                             <div className="flex items-center justify-between text-[10px] text-white/40">
-                              <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-[#F5A623]/60" />{mapTooltip.city}</span>
+                              <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-brand-amber/60" />{mapTooltip.city}</span>
                               <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{mapTooltip.responseTime}</span>
                             </div>
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[99%]"
-                              style={{ width:0, height:0, borderLeft:"6px solid transparent", borderRight:"6px solid transparent", borderTop:"6px solid #1e3a8a" }}
+                              style={{ width:0, height:0, borderLeft:"6px solid transparent", borderRight:"6px solid transparent", borderTop:"6px solid #0A2463" }}
                             />
                           </div>
                         </motion.div>
@@ -612,19 +585,19 @@ export default function TradespersonLoginPage() {
                 </div>
 
                 {/* Stats bar */}
-                <div className="bg-gradient-to-r from-brand-navy/95 to-brand-navy/95 backdrop-blur-md p-4 border-t border-white/10">
-                  <div className="grid grid-cols-3 divide-x divide-white/[0.08]">
+                <div className="bg-sky-50 backdrop-blur-md p-4 border-t border-gray-100">
+                  <div className="grid grid-cols-3 divide-x divide-brand-navy/10">
                     <div className="text-center px-3">
-                      <div className="text-xl sm:text-2xl font-black text-[#F5A623] tabular-nums">{onlineCount}+</div>
-                      <div className="text-[10px] text-white/40 font-medium mt-0.5">Online Now</div>
+                      <div className="text-xl sm:text-2xl font-black text-brand-navy tabular-nums">{onlineCount}+</div>
+                      <div className="text-[10px] text-brand-navy/60 font-medium mt-0.5">Online Now</div>
                     </div>
                     <div className="text-center px-3">
-                      <div className="text-xl sm:text-2xl font-black text-[#F5A623]">✓</div>
-                      <div className="text-[10px] text-white/40 font-medium mt-0.5">Identity checked</div>
+                      <div className="text-xl sm:text-2xl font-black text-brand-navy">✓</div>
+                      <div className="text-[10px] text-brand-navy/60 font-medium mt-0.5">Identity checked</div>
                     </div>
                     <div className="text-center px-3">
-                      <div className="text-xl sm:text-2xl font-black text-[#F5A623]">24/7</div>
-                      <div className="text-[10px] text-white/40 font-medium mt-0.5">Support</div>
+                      <div className="text-xl sm:text-2xl font-black text-brand-navy">24/7</div>
+                      <div className="text-[10px] text-brand-navy/60 font-medium mt-0.5">Support</div>
                     </div>
                   </div>
                 </div>
@@ -634,38 +607,26 @@ export default function TradespersonLoginPage() {
             {/* Why Choose card */}
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
-              <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-                <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Why Join MyApproved</h2>
+              <div className="relative bg-sky-50 backdrop-blur-md rounded-3xl border border-gray-100 p-6 shadow-xl">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
+                <h2 className="text-xl font-extrabold text-brand-navy mb-4">Your Member Dashboard</h2>
                 <ul className="space-y-4">
                   {[
-                    { Icon: Shield,       color: "blue",   title: "Identity Checked Badge",  body: "Show customers you are ID-checked and your public liability insurance is confirmed." },
-                    { Icon: Star,         color: "yellow", title: "Quality Leads Only",  body: "Receive genuine job requests from real customers in your area." },
-                    { Icon: CheckCircle,  color: "green",  title: "Grow Your Business",  body: "Receive genuine job requests from real customers in your area." },
-                  ].map(({ Icon, color, title, body }) => (
+                    { Icon: Shield,       title: "Keep Your Status Active",  body: "Your identity check and public liability insurance stay current on your profile." },
+                    { Icon: Star,         title: "Manage Open Jobs",  body: "Review and respond to new customer requests from your dashboard." },
+                    { Icon: CheckCircle,  title: "Update Your Availability",  body: "Keep your profile and service areas accurate so customers can reach you." },
+                  ].map(({ Icon, title, body }) => (
                     <li key={title} className="flex items-start gap-3">
-                      <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full bg-${color}-500/20 border border-${color}-400/30 backdrop-blur-sm shrink-0`}>
-                        <Icon className={`h-5 w-5 text-${color}-400`} />
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 shrink-0">
+                        <Icon className="h-5 w-5 text-white" />
                       </span>
                       <div>
-                        <p className="text-sm font-semibold text-white">{title}</p>
-                        <p className="text-sm text-blue-200">{body}</p>
+                        <p className="text-sm font-semibold text-brand-navyDark">{title}</p>
+                        <p className="text-sm text-brand-navy/80">{body}</p>
                       </div>
                     </li>
                   ))}
                 </ul>
-              </div>
-            </div>
-
-            {/* Trust strip */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-xl blur-xl" />
-              <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-xl border border-white/20 p-4 shadow-xl">
-                <div className="flex items-center justify-center gap-2 text-center">
-                  <Shield className="h-5 w-5 text-green-400" />
-                  <span className="text-lg font-bold text-white">Identity checked</span>
-                  <span className="text-blue-200">public liability insurance confirmed and monitored</span>
-                </div>
               </div>
             </div>
 

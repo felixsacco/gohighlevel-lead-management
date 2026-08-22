@@ -244,6 +244,18 @@ export default function FindTradeLocationPage({
       ).slice(0, 12)
     : [];
 
+  // Coverage-section layout constants. "Rows" are defined against a fixed
+  // column count so the initial view is deterministic regardless of trade or
+  // location. Postcodes render on a 6-column grid (lg) and nearby towns on a
+  // 3-column grid, so exactly ROWS × COLUMNS items show before expanding.
+  const POSTCODE_COLUMNS = 6;
+  const POSTCODE_INITIAL_ROWS = 3;
+  const postcodesVisibleCount = POSTCODE_COLUMNS * POSTCODE_INITIAL_ROWS; // 18
+
+  const NEARBY_COLUMNS = 3;
+  const NEARBY_INITIAL_ROWS = 2;
+  const nearbyVisibleCount = NEARBY_COLUMNS * NEARBY_INITIAL_ROWS; // 6
+
   const otherCities = LOCATIONS.filter(
     (l) => l.priority <= 2 && l.name !== locationName
   ).slice(0, 12);
@@ -623,11 +635,11 @@ export default function FindTradeLocationPage({
                     <p className="text-sm font-semibold text-slate-600 mb-3">
                       Postcode districts served:
                     </p>
-                    {location.postcodes.length > 9 ? (
+                    {location.postcodes.length > postcodesVisibleCount ? (
                       <Accordion type="single" collapsible className="mb-6">
                         <AccordionItem value="postcodes">
                           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 mx-auto">
-                            {location.postcodes.slice(0, 9).map((pc) => (
+                            {location.postcodes.slice(0, postcodesVisibleCount).map((pc) => (
                               <div
                                 key={pc}
                                 className="flex items-center gap-1.5 bg-brand-slate rounded-xl px-3 py-2.5 border border-gray-100 justify-center"
@@ -639,7 +651,7 @@ export default function FindTradeLocationPage({
                           </div>
                           <AccordionContent>
                             <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 pt-2 mx-auto">
-                              {location.postcodes.slice(9).map((pc) => (
+                              {location.postcodes.slice(postcodesVisibleCount).map((pc) => (
                                 <div
                                   key={pc}
                                   className="flex items-center gap-1.5 bg-brand-slate rounded-xl px-3 py-2.5 border border-gray-100"
@@ -651,7 +663,7 @@ export default function FindTradeLocationPage({
                             </div>
                           </AccordionContent>
                           <AccordionTrigger className="mt-2 text-sm font-semibold text-brand-navy">
-                            Show {location.postcodes.length - 9} more postcodes
+                            Show {location.postcodes.length - postcodesVisibleCount} more postcodes
                           </AccordionTrigger>
                         </AccordionItem>
                       </Accordion>
@@ -676,15 +688,15 @@ export default function FindTradeLocationPage({
                     <p className="text-sm font-semibold text-slate-600 mb-3">
                       Also serving nearby towns:
                     </p>
-                    {nearbyLocations.length > 8 ? (
+                    {nearbyLocations.length > nearbyVisibleCount ? (
                       <Accordion type="single" collapsible>
                         <AccordionItem value="nearby">
-                          <div className="flex flex-wrap justify-center gap-2.5">
-                            {nearbyLocations.slice(0, 8).map((nearby) => (
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mx-auto">
+                            {nearbyLocations.slice(0, nearbyVisibleCount).map((nearby) => (
                               <Link
                                 key={nearby.name}
                                 href={`/find-tradespeople/${params.trade}/${toSlug(nearby.name)}`}
-                                className="inline-flex items-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3.5 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all whitespace-nowrap"
+                                className="inline-flex items-center justify-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3.5 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all whitespace-nowrap"
                               >
                                 {trade.plural} in {nearby.name}
                                 <ArrowRight className="w-3 h-3 flex-shrink-0" />
@@ -692,12 +704,12 @@ export default function FindTradeLocationPage({
                             ))}
                           </div>
                           <AccordionContent>
-                            <div className="flex flex-wrap justify-center gap-2.5 pt-2">
-                              {nearbyLocations.slice(8).map((nearby) => (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 pt-2 mx-auto">
+                              {nearbyLocations.slice(nearbyVisibleCount).map((nearby) => (
                                 <Link
                                   key={nearby.name}
                                   href={`/find-tradespeople/${params.trade}/${toSlug(nearby.name)}`}
-                                  className="inline-flex items-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3.5 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all whitespace-nowrap"
+                                  className="inline-flex items-center justify-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3.5 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all whitespace-nowrap"
                                 >
                                   {trade.plural} in {nearby.name}
                                   <ArrowRight className="w-3 h-3 flex-shrink-0" />
@@ -706,17 +718,17 @@ export default function FindTradeLocationPage({
                             </div>
                           </AccordionContent>
                           <AccordionTrigger className="mt-2 text-sm font-semibold text-brand-navy">
-                            Show {nearbyLocations.length - 8} more nearby towns
+                            Show {nearbyLocations.length - nearbyVisibleCount} more nearby towns
                           </AccordionTrigger>
                         </AccordionItem>
                       </Accordion>
                     ) : (
-                      <div className="flex flex-wrap justify-center gap-2.5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mx-auto">
                         {nearbyLocations.map((nearby) => (
                           <Link
                             key={nearby.name}
                             href={`/find-tradespeople/${params.trade}/${toSlug(nearby.name)}`}
-                            className="inline-flex items-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3.5 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all whitespace-nowrap"
+                            className="inline-flex items-center justify-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3.5 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all whitespace-nowrap"
                           >
                             {trade.plural} in {nearby.name}
                             <ArrowRight className="w-3 h-3 flex-shrink-0" />
