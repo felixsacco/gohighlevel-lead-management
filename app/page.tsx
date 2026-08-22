@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { graphify } from "@/components/SchemaMarkup";
 import {
   Search,
   ArrowRight,
@@ -251,51 +252,55 @@ export default function Home() {
     reduceMotion || searchFocused
   );
 
+  const schema = graphify([
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://myapproved.com/#website",
+      "url": "https://myapproved.com",
+      "name": "MyApproved",
+      "description": "Find identity-checked local tradespeople across the UK. Free quotes, real reviews, public liability insurance confirmed and monitored.",
+      "inLanguage": "en-GB",
+      "potentialAction": { "@type": "SearchAction", "target": { "@type": "EntryPoint", "urlTemplate": "https://myapproved.com/find-tradespeople?search={search_term_string}" }, "query-input": "required name=search_term_string" }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://myapproved.com/#organization",
+      "name": "MyApproved",
+      "url": "https://myapproved.com",
+      "logo": { "@type": "ImageObject", "url": "https://myapproved.com/logo-icon.svg", "width": 512, "height": 512 },
+      "description": "MyApproved is a UK-wide tradespeople verification platform connecting homeowners nationwide with identity-checked and reviewed local tradespeople whose public liability insurance is confirmed and monitored.",
+      "areaServed": { "@type": "Country", "name": "United Kingdom" },
+      "sameAs": [
+        process.env.NEXT_PUBLIC_TWITTER_URL,
+        process.env.NEXT_PUBLIC_FACEBOOK_URL,
+        process.env.NEXT_PUBLIC_LINKEDIN_URL,
+        process.env.NEXT_PUBLIC_INSTAGRAM_URL
+      ].filter(Boolean)
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://myapproved.com/#webpage",
+      "url": "https://myapproved.com",
+      "name": "MyApproved - Verified Tradespeople UK",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "[data-speakable]"]
+      },
+      "about": {
+        "@id": "https://myapproved.com/#organization"
+      }
+    }
+  ]);
+
   return (
     <>
-      {/* WebSite JSON-LD - enables Google Sitelinks search box */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "@id": "https://myapproved.com/#website",
-        "url": "https://myapproved.com",
-        "name": "MyApproved",
-        "description": "Find identity-checked local tradespeople across the UK. Free quotes, real reviews, public liability insurance confirmed and monitored.",
-        "inLanguage": "en-GB",
-        "potentialAction": { "@type": "SearchAction", "target": { "@type": "EntryPoint", "urlTemplate": "https://myapproved.com/find-tradespeople?search={search_term_string}" }, "query-input": "required name=search_term_string" }
-      }) }} />
-      {/* Organization JSON-LD - entity establishment for knowledge graphs */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": "https://myapproved.com/#organization",
-        "name": "MyApproved",
-        "url": "https://myapproved.com",
-        "logo": { "@type": "ImageObject", "url": "https://myapproved.com/logo-icon.svg", "width": 512, "height": 512 },
-        "description": "MyApproved is a UK-wide tradespeople verification platform connecting homeowners nationwide with identity-checked and reviewed local tradespeople whose public liability insurance is confirmed and monitored.",
-        "areaServed": { "@type": "Country", "name": "United Kingdom" },
-        "sameAs": [
-          process.env.NEXT_PUBLIC_TWITTER_URL,
-          process.env.NEXT_PUBLIC_FACEBOOK_URL,
-          process.env.NEXT_PUBLIC_LINKEDIN_URL,
-          process.env.NEXT_PUBLIC_INSTAGRAM_URL
-        ].filter(Boolean)
-      }) }} />
-      {/* Speakable - voice search / assistant extraction targets */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "@id": "https://myapproved.com/#webpage",
-        "url": "https://myapproved.com",
-        "name": "MyApproved - Verified Tradespeople UK",
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": ["h1", "[data-speakable]"]
-        },
-        "about": {
-          "@id": "https://myapproved.com/#organization"
-        }
-      }) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
 
       {/* HERO SECTION — a public register for identity-checked tradespeople, not a marketing banner */}
       <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">

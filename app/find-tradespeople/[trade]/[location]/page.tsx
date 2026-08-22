@@ -14,7 +14,11 @@ import {
   TRADES,
   LOCATIONS,
   generateTradeLocationSchema,
+  resolveLocation,
+  ALL_NEIGHBORHOOD_SLUGS,
+  toSlug,
 } from "@/lib/seo-data";
+import { graphify } from "@/components/SchemaMarkup";
 import AEOContentBlock from "@/components/AEOContentBlock";
 import TradeLocationLiveResults, {
   fetchTradeLocationProviders,
@@ -109,11 +113,6 @@ import {
   Zap,
 } from "lucide-react";
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
-function toSlug(str: string): string {
-  return str.toLowerCase().replace(/[\s]+/g, "-").replace(/[^a-z0-9-]/g, "");
-}
-
 // ── Service icon mapping ───────────────────────────────────────────────────────
 // Each trade maps its `services` (in order) to an explicit, distinct icon so no
 // two cards in a row share a glyph and every icon is a precise visual match for
@@ -169,7 +168,10 @@ function getServiceIcon(tradeSlug: string, index: number): ServiceIcon {
 export async function generateStaticParams() {
   const params: { trade: string; location: string }[] = [];
 
-  const allLocationSlugs = LOCATIONS.map((l) => toSlug(l.name));
+  const allLocationSlugs = [
+    ...LOCATIONS.map((l) => toSlug(l.name)),
+    ...ALL_NEIGHBORHOOD_SLUGS,
+  ];
 
   for (const trade of TRADES) {
     for (const locationSlug of allLocationSlugs) {
@@ -187,7 +189,7 @@ export async function generateMetadata({
   params: { trade: string; location: string };
 }): Promise<Metadata> {
   const trade = TRADES.find((t) => t.slug === params.trade);
-  const location = LOCATIONS.find((l) => toSlug(l.name) === params.location);
+  const location = resolveLocation(params.location);
 
   if (!trade || !location)
     return { title: "Not Found | MyApproved", robots: { index: false } };
@@ -225,7 +227,7 @@ export default async function FindTradeLocationPage({
   const trade = TRADES.find((t) => t.slug === params.trade);
   if (!trade) notFound();
 
-  const location = LOCATIONS.find((l) => toSlug(l.name) === params.location);
+  const location = resolveLocation(params.location);
   if (!location) notFound();
   const locationName = location.name;
 
@@ -246,8 +248,6 @@ export default async function FindTradeLocationPage({
   ) {
     notFound();
   }
-
-  const schema = generateTradeLocationSchema(params.trade, params.location);
 
   const relatedTrades = TRADES.filter(
     (t) => t.category === trade.category && t.slug !== trade.slug
@@ -294,144 +294,146 @@ export default async function FindTradeLocationPage({
     },
   ];
 
+  const schema = graphify([
+    ...(generateTradeLocationSchema(params.trade, params.location)
+      ? [generateTradeLocationSchema(params.trade, params.location)]
+      : []),
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
+      name: `${trade.name}s in ${locationName} | Verified & Approved | MyApproved`,
+      description: `Find verified ${trade.plural.toLowerCase()} in ${locationName}. Compare profiles, read reviews from confirmed jobs, and get free quotes on MyApproved. Every ${trade.name.toLowerCase()} passes identity, business and insurance checks before listing.`,
+      url: `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
+      image: "https://myapproved.com/logo-icon.svg",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://myapproved.com/logo-icon.svg",
+        width: 512,
+        height: 512,
+      },
+      priceRange: "££",
+      currenciesAccepted: "GBP",
+      paymentAccepted: "Cash, Credit Card, Bank Transfer",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: locationName,
+        addressRegion: location?.region || "England",
+        addressCountry: "GB",
+      },
+      areaServed: {
+        "@type": "City",
+        name: locationName,
+        containedInPlace: {
+          "@type": "AdministrativeArea",
+          name: location?.region || "England",
+          containedInPlace: {
+            "@type": "Country",
+            name: "United Kingdom",
+          },
+        },
+      },
+      openingHoursSpecification: [
+        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "07:00", closes: "21:00" },
+        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday"], opens: "07:00", closes: "20:00" },
+        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Sunday"], opens: "08:00", closes: "18:00" },
+      ],
+      hasCredential: {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "Platform Verification",
+        identifier: {
+          "@type": "PropertyValue",
+          name: "MyApproved tradesperson verification",
+          value: "identity-checked & insured",
+        },
+        description: `Every ${trade.name.toLowerCase()} listed on MyApproved in ${locationName} has passed identity, business and public liability insurance checks, which are confirmed and monitored by MyApproved.`,
+        recognizedBy: {
+          "@type": "Organization",
+          "@id": "https://myapproved.com/#organization",
+          name: "MyApproved",
+          url: "https://myapproved.com",
+        },
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://myapproved.com",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Find Tradespeople",
+          item: "https://myapproved.com/find-tradespeople",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: trade.plural,
+          item: `https://myapproved.com/find-tradespeople/${params.trade}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 4,
+          name: locationName,
+          item: `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
+        },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      name: `How to hire a verified ${trade.name.toLowerCase()} in ${locationName}`,
+      description: `How to find and hire a verified, insured ${trade.name.toLowerCase()} in ${locationName} through MyApproved.`,
+      step: [
+        {
+          "@type": "HowToStep",
+          position: 1,
+          name: "Post your job",
+          text: `Describe the ${trade.name.toLowerCase()} work you need in ${locationName}. It takes under 2 minutes and costs nothing.`,
+        },
+        {
+          "@type": "HowToStep",
+          position: 2,
+          name: "Verified tradespeople call you back",
+          text: `Verified local ${trade.plural.toLowerCase()} contact you directly to discuss the job and provide a fixed, written quote.`,
+        },
+        {
+          "@type": "HowToStep",
+          position: 3,
+          name: "Compare profiles and choose",
+          text: "Review each professional's verified credentials, ratings from confirmed jobs, and quote. Message them directly, with no obligation.",
+        },
+        {
+          "@type": "HowToStep",
+          position: 4,
+          name: "Hire with confidence",
+          text: `Every ${trade.name.toLowerCase()} passes identity, business and insurance checks before listing, and their public liability insurance is monitored.`,
+        },
+      ],
+    },
+  ]);
+
   return (
     <>
       {/* ── Structured Data ── */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "@id": `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
-            name: `${trade.name}s in ${locationName} | Verified & Approved | MyApproved`,
-            description: `Find verified ${trade.plural.toLowerCase()} in ${locationName}. Compare profiles, read reviews from confirmed jobs, and get free quotes on MyApproved. Every ${trade.name.toLowerCase()} passes identity, business and insurance checks before listing.`,
-            url: `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
-            image: "https://myapproved.com/logo-icon.svg",
-            logo: {
-              "@type": "ImageObject",
-              url: "https://myapproved.com/logo-icon.svg",
-              width: 512,
-              height: 512,
-            },
-            priceRange: "££",
-            currenciesAccepted: "GBP",
-            paymentAccepted: "Cash, Credit Card, Bank Transfer",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: locationName,
-              addressRegion: location?.region || "England",
-              addressCountry: "GB",
-            },
-            areaServed: {
-              "@type": "City",
-              name: locationName,
-              containedInPlace: {
-                "@type": "AdministrativeArea",
-                name: location?.region || "England",
-                containedInPlace: {
-                  "@type": "Country",
-                  name: "United Kingdom",
-                },
-              },
-            },
-            openingHoursSpecification: [
-              { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "07:00", closes: "21:00" },
-              { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday"], opens: "07:00", closes: "20:00" },
-              { "@type": "OpeningHoursSpecification", dayOfWeek: ["Sunday"], opens: "08:00", closes: "18:00" },
-            ],
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.q,
-              acceptedAnswer: { "@type": "Answer", text: faq.a },
-            })),
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://myapproved.com",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Find Tradespeople",
-                item: "https://myapproved.com/find-tradespeople",
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: trade.plural,
-                item: `https://myapproved.com/find-tradespeople/${params.trade}`,
-              },
-              {
-                "@type": "ListItem",
-                position: 4,
-                name: locationName,
-                item: `https://myapproved.com/find-tradespeople/${params.trade}/${params.location}`,
-              },
-            ],
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "HowTo",
-            name: `How to hire a verified ${trade.name.toLowerCase()} in ${locationName}`,
-            description: `How to find and hire a verified, insured ${trade.name.toLowerCase()} in ${locationName} through MyApproved.`,
-            step: [
-              {
-                "@type": "HowToStep",
-                position: 1,
-                name: "Post your job",
-                text: `Describe the ${trade.name.toLowerCase()} work you need in ${locationName}. It takes under 2 minutes and costs nothing.`,
-              },
-              {
-                "@type": "HowToStep",
-                position: 2,
-                name: "Verified tradespeople call you back",
-                text: `Verified local ${trade.plural.toLowerCase()} contact you directly to discuss the job and provide a fixed, written quote.`,
-              },
-              {
-                "@type": "HowToStep",
-                position: 3,
-                name: "Compare profiles and choose",
-                text: "Review each professional's verified credentials, ratings from confirmed jobs, and quote. Message them directly, with no obligation.",
-              },
-              {
-                "@type": "HowToStep",
-                position: 4,
-                name: "Hire with confidence",
-                text: `Every ${trade.name.toLowerCase()} passes identity, business and insurance checks before listing, and their public liability insurance is monitored.`,
-              },
-            ],
-          }),
-        }}
       />
 
       <div className="min-h-screen bg-white">

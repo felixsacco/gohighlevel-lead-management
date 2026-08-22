@@ -508,6 +508,8 @@ function toTitleCase(slug: string): string {
   return slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 }
 
+import { graphify } from '@/components/SchemaMarkup';
+
 function toLocationSlug(str: string): string {
   return str.toLowerCase().replace(/[\s]+/g, "-").replace(/[^a-z0-9-]/g, "");
 }
@@ -592,8 +594,19 @@ export default function ProgrammaticSchema({
     hasCredential: {
       "@type": "EducationalOccupationalCredential",
       credentialCategory: "Platform Verification",
+      identifier: {
+        "@type": "PropertyValue",
+        name: "MyApproved tradesperson verification",
+        value: "identity-checked & insured",
+      },
       description:
         "Every tradesperson listed on MyApproved has passed identity, business, and public liability insurance checks, which are confirmed and monitored by MyApproved.",
+      recognizedBy: {
+        "@type": "Organization",
+        "@id": "https://myapproved.com/#organization",
+        name: "MyApproved",
+        url: "https://myapproved.com",
+      },
     },
   };
 
@@ -663,17 +676,12 @@ export default function ProgrammaticSchema({
     } : {}),
   };
 
-  const schemas = [localBusinessSchema, faqSchema, breadcrumbSchema, serviceSchema];
+  const schema = graphify([localBusinessSchema, faqSchema, breadcrumbSchema, serviceSchema]);
 
   return (
-    <>
-      {schemas.map((schema, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      ))}
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 }

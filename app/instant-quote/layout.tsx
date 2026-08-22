@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { graphify } from '@/components/SchemaMarkup';
 
 export const metadata: Metadata = {
   title: "Get Free Quotes from Verified Tradespeople | MyApproved UK",
@@ -21,26 +22,37 @@ export const metadata: Metadata = {
 };
 
 export default function InstantQuoteLayout({ children }: { children: React.ReactNode }) {
+  const schema = graphify([
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://myapproved.com/#organization",
+      "name": "MyApproved",
+      "url": "https://myapproved.com",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://myapproved.com/instant-quote",
+      "url": "https://myapproved.com/instant-quote",
+      "name": "Get Free Quotes from Verified Tradespeople",
+      "description": "Post your home improvement job and receive free quotes from identity-checked, insured local tradespeople across the UK.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://myapproved.com" },
+          { "@type": "ListItem", "position": 2, "name": "Get Free Quotes", "item": "https://myapproved.com/instant-quote" }
+        ]
+      }
+    },
+  ]);
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "@id": "https://myapproved.com/instant-quote",
-            "url": "https://myapproved.com/instant-quote",
-            "name": "Get Free Quotes from Verified Tradespeople",
-            "description": "Post your home improvement job and receive free quotes from identity-checked, insured local tradespeople across the UK.",
-            "breadcrumb": {
-              "@type": "BreadcrumbList",
-              "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://myapproved.com" },
-                { "@type": "ListItem", "position": 2, "name": "Get Free Quotes", "item": "https://myapproved.com/instant-quote" }
-              ]
-            }
-          })
+          __html: JSON.stringify(schema)
         }}
       />
       {children}

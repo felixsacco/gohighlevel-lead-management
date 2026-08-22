@@ -4,11 +4,22 @@ import { Wrench, FileText, MapPin, Calculator, Star, Shield, CheckCircle, Chevro
 import { ShieldCheck as ShieldCheckFill, SealCheck as SealCheckFill } from "@phosphor-icons/react";
 import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 import AIQuoteTriggerButton from "@/components/AIQuoteTriggerButton";
+import { graphify } from "@/components/SchemaMarkup";
 
 
-const schema = {
+const schema = graphify([
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://myapproved.com/#organization",
+    "name": "MyApproved",
+    "url": "https://myapproved.com",
+  },
+  {
   "@context": "https://schema.org",
   "@type": "HowTo",
+  "@id": "https://myapproved.com/how-it-works",
+  "url": "https://myapproved.com/how-it-works",
   "name": "How to Find and Hire a Verified Tradesperson with MyApproved",
   "description": "Find and hire a trusted, verified tradesperson in the UK in 4 simple steps.",
   "totalTime": "PT10M",
@@ -18,7 +29,8 @@ const schema = {
     { "@type": "HowToStep", "position": 3, "name": "Location & Timing", "text": "Give us your postcode and preferred availability so we can find tradespeople who cover your area." },
     { "@type": "HowToStep", "position": 4, "name": "Estimate & Submit", "text": "Review a costed price range, submit your job, and a verified tradesperson will call you to arrange the work." },
   ],
-};
+  },
+]);
 
 const trades = [
   "Plumber", "Electrician", "Builder", "Painter", "Roofer", "Gardener",

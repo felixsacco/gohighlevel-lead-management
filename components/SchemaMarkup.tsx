@@ -239,3 +239,30 @@ export const ServiceSchema = {
     ]
   }
 };
+
+/**
+ * Consolidate a list of JSON-LD nodes that each carry their own `@context` into a
+ * single `@graph` document with one shared `@context`. Strips the redundant
+ * per-node `@context` so output is valid Schema.org `@graph` (one `<script>` tag
+ * instead of many).
+ */
+export function graphify(nodes: any[]): any {
+  return {
+    "@context": "https://schema.org",
+    "@graph": nodes.map(({ "@context": _ctx, ...rest }) => rest),
+  };
+}
+
+/**
+ * The six persistent site-wide entities (organization, website, service,
+ * local business, FAQ and breadcrumb) collapsed into a single `@graph` array,
+ * all anchored to `https://myapproved.com/#organization`.
+ */
+export const siteGraph = graphify([
+  organizationSchema,
+  WebsiteSchema,
+  ServiceSchema,
+  LocalBusinessSchema,
+  FAQSchema,
+  BreadcrumbSchema,
+]);

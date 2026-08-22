@@ -3,6 +3,7 @@ import { HelpCircle, ChevronDown, Search, Shield, Users, CreditCard } from 'luci
 import { Section } from '@/components/ui/Section';
 import { Container } from '@/components/ui/Container';
 import SectionHeaderPill from '@/components/ui/SectionHeaderPill';
+import { graphify } from '@/components/SchemaMarkup';
 
 export const metadata = generateMetadata('faq', {
   title: 'FAQ - Frequently Asked Questions About Hiring Tradespeople | MyApproved',
@@ -11,10 +12,20 @@ export const metadata = generateMetadata('faq', {
   canonical: 'https://myapproved.com/faq'
 });
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+const faqSchema = graphify([
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://myapproved.com/#organization",
+    "name": "MyApproved",
+    "url": "https://myapproved.com",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://myapproved.com/faq",
+    "url": "https://myapproved.com/faq",
+    "mainEntity": [
     {
       "@type": "Question",
       "name": "How does MyApproved work?",
@@ -72,7 +83,8 @@ const faqSchema = {
       }
     }
   ]
-};
+  },
+]);
 
 export default function FAQPage() {
   const faqCategories = [

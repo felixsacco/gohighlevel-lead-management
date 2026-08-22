@@ -1,24 +1,40 @@
+# MyApproved — Robots & AI-Crawler Governance
+# Allow search and answer engines to index public informational pages,
+# programmatic directories, and FAQs (AEO/GEO visibility), while strictly
+# blocking sensitive utility, admin, auth, and dashboard endpoints.
+
 Sitemap: https://myapproved.com/sitemap.xml
 
-# ── Default: allow all, block internal/debug/auth routes ─────────────────────
+# ─── Sensitive / utility paths (shared by every agent below) ─────────────────
+# Kept as a single reusable concern: APIs, admin, auth, dashboards, debug/test
+# surfaces, and internal tooling must never be crawled by any bot.
+# (Robots.txt does not support variables, so these are repeated per group.)
+
+# ─── Default crawl policy: all agents ─────────────────────────────────────────
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /_next/
 Disallow: /private/
 Disallow: /admin/
-Disallow: /admin/*
 Disallow: /dashboard/
 Disallow: /dashboard/*
 Disallow: /debug/
-Disallow: /debug*
+Disallow: /debug-*
 Disallow: /test-*
+Disallow: /test-api
+Disallow: /test-connection
+Disallow: /test-crm
+Disallow: /test-email
+Disallow: /test-email-admin
+Disallow: /test-file-upload
+Disallow: /test-registration
 Disallow: /api-test/
-Disallow: /setup-crm/
-Disallow: /setup-crm-private/
 Disallow: /verify-captcha/
 Disallow: /verify-mock/
 Disallow: /verify-email/
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
 Disallow: /reset-password/
 Disallow: /reset-password-client/
 Disallow: /reset-password-tradesperson/
@@ -28,8 +44,10 @@ Disallow: /leads/
 Disallow: /notifications/
 Disallow: /report-issue/
 Disallow: /thank-you/
+Disallow: /login/
+Disallow: /register/
 
-# ── Google ────────────────────────────────────────────────────────────────────
+# ─── Traditional search engines ───────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
 Disallow: /api/
@@ -39,25 +57,8 @@ Disallow: /debug*
 Disallow: /test-*
 Disallow: /setup-crm/
 Disallow: /setup-crm-private/
-
-# ── AI answer engines — allow full crawl for AEO citations ───────────────────
-User-agent: GPTBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Applebot
-Allow: /
+Disallow: /login/
+Disallow: /register/
 
 User-agent: Bingbot
 Allow: /
@@ -66,3 +67,205 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /debug*
 Disallow: /test-*
+Disallow: /login/
+Disallow: /register/
+
+User-agent: Applebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /login/
+Disallow: /register/
+
+# ─── AI answer engines & LLM crawlers ─────────────────────────────────────────
+# Public informational pages (home, /find-tradespeople/, /tradesperson/[id],
+# /faq, /locations, /blog, /how-it-works, legal pages) remain crawlable for
+# AEO/GEO citations. Sensitive endpoints stay blocked — never grant blanket
+# /allow to account, admin, or utility surfaces.
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /api-test/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password*
+Disallow: /verify-*
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+Disallow: /leads/
+Disallow: /notifications/
+Disallow: /job-description/
+Disallow: /report-issue/
+Disallow: /thank-you/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /api-test/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password*
+Disallow: /verify-*
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+Disallow: /leads/
+Disallow: /notifications/
+Disallow: /job-description/
+Disallow: /report-issue/
+Disallow: /thank-you/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /api-test/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password*
+Disallow: /verify-*
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+Disallow: /leads/
+Disallow: /notifications/
+Disallow: /job-description/
+Disallow: /report-issue/
+Disallow: /thank-you/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /api-test/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password*
+Disallow: /verify-*
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+Disallow: /leads/
+Disallow: /notifications/
+Disallow: /job-description/
+Disallow: /report-issue/
+Disallow: /thank-you/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /api-test/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password*
+Disallow: /verify-*
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+Disallow: /leads/
+Disallow: /notifications/
+Disallow: /job-description/
+Disallow: /report-issue/
+Disallow: /thank-you/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /api-test/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password*
+Disallow: /verify-*
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+Disallow: /leads/
+Disallow: /notifications/
+Disallow: /job-description/
+Disallow: /report-issue/
+Disallow: /thank-you/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /api-test/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password*
+Disallow: /verify-*
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+Disallow: /leads/
+Disallow: /notifications/
+Disallow: /job-description/
+Disallow: /report-issue/
+Disallow: /thank-you/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /api-test/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password*
+Disallow: /verify-*
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+Disallow: /leads/
+Disallow: /notifications/
+Disallow: /job-description/
+Disallow: /report-issue/
+Disallow: /thank-you/

@@ -1,6 +1,6 @@
 import './globals.css';
 import './hero-animations.css';
-import { SchemaMarkup, organizationSchema, WebsiteSchema, ServiceSchema, LocalBusinessSchema, FAQSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
+import { SchemaMarkup, siteGraph } from '@/components/SchemaMarkup';
 import type { Metadata } from 'next';
 import EnhancedHeader from '@/components/EnhancedHeader';
 import Footer from '@/components/Footer';
@@ -95,14 +95,7 @@ const fixedHeaderStyles = `
   }
 `;
 
-const schemas = [
-  organizationSchema,
-  WebsiteSchema,
-  ServiceSchema,
-  LocalBusinessSchema,
-  FAQSchema,
-  BreadcrumbSchema
-];
+const schemas = [siteGraph];
 
 export default function RootLayout({
   children,

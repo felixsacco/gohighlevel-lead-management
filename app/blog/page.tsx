@@ -8,6 +8,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { getAllBlogPosts } from '@/lib/blog-data'
 import { Clock, ArrowRight, User, Calendar } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -26,128 +27,11 @@ export const metadata: Metadata = {
   }
 }
 
-const BLOG_POSTS = [
-  {
-    slug: "how-much-does-a-plumber-cost-london",
-    title: "How Much Does a Plumber Cost in London? 2024 Price Guide",
-    excerpt: "Discover plumber costs in London. Hourly rates from £50-£100. Emergency call-outs, boiler repairs & installation prices. Get free quotes from verified plumbers.",
-    category: "Cost Guides",
-    author: "MyApproved Editorial Team",
-    date: "2024-01-15",
-    readTime: "8 min read",
-    featured: true,
-    image: "/images/blog/plumber-cost-london.jpg"
-  },
-  {
-    slug: "best-electrician-manchester",
-    title: "How to Find the Best Electrician in Manchester",
-    excerpt: "Looking for the best electrician in Manchester? Top-rated NICEIC-approved electricians. Compare quotes, read reviews, and hire with confidence.",
-    category: "Hiring Guides",
-    author: "MyApproved Editorial Team",
-    date: "2024-01-12",
-    readTime: "6 min read",
-    featured: false,
-    image: "/images/blog/electrician-manchester.jpg"
-  },
-  {
-    slug: "common-boiler-problems-winter",
-    title: "Common Boiler Problems in Winter: How to Fix & Prevent Them",
-    excerpt: "Winter boiler problems? Frozen pipes, pressure issues, no heating? Learn common winter boiler faults, quick fixes, and when to call a Gas Safe engineer.",
-    category: "Maintenance Guides",
-    author: "MyApproved Editorial Team",
-    date: "2024-01-10",
-    readTime: "7 min read",
-    featured: true,
-    image: "/images/blog/boiler-winter.jpg"
-  },
-  {
-    slug: "roofer-vs-diy-when-to-hire",
-    title: "Roofer vs DIY: When to Hire a Professional",
-    excerpt: "Should you fix your roof yourself or hire a professional? Learn the risks of DIY roofing and when it's essential to call a qualified roofer.",
-    category: "Advice",
-    author: "MyApproved Editorial Team",
-    date: "2024-01-08",
-    readTime: "5 min read",
-    featured: false,
-    image: "/images/blog/roofer-diy.jpg"
-  },
-  {
-    slug: "kitchen-renovation-cost-guide-2024",
-    title: "Kitchen Renovation Cost Guide 2024: Budget to Luxury",
-    excerpt: "Planning a kitchen renovation? From budget refreshes to luxury transformations, discover real costs for kitchen renovations in 2024.",
-    category: "Cost Guides",
-    author: "MyApproved Editorial Team",
-    date: "2024-01-05",
-    readTime: "10 min read",
-    featured: false,
-    image: "/images/blog/kitchen-renovation.jpg"
-  },
-  {
-    slug: "emergency-plumber-what-to-do",
-    title: "Emergency Plumber: What to Do When Pipes Burst",
-    excerpt: "Burst pipe emergency? Follow these immediate steps to minimise damage, then find an emergency plumber fast with MyApproved.",
-    category: "Emergency Guides",
-    author: "MyApproved Editorial Team",
-    date: "2024-01-03",
-    readTime: "4 min read",
-    featured: false,
-    image: "/images/blog/emergency-plumber.jpg"
-  },
-  {
-    slug: "gas-safety-certificate-explained",
-    title: "Gas Safety Certificate Explained: Landlord & Homeowner Guide",
-    excerpt: "What is a Gas Safety Certificate? Who needs one? How much do they cost? Everything you need to know about CP12 certificates for landlords and homeowners.",
-    category: "Legal & Safety",
-    author: "MyApproved Editorial Team",
-    date: "2023-12-28",
-    readTime: "6 min read",
-    featured: false,
-    image: "/images/blog/gas-safety.jpg"
-  },
-  {
-    slug: "loft-conversion-planning-permission",
-    title: "Loft Conversion Planning Permission: Do You Need It?",
-    excerpt: "Planning a loft conversion? Learn when you need planning permission, when permitted development applies, and how to navigate building regulations.",
-    category: "Planning & Permissions",
-    author: "MyApproved Editorial Team",
-    date: "2023-12-20",
-    readTime: "8 min read",
-    featured: false,
-    image: "/images/blog/loft-conversion.jpg"
-  },
-  {
-    slug: "bathroom-renovation-timeline",
-    title: "Bathroom Renovation Timeline: How Long Does It Really Take?",
-    excerpt: "How long does a bathroom renovation take? From planning to completion, understand realistic timelines for your bathroom project.",
-    category: "Planning & Timelines",
-    author: "MyApproved Editorial Team",
-    date: "2023-12-15",
-    readTime: "5 min read",
-    featured: false,
-    image: "/images/blog/bathroom-timeline.jpg"
-  },
-  {
-    slug: "finding-trusted-tradespeople",
-    title: "How to Find Trusted Tradespeople: Complete Checklist",
-    excerpt: "Don't risk cowboys. Learn how to verify tradespeople, check qualifications, read reviews properly, and protect yourself from rogue traders.",
-    category: "Hiring Guides",
-    author: "MyApproved Editorial Team",
-    date: "2023-12-10",
-    readTime: "7 min read",
-    featured: true,
-    image: "/images/blog/trusted-tradespeople.jpg"
-  }
-]
+const BLOG_POSTS = getAllBlogPosts()
 
 const CATEGORIES = [
   "All",
-  "Cost Guides",
-  "Hiring Guides",
-  "Maintenance Guides",
-  "Advice",
-  "Emergency Guides",
-  "Legal & Safety",
-  "Planning & Permissions"
+  ...Array.from(new Set(getAllBlogPosts().map(post => post.category)))
 ]
 
 export default function BlogPage() {
@@ -223,7 +107,7 @@ export default function BlogPage() {
                       {post.title}
                     </h3>
                     <p className="text-gray-600 mb-4 line-clamp-2">
-                      {post.excerpt}
+                      {post.metaDescription}
                     </p>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -269,11 +153,11 @@ export default function BlogPage() {
                     {post.title}
                   </h3>
                   <p className="text-sm text-gray-600 mb-4 line-clamp-2 flex-1">
-                    {post.excerpt}
+                    {post.metaDescription}
                   </p>
                   <div className="flex items-center gap-2 text-xs text-gray-500 mt-auto pt-4 border-t border-gray-100">
                     <Calendar className="w-3 h-3" />
-                    <span>{new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                    <span>{new Date(post.publishedDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
                   </div>
                 </div>
               </Link>

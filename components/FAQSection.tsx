@@ -266,15 +266,25 @@ const FAQSection = () => {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: faqs.map(faq => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: faq.answer + (faq.relatedLink ? ` Learn more: ${faq.relatedLink.href}` : '')
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://myapproved.com/#organization",
+                  "name": "MyApproved",
+                  "url": "https://myapproved.com"
+                },
+                {
+                  "@type": "FAQPage",
+                  mainEntity: faqs.map(faq => ({
+                    "@type": "Question",
+                    name: faq.question,
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: faq.answer + (faq.relatedLink ? ` Learn more: ${faq.relatedLink.href}` : '')
+                    }
+                  }))
                 }
-              }))
+              ]
             })
           }}
         />

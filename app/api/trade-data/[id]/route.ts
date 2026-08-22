@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { buildProfileSchema, looksLikePlaceholder } from "@/lib/tradesperson-schema";
 
 export async function GET(
   request: NextRequest,
@@ -72,39 +73,7 @@ export async function GET(
 
     // Hard server-side guard so placeholder / test profiles never appear,
     // even if they accidentally have is_active = is_approved = true.
-    const firstName = (tradesperson.first_name || "").trim();
-    const lastName = (tradesperson.last_name || "").trim();
-    const trade = (tradesperson.trade || "").trim();
-    const fullName = `${firstName} ${lastName}`.trim();
-    const PLACEHOLDER_NAME_PATTERN =
-      /\b(test|tester|testing|demo|sample|placeholder|mock|fake|dummy|example|asdf|qwerty|kill|asdas|abcd|xxxx|aaaa)\b/i;
-    const placeholderEmail = (() => {
-      const e = (tradesperson.email || "").toLowerCase();
-      if (!e) return false;
-      return (
-        e.includes("test@") ||
-        e.includes("+test") ||
-        e.endsWith("@test.com") ||
-        e.endsWith("@example.com") ||
-        e.endsWith("@example.co.uk") ||
-        e.endsWith("@mailinator.com")
-      );
-    })();
-
-    const looksLikePlaceholder =
-      !firstName ||
-      !lastName ||
-      !trade ||
-      !tradesperson.city ||
-      firstName.replace(/[^a-z]/gi, "").length < 2 ||
-      lastName.replace(/[^a-z]/gi, "").length < 2 ||
-      PLACEHOLDER_NAME_PATTERN.test(firstName) ||
-      PLACEHOLDER_NAME_PATTERN.test(lastName) ||
-      PLACEHOLDER_NAME_PATTERN.test(fullName) ||
-      PLACEHOLDER_NAME_PATTERN.test(trade) ||
-      placeholderEmail;
-
-    if (looksLikePlaceholder) {
+    if (looksLikePlaceholder(tradesperson)) {
       return NextResponse.json(
         { success: false, error: "Tradesperson not found" },
         { status: 404 }
@@ -112,6 +81,9 @@ export async function GET(
     }
 
     // Generate initials for profile picture
+    const firstName = (tradesperson.first_name || "").trim();
+    const lastName = (tradesperson.last_name || "").trim();
+    const fullName = `${firstName} ${lastName}`.trim();
     const nameParts = fullName.split(" ").filter((part) => part.length > 0);
     const initials =
       nameParts.length >= 2
@@ -130,7 +102,7 @@ export async function GET(
         : 0;
 
     // Honest description (no random numbers, no fabricated experience)
-    const description = `${trade}${
+    const description = `${tradesperson.trade}${
       tradesperson.city ? ` based in ${tradesperson.city}` : ""
     }.`;
 
@@ -153,83 +125,12 @@ export async function GET(
     // Build JSON-LD from real data only — no fabricated ratings, reviews, or
     // compliance claims. The credential block is emitted only when an admin
     // has manually set certification_verified = true.
-    const profileUrl = `https://myapproved.com/tradesperson/${tradesperson.id}`;
-    const reviewItems = reviews
-      .filter((review: any) => review.rating && review.rating > 0)
-      .map((review: any) => ({
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": review.rating,
-          "bestRating": 5,
-          "worstRating": 1,
-        },
-        "author": { "@type": "Person", "name": "Verified Customer" },
-        "reviewBody": (review.review_text || "").trim(),
-        "datePublished": review.reviewed_at || undefined,
-      }))
-      .filter((r: any) => r.reviewBody || r.datePublished);
-
-    const profileJsonLd: Record<string, any> = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": `${profileUrl}#localbusiness`,
-      "name": fullName,
-      "url": profileUrl,
-      "description": description,
-      "priceRange": hourlyRate || undefined,
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": tradesperson.city || undefined,
-        "postalCode": tradesperson.postcode || undefined,
-        "addressCountry": "GB",
-      },
-      "areaServed": tradesperson.city || undefined,
-    };
-
-    if (tradesperson.is_verified) {
-      profileJsonLd["identifier"] = {
-        "@type": "PropertyValue",
-        "name": "MyApproved identity verification",
-        "value": "verified",
-      };
-    }
-
-    if (averageRating > 0 && totalReviews > 0) {
-      profileJsonLd["aggregateRating"] = {
-        "@type": "AggregateRating",
-        "ratingValue": parseFloat(averageRating.toFixed(2)),
-        "reviewCount": totalReviews,
-        "bestRating": 5,
-        "worstRating": 1,
-      };
-    }
-
-    if (reviewItems.length > 0) {
-      profileJsonLd["review"] = reviewItems;
-    }
-
-    if (tradesperson.certification_verified === true) {
-      profileJsonLd["hasCredential"] = {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "Trade Professional Certification",
-        "description":
-          "Certification independently verified by a MyApproved administrator against the relevant UK trade register or scheme.",
-      };
-      if (tradesperson.certification_expires_at) {
-        profileJsonLd["hasCredential"]["validThrough"] =
-          tradesperson.certification_expires_at;
-      }
-      if (tradesperson.verification_status) {
-        profileJsonLd["hasCredential"]["credentialStatus"] =
-          tradesperson.verification_status;
-      }
-    }
+    const profileJsonLd = buildProfileSchema(tradesperson);
 
     const transformedTradesperson = {
       id: tradesperson.id,
       name: fullName,
-      trade,
+      trade: tradesperson.trade || "",
       rating: parseFloat(averageRating.toFixed(1)) || 0,
       reviews: totalReviews,
       reviewsData: reviews.map((review: any) => ({

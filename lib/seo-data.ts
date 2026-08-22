@@ -70,6 +70,211 @@ export const LOCATIONS = [
   { name: "Hull", region: "East Yorkshire", population: 260200, priority: 3, postcodes: ["HU1", "HU2"] },
 ] as const;
 
+// ── Shared slug helper ───────────────────────────────────────────────────────────
+export function toSlug(str: string): string {
+  return str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+}
+
+// ── Hyper-local neighbourhood / postal-district matrix ───────────────────────────
+// Maps parent-city slugs to a list of well-known neighbourhoods and districts
+// within that city. These seed hyper-local "near me" landing pages so coverage
+// is evenly distributed across the major UK regional city targets rather than
+// siloed around any single (e.g. Stoke-on-Trent/Staffordshire/Cheshire) area.
+// Each entry carries a real UK postal district for that neighbourhood.
+export const NEIGHBORHOODS: Record<
+  string,
+  { parent: string; name: string; postalDistrict: string }[]
+> = {
+  // ── Greater Manchester ──
+  "manchester": [
+    { parent: "Manchester", name: "Salford", postalDistrict: "M5" },
+    { parent: "Manchester", name: "Stockport", postalDistrict: "SK1" },
+    { parent: "Manchester", name: "Bolton", postalDistrict: "BL1" },
+    { parent: "Manchester", name: "Oldham", postalDistrict: "OL1" },
+    { parent: "Manchester", name: "Rochdale", postalDistrict: "OL11" },
+    { parent: "Manchester", name: "Bury", postalDistrict: "BL9" },
+    { parent: "Manchester", name: "Trafford", postalDistrict: "M16" },
+    { parent: "Manchester", name: "Wigan", postalDistrict: "WN1" },
+    { parent: "Manchester", name: "Tameside", postalDistrict: "OL6" },
+    { parent: "Manchester", name: "Didsbury", postalDistrict: "M20" },
+    { parent: "Manchester", name: "Chorlton", postalDistrict: "M21" },
+    { parent: "Manchester", name: "Salford Quays", postalDistrict: "M50" },
+  ],
+
+  // ── West Midlands (Birmingham + surrounding boroughs) ──
+  "birmingham": [
+    { parent: "Birmingham", name: "Edgbaston", postalDistrict: "B15" },
+    { parent: "Birmingham", name: "Moseley", postalDistrict: "B13" },
+    { parent: "Birmingham", name: "Harborne", postalDistrict: "B17" },
+    { parent: "Birmingham", name: "Handsworth", postalDistrict: "B21" },
+    { parent: "Birmingham", name: "Aston", postalDistrict: "B6" },
+    { parent: "Birmingham", name: "Erdington", postalDistrict: "B23" },
+    { parent: "Birmingham", name: "Kings Heath", postalDistrict: "B14" },
+    { parent: "Birmingham", name: "Selly Oak", postalDistrict: "B29" },
+    { parent: "Birmingham", name: "Yardley", postalDistrict: "B25" },
+    { parent: "Birmingham", name: "Acocks Green", postalDistrict: "B27" },
+    { parent: "Birmingham", name: "Perry Barr", postalDistrict: "B42" },
+    { parent: "Birmingham", name: "Northfield", postalDistrict: "B31" },
+  ],
+
+  // ── Greater London boroughs ──
+  "london": [
+    { parent: "London", name: "Camden", postalDistrict: "NW1" },
+    { parent: "London", name: "Islington", postalDistrict: "N1" },
+    { parent: "London", name: "Hackney", postalDistrict: "E8" },
+    { parent: "London", name: "Tower Hamlets", postalDistrict: "E14" },
+    { parent: "London", name: "Lambeth", postalDistrict: "SW9" },
+    { parent: "London", name: "Southwark", postalDistrict: "SE1" },
+    { parent: "London", name: "Wandsworth", postalDistrict: "SW18" },
+    { parent: "London", name: "Kensington & Chelsea", postalDistrict: "W8" },
+    { parent: "London", name: "Westminster", postalDistrict: "SW1A" },
+    { parent: "London", name: "Brent", postalDistrict: "NW6" },
+    { parent: "London", name: "Ealing", postalDistrict: "W5" },
+    { parent: "London", name: "Croydon", postalDistrict: "CR0" },
+    { parent: "London", name: "Greenwich", postalDistrict: "SE10" },
+    { parent: "London", name: "Haringey", postalDistrict: "N15" },
+    { parent: "London", name: "Newham", postalDistrict: "E15" },
+  ],
+
+  // ── Leeds / West Yorkshire ──
+  "leeds": [
+    { parent: "Leeds", name: "Headingley", postalDistrict: "LS6" },
+    { parent: "Leeds", name: "Chapeltown", postalDistrict: "LS7" },
+    { parent: "Leeds", name: "Roundhay", postalDistrict: "LS8" },
+    { parent: "Leeds", name: "Pudsey", postalDistrict: "LS28" },
+    { parent: "Leeds", name: "Morley", postalDistrict: "LS27" },
+    { parent: "Leeds", name: "Otley", postalDistrict: "LS21" },
+  ],
+
+  // ── Glasgow / Strathclyde ──
+  "glasgow": [
+    { parent: "Glasgow", name: "West End", postalDistrict: "G12" },
+    { parent: "Glasgow", name: "Southside", postalDistrict: "G42" },
+    { parent: "Glasgow", name: "East End", postalDistrict: "G31" },
+    { parent: "Glasgow", name: "Partick", postalDistrict: "G11" },
+    { parent: "Glasgow", name: "Shawlands", postalDistrict: "G41" },
+    { parent: "Glasgow", name: "Bearsden", postalDistrict: "G61" },
+  ],
+
+  // ── Liverpool / Merseyside ──
+  "liverpool": [
+    { parent: "Liverpool", name: "Toxteth", postalDistrict: "L8" },
+    { parent: "Liverpool", name: "Aigburth", postalDistrict: "L17" },
+    { parent: "Liverpool", name: "Anfield", postalDistrict: "L4" },
+    { parent: "Liverpool", name: "Allerton", postalDistrict: "L18" },
+    { parent: "Liverpool", name: "Walton", postalDistrict: "L9" },
+  ],
+
+  // ── Newcastle / Tyne and Wear ──
+  "newcastle": [
+    { parent: "Newcastle", name: "Jesmond", postalDistrict: "NE2" },
+    { parent: "Newcastle", name: "Gosforth", postalDistrict: "NE3" },
+    { parent: "Newcastle", name: "Heaton", postalDistrict: "NE6" },
+    { parent: "Newcastle", name: "Byker", postalDistrict: "NE6" },
+    { parent: "Newcastle", name: "Gateshead", postalDistrict: "NE8" },
+    { parent: "Newcastle", name: "Tynemouth", postalDistrict: "NE30" },
+  ],
+
+  // ── Sheffield / South Yorkshire ──
+  "sheffield": [
+    { parent: "Sheffield", name: "Ecclesall", postalDistrict: "S11" },
+    { parent: "Sheffield", name: "Broomhill", postalDistrict: "S10" },
+    { parent: "Sheffield", name: "Hillsborough", postalDistrict: "S6" },
+    { parent: "Sheffield", name: "Attercliffe", postalDistrict: "S9" },
+    { parent: "Sheffield", name: "Totley", postalDistrict: "S17" },
+    { parent: "Sheffield", name: "Darnall", postalDistrict: "S9" },
+  ],
+
+  // ── Bristol / South West ──
+  "bristol": [
+    { parent: "Bristol", name: "Clifton", postalDistrict: "BS8" },
+    { parent: "Bristol", name: "Redland", postalDistrict: "BS6" },
+    { parent: "Bristol", name: "Bedminster", postalDistrict: "BS3" },
+    { parent: "Bristol", name: "Southville", postalDistrict: "BS3" },
+    { parent: "Bristol", name: "St Pauls", postalDistrict: "BS2" },
+    { parent: "Bristol", name: "Kingswood", postalDistrict: "BS15" },
+  ],
+
+  // ── Nottingham / East Midlands ──
+  "nottingham": [
+    { parent: "Nottingham", name: "West Bridgford", postalDistrict: "NG2" },
+    { parent: "Nottingham", name: "Beeston", postalDistrict: "NG9" },
+    { parent: "Nottingham", name: "Wollaton", postalDistrict: "NG8" },
+    { parent: "Nottingham", name: "Sherwood", postalDistrict: "NG5" },
+    { parent: "Nottingham", name: "Mapperley", postalDistrict: "NG3" },
+  ],
+
+  // ── Stoke-on-Trent / Staffordshire (migrated matrix) ──
+  "stoke-on-trent": [
+    { parent: "Stoke-on-Trent", name: "Hanley", postalDistrict: "ST1" },
+    { parent: "Stoke-on-Trent", name: "Burslem", postalDistrict: "ST6" },
+    { parent: "Stoke-on-Trent", name: "Tunstall", postalDistrict: "ST6" },
+    { parent: "Stoke-on-Trent", name: "Fenton", postalDistrict: "ST4" },
+    { parent: "Stoke-on-Trent", name: "Longton", postalDistrict: "ST3" },
+    { parent: "Stoke-on-Trent", name: "Stoke", postalDistrict: "ST4" },
+    { parent: "Stoke-on-Trent", name: "Bentilee", postalDistrict: "ST2" },
+    { parent: "Stoke-on-Trent", name: "Meir", postalDistrict: "ST3" },
+    { parent: "Stoke-on-Trent", name: "Abbey Hulton", postalDistrict: "ST2" },
+    { parent: "Stoke-on-Trent", name: "Newcastle-under-Lyme", postalDistrict: "ST5" },
+  ],
+
+  // ── Edinburgh / Lothian (broadening beyond England) ──
+  "edinburgh": [
+    { parent: "Edinburgh", name: "Leith", postalDistrict: "EH6" },
+    { parent: "Edinburgh", name: "Morningside", postalDistrict: "EH10" },
+    { parent: "Edinburgh", name: "Stockbridge", postalDistrict: "EH3" },
+    { parent: "Edinburgh", name: "Portobello", postalDistrict: "EH15" },
+    { parent: "Edinburgh", name: "Corstorphine", postalDistrict: "EH12" },
+  ],
+
+  // ── Cardiff / Wales ──
+  "cardiff": [
+    { parent: "Cardiff", name: "Roath", postalDistrict: "CF24" },
+    { parent: "Cardiff", name: "Canton", postalDistrict: "CF5" },
+    { parent: "Cardiff", name: "Llandaff", postalDistrict: "CF5" },
+    { parent: "Cardiff", name: "Penarth", postalDistrict: "CF64" },
+    { parent: "Cardiff", name: "Whitchurch", postalDistrict: "CF14" },
+  ],
+};
+
+// ── Resolve a location slug to a canonical location descriptor ───────────────────
+// Returns a Location-like object so downstream consumers can treat a city and a
+// neighbourhood uniformly. A neighbourhood slug resolves to its parent city for
+// `region`/`postcodes` (so schema, canonical breadcrumbs and the "nearby towns"
+// / "other cities" sections stay correct) but surfaces its own `name` for the
+// page's primary heading and the single postal district for the coverage block.
+export function resolveLocation(slug: string) {
+  const city = LOCATIONS.find((l) => toSlug(l.name) === slug);
+  if (city) {
+    return { kind: "city" as const, ...city };
+  }
+
+  for (const [parentSlug, entries] of Object.entries(NEIGHBORHOODS)) {
+    const match = entries.find((e) => toSlug(e.name) === slug);
+    if (match) {
+      const parentCity = LOCATIONS.find((l) => toSlug(l.name) === parentSlug);
+      if (!parentCity) continue;
+      return {
+        kind: "neighbourhood" as const,
+        name: match.name,
+        region: parentCity.region,
+        population: null,
+        priority: null,
+        postcodes: [match.postalDistrict],
+        parent: match.parent,
+      };
+    }
+  }
+
+  return null;
+}
+
+// Flattened list of all neighbourhood slugs, for static-param generation and
+// sitemap coverage without re-deriving from the map each call.
+export const ALL_NEIGHBORHOOD_SLUGS: string[] = Object.values(NEIGHBORHOODS)
+  .flat()
+  .map((e) => toSlug(e.name));
+
 // Trade Categories with SEO-optimised data
 export const TRADES = [
   // Core Building Trades (Highest Demand)
@@ -496,10 +701,10 @@ export const CONTENT_TEMPLATES = {
 // Generate dynamic metadata for trade + location pages
 export function generateTradeLocationMetadata(tradeSlug: string, locationSlug: string) {
   const trade = TRADES.find(t => t.slug === tradeSlug);
-  const location = LOCATIONS.find(l => l.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === locationSlug);
-  
+  const location = resolveLocation(locationSlug);
+
   if (!trade || !location) return null;
-  
+
   const tradeName = trade.name;
   const locationName = location.name;
   
@@ -516,8 +721,8 @@ export function generateTradeLocationMetadata(tradeSlug: string, locationSlug: s
 // Generate schema for trade + location
 export function generateTradeLocationSchema(tradeSlug: string, locationSlug: string) {
   const trade = TRADES.find(t => t.slug === tradeSlug);
-  const location = LOCATIONS.find(l => l.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === locationSlug);
-  
+  const location = resolveLocation(locationSlug);
+
   if (!trade || !location) return null;
   
   return {

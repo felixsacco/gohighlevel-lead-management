@@ -1,55 +1,104 @@
-# MyApproved SEO-Optimized Robots.txt
-# Last Updated: 2024
+# NOTE: This file is a stale duplicate. The authoritative robots.txt served by
+# Next.js (App Router, static assets) lives at `public/robots.txt`. If you edit
+# bot governance, update `public/robots.txt` — not this file. Keeping this copy
+# only so the rules don't silently drift for any deployment that still reads it.
+
+Sitemap: https://myapproved.com/sitemap.xml
 
 User-agent: *
 Allow: /
-
-# API Routes - No Index
 Disallow: /api/
-Disallow: /api/*
-
-# Admin Panel - No Index
+Disallow: /_next/
+Disallow: /private/
 Disallow: /admin/
-Disallow: /admin/*
-
-# Authentication Pages - No Index
-Disallow: /login/
-Disallow: /login/*
-Disallow: /register/
-Disallow: /register/*
-Disallow: /forgot-password
-Disallow: /reset-password
-Disallow: /verify-email
-Disallow: /verify-mock
-Disallow: /verify-captcha
-
-# Dashboard/User Areas - No Index
 Disallow: /dashboard/
-Disallow: /dashboard/*
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /api-test/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password*
+Disallow: /verify-*
+Disallow: /setup-crm/
+Disallow: /setup-crm-private/
+Disallow: /leads/
+Disallow: /notifications/
+Disallow: /job-description/
+Disallow: /report-issue/
+Disallow: /thank-you/
 
-# Debug/Test Pages - No Index
-Disallow: /debug/
-Disallow: /debug/*
-Disallow: /debug-client/
-Disallow: /test-*/
-Disallow: /test-*/*
+# AI answer engines & LLM crawlers — crawl public informational pages (AEO/GEO)
+# while keeping admin/auth/dashboard/utility endpoints blocked.
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password*
+Disallow: /verify-*
 
-# Setup/Configuration Pages - No Index
-Disallow: /setup-crm
-Disallow: /setup-crm-private
-Disallow: /api-test
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /login/
+Disallow: /register/
 
-# Legacy/Backup Files - No Index
-Disallow: /*_backup
-Disallow: /*_backup/*
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /login/
+Disallow: /register/
 
-# Query Parameters - Avoid Duplicate Content
-Disallow: /*?*sort=
-Disallow: /*?*filter=
-Disallow: /*?*page=
+User-agent: Claude-Web
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /login/
+Disallow: /register/
 
-# Crawl Rate Optimization
-Crawl-delay: 1
+User-agent: anthropic-ai
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /login/
+Disallow: /register/
 
-# XML Sitemap Location
-Sitemap: https://myapproved.com/sitemap.xml
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /login/
+Disallow: /register/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /debug*
+Disallow: /test-*
+Disallow: /login/
+Disallow: /register/

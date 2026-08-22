@@ -26,6 +26,7 @@ export default function ContactPage() {
             "name": "Contact MyApproved",
             "mainEntity": {
               "@type": "Organization",
+              "@id": "https://myapproved.com/#organization",
               "name": "MyApproved",
               "email": "support@myapproved.com",
               "url": "https://myapproved.com",
