@@ -11,7 +11,7 @@ import { Eye, EyeOff, Mail, Lock, User, Shield, Star, CheckCircle, Loader2, MapP
 import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
-import { SectionHeaderPill } from "@/components/ui/SectionHeaderPill";
+import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 import { Container } from "@/components/ui/Container";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -884,19 +884,19 @@ export default function ClientLoginPage() {
               </div>
 
               {/* Stats Bar at Bottom */}
-              <div className="bg-gradient-to-r from-brand-navy/95 to-brand-navy/95 backdrop-blur-md p-4 border-t border-white/10">
-                <div className="grid grid-cols-3 divide-x divide-white/[0.08]">
+              <div className="bg-sky-50 backdrop-blur-md p-4 border-t border-gray-100">
+                <div className="grid grid-cols-3 divide-x divide-brand-navy/10">
                   <div className="text-center px-3">
-                    <div className="text-xl sm:text-2xl font-black text-[#F5A623] tabular-nums">{onlineCount}+</div>
-                    <div className="text-[10px] text-white/40 font-medium mt-0.5">Online Now</div>
+                    <div className="text-xl sm:text-2xl font-black text-brand-navy tabular-nums">{onlineCount}+</div>
+                    <div className="text-[10px] text-brand-navy/60 font-medium mt-0.5">Online Now</div>
                   </div>
                   <div className="text-center px-3">
-                    <div className="text-xl sm:text-2xl font-black text-[#F5A623]">✓</div>
-                    <div className="text-[10px] text-white/40 font-medium mt-0.5">Identity checked</div>
+                    <div className="text-xl sm:text-2xl font-black text-brand-navy">✓</div>
+                    <div className="text-[10px] text-brand-navy/60 font-medium mt-0.5">Identity checked</div>
                   </div>
                   <div className="text-center px-3">
-                    <div className="text-xl sm:text-2xl font-black text-[#F5A623]">24/7</div>
-                    <div className="text-[10px] text-white/40 font-medium mt-0.5">Support</div>
+                    <div className="text-xl sm:text-2xl font-black text-brand-navy">24/7</div>
+                    <div className="text-[10px] text-brand-navy/60 font-medium mt-0.5">Support</div>
                   </div>
                 </div>
               </div>
@@ -906,35 +906,35 @@ export default function ClientLoginPage() {
           {/* Hero-style feature cards */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
+            <div className="relative bg-sky-50 backdrop-blur-md rounded-3xl border border-gray-100 p-6 shadow-xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
-              <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">Your Customer Dashboard</h2>
+              <h2 className="text-xl font-extrabold text-brand-navy mb-4">Your Customer Dashboard</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
-                    <Shield className="h-5 w-5" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 shrink-0">
+                    <Shield className="h-5 w-5 text-white" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Keep Your Details Current</p>
-                    <p className="text-sm text-blue-200">Update your contact details and service area so pros can reach you.</p>
+                    <p className="text-sm font-semibold text-brand-navyDark">Keep Your Details Current</p>
+                    <p className="text-sm text-brand-navy/80">Update your contact details and service area so pros can reach you.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
-                    <Star className="h-5 w-5" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 shrink-0">
+                    <Star className="h-5 w-5 text-white" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Track Your Bookings</p>
-                    <p className="text-sm text-blue-200">Review messages and manage your saved pros in one place.</p>
+                    <p className="text-sm font-semibold text-brand-navyDark">Track Your Bookings</p>
+                    <p className="text-sm text-brand-navy/80">Review messages and manage your saved pros in one place.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
-                    <CheckCircle className="h-5 w-5" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 shrink-0">
+                    <CheckCircle className="h-5 w-5 text-white" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Leave Reviews</p>
-                    <p className="text-sm text-blue-200">Share your experience to help other customers choose with confidence.</p>
+                    <p className="text-sm font-semibold text-brand-navyDark">Leave Reviews</p>
+                    <p className="text-sm text-brand-navy/80">Share your experience to help other customers choose with confidence.</p>
                   </div>
                 </li>
               </ul>

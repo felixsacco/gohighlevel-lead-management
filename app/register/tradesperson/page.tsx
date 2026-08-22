@@ -27,7 +27,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
-import { SectionHeaderPill } from "@/components/ui/SectionHeaderPill";
+import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 import { Container } from "@/components/ui/Container";
 import {
   Select,
@@ -1021,35 +1021,35 @@ export default function TradespersonRegistration() {
         <div className="order-2 md:order-2 flex flex-col gap-6 relative z-10">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
+            <div className="relative bg-sky-50 backdrop-blur-md rounded-3xl border border-gray-100 p-6 shadow-xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
-              <h2 className="text-xl font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4" style={{fontWeight: 800}}>Grow Your Business</h2>
+              <h2 className="text-xl font-extrabold text-brand-navy mb-4">Grow Your Business</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
-                    <CheckCircle className="h-5 w-5" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 shrink-0">
+                    <CheckCircle className="h-5 w-5 text-white" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Reach Verified Customers</p>
-                    <p className="text-sm text-blue-200">Join a trusted network of customers who value approved pros.</p>
+                    <p className="text-sm font-semibold text-brand-navyDark">Reach Verified Customers</p>
+                    <p className="text-sm text-brand-navy/80">Join a trusted network of customers who value approved pros.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
-                    <Star className="h-5 w-5" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 shrink-0">
+                    <Star className="h-5 w-5 text-white" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Build Your Reviews</p>
-                    <p className="text-sm text-blue-200">Collect ratings that help you win more local work.</p>
+                    <p className="text-sm font-semibold text-brand-navyDark">Build Your Reviews</p>
+                    <p className="text-sm text-brand-navy/80">Collect ratings that help you win more local work.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 border border-brand-navy/20 text-brand-navy">
-                    <Briefcase className="h-5 w-5" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 shrink-0">
+                    <Briefcase className="h-5 w-5 text-white" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">Manage Jobs Neatly</p>
-                    <p className="text-sm text-blue-200">Respond to requests and track work from one dashboard.</p>
+                    <p className="text-sm font-semibold text-brand-navyDark">Manage Jobs Neatly</p>
+                    <p className="text-sm text-brand-navy/80">Respond to requests and track work from one dashboard.</p>
                   </div>
                 </li>
               </ul>
