@@ -687,7 +687,7 @@ export default function ClientLoginPage() {
                 </div>
                 <Link
                   href="/forgot-password?type=client"
-                  className="text-sm text-brand-amber hover:text-brand-amberDark hover:underline font-medium"
+                  className="text-sm text-brand-navy hover:text-brand-navyDark hover:underline font-medium"
                 >
                   Forgot password?
                 </Link>
@@ -718,7 +718,7 @@ export default function ClientLoginPage() {
                   <span className="w-full border-t border-gray-200" />
                 </div>
                 <div className="relative flex justify-center text-xs">
-                  <span className="bg-white px-2 text-brand-amber">Enter your details</span>
+                  <span className="bg-white px-2 text-brand-navy">Enter your details</span>
                 </div>
               </div>
 
@@ -743,7 +743,7 @@ export default function ClientLoginPage() {
                   Do not have a client account?{" "}
                   <Link
                     href="/register/client"
-                    className="text-brand-amber hover:text-brand-amberDark hover:underline font-medium"
+                    className="text-brand-navy hover:text-brand-navyDark hover:underline font-medium"
                   >
                     Register here
                   </Link>
@@ -752,7 +752,7 @@ export default function ClientLoginPage() {
                   Are you a tradesperson?{" "}
                   <Link
                     href="/login/trade"
-                    className="text-brand-amber hover:text-brand-amberDark hover:underline font-medium"
+                    className="text-brand-navy hover:text-brand-navyDark hover:underline font-medium"
                   >
                     Login here
                   </Link>
@@ -771,7 +771,7 @@ export default function ClientLoginPage() {
         <div className="order-2 md:order-2 flex flex-col gap-6 relative z-10">
           {/* UK Coverage Map Card - Professional Design */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-amber/20 to-brand-navy/20 rounded-3xl blur-xl" />
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
             <div className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md shadow-2xl overflow-hidden">
               {/* Real Leaflet Map */}
               <div className="relative w-full h-[340px] md:h-[400px]">
@@ -782,47 +782,13 @@ export default function ClientLoginPage() {
                   style={{ zIndex: 0 }}
                 />
 
-                {/* ── Left panel: trade types available now ── */}
-                <div className="absolute left-3 top-1/2 -translate-y-1/2 z-[999]">
-                  <div className="bg-white/90 backdrop-blur-lg border border-gray-100 shadow-xl rounded-2xl p-3 min-w-[132px]">
-                    <p className="text-[8px] font-black uppercase tracking-[0.18em] text-brand-navy mb-2 px-0.5">
-                      Available Now
-                    </p>
-                    {[
-                      { color: "#3b82f6", label: "Plumbers",      count: 247 },
-                      { color: "#F5A623", label: "Electricians",  count: 189 },
-                      { color: "#22c55e", label: "Builders",      count: 156 },
-                      { color: "#a855f7", label: "Cleaners",      count: 210 },
-                      { color: "#ef4444", label: "Roofers",       count: 98  },
-                      { color: "#38bdf8", label: "Carpenters",    count: 112 },
-                      { color: "#fb923c", label: "Painters",      count: 134 },
-                      { color: "#10b981", label: "Gas Engineers", count: 143 },
-                      { color: "#f472b6", label: "Handymen",      count: 178 },
-                      { color: "#8b5cf6", label: "Tilers",        count: 89  },
-                    ].map((t) => (
-                      <div key={t.label} className="flex items-center gap-1.5 py-[3px]">
-                        <div
-                          className="w-2 h-2 rounded-full shrink-0 animate-pulse"
-                          style={{ backgroundColor: t.color }}
-                        />
-                        <span className="text-[10px] text-brand-navy/70 font-medium flex-1 leading-none">
-                          {t.label}
-                        </span>
-                        <span className="text-[10px] font-black text-brand-navy pl-1">
-                          {t.count}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
                 {/* Live indicator top-right */}
                 <div className="absolute top-3 right-3 z-[999] bg-white rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-lg shadow-black/20">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                   </span>
-                  <span className="text-[10px] font-extrabold text-[#111111] tracking-wide">Live Coverage</span>
+                  <span className="text-[10px] font-extrabold text-brand-navy tracking-wide">Live Coverage</span>
                 </div>
 
                 {/* ── Framer Motion hover tooltip ── */}
