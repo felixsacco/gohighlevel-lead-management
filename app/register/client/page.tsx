@@ -705,49 +705,49 @@ export default function ClientRegistration() {
             </div>
           </div>
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-400/20 rounded-3xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Everything you need</h3>
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
+            <div className="relative bg-sky-50 backdrop-blur-md rounded-3xl border border-gray-100 p-6 shadow-xl">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
+              <h3 className="text-xl font-extrabold text-brand-navy mb-3" style={{ fontWeight: 800 }}>Everything you need</h3>
               <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Secure messaging</span></li>
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Quotes & bookings in one place</span></li>
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-yellow-400" /> <span className="text-blue-100">UK‑wide coverage</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-brand-navy/80">Secure messaging</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-brand-navy/80">Quotes & bookings in one place</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-brand-navy/80">UK‑wide coverage</span></li>
               </ul>
             </div>
           </div>
 
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-3xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-3">Peace of mind</h3>
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
+            <div className="relative bg-sky-50 backdrop-blur-md rounded-3xl border border-gray-100 p-6 shadow-xl">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
+              <h3 className="text-xl font-extrabold text-brand-navy mb-3" style={{ fontWeight: 800 }}>Peace of mind</h3>
               <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-green-400" /> <span className="text-blue-100">Public liability insurance verified and kept current</span></li>
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-blue-400" /> <span className="text-blue-100">Clear pricing</span></li>
-                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-blue-100">Dedicated support</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-brand-navy/80">Public liability insurance verified and kept current</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-brand-navy/80">Clear pricing</span></li>
+                <li className="flex items-center gap-3"><CheckCircle className="h-4 w-4 text-brand-amber" /> <span className="text-brand-navy/80">Dedicated support</span></li>
               </ul>
             </div>
           </div>
 
           {/* How it works card */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-3xl blur-xl" />
-            <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-3xl" />
-              <h3 className="text-lg font-extrabold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent mb-4">How it works</h3>
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/20 to-indigo-600/20 rounded-3xl blur-xl" />
+            <div className="relative bg-sky-50 backdrop-blur-md rounded-3xl border border-gray-100 p-6 shadow-xl">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-amber to-brand-amberDark rounded-t-3xl" />
+              <h3 className="text-xl font-extrabold text-brand-navy mb-4" style={{ fontWeight: 800 }}>How it works</h3>
               <ol className="space-y-4 text-sm">
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-blue-500/30 border border-blue-400/50 text-blue-300 text-xs font-bold backdrop-blur-sm">1</span>
-                  <span className="text-blue-100">Tell us what you need and your location</span>
+                  <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-brand-amber/20 border border-brand-amber/50 text-brand-amberDark text-xs font-bold backdrop-blur-sm">1</span>
+                  <span className="text-brand-navy/80">Tell us what you need and your location</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-yellow-500/30 border border-yellow-400/50 text-yellow-300 text-xs font-bold backdrop-blur-sm">2</span>
-                  <span className="text-blue-100">Get matched with identity-checked pros</span>
+                  <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-brand-amber/20 border border-brand-amber/50 text-brand-amberDark text-xs font-bold backdrop-blur-sm">2</span>
+                  <span className="text-brand-navy/80">Get matched with Approved pros</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-green-500/30 border border-green-400/50 text-green-300 text-xs font-bold backdrop-blur-sm">3</span>
-                  <span className="text-blue-100">Compare quotes and book with confidence</span>
+                  <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-brand-amber/20 border border-brand-amber/50 text-brand-amberDark text-xs font-bold backdrop-blur-sm">3</span>
+                  <span className="text-brand-navy/80">Compare quotes and book with confidence</span>
                 </li>
               </ol>
             </div>

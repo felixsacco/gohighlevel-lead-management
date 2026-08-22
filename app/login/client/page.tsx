@@ -51,8 +51,6 @@ export default function ClientLoginPage() {
     []
   );
 
-  const UK_BBOX = { minLon: -11.0, maxLon: 2.1, minLat: 49.5, maxLat: 59.0 };
-
   const ukCities = useMemo(
     () => [
       // ── Major English cities ──
@@ -288,24 +286,6 @@ export default function ClientLoginPage() {
     []
   );
 
-  const projectToPercent = (lat: number, lon: number) => {
-    // More accurate bounds matching the Google Maps embed
-    const ACCURATE_UK_BOUNDS = {
-      north: 58.8,
-      south: 49.8,
-      east: 1.8,
-      west: -10.5
-    };
-
-    const x = ((lon - ACCURATE_UK_BOUNDS.west) / (ACCURATE_UK_BOUNDS.east - ACCURATE_UK_BOUNDS.west)) * 100;
-    const y = ((ACCURATE_UK_BOUNDS.north - lat) / (ACCURATE_UK_BOUNDS.north - ACCURATE_UK_BOUNDS.south)) * 100;
-
-    return {
-      left: Math.min(95, Math.max(5, x)),
-      top: Math.min(95, Math.max(5, y)),
-    };
-  };
-
   // Handle marker click to redirect to find tradespeople page
   const handleMarkerClick = (trade: string, city: string) => {
     router.push(`/find-tradespeople?search=${encodeURIComponent(trade)}&location=${encodeURIComponent(city)}`);
@@ -329,53 +309,33 @@ export default function ClientLoginPage() {
 
     const init = async () => {
       try {
-        const L = (await import('leaflet')).default;
-        await import('leaflet.markercluster');
+        const L = (await import("leaflet")).default;
+        const extraMarkers = await import("leaflet-extra-markers");
         if (!active || !mapContainerRef.current) return;
 
-        // Leaflet CSS (once)
-        if (!document.getElementById('leaflet-css')) {
-          const link = document.createElement('link');
-          link.id = 'leaflet-css';
-          link.rel = 'stylesheet';
-          link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+        if (!document.getElementById("leaflet-css")) {
+          const link = document.createElement("link");
+          link.id = "leaflet-css"; link.rel = "stylesheet";
+          link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
           document.head.appendChild(link);
         }
-        if (!document.getElementById('markercluster-css')) {
-          const mcLink = document.createElement('link');
-          mcLink.id = 'markercluster-css';
-          mcLink.rel = 'stylesheet';
-          mcLink.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css';
-          document.head.appendChild(mcLink);
-          const mcDefLink = document.createElement('link');
-          mcDefLink.id = 'markercluster-default-css';
-          mcDefLink.rel = 'stylesheet';
-          mcDefLink.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css';
-          document.head.appendChild(mcDefLink);
-        }
-        // Custom styles - ping animation + control overrides
-        if (!document.getElementById('leaflet-map-styles')) {
-          const style = document.createElement('style');
-          style.id = 'leaflet-map-styles';
+        if (!document.getElementById("leaflet-map-styles")) {
+          const style = document.createElement("style");
+          style.id = "leaflet-map-styles";
           style.textContent = `
             @keyframes dotPulse {
               0%   { transform:scale(1);   opacity:0.12; }
-              70%  { transform:scale(1.45); opacity:0;   }
-              100% { transform:scale(1.45); opacity:0;   }
+              70%  { transform:scale(1.45);opacity:0;    }
+              100% { transform:scale(1.45);opacity:0;    }
             }
             .leaflet-control-zoom a {
-              background:#1e3a8a !important;
-              color:#ffffff !important;
-              border-color:rgba(255,255,255,0.25) !important;
-              font-weight:700 !important;
+              background:#1e3a8a !important; color:#fff !important;
+              border-color:rgba(255,255,255,0.25) !important; font-weight:700 !important;
             }
-            .leaflet-control-zoom a:hover {
-              background:#1e40af !important;
-              color:#ffffff !important;
-            }
+            .leaflet-control-zoom a:hover { background:#1e40af !important; }
             .leaflet-control-attribution {
               background:rgba(10,10,15,0.75) !important;
-              color:rgba(255,255,255,0.2) !important; font-size:8px !important; padding:2px 6px !important;
+              color:rgba(255,255,255,0.2) !important; font-size:8px !important;
             }
             .leaflet-control-attribution a { color:rgba(245,166,35,0.4) !important; }
           `;
@@ -383,119 +343,70 @@ export default function ClientLoginPage() {
         }
 
         const map = L.map(mapContainerRef.current, {
-          zoomControl: true,
-          attributionControl: true,
-          dragging: true,
-          scrollWheelZoom: false,   // enable on click only
-          doubleClickZoom: true,
-          touchZoom: false,
-          boxZoom: false,
-          keyboard: false,
-          minZoom: 5,
-          maxZoom: 10,
+          zoomControl: true, attributionControl: true,
+          dragging: true, scrollWheelZoom: false,
+          doubleClickZoom: true, touchZoom: false,
+          boxZoom: false, keyboard: false,
+          minZoom: 5, maxZoom: 10,
         });
 
-        // Enable scroll-zoom only after the user interacts with the map
-        map.on('click', () => map.scrollWheelZoom.enable());
-        map.on('mouseout', () => map.scrollWheelZoom.disable());
+        map.on("click",    () => map.scrollWheelZoom.enable());
+        map.on("mouseout", () => map.scrollWheelZoom.disable());
 
-        // CartoDB Positron - light, minimalist tiles (modern SaaS look)
-        L.tileLayer(
-          'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-          {
-            subdomains: 'abcd',
-            maxZoom: 20,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-          }
-        ).addTo(map);
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+          subdomains: "abcd", maxZoom: 20,
+          attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> &copy; <a href=\"https://carto.com/attributions\">CARTO</a>",
+        }).addTo(map);
 
-        map.setView([54.2, -3.5], 5);
+        map.setView([54.5, -3.2], 5);
 
-        // ── Professional dot icon factory ─────────────────────────────────
-        // Clean circle: solid trade colour + 1.5px white ring + subtle glow.
-        // No pulse, no size variation - every dot is identical.
-        const makeDot = (color: string, sz: number) =>
-          L.divIcon({
-            html: `<div style="
-              width:${sz}px;height:${sz}px;
-              background:${color};
-              border-radius:50%;
-              border:1.5px solid rgba(255,255,255,0.8);
-              box-shadow:0 1px 4px rgba(0,0,0,0.55),0 0 7px ${color}70;
-              cursor:pointer;
-            "></div>`,
-            className: '',
-            iconSize:   [sz, sz],
-            iconAnchor: [sz / 2, sz / 2],
-          });
+        const makeMarker = (color: string) =>
+          new extraMarkers.Icon({
+            svg: extraMarkers.PinCircle,
+            color,
+            contentColor: "#ffffff",
+            accentColor: "#ffffff",
+            scale: 0.62,
+            origin: "bottom",
+            shadow: "cast",
+          }) as unknown as L.Icon;
 
         const allMarkers: L.Marker[] = [];
-
-        // ── Zoom 5: one dot per city, cycling all 6 trade colours ─────────
+        // Pick roughly one trade per sampled town, striding evenly through the
+        // full (north-to-south) list rather than fanning six pins per town.
         ukCities.forEach((city, idx) => {
-          const tc      = tradeCategories[idx % tradeCategories.length];
-          const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
-          const bizName = names[idx % names.length];
-          const rating  = parseFloat((4.5 + (idx % 5) * 0.1).toFixed(1));
-          const reviews = 48 + (idx * 17) % 290;
-          const respTime = RESPONSE_TIMES[idx % RESPONSE_TIMES.length];
+          // Sample one pin every 8th town; this keeps coverage nationwide
+          // without a dense band clustering around central England.
+          if (idx % 8 !== 0) return;
 
-          const m = L.marker([city.lat, city.lon], { icon: makeDot(tc.color, 11) });
-          m.on('mouseover', () => {
-            const pt = map.latLngToContainerPoint([city.lat, city.lon]);
+          // Deterministic-ish scatter so neighbouring pins aren't the same
+          // trade or colour (mixes the six trades across the map).
+          const tc = tradeCategories[(idx * 5 + 1) % tradeCategories.length];
+          const names   = TRADE_NAMES[tc.name] ?? [`${city.name} ${tc.name}`];
+          const bizName = names[(idx * 3) % names.length];
+          const rating  = parseFloat((4.5 + ((idx * 7) % 5) * 0.1).toFixed(1));
+          const reviews = 48 + ((idx * 17 + 5) % 290);
+          const respTime = RESPONSE_TIMES[(idx * 5) % RESPONSE_TIMES.length];
+          // No coordinate jitter — pin sits exactly on the town centre.
+          const lat = city.lat;
+          const lon = city.lon;
+          const m = L.marker([lat, lon], { icon: makeMarker(tc.color) });
+          m.on("mouseover", () => {
+            const pt = map.latLngToContainerPoint([lat, lon]);
             setMapTooltip({ x: pt.x, y: pt.y, trade: tc.name, color: tc.color, name: bizName, rating, reviews, city: city.name, responseTime: respTime });
           });
-          m.on('mouseout', () => setMapTooltip(null));
-          m.on('click',    () => handleMarkerClick(tc.name, city.name));
+          m.on("mouseout", () => setMapTooltip(null));
+          m.on("click",    () => handleMarkerClick(tc.name, city.name));
           allMarkers.push(m);
         });
 
-        // ── Branded marker clustering ─────────────────────────────────────
-        // Group nearby city dots into numbered navy/amber aggregate badges
-        // at country & regional zoom levels.
-        const clusterIcon = (count: number): L.DivIcon => {
-          const size = count < 10 ? 26 : count < 100 ? 30 : 36;
-          return L.divIcon({
-            html: `<div style="
-              position:relative;
-              width:${size}px;height:${size}px;
-              display:flex;align-items:center;justify-content:center;
-              border-radius:9999px;
-              background:rgba(255,255,255,0.96);
-              border:2px solid rgba(10,36,99,0.14);
-              box-shadow:0 2px 8px rgba(10,36,99,0.22),0 0 0 2px rgba(255,255,255,0.95);
-            ">
-              <span style="
-                color:#0A2463;
-                font-weight:800;
-                font-size:${count < 10 ? 11 : count < 100 ? 10 : 9}px;
-                line-height:1;
-                letter-spacing:-0.01em;
-                font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;
-              ">${count}</span>
-            </div>`,
-            className: '',
-            iconSize: [size, size],
-            iconAnchor: [size / 2, size / 2],
-          });
-        };
-
-        const cluster = L.markerClusterGroup({
-          maxClusterRadius: 64,
-          showCoverageOnHover: false,
-          spiderfyOnMaxZoom: false,
-          disableClusteringAtZoom: 9,
-          iconCreateFunction: (c) => clusterIcon(c.getChildCount()),
-        });
-
-        cluster.addLayers(allMarkers);
-        map.addLayer(cluster);
+        // No clustering — every town's coloured pins are shown individually,
+        // spread nationwide.
+        allMarkers.forEach((m) => m.addTo(map));
 
         map.invalidateSize();
         mapInstanceRef.current = map;
-      } catch (_) {
-        // Leaflet unavailable – map section stays hidden
-      }
+      } catch (_) {}
     };
 
     init();
@@ -804,43 +715,28 @@ export default function ClientLoginPage() {
                         className="absolute pointer-events-none"
                         style={{ left: mapTooltip.x, top: mapTooltip.y - 10, transform: 'translate(-50%,-100%)' }}
                       >
-                        <div className="bg-gradient-to-br from-brand-navy to-brand-navy border border-white/20 rounded-xl shadow-2xl shadow-black/70 p-3 min-w-[210px]">
-                          {/* Trade type + verified badge */}
+                        <div className="bg-gradient-to-br from-brand-navy to-brand-navy border border-white/20 rounded-xl shadow-2xl p-3 min-w-[210px]">
                           <div className="flex items-center justify-between mb-1.5">
                             <div className="flex items-center gap-1.5">
                               <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: mapTooltip.color }} />
-                              <span className="text-[9px] font-black uppercase tracking-[0.13em] text-white/40">
-                                {mapTooltip.trade}
-                              </span>
+                              <span className="text-[9px] font-black uppercase tracking-[0.13em] text-white/50">{mapTooltip.trade}</span>
                             </div>
-                            <span className="text-[8px] font-black text-[#F5A623] bg-[#F5A623]/10 border border-[#F5A623]/20 px-1.5 py-0.5 rounded-full">
-                              ✓ ID checked
-                            </span>
+                            <span className="text-[8px] font-black text-brand-amber bg-brand-amber/10 border border-brand-amber/20 px-1.5 py-0.5 rounded-full">✓ VERIFIED</span>
                           </div>
-                          {/* Business name */}
-                          <p className="text-xs font-bold text-white leading-snug mb-2">
-                            {mapTooltip.name}
-                          </p>
-                          {/* Stars */}
+                          <p className="text-xs font-bold text-white leading-snug mb-2">{mapTooltip.name}</p>
                           <div className="flex items-center gap-0.5 mb-2">
                             {[1,2,3,4,5].map(i => (
-                              <Star key={i} className={`w-3 h-3 ${i <= Math.floor(mapTooltip.rating) ? 'text-[#F5A623] fill-[#F5A623]' : 'text-white/15'}`} />
+                              <Star key={i} className={`w-3 h-3 ${i <= Math.floor(mapTooltip.rating) ? "text-brand-amber fill-brand-amber" : "text-white/15"}`} />
                             ))}
-                            <span className="text-xs font-black text-[#F5A623] ml-1">{mapTooltip.rating}</span>
+                            <span className="text-xs font-black text-brand-amber ml-1">{mapTooltip.rating}</span>
                             <span className="text-[10px] text-white/30 ml-1">({mapTooltip.reviews})</span>
                           </div>
-                          {/* Location + response time */}
                           <div className="flex items-center justify-between text-[10px] text-white/40">
-                            <span className="flex items-center gap-1">
-                              <MapPin className="w-3 h-3 text-[#F5A623]/60" />{mapTooltip.city}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <Clock className="w-3 h-3" />{mapTooltip.responseTime}
-                            </span>
+                            <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-brand-amber/60" />{mapTooltip.city}</span>
+                            <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{mapTooltip.responseTime}</span>
                           </div>
-                          {/* Caret */}
                           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[99%]"
-                            style={{ width:0, height:0, borderLeft:'6px solid transparent', borderRight:'6px solid transparent', borderTop:'6px solid #1e3a8a' }}
+                            style={{ width:0, height:0, borderLeft:"6px solid transparent", borderRight:"6px solid transparent", borderTop:"6px solid #0A2463" }}
                           />
                         </div>
                       </motion.div>
