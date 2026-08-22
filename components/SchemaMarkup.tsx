@@ -84,30 +84,26 @@ export const organizationSchema = {
   ].filter(Boolean)
 };
 
-export const WebsiteSchema = () => {
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://myapproved.com/#website",
-    "name": "MyApproved",
-    "alternateName": "My Approved",
-    "url": "https://myapproved.com",
-    "description": "Find identity-checked local tradespeople across the UK with public liability insurance confirmed and monitored. Compare free quotes and book trusted professionals - free for homeowners.",
-    "inLanguage": "en-GB",
-    "publisher": {
-      "@id": "https://myapproved.com/#organization"
+export const WebsiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://myapproved.com/#website",
+  "name": "MyApproved",
+  "alternateName": "My Approved",
+  "url": "https://myapproved.com",
+  "description": "Find identity-checked local tradespeople across the UK with public liability insurance confirmed and monitored. Compare free quotes and book trusted professionals - free for homeowners.",
+  "inLanguage": "en-GB",
+  "publisher": {
+    "@id": "https://myapproved.com/#organization"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://myapproved.com/find-tradespeople?search={search_term_string}"
     },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://myapproved.com/find-tradespeople?search={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    }
-  };
-
-  return <SchemaMarkup schema={websiteSchema} />;
+    "query-input": "required name=search_term_string"
+  }
 };
 
 export const LocalBusinessSchema = {

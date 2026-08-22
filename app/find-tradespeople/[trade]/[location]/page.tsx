@@ -16,7 +16,9 @@ import {
   generateTradeLocationSchema,
 } from "@/lib/seo-data";
 import AEOContentBlock from "@/components/AEOContentBlock";
-import TradeLocationLiveResults from "@/components/TradeLocationLiveResults";
+import TradeLocationLiveResults, {
+  fetchTradeLocationProviders,
+} from "@/components/TradeLocationLiveResults";
 import HeroSearchTrigger from "@/components/HeroSearchTrigger";
 import GetQuotesButton from "@/components/GetQuotesButton";
 import HeroTrustBadges from "@/components/HeroTrustBadges";
@@ -112,13 +114,6 @@ function toSlug(str: string): string {
   return str.toLowerCase().replace(/[\s]+/g, "-").replace(/[^a-z0-9-]/g, "");
 }
 
-function fromSlug(slug: string): string {
-  return slug
-    .split("-")
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
-}
-
 // ── Service icon mapping ───────────────────────────────────────────────────────
 // Each trade maps its `services` (in order) to an explicit, distinct icon so no
 // two cards in a row share a glyph and every icon is a precise visual match for
@@ -193,10 +188,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const trade = TRADES.find((t) => t.slug === params.trade);
   const location = LOCATIONS.find((l) => toSlug(l.name) === params.location);
-  const locationName = location?.name ?? fromSlug(params.location);
 
-  if (!trade)
+  if (!trade || !location)
     return { title: "Not Found | MyApproved", robots: { index: false } };
+
+  const locationName = location.name;
 
   return {
     title: `Verified ${trade.plural} in ${locationName} | Free Quotes | MyApproved`,
@@ -221,7 +217,7 @@ export async function generateMetadata({
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
-export default function FindTradeLocationPage({
+export default async function FindTradeLocationPage({
   params,
 }: {
   params: { trade: string; location: string };
@@ -230,7 +226,26 @@ export default function FindTradeLocationPage({
   if (!trade) notFound();
 
   const location = LOCATIONS.find((l) => toSlug(l.name) === params.location);
-  const locationName = location?.name ?? fromSlug(params.location);
+  if (!location) notFound();
+  const locationName = location.name;
+
+  // Soft-404 guard: only render this "Verified [trade] in [Location]" page when
+  // there is at least one verified member or a harvested business for the pair.
+  // A `null` fetch means Supabase was unavailable or the query errored — fail
+  // open so we never hide a real listing because of a transient read error.
+  const providers = await fetchTradeLocationProviders({
+    tradeSlug: params.trade,
+    tradeName: trade.name,
+    locationSlug: params.location,
+    locationName,
+  });
+  if (
+    providers &&
+    providers.members.length === 0 &&
+    providers.prospects.length === 0
+  ) {
+    notFound();
+  }
 
   const schema = generateTradeLocationSchema(params.trade, params.location);
 

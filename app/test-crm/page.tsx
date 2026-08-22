@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import CRMSyncTest from "@/components/CRMSyncTest";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function TestCRMPage() {
   return (

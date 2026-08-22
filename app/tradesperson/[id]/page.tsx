@@ -43,6 +43,7 @@ interface Tradesperson {
 export default function TradespersonProfile() {
   const params = useParams();
   const [tradesperson, setTradesperson] = useState<Tradesperson | null>(null);
+  const [jsonLd, setJsonLd] = useState<Record<string, any> | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [showQuoteModal, setShowQuoteModal] = useState(false);
@@ -56,6 +57,7 @@ export default function TradespersonProfile() {
 
         if (data.success) {
           setTradesperson(data.tradesperson);
+          setJsonLd(data.jsonLd || null);
         } else {
           setError(data.error || "Failed to fetch tradesperson details");
         }
@@ -113,6 +115,12 @@ export default function TradespersonProfile() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
       <Section>
       <Container size="wide" className="py-4 sm:py-6 lg:py-8">
         {/* Back button */}

@@ -1,14 +1,19 @@
 /**
  * ProgrammaticSchema - hyper-local, trade-specific JSON-LD injector.
  *
- * Renders five structured-data blocks per page:
- *   1. LocalBusiness / trade-specific Schema.org sub-type  (with AggregateRating)
+ * Renders four structured-data blocks per page:
+ *   1. LocalBusiness / trade-specific Schema.org sub-type (with platform hasCredential)
  *   2. FAQPage  - 4 high-intent Q&A pairs per trade
- *   3. BreadcrumbList - 4-level depth
+ *   3. BreadcrumbList - up to 5-level depth
  *   4. Service - nested areaServed to neighborhood level
- *   5. Review - individual review sample for rich snippet eligibility
  *
  * No "use client" - works in Server and Client components.
+ *
+ * Note: this component renders at the trade-directory level, where no real
+ * per-tradesperson ratings/reviews/credentials are available. AggregateRating
+ * and Review blocks are intentionally omitted here to avoid fabricating claims;
+ * genuine per-tradesperson AggregateRating / Review / hasCredential are
+ * emitted server-side by /api/trade-data/[id] instead.
  */
 
 // ── Schema.org type map ──────────────────────────────────────────────────────
@@ -584,6 +589,12 @@ export default function ProgrammaticSchema({
         },
       },
     } : {}),
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "Platform Verification",
+      description:
+        "Every tradesperson listed on MyApproved has passed identity, business, and public liability insurance checks, which are confirmed and monitored by MyApproved.",
+    },
   };
 
   // ── 2. FAQPage ────────────────────────────────────────────────────────────

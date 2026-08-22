@@ -31,6 +31,9 @@ export async function GET(
         years_experience,
         hourly_rate,
         is_verified,
+        certification_verified,
+        certification_expires_at,
+        verification_status,
         is_active,
         is_approved,
         created_at,
@@ -147,6 +150,82 @@ export async function GET(
       }
     }
 
+    // Build JSON-LD from real data only — no fabricated ratings, reviews, or
+    // compliance claims. The credential block is emitted only when an admin
+    // has manually set certification_verified = true.
+    const profileUrl = `https://myapproved.com/tradesperson/${tradesperson.id}`;
+    const reviewItems = reviews
+      .filter((review: any) => review.rating && review.rating > 0)
+      .map((review: any) => ({
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": review.rating,
+          "bestRating": 5,
+          "worstRating": 1,
+        },
+        "author": { "@type": "Person", "name": "Verified Customer" },
+        "reviewBody": (review.review_text || "").trim(),
+        "datePublished": review.reviewed_at || undefined,
+      }))
+      .filter((r: any) => r.reviewBody || r.datePublished);
+
+    const profileJsonLd: Record<string, any> = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": `${profileUrl}#localbusiness`,
+      "name": fullName,
+      "url": profileUrl,
+      "description": description,
+      "priceRange": hourlyRate || undefined,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": tradesperson.city || undefined,
+        "postalCode": tradesperson.postcode || undefined,
+        "addressCountry": "GB",
+      },
+      "areaServed": tradesperson.city || undefined,
+    };
+
+    if (tradesperson.is_verified) {
+      profileJsonLd["identifier"] = {
+        "@type": "PropertyValue",
+        "name": "MyApproved identity verification",
+        "value": "verified",
+      };
+    }
+
+    if (averageRating > 0 && totalReviews > 0) {
+      profileJsonLd["aggregateRating"] = {
+        "@type": "AggregateRating",
+        "ratingValue": parseFloat(averageRating.toFixed(2)),
+        "reviewCount": totalReviews,
+        "bestRating": 5,
+        "worstRating": 1,
+      };
+    }
+
+    if (reviewItems.length > 0) {
+      profileJsonLd["review"] = reviewItems;
+    }
+
+    if (tradesperson.certification_verified === true) {
+      profileJsonLd["hasCredential"] = {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "Trade Professional Certification",
+        "description":
+          "Certification independently verified by a MyApproved administrator against the relevant UK trade register or scheme.",
+      };
+      if (tradesperson.certification_expires_at) {
+        profileJsonLd["hasCredential"]["validThrough"] =
+          tradesperson.certification_expires_at;
+      }
+      if (tradesperson.verification_status) {
+        profileJsonLd["hasCredential"]["credentialStatus"] =
+          tradesperson.verification_status;
+      }
+    }
+
     const transformedTradesperson = {
       id: tradesperson.id,
       name: fullName,
@@ -181,6 +260,7 @@ export async function GET(
     return NextResponse.json({
       success: true,
       tradesperson: transformedTradesperson,
+      jsonLd: profileJsonLd,
     });
   } catch (error: any) {
     console.error("Error in tradesperson details API:", error);

@@ -49,6 +49,27 @@ const nextConfig = {
 
     const tradePattern = tradeSlugs.join('|');
 
+    // Master location slugs (derived from lib/seo-data.ts `LOCATIONS` via
+    // `toSlug(l.name)`). Constrain the `:location` capture so a fabricated
+    // slug (e.g. /plumber/garbage-location-xyz) can never 301 into a phantom
+    // programmatic page — it falls through to the page's own notFound() guard.
+    const locationSlugs = [
+      'london', 'manchester', 'birmingham', 'leeds', 'glasgow',
+      'liverpool', 'newcastle', 'sheffield', 'bristol', 'nottingham',
+      'leicester', 'coventry', 'bradford', 'cardiff', 'belfast',
+      'stoke-on-trent', 'wolverhampton', 'solihull', 'dudley', 'walsall',
+      'west-bromwich', 'sutton-coldfield', 'stourbridge', 'halesowen', 'derby',
+      'southampton', 'portsmouth', 'aberdeen', 'swansea', 'middlesbrough',
+      'northampton', 'swindon', 'reading', 'luton', 'york',
+      'blackpool', 'plymouth', 'oxford', 'cambridge', 'norwich',
+      'exeter', 'ipswich', 'peterborough', 'sunderland', 'gloucester',
+      'cheltenham', 'watford', 'colchester', 'milton-keynes', 'st-albans',
+      'harrogate', 'chester', 'carlisle', 'dundee', 'edinburgh',
+      'inverness', 'hull',
+    ];
+
+    const locationPattern = locationSlugs.join('|');
+
     return [
       {
         source: `/:trade(${tradePattern})`,
@@ -56,7 +77,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: `/:trade(${tradePattern})/:location`,
+        source: `/:trade(${tradePattern})/:location(${locationPattern})`,
         destination: '/find-tradespeople/:trade/:location',
         permanent: true,
       },

@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { CheckCircle, Lock, MapPin, Phone, ShieldCheck } from "lucide-react";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";

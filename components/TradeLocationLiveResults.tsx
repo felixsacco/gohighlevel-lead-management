@@ -39,13 +39,27 @@ function slugify(str: string): string {
   return str.toLowerCase().replace(/[\s]+/g, "-").replace(/[^a-z0-9-]/g, "");
 }
 
-export default async function TradeLocationLiveResults({
+type FetchInput = {
+  tradeSlug: string;
+  tradeName: string;
+  locationSlug: string;
+  locationName: string;
+};
+
+/**
+ * Fetch and filter the verified providers for a given trade × location pair.
+ * Returns `null` when Supabase is unavailable or the query errors, so callers
+ * can distinguish "nothing to show" from "couldn't check". Exported so the
+ * trade+location page can run the same live-result check server-side and avoid
+ * rendering a "Verified [trade] in [Location]" page when none exist (soft-404
+ * guard).
+ */
+export async function fetchTradeLocationProviders({
   tradeSlug,
   tradeName,
-  tradePlural,
   locationSlug,
   locationName,
-}: Props) {
+}: FetchInput): Promise<{ members: Member[]; prospects: Prospect[] } | null> {
   const supabase = getSupabaseAdmin();
   if (!supabase) return null;
 
@@ -88,6 +102,7 @@ export default async function TradeLocationLiveResults({
       memberRes.error?.message,
       prospectRes.error?.message,
     );
+    return null;
   }
 
   const prospects: Prospect[] = (prospectRes.data ?? []).filter(
@@ -112,6 +127,28 @@ export default async function TradeLocationLiveResults({
       return matchesCity || matchesPostcode;
     },
   );
+
+  return { members, prospects };
+}
+
+export default async function TradeLocationLiveResults(props: Props) {
+  const {
+    tradeSlug,
+    tradeName,
+    tradePlural,
+    locationSlug,
+    locationName,
+  } = props;
+
+  const result = await fetchTradeLocationProviders({
+    tradeSlug,
+    tradeName,
+    locationSlug,
+    locationName,
+  });
+  if (!result) return null;
+
+  const { members, prospects } = result;
 
   if (members.length === 0 && prospects.length === 0) {
     return null;
