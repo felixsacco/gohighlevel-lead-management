@@ -431,15 +431,6 @@ export default function TradespersonRegistration() {
           <div className="order-1 md:order-1 relative">
             <Card className="relative rounded-3xl bg-sky-50 border border-gray-100 shadow-xl">
               <CardHeader className="text-center pb-6">
-                <div className="flex items-center justify-center mb-4">
-                  <Link
-                    href="/"
-                    className="flex items-center text-brand-amber hover:text-brand-amberDark transition-colors"
-                  >
-                    <ArrowLeft className="w-5 h-5 mr-2" />
-                    Back to Home
-                  </Link>
-                </div>
                 <div className="mx-auto mb-3 flex justify-center">
                   <SectionHeaderPill variant="navy">Approved Tradespeople Only</SectionHeaderPill>
                 </div>
