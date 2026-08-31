@@ -310,12 +310,12 @@ export default function Home() {
           <div className="absolute -bottom-40 -right-24 h-[36rem] w-[36rem] rounded-full bg-brand-amber/10 blur-3xl" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[120px] sm:pt-[200px] pb-16 sm:pb-32 md:pt-[248px] md:pb-48">
           <div className="max-w-5xl mx-auto">
             {/* Hero Content - Centered */}
             <div className="text-center">
               {/* Register overline — a transparent pill with a single amber stroke */}
-              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-12">
+              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-6 sm:mb-14 md:mb-16">
                 <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-brand-amber/60" aria-hidden="true"></span>
                 <span className="relative px-7 py-1.5 border border-brand-amber/60">
                   <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" className="absolute left-2 top-1/2 -translate-y-1/2 shrink-0">
@@ -350,7 +350,7 @@ export default function Home() {
               </p>
 
               {/* Headline — all white, underscored by a thin amber rule below the descender */}
-              <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4" style={{fontWeight: 800}}>
+              <h1 className="text-[1.75rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] mb-8 sm:mb-16 md:mb-20 px-2 sm:px-4" style={{fontWeight: 800}}>
                 Hire a tradesperson you{" "}
                 <span className="relative inline-block whitespace-nowrap">
                   <span className="text-white relative z-10">actually count on</span>
@@ -383,14 +383,14 @@ export default function Home() {
               </h1>
 
               {/* Subheadline — one specific promise */}
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-12 sm:mb-16 max-w-[34rem] mx-auto font-normal px-4">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-8 sm:mb-16 md:mb-20 max-w-[34rem] mx-auto font-normal px-4">
                 Skip the no-shows and the cowboys
               </p>
 
               {/* Search Bar — a raised, rounded clickable target on navy */}
-              <div className="relative max-w-3xl mx-auto mb-12 sm:mb-16 px-4">
+              <div className="relative max-w-3xl mx-auto mb-8 sm:mb-16 md:mb-20 px-4">
                 <div
-                  className="relative flex flex-col sm:flex-row items-center bg-white rounded-full shadow-xl shadow-black/20 border border-white/40 cursor-pointer gap-0 sm:pl-1.5 sm:pr-1.5 sm:py-1.5 overflow-hidden"
+                  className="relative flex flex-col sm:flex-row items-center bg-white rounded-3xl sm:rounded-full shadow-xl shadow-black/20 border border-white/40 cursor-pointer gap-0 sm:pl-1.5 sm:pr-1.5 sm:py-1.5 overflow-hidden p-2 sm:p-0"
                   onClick={() => setShowAIModal(true)}
                 >
                   <div className="flex-1 relative flex items-center w-full sm:w-auto">
@@ -411,7 +411,7 @@ export default function Home() {
                     />
                   </div>
                   <Button
-                    className="rounded-full bg-brand-amber hover:bg-brand-amber text-brand-navyDark font-bold px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg w-auto sm:w-auto self-stretch sm:self-auto m-2 sm:m-0 transition-all duration-150 hover:-translate-y-px hover:shadow-md" style={{fontWeight: 800}}
+                    className="rounded-full bg-brand-amber hover:bg-brand-amber text-brand-navyDark font-bold px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg w-full sm:w-auto self-stretch sm:self-auto mt-2 sm:mt-0 sm:m-0 transition-all duration-150 hover:-translate-y-px hover:shadow-md" style={{fontWeight: 800}}
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowAIModal(true);
@@ -423,7 +423,7 @@ export default function Home() {
               </div>
 
               {/* Trust indicators — two flat register entries, separated by a hairline */}
-              <div className="inline-flex flex-nowrap justify-center text-xs sm:text-sm md:text-base px-2 sm:px-4">
+              <div className="inline-flex flex-wrap justify-center text-xs sm:text-sm md:text-base px-2 sm:px-4">
                 <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap">
                   <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">
                     <ShieldCheckFill
@@ -494,26 +494,26 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
             {/* Benefit 1 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>Checked before they're listed</h3>
-              <p className="text-sm sm:text-base text-gray-600">No tradesperson is listed until identity, business and insurance checks have passed.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>Vetted before they're listed</h3>
+              <p className="text-sm sm:text-base text-gray-600">Only tradespeople who pass identity, business and insurance checks make the cut.</p>
             </div>
 
             {/* Benefit 2 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
-              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>A costed range up front</h3>
-              <p className="text-sm sm:text-base text-gray-600">Get a price range from your job description before anyone calls, so you know what to expect.</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>A price range up front</h3>
+              <p className="text-sm sm:text-base text-gray-600">See what the job should cost before you speak to anyone.</p>
             </div>
 
             {/* Benefit 3 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
               <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>Booked into a real slot</h3>
-              <p className="text-sm sm:text-base text-gray-600">Your job goes into their diary, not a pile of callbacks.</p>
+              <p className="text-sm sm:text-base text-gray-600">Your job lands in their diary — no chasing, no guesswork about when they'll turn up.</p>
             </div>
 
             {/* Benefit 4 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
               <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>Free, no obligation</h3>
-              <p className="text-sm sm:text-base text-gray-600">Posting costs nothing. Quoting costs nothing.</p>
+              <p className="text-sm sm:text-base text-gray-600">No sign-up fee, no quote fees. You only ever pay the tradesperson.</p>
             </div>
           </div>
 
@@ -556,7 +556,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Photo ID</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We confirm the person behind the profile is who they say they are, with photo ID verified against a live selfie.</p>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Photo ID checked against a live selfie.</p>
             </div>
 
             {/* Check 2 */}
@@ -569,7 +569,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Registered business</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We check the company exists on Companies House, the official UK register.</p>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Registered on Companies House.</p>
             </div>
 
             {/* Check 3 */}
@@ -582,7 +582,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Insurance</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We confirm the public liability cover is real and still in date, and monitor it so the listing is withdrawn if it lapses.</p>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Public liability cover, verified and monitored.</p>
             </div>
 
             {/* Check 4 */}
@@ -595,7 +595,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Qualifications</h3>
-              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">We review the trade qualifications and accreditations they list against named certificate schemes.</p>
+              <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Qualifications checked against certificate schemes.</p>
             </div>
           </div>
 
@@ -625,28 +625,28 @@ export default function Home() {
                 Grow Your Trade Business
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed mb-6 sm:mb-8">
-                Get quality leads from homeowners in your area who are ready to hire. No cold calling, no wasted trips. Just real jobs from people who need your skills.
+                Quality leads from homeowners ready to hire. No cold calling, no wasted trips — just real jobs from people who need your skills.
               </p>
               <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span className="notranslate"><strong className="font-bold" style={{fontWeight: 700}}>Only verified tradespeople get your job.</strong> Every match has passed identity, business and insurance checks before it reaches you.</span>
+                  <span className="notranslate"><strong className="font-bold" style={{fontWeight: 700}}>Only verified tradespeople get your job.</strong> Every match has passed identity, business and insurance checks.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span><strong className="font-bold" style={{fontWeight: 700}}>Matched by trade and area.</strong> We match your job to verified tradespeople in your trade, or who cover your postcode within 50 miles.</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>Matched by trade and area.</strong> Sent to tradespeople in your trade, or who cover your postcode within 50 miles.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs drop into your calendar.</strong> Slots fill themselves, so jobs never clash.</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs drop into your calendar.</strong> Booking lands straight in your diary — no clashes.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span><strong className="font-bold" style={{fontWeight: 700}}>£4.99 a lead, pay as you go.</strong> Pay only when a lead is worth taking. Nothing ongoing.</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>£4.99 a lead, pay as you go.</strong> Only pay when a lead's worth taking. No subscription.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span><strong className="font-bold" style={{fontWeight: 700}}>Your marketing, handled.</strong> Website, SEO, paid ads, social, outreach, and reviews, taken off your plate.</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>Your marketing, handled.</strong> Website, SEO, ads, social, outreach and reviews — sorted.</span>
                 </li>
               </ul>
               <Button
@@ -660,7 +660,7 @@ export default function Home() {
                   <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
               </Button>
-              <p className="mt-3 text-sm sm:text-base text-white/70">Matched to winnable jobs.</p>
+              <p className="mt-3 text-sm sm:text-base text-white/70">Matched to jobs you can win.</p>
             </div>
 
             {/* Right Column — job notification mockup */}
