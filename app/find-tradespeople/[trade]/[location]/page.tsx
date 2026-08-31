@@ -241,13 +241,10 @@ export default async function FindTradeLocationPage({
     locationSlug: params.location,
     locationName,
   });
-  if (
+  const hasNoProviders =
     providers &&
     providers.members.length === 0 &&
-    providers.prospects.length === 0
-  ) {
-    notFound();
-  }
+    providers.prospects.length === 0;
 
   const relatedTrades = TRADES.filter(
     (t) => t.category === trade.category && t.slug !== trade.slug
@@ -574,14 +571,39 @@ export default async function FindTradeLocationPage({
         </div>
 
         {/* ── Places Results ──
-             Rendered as a server component; renders nothing when empty. */}
-        <TradeLocationLiveResults
-          tradeSlug={params.trade}
-          tradeName={trade.name}
-          tradePlural={trade.plural}
-          locationSlug={params.location}
-          locationName={locationName}
-        />
+             Rendered as a server component; renders nothing when empty.
+             When there are no providers, show an inviting empty state instead. */}
+        {hasNoProviders ? (
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <div className="text-center bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-12">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy">
+                No {trade.plural.toLowerCase()} listed in {locationName} yet
+              </h2>
+              <p className="text-slate-600 mt-3 max-w-xl mx-auto">
+                We don't currently have any verified {trade.plural.toLowerCase()}
+                {" "}in {locationName}. Be the first to list your business and reach
+                homeowners looking for {trade.plural.toLowerCase()} here.
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <GetQuotesButton />
+                <Link
+                  href={`/find-tradespeople/${params.trade}`}
+                  className="inline-flex items-center gap-2 rounded-xl border border-brand-navy/15 px-5 py-3 text-sm font-bold text-brand-navy hover:bg-brand-navy/5 transition-colors"
+                >
+                  Browse all {trade.plural.toLowerCase()} across the UK
+                </Link>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <TradeLocationLiveResults
+            tradeSlug={params.trade}
+            tradeName={trade.name}
+            tradePlural={trade.plural}
+            locationSlug={params.location}
+            locationName={locationName}
+          />
+        )}
 
         {/* CTA — follow the results list */}
         <div className="bg-white py-12 sm:py-16">
