@@ -315,7 +315,7 @@ export default function Home() {
             {/* Hero Content - Centered */}
             <div className="text-center">
               {/* Register overline — a transparent pill with a single amber stroke */}
-              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-20 md:mb-24">
+              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-8 sm:mb-14 md:mb-16">
                 <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-brand-amber/60" aria-hidden="true"></span>
                 <span className="relative px-7 py-1.5 border border-brand-amber/60">
                   <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" className="absolute left-2 top-1/2 -translate-y-1/2 shrink-0">
@@ -350,7 +350,7 @@ export default function Home() {
               </p>
 
               {/* Headline — all white, underscored by a thin amber rule below the descender */}
-              <h1 className="text-[1.75rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] mb-10 sm:mb-24 md:mb-32 px-2 sm:px-4" style={{fontWeight: 800}}>
+              <h1 className="text-[1.75rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] mb-10 sm:mb-16 md:mb-20 px-2 sm:px-4" style={{fontWeight: 800}}>
                 Hire a tradesperson you{" "}
                 <span className="relative inline-block whitespace-nowrap">
                   <span className="text-white relative z-10">actually count on</span>
@@ -383,12 +383,12 @@ export default function Home() {
               </h1>
 
               {/* Subheadline — one specific promise */}
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-10 sm:mb-24 md:mb-32 max-w-[36rem] mx-auto font-normal px-4">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-10 sm:mb-16 md:mb-20 max-w-[36rem] mx-auto font-normal px-4">
                 Skip the no-shows and the cowboys
               </p>
 
               {/* Search Bar — a raised, rounded clickable target on navy */}
-              <div className="relative max-w-3xl mx-auto mb-12 sm:mb-28 md:mb-36 px-4">
+              <div className="relative max-w-3xl mx-auto mb-12 sm:mb-20 md:mb-24 px-4">
                 <div
                   className="relative flex flex-col sm:flex-row items-center bg-white rounded-3xl sm:rounded-full shadow-xl shadow-black/20 border border-white/40 cursor-pointer gap-0 sm:pl-1.5 sm:pr-1.5 sm:py-1.5 overflow-hidden p-2 sm:p-0"
                   onClick={() => setShowAIModal(true)}
