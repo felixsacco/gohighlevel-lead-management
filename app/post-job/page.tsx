@@ -72,7 +72,7 @@ export default function PostJobPage() {
               {
                 step: "3",
                 title: "Hire with Confidence",
-                desc: "Compare profiles, reviews, and prices — then choose the tradesperson that's right for you.",
+                desc: "Compare profiles, reviews, and prices, then choose the tradesperson that's right for you.",
               },
             ].map((item) => (
               <div key={item.step} className="text-center p-6 rounded-xl border border-gray-100 shadow-sm">

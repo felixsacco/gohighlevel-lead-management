@@ -31,7 +31,7 @@ const faqSchema = graphify([
       "name": "How does MyApproved work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Post your job and verified tradespeople matched to your trade and location call you back with quotes. Compare their profiles, then hire the right person — free for homeowners."
+        "text": "Post your job and verified tradespeople matched to your trade and location call you back with quotes. Compare their profiles, then hire the right person. Free for homeowners."
       }
     },
     {
@@ -55,7 +55,7 @@ const faqSchema = graphify([
       "name": "Are all tradespeople on MyApproved insured?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Every listed tradesperson must hold public liability insurance, confirmed in date and monitored throughout — the listing is withdrawn if cover lapses."
+        "text": "Yes. Every listed tradesperson must hold public liability insurance, confirmed in date and monitored throughout. The listing is withdrawn if cover lapses."
       }
     },
     {
@@ -98,7 +98,7 @@ export default function FAQPage() {
         },
         {
           question: 'Is MyApproved free to use?',
-          answer: 'Yes, free for homeowners — to post jobs and view quotes. Tradespeople pay £4.99 a lead, pay as you go.'
+          answer: 'Yes, free for homeowners to post jobs and view quotes. Tradespeople pay £4.99 a lead, pay as you go.'
         },
         {
           question: 'How do I create an account?',
@@ -124,7 +124,7 @@ export default function FAQPage() {
         },
         {
           question: 'What can I see on a tradesperson\'s profile?',
-          answer: 'Exactly what was checked — identity, business and insurance — so you know before you decide.'
+          answer: 'Exactly what was checked: identity, business and insurance, so you know before you decide.'
         }
       ]
     },
@@ -138,7 +138,7 @@ export default function FAQPage() {
         },
         {
           question: 'Are there any hidden fees?',
-          answer: 'No. The price you agree with the tradesperson is what you pay — using MyApproved costs homeowners nothing.'
+          answer: 'No. The price you agree with the tradesperson is what you pay. Using MyApproved costs homeowners nothing.'
         },
         {
           question: 'What if I\'m not satisfied with the work?',
@@ -152,7 +152,7 @@ export default function FAQPage() {
       questions: [
         {
           question: 'Are all tradespeople insured?',
-          answer: "Yes — public liability insurance is a condition of listing. We confirm it's in date and keep monitoring it."
+          answer: "Yes. Public liability insurance is a condition of listing. We confirm it's in date and keep monitoring it."
         },
         {
           question: 'What if something goes wrong?',

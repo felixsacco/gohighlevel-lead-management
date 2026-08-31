@@ -90,7 +90,7 @@ export function buildIndicativeEstimate(input: {
   return {
     min,
     max,
-    label: `£${min}–£${max}`,
+    label: `£${min} to £${max}`,
   };
 }
 

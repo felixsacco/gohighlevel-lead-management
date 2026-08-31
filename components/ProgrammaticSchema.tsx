@@ -81,7 +81,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   plumber: [
     {
       q: "How much does a plumber cost near me?",
-      a: "Plumbers near you typically charge £40–£70 per hour with call-out fees of £50–£100. Emergency plumbers cost £80–£150 per hour. Most standard jobs - leak repairs, tap replacement, toilet fitting - cost £150–£400 all-in. All plumbers on MyApproved provide upfront fixed-price quotes before work starts.",
+      a: "Plumbers near you typically charge £40 to£70 per hour with call-out fees of £50 to£100. Emergency plumbers cost £80 to£150 per hour. Most standard jobs - leak repairs, tap replacement, toilet fitting - cost £150 to£400 all-in. All plumbers on MyApproved provide upfront fixed-price quotes before work starts.",
     },
     {
       q: "How do I find a local plumber in my area?",
@@ -93,13 +93,13 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "What is the cheapest way to find a reliable plumber?",
-      a: "MyApproved is free for homeowners - post your job and verified local plumbers who match it will call you back with a competitive quote, at no cost to you. You only pay the plumber for completed work. Comparing quotes saves homeowners an average of 15–25% vs. hiring the first plumber you find.",
+      a: "MyApproved is free for homeowners - post your job and verified local plumbers who match it will call you back with a competitive quote, at no cost to you. You only pay the plumber for completed work. Comparing quotes saves homeowners an average of 15 to25% vs. hiring the first plumber you find.",
     },
   ],
   electrician: [
     {
       q: "How much does an electrician cost near me?",
-      a: "Electricians near you charge £45–£75 per hour. A fuse board replacement costs £350–£700; a full rewire of a 3-bed house runs £3,000–£5,500. All electrical work by MyApproved electricians is NICEIC or NAPIT certified with Part P building notification included at no extra charge.",
+      a: "Electricians near you charge £45 to£75 per hour. A fuse board replacement costs £350 to£700; a full rewire of a 3-bed house runs £3,000 to£5,500. All electrical work by MyApproved electricians is NICEIC or NAPIT certified with Part P building notification included at no extra charge.",
     },
     {
       q: "How do I find a qualified electrician in my area?",
@@ -117,7 +117,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   roofer: [
     {
       q: "How much does a roofer cost near me?",
-      a: "Roofers near you charge £35–£55 per hour. Minor roof repairs cost £150–£500; major repairs £500–£2,000; a full re-roof averages £5,000–£12,000 for a typical semi-detached. All MyApproved roofers have their public liability insurance confirmed and monitored, and provide itemised written quotes.",
+      a: "Roofers near you charge £35 to£55 per hour. Minor roof repairs cost £150 to£500; major repairs £500 to£2,000; a full re-roof averages £5,000 to£12,000 for a typical semi-detached. All MyApproved roofers have their public liability insurance confirmed and monitored, and provide itemised written quotes.",
     },
     {
       q: "How do I find a reliable roofer in my area?",
@@ -135,7 +135,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "gas-engineer": [
     {
       q: "How much does a Gas Safe engineer cost near me?",
-      a: "Gas Safe registered engineers near you charge £60–£100 per hour. A boiler service costs £80–£120; a boiler repair £150–£600; a new boiler installation £1,500–£4,000. Landlord gas safety certificates (CP12) start from £60. All engineers on MyApproved are Gas Safe registered.",
+      a: "Gas Safe registered engineers near you charge £60 to£100 per hour. A boiler service costs £80 to£120; a boiler repair £150 to£600; a new boiler installation £1,500 to£4,000. Landlord gas safety certificates (CP12) start from £60. All engineers on MyApproved are Gas Safe registered.",
     },
     {
       q: "How do I find a Gas Safe registered engineer near me?",
@@ -153,7 +153,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   builder: [
     {
       q: "How much does a local builder cost near me?",
-      a: "Builders near you charge £35–£60 per hour or quote projects at a fixed price. Single-storey extensions cost £20,000–£45,000; double-storey £40,000–£80,000; loft conversions £30,000–£60,000. All builders on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are rated by local homeowners.",
+      a: "Builders near you charge £35 to£60 per hour or quote projects at a fixed price. Single-storey extensions cost £20,000 to£45,000; double-storey £40,000 to£80,000; loft conversions £30,000 to£60,000. All builders on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are rated by local homeowners.",
     },
     {
       q: "How do I find a trustworthy builder in my area?",
@@ -171,7 +171,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   carpenter: [
     {
       q: "How much does a carpenter cost near me?",
-      a: "Carpenters near you charge £35–£55 per hour. Standard jobs cost £200–£1,500; bespoke fitted wardrobes run £800–£3,500; kitchen fitting £1,000–£4,000; new staircase £3,000–£8,000. All carpenters on MyApproved have their identity checked, have their public liability insurance confirmed and monitored, and are reviewed by local homeowners.",
+      a: "Carpenters near you charge £35 to£55 per hour. Standard jobs cost £200 to£1,500; bespoke fitted wardrobes run £800 to£3,500; kitchen fitting £1,000 to£4,000; new staircase £3,000 to£8,000. All carpenters on MyApproved have their identity checked, have their public liability insurance confirmed and monitored, and are reviewed by local homeowners.",
     },
     {
       q: "How do I find a reliable carpenter in my area?",
@@ -189,7 +189,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   locksmith: [
     {
       q: "How much does an emergency locksmith cost near me?",
-      a: "Emergency locksmiths near you charge £60–£120 per hour. A daytime lockout typically costs £75–£150; evening and weekend lockouts £150–£250. Lock replacements average £80–£200 including parts. All locksmiths on MyApproved provide fixed upfront prices before starting work - no hidden callout fees.",
+      a: "Emergency locksmiths near you charge £60 to£120 per hour. A daytime lockout typically costs £75 to£150; evening and weekend lockouts £150 to£250. Lock replacements average £80 to£200 including parts. All locksmiths on MyApproved provide fixed upfront prices before starting work - no hidden callout fees.",
     },
     {
       q: "How do I find a reputable locksmith near me?",
@@ -207,7 +207,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   plasterer: [
     {
       q: "How much does plastering cost near me?",
-      a: "Plasterers near you charge £30–£50 per hour or £200–£600 per room for a skim coat. A full house re-plaster averages £2,500–£6,000. External rendering costs £40–£70 per square metre. All plasterers on MyApproved have their identity checked and their public liability insurance confirmed and monitored.",
+      a: "Plasterers near you charge £30 to£50 per hour or £200 to£600 per room for a skim coat. A full house re-plaster averages £2,500 to£6,000. External rendering costs £40 to£70 per square metre. All plasterers on MyApproved have their identity checked and their public liability insurance confirmed and monitored.",
     },
     {
       q: "How do I find a good plasterer in my area?",
@@ -215,7 +215,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How long does plaster take to dry before painting?",
-      a: "New plaster needs 4–6 weeks to dry fully before painting. A mist coat (approximately 70:30 paint to water) should be applied first to seal the surface and prevent paint from peeling. Your MyApproved plasterer will advise on exact drying times based on room conditions and plaster thickness.",
+      a: "New plaster needs 4 to6 weeks to dry fully before painting. A mist coat (approximately 70:30 paint to water) should be applied first to seal the surface and prevent paint from peeling. Your MyApproved plasterer will advise on exact drying times based on room conditions and plaster thickness.",
     },
     {
       q: "What is the difference between plastering and rendering?",
@@ -225,7 +225,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "painter-decorator": [
     {
       q: "How much does a painter and decorator cost near me?",
-      a: "Painters and decorators near you charge £25–£45 per hour or quote £400–£1,200 per room including materials. A full 3-bed house exterior typically runs £2,000–£5,000. All decorators on MyApproved have their identity checked and their public liability insurance confirmed and monitored - free quotes available.",
+      a: "Painters and decorators near you charge £25 to£45 per hour or quote £400 to£1,200 per room including materials. A full 3-bed house exterior typically runs £2,000 to£5,000. All decorators on MyApproved have their identity checked and their public liability insurance confirmed and monitored - free quotes available.",
     },
     {
       q: "How do I find a reliable painter and decorator in my area?",
@@ -237,13 +237,13 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How long does it take to decorate a room?",
-      a: "A standard bedroom typically takes 1–2 days for a professional painter; a living room 2–3 days; a full house exterior 3–7 days depending on size and condition. Preparation (filling, sanding, priming) accounts for approximately 40% of the total time and is the key to a lasting finish.",
+      a: "A standard bedroom typically takes 1 to2 days for a professional painter; a living room 2 to3 days; a full house exterior 3 to7 days depending on size and condition. Preparation (filling, sanding, priming) accounts for approximately 40% of the total time and is the key to a lasting finish.",
     },
   ],
   handyman: [
     {
       q: "How much does a handyman cost near me?",
-      a: "Handymen near you charge £25–£40 per hour with a minimum call-out of 1–2 hours. Half-day rates run £80–£150; full-day rates £150–£280. All handymen on MyApproved have their public liability insurance confirmed and monitored and are reviewed by real local customers - no hidden fees.",
+      a: "Handymen near you charge £25 to£40 per hour with a minimum call-out of 1 to2 hours. Half-day rates run £80 to£150; full-day rates £150 to£280. All handymen on MyApproved have their public liability insurance confirmed and monitored and are reviewed by real local customers - no hidden fees.",
     },
     {
       q: "How do I find a trustworthy handyman near me?",
@@ -255,13 +255,13 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "Is it worth hiring a handyman for small jobs?",
-      a: "Yes - hiring a handyman for multiple small tasks in one visit is cost-effective and avoids the safety risks of DIY. MyApproved handymen can batch several jobs in a half-day visit for a flat rate of £80–£150, making them ideal for landlords and busy homeowners.",
+      a: "Yes - hiring a handyman for multiple small tasks in one visit is cost-effective and avoids the safety risks of DIY. MyApproved handymen can batch several jobs in a half-day visit for a flat rate of £80 to£150, making them ideal for landlords and busy homeowners.",
     },
   ],
   cleaner: [
     {
       q: "How much does a professional cleaner cost near me?",
-      a: "Professional cleaners near you charge £15–£25 per hour. A one-off deep clean costs £100–£300; end-of-tenancy cleans £150–£400 depending on property size. All cleaners on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers.",
+      a: "Professional cleaners near you charge £15 to£25 per hour. A one-off deep clean costs £100 to£300; end-of-tenancy cleans £150 to£400 depending on property size. All cleaners on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers.",
     },
     {
       q: "How do I find a reliable cleaner near me?",
@@ -279,7 +279,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   tiler: [
     {
       q: "How much does a tiler cost near me?",
-      a: "Tilers near you charge £30–£50 per hour. Bathroom tiling costs £300–£800; kitchen splashback tiling runs £150–£400; floor tiling £30–£60 per square metre. All tilers on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers - free quotes available.",
+      a: "Tilers near you charge £30 to£50 per hour. Bathroom tiling costs £300 to£800; kitchen splashback tiling runs £150 to£400; floor tiling £30 to£60 per square metre. All tilers on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers - free quotes available.",
     },
     {
       q: "How do I find a good tiler near me?",
@@ -287,7 +287,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How long does it take to tile a bathroom?",
-      a: "Tiling a standard bathroom (approximately 15 square metres of walls) typically takes 2–3 days: day 1 for preparation and adhesive application, day 2 for tiling, day 3 for grouting and sealing. Larger or more complex bathrooms with natural stone or large-format tiles take longer. Your MyApproved tiler will provide an accurate timeline with your quote.",
+      a: "Tiling a standard bathroom (approximately 15 square metres of walls) typically takes 2 to3 days: day 1 for preparation and adhesive application, day 2 for tiling, day 3 for grouting and sealing. Larger or more complex bathrooms with natural stone or large-format tiles take longer. Your MyApproved tiler will provide an accurate timeline with your quote.",
     },
     {
       q: "Do I need to prepare walls before tiling?",
@@ -297,7 +297,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   gardener: [
     {
       q: "How much does a gardener cost near me?",
-      a: "Gardeners near you charge £25–£40 per hour. Regular garden maintenance visits cost £50–£120; a full garden clearance runs £150–£500. All gardeners on MyApproved are reviewed by real local customers and have their public liability insurance confirmed and monitored - free quotes available.",
+      a: "Gardeners near you charge £25 to£40 per hour. Regular garden maintenance visits cost £50 to£120; a full garden clearance runs £150 to£500. All gardeners on MyApproved are reviewed by real local customers and have their public liability insurance confirmed and monitored - free quotes available.",
     },
     {
       q: "How do I find a reliable gardener near me?",
@@ -309,13 +309,13 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How often should a garden be professionally maintained?",
-      a: "Most domestic gardens benefit from professional maintenance fortnightly during the growing season (April–September) and monthly during winter. Larger gardens or those with formal hedges may require weekly visits in summer. MyApproved gardeners offer flexible regular contracts - no long-term lock-in.",
+      a: "Most domestic gardens benefit from professional maintenance fortnightly during the growing season (April toSeptember) and monthly during winter. Larger gardens or those with formal hedges may require weekly visits in summer. MyApproved gardeners offer flexible regular contracts - no long-term lock-in.",
     },
   ],
   "bathroom-fitter": [
     {
       q: "How much does a bathroom fitter cost near me?",
-      a: "Bathroom fitters near you charge £35–£55 per hour. A full bathroom renovation typically costs £3,000–£10,000; an en-suite runs £2,000–£6,000. All bathroom fitters on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers - get a free quote today.",
+      a: "Bathroom fitters near you charge £35 to£55 per hour. A full bathroom renovation typically costs £3,000 to£10,000; an en-suite runs £2,000 to£6,000. All bathroom fitters on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers - get a free quote today.",
     },
     {
       q: "How do I find a reliable bathroom fitter near me?",
@@ -323,7 +323,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How long does a bathroom renovation take?",
-      a: "A full bathroom renovation by a MyApproved fitter typically takes 5–10 days: 1–2 days for stripping out, 1–2 days for plumbing and first-fix, 2–3 days for tiling, 1 day for sanitary ware installation, 1 day for finishing and sealing. More complex wet rooms or en-suites with underfloor heating may take 2 weeks.",
+      a: "A full bathroom renovation by a MyApproved fitter typically takes 5 to10 days: 1 to2 days for stripping out, 1 to2 days for plumbing and first-fix, 2 to3 days for tiling, 1 day for sanitary ware installation, 1 day for finishing and sealing. More complex wet rooms or en-suites with underfloor heating may take 2 weeks.",
     },
     {
       q: "Do I need a plumber or a bathroom fitter?",
@@ -333,7 +333,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "kitchen-fitter": [
     {
       q: "How much does a kitchen fitter cost near me?",
-      a: "Kitchen fitters near you charge £35–£55 per hour. Labour-only fitting typically costs £1,000–£5,000; a complete supply-and-fit kitchen runs £5,000–£20,000 depending on size and specification. All kitchen fitters on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local homeowners.",
+      a: "Kitchen fitters near you charge £35 to£55 per hour. Labour-only fitting typically costs £1,000 to£5,000; a complete supply-and-fit kitchen runs £5,000 to£20,000 depending on size and specification. All kitchen fitters on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local homeowners.",
     },
     {
       q: "How do I find a reliable kitchen fitter near me?",
@@ -341,7 +341,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How long does kitchen fitting take?",
-      a: "A standard 10-unit kitchen typically takes 3–5 days to fit: day 1 for stripping out and first-fix plumbing/electrics, days 2–3 for unit installation and worktop fitting, day 4 for tiling, day 5 for appliance connection, plinth, and cornices. Larger kitchens or bespoke designs may take 1–2 weeks.",
+      a: "A standard 10-unit kitchen typically takes 3 to5 days to fit: day 1 for stripping out and first-fix plumbing/electrics, days 2 to3 for unit installation and worktop fitting, day 4 for tiling, day 5 for appliance connection, plinth, and cornices. Larger kitchens or bespoke designs may take 1 to2 weeks.",
     },
     {
       q: "Do I need an electrician as well as a kitchen fitter?",
@@ -351,7 +351,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   landscaper: [
     {
       q: "How much does a landscaper cost near me?",
-      a: "Landscapers near you charge £30–£50 per hour. Patio installations cost £1,500–£6,000; full garden designs £3,000–£15,000. All landscapers on MyApproved are reviewed by real local homeowners and have their public liability insurance confirmed and monitored - free quotes available.",
+      a: "Landscapers near you charge £30 to£50 per hour. Patio installations cost £1,500 to£6,000; full garden designs £3,000 to£15,000. All landscapers on MyApproved are reviewed by real local homeowners and have their public liability insurance confirmed and monitored - free quotes available.",
     },
     {
       q: "How do I find a reliable landscaper near me?",
@@ -369,7 +369,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "window-fitter": [
     {
       q: "How much does a window fitter cost near me?",
-      a: "Window fitters near you charge £35–£55 per hour. A new UPVC window costs £400–£800 fitted; a full set for a 3-bed home runs £3,000–£8,000. All window fitters on MyApproved have their identity checked and their public liability insurance confirmed and monitored.",
+      a: "Window fitters near you charge £35 to£55 per hour. A new UPVC window costs £400 to£800 fitted; a full set for a 3-bed home runs £3,000 to£8,000. All window fitters on MyApproved have their identity checked and their public liability insurance confirmed and monitored.",
     },
     {
       q: "How do I find a reliable window fitter near me?",
@@ -381,13 +381,13 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How long do double glazed windows last?",
-      a: "Quality double glazed windows typically last 20–35 years. Signs of failure include condensation between panes (seal failure), draughts, difficulty opening or closing, and visible damage to the frame. Most MyApproved window fitters offer a minimum 10-year guarantee on installations.",
+      a: "Quality double glazed windows typically last 20 to35 years. Signs of failure include condensation between panes (seal failure), draughts, difficulty opening or closing, and visible damage to the frame. Most MyApproved window fitters offer a minimum 10-year guarantee on installations.",
     },
   ],
   "heating-engineer": [
     {
       q: "How much does a heating engineer cost near me?",
-      a: "Heating engineers near you charge £50–£80 per hour. A radiator replacement costs £150–£350; new central heating system installation runs £3,000–£7,000. All heating engineers on MyApproved are Gas Safe registered where required and reviewed by real local customers.",
+      a: "Heating engineers near you charge £50 to£80 per hour. A radiator replacement costs £150 to£350; new central heating system installation runs £3,000 to£7,000. All heating engineers on MyApproved are Gas Safe registered where required and reviewed by real local customers.",
     },
     {
       q: "How do I find a reliable heating engineer near me?",
@@ -395,7 +395,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How often should central heating be serviced?",
-      a: "Your boiler should be serviced annually, and the full central heating system checked every 3–5 years. Annual servicing maintains efficiency, keeps your warranty valid, identifies problems early, and most importantly ensures carbon monoxide safety. MyApproved heating engineers offer fixed-price annual service plans.",
+      a: "Your boiler should be serviced annually, and the full central heating system checked every 3 to5 years. Annual servicing maintains efficiency, keeps your warranty valid, identifies problems early, and most importantly ensures carbon monoxide safety. MyApproved heating engineers offer fixed-price annual service plans.",
     },
     {
       q: "What is the difference between a heating engineer and a plumber?",
@@ -405,7 +405,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
   "loft-conversion": [
     {
       q: "How much does a loft conversion cost near me?",
-      a: "Loft conversion builders near you typically quote £35,000–£60,000 for a dormer; £20,000–£35,000 for a Velux conversion. Prices vary by roof type, size, and specification. All MyApproved loft conversion contractors have their identity checked and their public liability insurance confirmed and monitored, and manage building regulations applications on your behalf.",
+      a: "Loft conversion builders near you typically quote £35,000 to£60,000 for a dormer; £20,000 to£35,000 for a Velux conversion. Prices vary by roof type, size, and specification. All MyApproved loft conversion contractors have their identity checked and their public liability insurance confirmed and monitored, and manage building regulations applications on your behalf.",
     },
     {
       q: "Do I need planning permission for a loft conversion?",
@@ -413,17 +413,17 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How long does a loft conversion take?",
-      a: "A standard Velux loft conversion takes 3–4 weeks; a dormer conversion 6–8 weeks; a full mansard or hip-to-gable conversion 8–12 weeks. This includes structural work, roofing, insulation, first-fix, plastering, second-fix, and decoration. Your MyApproved builder will provide a detailed project timeline with the quote.",
+      a: "A standard Velux loft conversion takes 3 to4 weeks; a dormer conversion 6 to8 weeks; a full mansard or hip-to-gable conversion 8 to12 weeks. This includes structural work, roofing, insulation, first-fix, plastering, second-fix, and decoration. Your MyApproved builder will provide a detailed project timeline with the quote.",
     },
     {
       q: "Will a loft conversion add value to my home?",
-      a: "A well-executed loft conversion typically adds 15–25% to a property's value. Across the UK, adding a bedroom and bathroom via a dormer conversion can add £30,000–£60,000 to a 3-bed semi. MyApproved contractors provide itemised quotes so you can accurately assess return on investment.",
+      a: "A well-executed loft conversion typically adds 15 to25% to a property's value. Across the UK, adding a bedroom and bathroom via a dormer conversion can add £30,000 to£60,000 to a 3-bed semi. MyApproved contractors provide itemised quotes so you can accurately assess return on investment.",
     },
   ],
   "driveway-specialist": [
     {
       q: "How much does a new driveway cost near me?",
-      a: "Driveway specialists near you charge £30–£50 per hour. A block-paved driveway for a typical 3-bed home costs £3,000–£7,000; resin bound runs £2,000–£5,000; tarmac £1,500–£4,000; gravel £500–£2,000. All driveway specialists on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local homeowners.",
+      a: "Driveway specialists near you charge £30 to£50 per hour. A block-paved driveway for a typical 3-bed home costs £3,000 to£7,000; resin bound runs £2,000 to£5,000; tarmac £1,500 to£4,000; gravel £500 to£2,000. All driveway specialists on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local homeowners.",
     },
     {
       q: "Do I need planning permission for a new driveway?",
@@ -431,17 +431,17 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How long does a driveway installation take?",
-      a: "A standard block-paved driveway (50–60m²) typically takes 3–5 days: day 1 for excavation, days 2–3 for sub-base and edging, day 4 for laying, day 5 for pointing and finishing. Resin bound driveways take 2–3 days. Your MyApproved driveway specialist will confirm the timeline with your quote.",
+      a: "A standard block-paved driveway (50 to60m²) typically takes 3 to5 days: day 1 for excavation, days 2 to3 for sub-base and edging, day 4 for laying, day 5 for pointing and finishing. Resin bound driveways take 2 to3 days. Your MyApproved driveway specialist will confirm the timeline with your quote.",
     },
     {
       q: "What is the most durable driveway material?",
-      a: "Block paving and resin bound aggregate are the most durable options, lasting 25–30 years with minimal maintenance. Tarmac lasts 15–20 years. Gravel is the most affordable but requires ongoing maintenance (raking, topping up). All MyApproved driveway specialists will explain material options and long-term costs as part of the quoting process.",
+      a: "Block paving and resin bound aggregate are the most durable options, lasting 25 to30 years with minimal maintenance. Tarmac lasts 15 to20 years. Gravel is the most affordable but requires ongoing maintenance (raking, topping up). All MyApproved driveway specialists will explain material options and long-term costs as part of the quoting process.",
     },
   ],
   "solar-panel-installer": [
     {
       q: "How much does solar panel installation cost near me?",
-      a: "Solar panel installers near you charge £500–£1,500 per day. A standard 4kW domestic system costs £5,000–£8,000 fully installed; with battery storage, £8,000–£14,000. All solar installers on MyApproved are MCS certified - a requirement to access Smart Export Guarantee export payments.",
+      a: "Solar panel installers near you charge £500 to£1,500 per day. A standard 4kW domestic system costs £5,000 to£8,000 fully installed; with battery storage, £8,000 to£14,000. All solar installers on MyApproved are MCS certified - a requirement to access Smart Export Guarantee export payments.",
     },
     {
       q: "How do I find a MCS certified solar installer near me?",
@@ -449,17 +449,17 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How long does it take solar panels to pay for themselves?",
-      a: "In the UK, solar panels typically pay back in 7–10 years through reduced electricity bills and Smart Export Guarantee export payments. A 4kW system generates approximately 3,400–4,000 kWh per year in the Midlands, saving around £800–£1,200 annually at current energy prices.",
+      a: "In the UK, solar panels typically pay back in 7 to10 years through reduced electricity bills and Smart Export Guarantee export payments. A 4kW system generates approximately 3,400 to4,000 kWh per year in the Midlands, saving around £800 to£1,200 annually at current energy prices.",
     },
     {
       q: "Do solar panels work in cloudy weather?",
-      a: "Yes. Solar panels generate electricity from daylight, not direct sunlight. They produce approximately 10–25% of their rated output on overcast days. The UK's average 1,350–1,750 peak sun hours per year makes domestic solar financially viable across all regions of the UK.",
+      a: "Yes. Solar panels generate electricity from daylight, not direct sunlight. They produce approximately 10 to25% of their rated output on overcast days. The UK's average 1,350 to1,750 peak sun hours per year makes domestic solar financially viable across all regions of the UK.",
     },
   ],
   default: [
     {
       q: "How much do tradespeople charge near me?",
-      a: "Tradespeople near you provide upfront fixed-price quotes with no hidden fees. Hourly rates vary by trade: plumbers £40–£70, electricians £45–£75, builders £35–£60, roofers £35–£55. All tradespeople on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers - post your job free today.",
+      a: "Tradespeople near you provide upfront fixed-price quotes with no hidden fees. Hourly rates vary by trade: plumbers £40 to£70, electricians £45 to£75, builders £35 to£60, roofers £35 to£55. All tradespeople on MyApproved have their identity checked and their public liability insurance confirmed and monitored, and are reviewed by real local customers - post your job free today.",
     },
     {
       q: "How does MyApproved verify tradespeople?",
@@ -471,7 +471,7 @@ const TRADE_FAQS: Record<string, Array<{ q: string; a: string }>> = {
     },
     {
       q: "How quickly will I receive quotes from local tradespeople?",
-      a: "Most homeowners receive their first quote within a few hours of posting a job on MyApproved. Emergency trades such as plumbers, electricians, and locksmiths typically respond within 1–2 hours. Verified tradespeople who match your job call you back with a fixed written quote - no obligation to accept.",
+      a: "Most homeowners receive their first quote within a few hours of posting a job on MyApproved. Emergency trades such as plumbers, electricians, and locksmiths typically respond within 1 to2 hours. Verified tradespeople who match your job call you back with a fixed written quote - no obligation to accept.",
     },
   ],
 };
@@ -555,7 +555,7 @@ export default function ProgrammaticSchema({
       width: 512,
       height: 512,
     },
-    priceRange: price ? `£${price.low}–£${price.high}/hr` : "££",
+    priceRange: price ? `£${price.low} to£${price.high}/hr` : "££",
     currenciesAccepted: "GBP",
     paymentAccepted: "Cash, Credit Card, Bank Transfer",
     openingHoursSpecification: [

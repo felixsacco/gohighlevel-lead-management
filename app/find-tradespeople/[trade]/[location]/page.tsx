@@ -278,7 +278,7 @@ export default async function FindTradeLocationPage({
   const faqs = [
     {
       q: `How much does a ${trade.name.toLowerCase()} cost in ${locationName}?`,
-      a: `${trade.plural} in ${locationName} typically charge ${trade.hourlyRate} per hour. Exact prices depend on the job itself, but you'll get a fixed, written quote before any work starts — so there are no surprises.`,
+      a: `${trade.plural} in ${locationName} typically charge ${trade.hourlyRate} per hour. Exact prices depend on the job itself, but you'll get a fixed, written quote before any work starts. So there are no surprises.`,
     },
     {
       q: `Are ${trade.plural.toLowerCase()} on MyApproved in ${locationName} insured?`,
@@ -286,11 +286,11 @@ export default async function FindTradeLocationPage({
     },
     {
       q: `How does MyApproved verify ${trade.plural.toLowerCase()} in ${locationName}?`,
-      a: `Before listing, each professional passes an identity check against photo ID, a business check through Companies House, and an insurance check — and that cover is monitored after they're listed.`,
+      a: `Before listing, each professional passes an identity check against photo ID, a business check through Companies House, and an insurance check. And that cover is monitored after they're listed.`,
     },
     {
       q: `How quickly can I get a ${trade.name.toLowerCase()} in ${locationName}?`,
-      a: `Most homeowners get their first quote within a few hours. For urgent work, professionals can often respond within 1–2 hours.`,
+      a: `Most homeowners get their first quote within a few hours. For urgent work, professionals can often respond within 1 to 2 hours.`,
     },
   ];
 

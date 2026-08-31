@@ -265,7 +265,7 @@ export default function ClientDashboardPage() {
       const data = (await res.json()) as { error?: string; details?: string };
       if (!res.ok) {
         setCompleteError(
-          [data.error, data.details].filter(Boolean).join(" — ") ||
+          [data.error, data.details].filter(Boolean).join(": ") ||
             "Could not mark the job complete.",
         );
         return;
@@ -326,22 +326,22 @@ export default function ClientDashboardPage() {
   }, [user?.id, loadChatUnreadCount]);
 
   const formatDate = (iso?: string) => {
-    if (!iso) return "—";
+    if (!iso) return "N/A";
     try {
       return new Date(iso).toLocaleDateString("en-GB");
     } catch {
-      return "—";
+      return "N/A";
     }
   };
 
   const statusLabel = (job: Job) => {
     if (job.is_completed) return "Completed";
     if (job.application_status === "in_progress") return "In progress";
-    if (job.application_status === "open" && job.is_approved) return "Live — accepting applications";
+    if (job.application_status === "open" && job.is_approved) return "Live: accepting applications";
     if (job.is_approved === false || job.status === "pending_approval")
       return "Pending approval";
     if (job.status === "rejected") return "Rejected";
-    return job.application_status || job.status || "—";
+    return job.application_status || job.status || "N/A";
   };
 
   if (!user && loading) {
@@ -441,7 +441,7 @@ export default function ClientDashboardPage() {
               <Link href="/notifications" className="font-medium text-slate-900 underline">
                 Notifications
               </Link>
-              {" — include your job trade and postcode so we can help quickly."}{" "}
+              {", include your job trade and postcode so we can help quickly."}{" "}
               After you assign a tradesperson, use{" "}
               <strong>Chat with tradesperson</strong> above to message them about the job.
             </AlertDescription>
@@ -688,7 +688,7 @@ export default function ClientDashboardPage() {
                                   </span>
                                 </>
                               ) : (
-                                "—"
+                                "N/A"
                               )}
                             </TableCell>
                             <TableCell className="text-sm text-muted-foreground whitespace-nowrap">
@@ -709,7 +709,7 @@ export default function ClientDashboardPage() {
                               ) : job.is_completed ? (
                                 <span className="text-xs text-muted-foreground">Completed</span>
                               ) : (
-                                <span className="text-xs text-muted-foreground">—</span>
+                                <span className="text-xs text-muted-foreground">N/A</span>
                               )}
                             </TableCell>
                           </TableRow>

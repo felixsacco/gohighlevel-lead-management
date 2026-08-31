@@ -137,7 +137,7 @@ export default function ClientQuoteRequests({ clientEmail, clientId }: ClientQuo
   };
 
   const formatCurrency = (value?: number | null) => {
-    if (value == null || isNaN(Number(value))) return '£—';
+    if (value == null || isNaN(Number(value))) return 'N/A';
     try {
       return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 }).format(Number(value));
     } catch {

@@ -315,7 +315,7 @@ export default function Home() {
             {/* Hero Content - Centered */}
             <div className="text-center">
               {/* Register overline — a transparent pill with a single amber stroke */}
-              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-6 sm:mb-14 md:mb-16">
+              <p className="inline-flex items-center gap-3 text-[0.72rem] sm:text-xs font-semibold tracking-[0.22em] uppercase text-brand-amber mb-6 sm:mb-16 md:mb-20">
                 <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-brand-amber/60" aria-hidden="true"></span>
                 <span className="relative px-7 py-1.5 border border-brand-amber/60">
                   <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" className="absolute left-2 top-1/2 -translate-y-1/2 shrink-0">
@@ -350,7 +350,7 @@ export default function Home() {
               </p>
 
               {/* Headline — all white, underscored by a thin amber rule below the descender */}
-              <h1 className="text-[1.75rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] mb-8 sm:mb-16 md:mb-20 px-2 sm:px-4" style={{fontWeight: 800}}>
+              <h1 className="text-[1.75rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] mb-8 sm:mb-20 md:mb-28 px-2 sm:px-4" style={{fontWeight: 800}}>
                 Hire a tradesperson you{" "}
                 <span className="relative inline-block whitespace-nowrap">
                   <span className="text-white relative z-10">actually count on</span>
@@ -383,12 +383,12 @@ export default function Home() {
               </h1>
 
               {/* Subheadline — one specific promise */}
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-8 sm:mb-16 md:mb-20 max-w-[34rem] mx-auto font-normal px-4">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-8 sm:mb-20 md:mb-28 max-w-[36rem] mx-auto font-normal px-4">
                 Skip the no-shows and the cowboys
               </p>
 
               {/* Search Bar — a raised, rounded clickable target on navy */}
-              <div className="relative max-w-3xl mx-auto mb-8 sm:mb-16 md:mb-20 px-4">
+              <div className="relative max-w-3xl mx-auto mb-10 sm:mb-24 md:mb-32 px-4">
                 <div
                   className="relative flex flex-col sm:flex-row items-center bg-white rounded-3xl sm:rounded-full shadow-xl shadow-black/20 border border-white/40 cursor-pointer gap-0 sm:pl-1.5 sm:pr-1.5 sm:py-1.5 overflow-hidden p-2 sm:p-0"
                   onClick={() => setShowAIModal(true)}
@@ -495,7 +495,7 @@ export default function Home() {
             {/* Benefit 1 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
               <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>Vetted before they're listed</h3>
-              <p className="text-sm sm:text-base text-gray-600">Only tradespeople who pass identity, business and insurance checks make the cut.</p>
+              <p className="text-sm sm:text-base text-gray-600">Only tradespeople who pass qualification, business and insurance checks make the cut.</p>
             </div>
 
             {/* Benefit 2 */}
@@ -507,7 +507,7 @@ export default function Home() {
             {/* Benefit 3 */}
             <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
               <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{fontWeight: 700}}>Booked into a real slot</h3>
-              <p className="text-sm sm:text-base text-gray-600">Your job lands in their diary — no chasing, no guesswork about when they'll turn up.</p>
+              <p className="text-sm sm:text-base text-gray-600">Your job lands in their diary, in a time slot that works for you.</p>
             </div>
 
             {/* Benefit 4 */}
@@ -541,7 +541,7 @@ export default function Home() {
               Our Checks
             </h2>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-brand-navy max-w-3xl mx-auto font-semibold px-4">
-              Every tradesperson on MyApproved passes identity, business and insurance checks before they can take on work.
+              Every tradesperson on MyApproved passes qualification, business and insurance checks before they can take on work.
             </p>
           </div>
 
@@ -625,12 +625,12 @@ export default function Home() {
                 Grow Your Trade Business
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed mb-6 sm:mb-8">
-                Quality leads from homeowners ready to hire. No cold calling, no wasted trips — just real jobs from people who need your skills.
+                Quality leads from homeowners ready to hire. No cold calling, no wasted trips. Just real jobs from people who need your skills.
               </p>
               <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span className="notranslate"><strong className="font-bold" style={{fontWeight: 700}}>Only verified tradespeople get your job.</strong> Every match has passed identity, business and insurance checks.</span>
+                  <span className="notranslate"><strong className="font-bold" style={{fontWeight: 700}}>Only verified tradespeople get your job.</strong> Every match has passed qualification, business and insurance checks.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
@@ -638,7 +638,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs drop into your calendar.</strong> Booking lands straight in your diary — no clashes.</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs drop into your calendar.</strong> Booking lands straight in your diary. No clashes.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
@@ -646,7 +646,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span><strong className="font-bold" style={{fontWeight: 700}}>Your marketing, handled.</strong> Website, SEO, ads, social, outreach and reviews — sorted.</span>
+                  <span><strong className="font-bold" style={{fontWeight: 700}}>Your marketing, handled.</strong> Website, SEO, ads, social, outreach and reviews. Sorted.</span>
                 </li>
               </ul>
               <Button
@@ -736,7 +736,7 @@ export default function Home() {
                 How do you check tradespeople?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
-                No tradesperson is listed until their identity, business and insurance checks have passed. We confirm their photo ID matches the person behind the profile, verified against a live selfie. We check their business is registered on Companies House, the official UK register. And we confirm their public liability insurance cover is genuine and not out of date. Only once all of these pass do they appear on MyApproved.
+                No tradesperson is listed until their qualifications, business and insurance checks have passed. We confirm their photo ID matches the person behind the profile, verified against a live selfie. We check their business is registered on Companies House, the official UK register. And we confirm their public liability insurance cover is genuine and not out of date. Only once all of these pass do they appear on MyApproved.
               </AccordionContent>
             </AccordionItem>
 
@@ -745,7 +745,7 @@ export default function Home() {
                 Will I get chased by dozens of companies trying to sell me a job?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 leading-relaxed text-sm sm:text-base pb-4 sm:pb-6 notranslate">
-                No. Your job only goes to tradespeople who have passed verification and who match your trade or your postcode area. They then contact you directly by phone. So you hear from a few relevant, checked tradespeople — not a broadcast to everyone in your postcode.
+                No. Your job only goes to tradespeople who have passed verification and who match your trade or your postcode area. They then contact you directly by phone. So you hear from a few relevant, checked tradespeople, not a broadcast to everyone in your postcode.
               </AccordionContent>
             </AccordionItem>
 

@@ -21,7 +21,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   plumber: {
     q1: (loc, pd) => `How much does a verified plumber cost in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Plumbers in ${loc}${pd ? ` ${pd}` : ""} charge £40–£70/hour for standard work; £80–£150/hour for emergency call-outs. Common jobs: tap replacement £80–£150, boiler service £80–£120, burst pipe repair £150–£400. Plumbers on MyApproved carrying out gas work are Gas Safe registered, have public liability cover of £2m confirmed and monitored, and are identity checked before quoting.`,
+      `Plumbers in ${loc}${pd ? ` ${pd}` : ""} charge £40 to£70/hour for standard work; £80 to£150/hour for emergency call-outs. Common jobs: tap replacement £80 to£150, boiler service £80 to£120, burst pipe repair £150 to£400. Plumbers on MyApproved carrying out gas work are Gas Safe registered, have public liability cover of £2m confirmed and monitored, and are identity checked before quoting.`,
     q2: (loc) =>
       `How does MyApproved verify a plumber in ${loc} before they can quote?`,
     a2: (loc) =>
@@ -31,7 +31,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   electrician: {
     q1: (loc, pd) => `What do verified electricians charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Part P registered electricians, NICEIC or NAPIT, in ${loc}${pd ? ` ${pd}` : ""} charge £45–£75/hour. Fuse board upgrade: £350–£700. Full rewire (3-bed): £3,000–£5,500. EV charger installation: £800–£1,200. All electrical work by MyApproved electricians is carried out by Part P registered electricians with full building control notification - a legal requirement for domestic electrical work in England and Wales.`,
+      `Part P registered electricians, NICEIC or NAPIT, in ${loc}${pd ? ` ${pd}` : ""} charge £45 to£75/hour. Fuse board upgrade: £350 to£700. Full rewire (3-bed): £3,000 to£5,500. EV charger installation: £800 to£1,200. All electrical work by MyApproved electricians is carried out by Part P registered electricians with full building control notification - a legal requirement for domestic electrical work in England and Wales.`,
     q2: (loc) =>
       `How does MyApproved confirm an electrician in ${loc} is properly qualified?`,
     a2: (loc) =>
@@ -41,7 +41,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   roofer: {
     q1: (loc, pd) => `How much does a roofer cost in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Roofers in ${loc}${pd ? ` ${pd}` : ""} charge £35–£55/hour. Typical costs: minor repair £150–£500, major repair £500–£2,000, full re-roof £5,000–£12,000 for a typical semi. Lead work: £50–£90/m². Every MyApproved roofer has public liability cover confirmed and monitored and provides a detailed written quote before work begins.`,
+      `Roofers in ${loc}${pd ? ` ${pd}` : ""} charge £35 to£55/hour. Typical costs: minor repair £150 to£500, major repair £500 to£2,000, full re-roof £5,000 to£12,000 for a typical semi. Lead work: £50 to£90/m². Every MyApproved roofer has public liability cover confirmed and monitored and provides a detailed written quote before work begins.`,
     q2: (loc) =>
       `How does MyApproved protect homeowners hiring a roofer in ${loc}?`,
     a2: (loc) =>
@@ -51,7 +51,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   "gas-engineer": {
     q1: (loc, pd) => `How much does a Gas Safe engineer charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Gas Safe registered engineers in ${loc}${pd ? ` ${pd}` : ""} charge £60–£100/hour. Boiler service: £80–£120. Boiler repair: £150–£600. New boiler installation: £1,500–£4,000. Landlord CP12 gas safety certificate: from £60. It is illegal for any unregistered person to carry out gas work in a UK home. Every engineer on MyApproved is Gas Safe registered before they can receive any quote request.`,
+      `Gas Safe registered engineers in ${loc}${pd ? ` ${pd}` : ""} charge £60 to£100/hour. Boiler service: £80 to£120. Boiler repair: £150 to£600. New boiler installation: £1,500 to£4,000. Landlord CP12 gas safety certificate: from £60. It is illegal for any unregistered person to carry out gas work in a UK home. Every engineer on MyApproved is Gas Safe registered before they can receive any quote request.`,
     q2: (loc) =>
       `How does MyApproved verify Gas Safe registration for engineers in ${loc}?`,
     a2: (loc) =>
@@ -61,7 +61,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   builder: {
     q1: (loc, pd) => `How much do verified builders charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Builders in ${loc}${pd ? ` ${pd}` : ""} charge £35–£60/hour for labour. Project costs: single-storey extension £20,000–£45,000, loft conversion £30,000–£60,000, garage conversion £10,000–£25,000, full renovation £50,000–£150,000+. MyApproved builders provide itemised written quotes - materials, labour, and programme - before signing any agreement.`,
+      `Builders in ${loc}${pd ? ` ${pd}` : ""} charge £35 to£60/hour for labour. Project costs: single-storey extension £20,000 to£45,000, loft conversion £30,000 to£60,000, garage conversion £10,000 to£25,000, full renovation £50,000 to£150,000+. MyApproved builders provide itemised written quotes - materials, labour, and programme - before signing any agreement.`,
     q2: (loc) =>
       `What verification does MyApproved carry out on builders in ${loc}?`,
     a2: (loc) =>
@@ -71,7 +71,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   carpenter: {
     q1: (loc, pd) => `What do carpenters and joiners charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Carpenters in ${loc}${pd ? ` ${pd}` : ""} charge £35–£55/hour. Fitted wardrobe: £800–£3,500. Kitchen fitting (labour only): £1,000–£4,000. Staircase replacement: £3,000–£8,000. Skirting and architrave: £15–£30/metre. All MyApproved carpenters provide itemised, fixed-price written quotes before work starts.`,
+      `Carpenters in ${loc}${pd ? ` ${pd}` : ""} charge £35 to£55/hour. Fitted wardrobe: £800 to£3,500. Kitchen fitting (labour only): £1,000 to£4,000. Staircase replacement: £3,000 to£8,000. Skirting and architrave: £15 to£30/metre. All MyApproved carpenters provide itemised, fixed-price written quotes before work starts.`,
     q2: (loc) =>
       `How does MyApproved verify a carpenter in ${loc}?`,
     a2: (loc) =>
@@ -81,7 +81,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   plasterer: {
     q1: (loc, pd) => `How much does plastering cost in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Plasterers in ${loc}${pd ? ` ${pd}` : ""} charge £30–£50/hour or £200–£600 per room for a skim coat. Full house re-plaster: £2,500–£6,000. External rendering: £40–£70/m². Dry-lining: £10–£25/m². Every MyApproved plasterer is identity checked and has public liability cover of £2m confirmed and monitored. Written quotes only - no verbal agreements.`,
+      `Plasterers in ${loc}${pd ? ` ${pd}` : ""} charge £30 to£50/hour or £200 to£600 per room for a skim coat. Full house re-plaster: £2,500 to£6,000. External rendering: £40 to£70/m². Dry-lining: £10 to£25/m². Every MyApproved plasterer is identity checked and has public liability cover of £2m confirmed and monitored. Written quotes only - no verbal agreements.`,
     q2: (loc) =>
       `What does MyApproved check before a plasterer can work in ${loc}?`,
     a2: (loc) =>
@@ -91,7 +91,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   "painter-decorator": {
     q1: (loc, pd) => `What do painters and decorators charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Painters and decorators in ${loc}${pd ? ` ${pd}` : ""} charge £25–£45/hour or £400–£1,200 per room including materials. Full 3-bed interior: £2,500–£5,000. Exterior painting (3-bed semi): £2,000–£5,000. Wallpaper hanging: £150–£350/room. All MyApproved decorators are identity checked and have public liability cover confirmed and monitored, with reviews from confirmed homeowners only.`,
+      `Painters and decorators in ${loc}${pd ? ` ${pd}` : ""} charge £25 to£45/hour or £400 to£1,200 per room including materials. Full 3-bed interior: £2,500 to£5,000. Exterior painting (3-bed semi): £2,000 to£5,000. Wallpaper hanging: £150 to£350/room. All MyApproved decorators are identity checked and have public liability cover confirmed and monitored, with reviews from confirmed homeowners only.`,
     q2: (loc) =>
       `How does MyApproved vet a painter and decorator in ${loc}?`,
     a2: (loc) =>
@@ -101,7 +101,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   painter: {
     q1: (loc, pd) => `What do painters and decorators charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Painters and decorators in ${loc}${pd ? ` ${pd}` : ""} charge £25–£45/hour or £400–£1,200 per room including materials. Full 3-bed interior: £2,500–£5,000. Exterior painting (3-bed semi): £2,000–£5,000. All MyApproved decorators are identity checked and have public liability cover confirmed and monitored, with reviews from confirmed homeowners.`,
+      `Painters and decorators in ${loc}${pd ? ` ${pd}` : ""} charge £25 to£45/hour or £400 to£1,200 per room including materials. Full 3-bed interior: £2,500 to£5,000. Exterior painting (3-bed semi): £2,000 to£5,000. All MyApproved decorators are identity checked and have public liability cover confirmed and monitored, with reviews from confirmed homeowners.`,
     q2: (loc) =>
       `How does MyApproved vet a painter and decorator in ${loc}?`,
     a2: (loc) =>
@@ -111,7 +111,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   cleaner: {
     q1: (loc, pd) => `How much does a professional cleaner cost in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Professional cleaners in ${loc}${pd ? ` ${pd}` : ""} charge £15–£25/hour. One-off deep clean: £100–£300. End-of-tenancy clean: £150–£400 depending on property size. Regular domestic clean (3-bed, weekly): £50–£100/session. Every cleaner on MyApproved is identity checked and reviewed only by confirmed clients. No anonymous reviews.`,
+      `Professional cleaners in ${loc}${pd ? ` ${pd}` : ""} charge £15 to£25/hour. One-off deep clean: £100 to£300. End-of-tenancy clean: £150 to£400 depending on property size. Regular domestic clean (3-bed, weekly): £50 to£100/session. Every cleaner on MyApproved is identity checked and reviewed only by confirmed clients. No anonymous reviews.`,
     q2: (loc) =>
       `What checks does MyApproved carry out on cleaners in ${loc}?`,
     a2: (loc) =>
@@ -121,7 +121,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   handyman: {
     q1: (loc, pd) => `How much does a local handyman charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Handymen in ${loc}${pd ? ` ${pd}` : ""} charge £25–£40/hour with a minimum 1–2 hour call-out. Half-day rate: £80–£150. Full day: £150–£280. Common tasks: flat-pack assembly (£50–£150), picture hanging (£30–£60), minor repairs (£60–£200). Every MyApproved handyman is identity checked, has public liability cover confirmed and monitored, and is reviewed by real local homeowners - no fake reviews.`,
+      `Handymen in ${loc}${pd ? ` ${pd}` : ""} charge £25 to£40/hour with a minimum 1 to2 hour call-out. Half-day rate: £80 to£150. Full day: £150 to£280. Common tasks: flat-pack assembly (£50 to£150), picture hanging (£30 to£60), minor repairs (£60 to£200). Every MyApproved handyman is identity checked, has public liability cover confirmed and monitored, and is reviewed by real local homeowners - no fake reviews.`,
     q2: (loc) =>
       `What does MyApproved verify before a handyman can quote in ${loc}?`,
     a2: (loc) =>
@@ -131,7 +131,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   locksmith: {
     q1: (loc, pd) => `How much does an emergency locksmith cost in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Locksmiths in ${loc}${pd ? ` ${pd}` : ""} charge £60–£120/hour. Emergency lockout: £75–£200 depending on time of day and lock type. Lock replacement (standard): £80–£200. Anti-snap lock upgrade: £100–£200. All MyApproved locksmiths provide a fixed price before beginning work - no up-selling on arrival, no hidden call-out fees.`,
+      `Locksmiths in ${loc}${pd ? ` ${pd}` : ""} charge £60 to£120/hour. Emergency lockout: £75 to£200 depending on time of day and lock type. Lock replacement (standard): £80 to£200. Anti-snap lock upgrade: £100 to£200. All MyApproved locksmiths provide a fixed price before beginning work - no up-selling on arrival, no hidden call-out fees.`,
     q2: (loc) =>
       `How does MyApproved stop rogue locksmiths from listing in ${loc}?`,
     a2: (loc) =>
@@ -141,7 +141,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   landscaper: {
     q1: (loc, pd) => `How much does a landscaper charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Landscapers in ${loc}${pd ? ` ${pd}` : ""} charge £30–£50/hour. Patio installation: £1,500–£6,000. Garden design (full): £3,000–£15,000. Fencing: £80–£150/metre. Decking installation: £1,200–£5,000. All MyApproved landscapers have public liability cover of £2m confirmed and monitored, are identity checked, and provide itemised written quotes. Drainage and groundwork projects may require a separate structural check - MyApproved confirms this at pre-listing.`,
+      `Landscapers in ${loc}${pd ? ` ${pd}` : ""} charge £30 to£50/hour. Patio installation: £1,500 to£6,000. Garden design (full): £3,000 to£15,000. Fencing: £80 to£150/metre. Decking installation: £1,200 to£5,000. All MyApproved landscapers have public liability cover of £2m confirmed and monitored, are identity checked, and provide itemised written quotes. Drainage and groundwork projects may require a separate structural check - MyApproved confirms this at pre-listing.`,
     q2: (loc) =>
       `What verification does MyApproved apply to landscapers in ${loc}?`,
     a2: (loc) =>
@@ -151,7 +151,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   gardener: {
     q1: (loc, pd) => `How much does a gardener charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Gardeners in ${loc}${pd ? ` ${pd}` : ""} charge £25–£40/hour. Regular maintenance (monthly): £50–£120/visit. Full garden clearance: £150–£500. Hedge trimming: £80–£300 depending on size. Lawn treatment: £30–£80. Every MyApproved gardener is identity checked, has public liability cover confirmed and monitored, and is reviewed only by confirmed clients.`,
+      `Gardeners in ${loc}${pd ? ` ${pd}` : ""} charge £25 to£40/hour. Regular maintenance (monthly): £50 to£120/visit. Full garden clearance: £150 to£500. Hedge trimming: £80 to£300 depending on size. Lawn treatment: £30 to£80. Every MyApproved gardener is identity checked, has public liability cover confirmed and monitored, and is reviewed only by confirmed clients.`,
     q2: (loc) =>
       `How does MyApproved vet gardeners before they can work in ${loc}?`,
     a2: (loc) =>
@@ -161,7 +161,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   "heating-engineer": {
     q1: (loc, pd) => `How much does a heating engineer charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Heating engineers in ${loc}${pd ? ` ${pd}` : ""} charge £50–£80/hour. Radiator replacement: £150–£350. New central heating system: £3,000–£7,000. Power flush: £300–£600. Thermostatic radiator valves: £100–£250. Gas-connected heating work requires Gas Safe registration - checked by MyApproved before any engineer can list.`,
+      `Heating engineers in ${loc}${pd ? ` ${pd}` : ""} charge £50 to£80/hour. Radiator replacement: £150 to£350. New central heating system: £3,000 to£7,000. Power flush: £300 to£600. Thermostatic radiator valves: £100 to£250. Gas-connected heating work requires Gas Safe registration - checked by MyApproved before any engineer can list.`,
     q2: (loc) =>
       `How does MyApproved confirm a heating engineer's qualifications in ${loc}?`,
     a2: (loc) =>
@@ -171,7 +171,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   "kitchen-fitter": {
     q1: (loc, pd) => `How much does kitchen fitting cost in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Kitchen fitters in ${loc}${pd ? ` ${pd}` : ""} charge £35–£55/hour. Labour-only fitting: £1,000–£5,000. Supply-and-fit (mid-range): £8,000–£20,000. Supply-and-fit (premium): £20,000+. Kitchen work typically involves multiple trades: fitting, plumbing, and electrics. MyApproved can source verified professionals for all 3 trades independently or as a coordinated team.`,
+      `Kitchen fitters in ${loc}${pd ? ` ${pd}` : ""} charge £35 to£55/hour. Labour-only fitting: £1,000 to£5,000. Supply-and-fit (mid-range): £8,000 to£20,000. Supply-and-fit (premium): £20,000+. Kitchen work typically involves multiple trades: fitting, plumbing, and electrics. MyApproved can source verified professionals for all 3 trades independently or as a coordinated team.`,
     q2: (loc) =>
       `What does MyApproved verify for a kitchen fitter in ${loc}?`,
     a2: (loc) =>
@@ -181,7 +181,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   "bathroom-fitter": {
     q1: (loc, pd) => `How much does a bathroom fitter charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Bathroom fitters in ${loc}${pd ? ` ${pd}` : ""} charge £35–£55/hour. Full bathroom renovation: £3,000–£10,000. En-suite: £2,000–£6,000. Wetroom conversion: £3,500–£8,000. Labour-only fit (supply your own suite): £800–£2,000. MyApproved bathroom fitters provide an itemised schedule of works before any contract is agreed.`,
+      `Bathroom fitters in ${loc}${pd ? ` ${pd}` : ""} charge £35 to£55/hour. Full bathroom renovation: £3,000 to£10,000. En-suite: £2,000 to£6,000. Wetroom conversion: £3,500 to£8,000. Labour-only fit (supply your own suite): £800 to£2,000. MyApproved bathroom fitters provide an itemised schedule of works before any contract is agreed.`,
     q2: (loc) =>
       `How does MyApproved verify a bathroom fitter in ${loc}?`,
     a2: (loc) =>
@@ -191,7 +191,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   "window-fitter": {
     q1: (loc, pd) => `How much do window and door fitters charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Window fitters in ${loc}${pd ? ` ${pd}` : ""} charge £35–£55/hour. UPVC window (supply and fit): £400–£800 each. Full set of windows (3-bed): £3,000–£8,000. Bifold doors: £2,500–£6,000 per set. FENSA registration is a legal requirement for replacement windows in England and Wales - every MyApproved window fitter is FENSA or CERTASS registered, number checked, before listing.`,
+      `Window fitters in ${loc}${pd ? ` ${pd}` : ""} charge £35 to£55/hour. UPVC window (supply and fit): £400 to£800 each. Full set of windows (3-bed): £3,000 to£8,000. Bifold doors: £2,500 to£6,000 per set. FENSA registration is a legal requirement for replacement windows in England and Wales - every MyApproved window fitter is FENSA or CERTASS registered, number checked, before listing.`,
     q2: (loc) =>
       `How does MyApproved verify FENSA registration for window fitters in ${loc}?`,
     a2: (loc) =>
@@ -201,7 +201,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   tiler: {
     q1: (loc, pd) => `How much does a tiler charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Tilers in ${loc}${pd ? ` ${pd}` : ""} charge £30–£50/hour. Bathroom tiling: £300–£800. Kitchen splashback: £150–£400. Floor tiling (per m²): £30–£60 including materials. Wetroom or shower tray waterproofing system: add £200–£500. Every MyApproved tiler provides a written quote that specifies adhesive specification, grout type, and waterproofing method - no verbal agreements that change mid-project.`,
+      `Tilers in ${loc}${pd ? ` ${pd}` : ""} charge £30 to£50/hour. Bathroom tiling: £300 to£800. Kitchen splashback: £150 to£400. Floor tiling (per m²): £30 to£60 including materials. Wetroom or shower tray waterproofing system: add £200 to£500. Every MyApproved tiler provides a written quote that specifies adhesive specification, grout type, and waterproofing method - no verbal agreements that change mid-project.`,
     q2: (loc) =>
       `What checks does MyApproved apply to tilers in ${loc}?`,
     a2: (loc) =>
@@ -211,7 +211,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   "solar-panel-installer": {
     q1: (loc, pd) => `How much does solar panel installation cost in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Solar installers in ${loc}${pd ? ` ${pd}` : ""} quote £500–£1,500/day. Standard 4kW system: £5,000–£8,000 fully installed. With battery storage: £8,000–£14,000. MCS certification is legally required to access Smart Export Guarantee (SEG) payments - every MyApproved solar installer is MCS certified, number checked, before listing.`,
+      `Solar installers in ${loc}${pd ? ` ${pd}` : ""} quote £500 to£1,500/day. Standard 4kW system: £5,000 to£8,000 fully installed. With battery storage: £8,000 to£14,000. MCS certification is legally required to access Smart Export Guarantee (SEG) payments - every MyApproved solar installer is MCS certified, number checked, before listing.`,
     q2: (loc) =>
       `Why does MCS certification matter for solar installers in ${loc}?`,
     a2: (loc) =>
@@ -221,7 +221,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   "loft-conversion": {
     q1: (loc, pd) => `How much does a loft conversion cost in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Loft conversion builders in ${loc}${pd ? ` ${pd}` : ""} quote: Velux conversion £20,000–£35,000, dormer conversion £35,000–£60,000, hip-to-gable £45,000–£65,000, mansard £50,000–£70,000. Prices include structural work, insulation, staircase, and first fix. MyApproved contractors provide full planning and building regulations support as part of the project - not an add-on.`,
+      `Loft conversion builders in ${loc}${pd ? ` ${pd}` : ""} quote: Velux conversion £20,000 to£35,000, dormer conversion £35,000 to£60,000, hip-to-gable £45,000 to£65,000, mansard £50,000 to£70,000. Prices include structural work, insulation, staircase, and first fix. MyApproved contractors provide full planning and building regulations support as part of the project - not an add-on.`,
     q2: (loc) =>
       `What building regulations apply to loft conversions in ${loc}?`,
     a2: (loc) =>
@@ -231,7 +231,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   "driveway-specialist": {
     q1: (loc, pd) => `How much does a new driveway cost in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Driveway specialists in ${loc}${pd ? ` ${pd}` : ""} charge £30–£50/hour. Block paving (3-bed, ~40m²): £3,000–£7,000. Resin bound: £2,000–£5,000. Tarmac: £1,500–£4,000. Gravel: £500–£2,000. Permeable driveways over 5m² in front gardens do not require planning permission in England - your MyApproved specialist confirms this at quote stage.`,
+      `Driveway specialists in ${loc}${pd ? ` ${pd}` : ""} charge £30 to£50/hour. Block paving (3-bed, ~40m²): £3,000 to£7,000. Resin bound: £2,000 to£5,000. Tarmac: £1,500 to£4,000. Gravel: £500 to£2,000. Permeable driveways over 5m² in front gardens do not require planning permission in England - your MyApproved specialist confirms this at quote stage.`,
     q2: (loc) =>
       `What planning rules apply to driveways in ${loc} and how does MyApproved handle this?`,
     a2: (loc) =>
@@ -241,7 +241,7 @@ const AEO_DATA: Record<string, AEOEntry> = {
   default: {
     q1: (loc, pd) => `How much do verified tradespeople charge in ${loc}${pd ? ` (${pd})` : ""}?`,
     a1: (loc, pd) =>
-      `Verified tradespeople in ${loc}${pd ? ` ${pd}` : ""} provide fixed-price written quotes before any work begins - no verbal estimates that shift mid-job. Rates vary by trade: plumbers £40–£70/hour, electricians £45–£75, builders £35–£60, roofers £35–£55.`,
+      `Verified tradespeople in ${loc}${pd ? ` ${pd}` : ""} provide fixed-price written quotes before any work begins - no verbal estimates that shift mid-job. Rates vary by trade: plumbers £40 to£70/hour, electricians £45 to£75, builders £35 to£60, roofers £35 to£55.`,
     q2: (loc) =>
       `How does MyApproved verify tradespeople before they work in ${loc}?`,
     a2: (loc) =>

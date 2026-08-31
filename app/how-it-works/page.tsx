@@ -241,7 +241,7 @@ const steps = [
           <div className="border-2 border-brand-amber bg-gradient-to-br from-brand-amber/10 to-brand-amberDark/10 rounded-xl p-5 text-center">
             <p className="text-2xl font-extrabold text-brand-navy" style={{ fontWeight: 800 }}>£220</p>
             <p className="text-xs text-gray-700 font-semibold mt-1">Estimated cost for your plumber job</p>
-            <p className="text-xs text-gray-600 mt-1">Typical range: £180–£260</p>
+            <p className="text-xs text-gray-600 mt-1">Typical range: £180 to £260</p>
           </div>
           <div className="space-y-3">
             <p className="text-sm font-extrabold text-brand-navy" style={{ fontWeight: 800 }}>Your Details</p>

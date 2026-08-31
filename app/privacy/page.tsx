@@ -97,14 +97,14 @@ export default function PrivacyPolicy() {
               </ul>
               <p className="mt-4">We use the following service providers and sub-processors to help us operate the platform, each under strict data processing agreements:</p>
               <ul className="list-disc pl-5 space-y-1 mt-2">
-                <li><strong>Stripe</strong> — payment processing</li>
-                <li><strong>Supabase</strong> — database and storage</li>
-                <li><strong>Vercel</strong> — hosting</li>
-                <li><strong>GoHighLevel</strong> — CRM, SMS, and payments</li>
-                <li><strong>Google Gemini</strong> — verification and classification</li>
-                <li><strong>Google Places and Maps</strong> — location data and address lookups</li>
-                <li><strong>Postmark</strong> — transactional email</li>
-                <li><strong>Twilio</strong> — SMS</li>
+                <li><strong>Stripe</strong> for payment processing</li>
+                <li><strong>Supabase</strong> for database and storage</li>
+                <li><strong>Vercel</strong> for hosting</li>
+                <li><strong>GoHighLevel</strong> for CRM, SMS, and payments</li>
+                <li><strong>Google Gemini</strong> for verification and classification</li>
+                <li><strong>Google Places and Maps</strong> for location data and address lookups</li>
+                <li><strong>Postmark</strong> for transactional email</li>
+                <li><strong>Twilio</strong> for SMS</li>
               </ul>
             </div>
 

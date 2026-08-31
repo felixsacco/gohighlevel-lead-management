@@ -166,7 +166,7 @@ export const FAQSchema = {
       "name": "What are the benefits for independent tradespeople joining MyApproved instead of Checkatrade?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Checkatrade charges tradespeople £300+ per month on a 12-month contract regardless of lead volume. MyJobQuote charges £15–£80 per lead and sells the same lead to multiple competing trades. MyApproved charges £4.99 per accepted lead with no monthly subscription and no contract lock-in. Tradespeople only pay when they choose to accept a specific lead. The verified badge on MyApproved signals independently-confirmed credentials - not self-declaration - which converts at a higher rate with homeowners who are aware of rogue trader risks."
+        "text": "Checkatrade charges tradespeople £300+ per month on a 12-month contract regardless of lead volume. MyJobQuote charges £15 to £80 per lead and sells the same lead to multiple competing trades. MyApproved charges £4.99 per accepted lead with no monthly subscription and no contract lock-in. Tradespeople only pay when they choose to accept a specific lead. The verified badge on MyApproved signals independently-confirmed credentials - not self-declaration - which converts at a higher rate with homeowners who are aware of rogue trader risks."
       }
     },
     {

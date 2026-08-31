@@ -49,10 +49,10 @@ export default function AboutPage() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-6" style={{fontWeight: 800}}>Our Story</h2>
           <div className="max-w-3xl space-y-4 text-gray-600 text-base leading-relaxed">
             <p>
-              MyApproved started with a simple frustration: you were expected to invite a stranger into your home on nothing more than a profile picture and their word. Unfinished jobs, lapsed insurance, credentials that didn't exist — there was no reliable way to check any of it before you made the call.
+              MyApproved started with a simple frustration: you were expected to invite a stranger into your home on nothing more than a profile picture and their word. Unfinished jobs, lapsed insurance, credentials that didn't exist. There was no reliable way to check any of it before you made the call.
             </p>
             <p>
-              So we built one. Every tradesperson is checked before their profile goes live — identity, public liability insurance, and the qualifications the job actually needs, including Gas Safe or NICEIC where it applies.
+              So we built one. Every tradesperson is checked before their profile goes live: identity, public liability insurance, and the qualifications the job actually needs, including Gas Safe or NICEIC where it applies.
             </p>
             <p>
               We're a UK company, built for how UK trades actually work.

@@ -1312,7 +1312,7 @@ export default function TradespersonDashboardPage() {
             <Link href="/notifications" className="font-medium text-slate-900 underline">
               Notifications
             </Link>
-            {" — or use "}
+            {", or use "}
             <strong>AI Help</strong> below. Include job trade and postcode.
           </AlertDescription>
         </Alert>
@@ -1714,7 +1714,7 @@ export default function TradespersonDashboardPage() {
                     Tips:
                     <div className="mt-1 grid sm:grid-cols-2 gap-2 max-w-2xl mx-auto">
                       <div className="rounded-xl border border-gray-200 bg-gray-50 px-3 py-2">Widen your postcode radius in your profile.</div>
-                      <div className="rounded-xl border border-gray-200 bg-gray-50 px-3 py-2">Check back later—new jobs appear throughout the day.</div>
+                      <div className="rounded-xl border border-gray-200 bg-gray-50 px-3 py-2">Check back later. New jobs appear throughout the day.</div>
                     </div>
                   </div>
                 </CardContent>

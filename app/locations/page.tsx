@@ -38,7 +38,7 @@ function formatPricing(slug: string, fallback: string): string {
     "full project": " project",
   };
   const suffix = unitMap[p.unit] ?? ` ${p.unit}`;
-  return `${p.low}–${p.high}${suffix}`;
+  return `${p.low} to ${p.high}${suffix}`;
 }
 
 const FEATURED_COMBOS = [
@@ -108,7 +108,7 @@ const FAQS = [
   },
   {
     q: "Are all tradespeople on MyApproved insured?",
-    a: "Yes. Every tradesperson must hold public liability insurance that is confirmed as real and in date before listing. Everyone also passes identity and business checks — photo ID verified against a live selfie and a business registered on Companies House — and we monitor the insurance so the listing is withdrawn if it lapses.",
+    a: "Yes. Every tradesperson must hold public liability insurance that is confirmed as real and in date before listing. Everyone also passes identity and business checks: photo ID verified against a live selfie and a business registered on Companies House. And we monitor the insurance so the listing is withdrawn if it lapses.",
   },
 ];
 

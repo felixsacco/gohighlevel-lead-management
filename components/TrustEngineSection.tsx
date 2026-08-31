@@ -11,7 +11,7 @@ const CHECKS = [
     step: "01",
     title: "Identity checked",
     detail:
-      "Every applicant submits a government-issued photo ID, which is verified against a live selfie before their profile is created. No identity match — no listing.",
+      "Every applicant submits a government-issued photo ID, which is verified against a live selfie before their profile is created. No identity match. No listing.",
     icon: <BadgeCheck className="w-6 h-6 text-[#16A34A]" />,
   },
   {

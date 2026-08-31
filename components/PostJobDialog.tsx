@@ -215,7 +215,7 @@ export default function PostJobDialog({ onJobPosted }: PostJobDialogProps) {
       if (response.ok) {
         toast({
           title: "Job Posted Successfully!",
-          description: "Your job is live — verified tradespeople in your area can now see it.",
+          description: "Your job is live: verified tradespeople in your area can now see it.",
         });
         
         // Reset form

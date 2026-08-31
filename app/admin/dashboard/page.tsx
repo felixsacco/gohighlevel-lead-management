@@ -2148,7 +2148,7 @@ export default function AdminDashboardPage() {
               <CardHeader className="bg-gradient-to-r from-amber-50 to-orange-50">
                 <CardTitle className="flex items-center gap-2">
                   <Zap className="w-5 h-5 text-amber-600" />
-                  Empire OS — Trigger for MyApproved
+                  Empire OS: Trigger for MyApproved
                 </CardTitle>
                 <CardDescription>
                   Run the Sales or Growth team on the central Empire dashboard for this project. Results appear on Khamareclarke.com Empire dashboard.
@@ -2721,17 +2721,17 @@ export default function AdminDashboardPage() {
                           <TableCell className="text-sm whitespace-nowrap">
                             {row.scheduled_for
                               ? new Date(row.scheduled_for).toLocaleString()
-                              : "—"}
+                              : "N/A"}
                           </TableCell>
                           <TableCell className="text-sm font-mono">{row.event_type}</TableCell>
                           <TableCell>
                             <Badge variant="outline">{row.status}</Badge>
                           </TableCell>
                           <TableCell className="text-xs max-w-[180px] truncate">
-                            {row.recipient_email || row.recipient_id || "—"}
+                            {row.recipient_email || row.recipient_id || "N/A"}
                           </TableCell>
                           <TableCell className="text-xs max-w-[200px] truncate font-mono">
-                            {row.dedupe_key || "—"}
+                            {row.dedupe_key || "N/A"}
                           </TableCell>
                         </TableRow>
                       ))}
@@ -2788,7 +2788,7 @@ export default function AdminDashboardPage() {
                             ) : entry.action === 'job_approved' && entry.details && typeof entry.details === 'object' && 'notified_count' in entry.details ? (
                               <span>Job approved → <strong>{(entry.details as { notified_count?: number }).notified_count ?? 0} trades notified</strong></span>
                             ) : entry.action === 'quote_accepted' && entry.details && typeof entry.details === 'object' && 'tradesperson_name' in entry.details ? (
-                              <span>Quote accepted → Job assigned to <strong>{(entry.details as { tradesperson_name?: string }).tradesperson_name ?? '—'}</strong>
+                              <span>Quote accepted → Job assigned to <strong>{(entry.details as { tradesperson_name?: string }).tradesperson_name ?? 'N/A'}</strong>
                                 {(entry.details as { accepted_at?: string }).accepted_at && (
                                   <span className="text-gray-500 text-xs ml-1">({new Date((entry.details as { accepted_at: string }).accepted_at).toLocaleString()})</span>
                                 )}
@@ -3227,25 +3227,25 @@ export default function AdminDashboardPage() {
                   </div>
                   <div className="bg-gray-50 rounded-xl p-3">
                     <p className="text-xs text-gray-500">Phone</p>
-                    <p className="font-medium">{selectedTradesperson.phone || "—"}</p>
+                    <p className="font-medium">{selectedTradesperson.phone || "N/A"}</p>
                   </div>
                   <div className="bg-gray-50 rounded-xl p-3">
                     <p className="text-xs text-gray-500">Trade</p>
-                    <p className="font-medium">{selectedTradesperson.trade || "—"}</p>
+                    <p className="font-medium">{selectedTradesperson.trade || "N/A"}</p>
                   </div>
                   <div className="bg-gray-50 rounded-xl p-3">
                     <p className="text-xs text-gray-500">Experience</p>
-                    <p className="font-medium">{selectedTradesperson.years_experience ?? "—"} years</p>
+                    <p className="font-medium">{selectedTradesperson.years_experience ?? "N/A"} years</p>
                   </div>
                   <div className="bg-gray-50 rounded-xl p-3">
                     <p className="text-xs text-gray-500">Hourly rate</p>
-                    <p className="font-medium">£{selectedTradesperson.hourly_rate ?? "—"}</p>
+                    <p className="font-medium">£{selectedTradesperson.hourly_rate ?? "N/A"}</p>
                   </div>
                   <div className="bg-gray-50 rounded-xl p-3 col-span-2">
                     <p className="text-xs text-gray-500">Address</p>
-                    <p className="font-medium">{selectedTradesperson.address || "—"}</p>
+                    <p className="font-medium">{selectedTradesperson.address || "N/A"}</p>
                     <p className="text-sm text-gray-600 mt-1">
-                      {selectedTradesperson.city || "—"}, {selectedTradesperson.postcode || "—"}
+                      {selectedTradesperson.city || "N/A"}, {selectedTradesperson.postcode || "N/A"}
                     </p>
                   </div>
                 </div>

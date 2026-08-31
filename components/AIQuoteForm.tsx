@@ -221,7 +221,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
       if (typeof data.min === "number" && typeof data.max === "number") {
         setEstimateMin(data.min);
         setEstimateMax(data.max);
-        setEstimateRange(`Typical range: £${data.min}–£${data.max}`);
+        setEstimateRange(`Typical range: £${data.min} to £${data.max}`);
       } else {
         setEstimateMin(null);
         setEstimateMax(null);
@@ -244,7 +244,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
       console.error('Error generating estimate:', error);
       // Fallback to default estimate
       setEstimate('£200');
-      setEstimateRange('Typical range: £180–£260');
+      setEstimateRange('Typical range: £180 to £260');
       setEstimateBreakdown(null);
       setEstimateDisclaimer(null);
     } finally {
@@ -607,7 +607,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
               <p className={`text-sm mt-3 ${
                 descWordCount >= 10 ? 'text-green-600' : 'text-amber-600'
               }`}>
-                {descWordCount}/10 words{descWordCount < 10 ? ' — please add more detail' : ''}
+                {descWordCount}/10 words{descWordCount < 10 ? ', please add more detail' : ''}
               </p>
             )}
           </motion.div>

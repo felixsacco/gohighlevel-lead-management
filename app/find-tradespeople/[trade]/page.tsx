@@ -156,7 +156,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                 <p className="text-slate-300 text-base sm:text-lg mb-6">
                   Rates from{" "}
                   <strong className="text-white">
-                    {pricing.low}–{pricing.high} {pricing.unit}
+                    {pricing.low} to {pricing.high} {pricing.unit}
                   </strong>{" "}
                   · {pricing.typical}
                 </p>
@@ -365,7 +365,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                 },
                 {
                   q: `How quickly will I receive quotes from ${trade.plural.toLowerCase()}?`,
-                  a: `Most homeowners receive their first quote within a few hours of posting. For emergency ${trade.name.toLowerCase()} work, local professionals typically respond within 1–2 hours. All quotes come with no obligation. You decide who to hire.`,
+                  a: `Most homeowners receive their first quote within a few hours of posting. For emergency ${trade.name.toLowerCase()} work, local professionals typically respond within 1 to 2 hours. All quotes come with no obligation. You decide who to hire.`,
                 },
               ].map((faq, i) => (
                 <AccordionItem

@@ -138,8 +138,8 @@ export async function assignJobFromApplication(
     try {
       await sendTransactionalEmail({
         to: clientInfo.email,
-        subject: "Quote accepted — job assigned",
-        html: `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Quote accepted — job assigned</h2>
+        subject: "Quote accepted: job assigned",
+        html: `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Quote accepted: job assigned</h2>
               ${jobRefHtml}
               <p>Hello ${escapeHtml(`${clientInfo.first_name} ${clientInfo.last_name}`.trim())},</p>
               <p>You have accepted the quote from <strong>${escapeHtml(`${tradeInfo.first_name} ${tradeInfo.last_name}`.trim())}</strong>. The job is now assigned to them on MyApproved.</p>
@@ -161,8 +161,8 @@ export async function assignJobFromApplication(
     try {
       await sendTransactionalEmail({
         to: tradeInfo.email,
-        subject: "Your quote was accepted — job assigned to you",
-        html: `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Quote accepted — assigned to you</h2>
+        subject: "Your quote was accepted: job assigned to you",
+        html: `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Quote accepted: assigned to you</h2>
               ${jobRefHtml}
               <p>Dear ${escapeHtml(`${tradeInfo.first_name} ${tradeInfo.last_name}`.trim())},</p>
               <p>The client has accepted your quote on MyApproved. This job is now assigned to you and locked for you only.</p>

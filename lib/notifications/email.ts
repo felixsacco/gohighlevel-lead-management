@@ -72,7 +72,7 @@ export async function sendTransactionalEmail(opts: {
   const transporter = createMailer();
   const subj = opts.subject.trim().startsWith("MyApproved")
     ? opts.subject.trim()
-    : `MyApproved — ${opts.subject.trim()}`;
+    : `MyApproved: ${opts.subject.trim()}`;
   return transporter.sendMail({
     from: `MyApproved <${defaultFrom}>`,
     to: opts.to,
@@ -151,7 +151,7 @@ export function buildEmailContent(
           ? `<p><strong>Budget:</strong> £${budget}${budgetType ? ` (${budgetType})` : ""}</p>`
           : "";
       return {
-        subject: `Admin: new ${tradeRaw} job${postcode ? ` — ${String(data.postcode || "")}` : ""}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `Admin: new ${tradeRaw} job${postcode ? `: ${String(data.postcode || "")}` : ""}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">New job posted</h2>
           ${refRow}
@@ -170,20 +170,20 @@ export function buildEmailContent(
       const timeEstimate = String(data.timeEstimate || "").trim();
       const timeRow = timeEstimate ? `<p><strong>Estimated response time:</strong> ${escapeHtml(timeEstimate)}</p>` : "";
       return {
-        subject: `Job submitted — ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `Job submitted: ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Your job was submitted</h2>
           ${refRow}
           <p>We received your <strong>${trade}</strong> job${postcode ? ` in <strong>${postcode}</strong>` : ""}.</p>
           <p style="background:#f1f5f9;padding:14px;border-radius:8px;border:1px solid #e2e8f0;">${desc || "<em>No description provided.</em>"}</p>
-          <p>Your job is <strong>live now</strong> — verified tradespeople in your area can see it and apply.</p>
+          <p>Your job is <strong>live now</strong>: verified tradespeople in your area can see it and apply.</p>
           ${timeRow}`,
         ),
       };
     }
     case "job_live_status":
       return {
-        subject: `Your job is live — ${trade}${jobRef ? ` (${jobRef})` : ""}`,
+        subject: `Your job is live: ${trade}${jobRef ? ` (${jobRef})` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Your job is now live</h2>
           ${refRow}
@@ -193,7 +193,7 @@ export function buildEmailContent(
       };
     case "job_match_tradesperson":
       return {
-        subject: `New ${trade} job${postcode ? ` — ${postcode}` : ""}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `New ${trade} job${postcode ? `: ${postcode}` : ""}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">New job that matches your profile</h2>
           ${refRow}
@@ -204,7 +204,7 @@ export function buildEmailContent(
       };
     case "job_posted_tradesperson_match":
       return {
-        subject: `New ${trade} job near you${postcode ? ` — ${postcode}` : ""}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `New ${trade} job near you${postcode ? `: ${postcode}` : ""}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">A client just posted a job that fits you</h2>
           ${refRow}
@@ -219,7 +219,7 @@ export function buildEmailContent(
       const maskedPhone = String(data.maskedPhone || "").trim();
       const link = String(data.unlockUrl || data.link || "").trim();
       return {
-        subject: `New ${trade} lead near you${postcode ? ` — ${postcode}` : ""}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `New ${trade} lead near you${postcode ? `: ${postcode}` : ""}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">A new lead is waiting for you</h2>
           ${refRow}
@@ -228,14 +228,14 @@ export function buildEmailContent(
           ${budget ? `<p><strong>Customer's quote / budget:</strong> ${escapeHtml(budget)}</p>` : ""}
           ${maskedPhone ? `<p><strong>Customer's number:</strong> ${escapeHtml(maskedPhone)} <span style="color:#64748b;">(hidden until you unlock the lead)</span></p>` : ""}
           <p><strong>Lead cost:</strong> ${escapeHtml(leadCost)}. Pay once and the customer's full number is yours.</p>
-          ${link ? `<p style="margin:24px 0;"><a href="${escapeHtml(link)}" style="display:inline-block;padding:12px 20px;background:#fdbd18;color:#0f172a;font-weight:bold;border-radius:8px;text-decoration:none;">Unlock this lead — ${escapeHtml(leadCost)}</a></p>` : ""}
+          ${link ? `<p style="margin:24px 0;"><a href="${escapeHtml(link)}" style="display:inline-block;padding:12px 20px;background:#fdbd18;color:#0f172a;font-weight:bold;border-radius:8px;text-decoration:none;">Unlock this lead: ${escapeHtml(leadCost)}</a></p>` : ""}
           <p style="color:#64748b;font-size:13px;">You are on the Pay-Per-Lead plan. To stop paying per lead and switch to unlimited leads for £1,000 / month, upgrade from your dashboard.</p>`,
         ),
       };
     }
     case "tradesperson_applied_alert":
       return {
-        subject: `New application — ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `New application: ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">New application received</h2>
           ${refRow}
@@ -246,7 +246,7 @@ export function buildEmailContent(
       };
     case "application_reminder":
       return {
-        subject: `Reminder — applications waiting · ${trade}`,
+        subject: `Reminder: applications waiting · ${trade}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Applications need your review</h2>
           ${refRow}
@@ -256,7 +256,7 @@ export function buildEmailContent(
       };
     case "application_under_review_tradesperson":
       return {
-        subject: `Application update — ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `Application update: ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">The customer is reviewing applications</h2>
           ${refRow}
@@ -270,8 +270,8 @@ export function buildEmailContent(
       const isClient = role === "client";
       return {
         subject: isClient
-          ? `Quick check-in — ${trade} job`
-          : `Progress check — ${trade} job`,
+          ? `Quick check-in: ${trade} job`
+          : `Progress check: ${trade} job`,
         html: wrap(
           isClient
             ? `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">How is the work going?</h2>
@@ -287,9 +287,9 @@ export function buildEmailContent(
     }
     case "job_assigned_alert":
       return {
-        subject: `You have been assigned — ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `You have been assigned: ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
-          `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Congratulations — you have been assigned</h2>
+          `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Congratulations: you have been assigned</h2>
           ${refRow}
           <p>You were chosen for a <strong>${trade}</strong> job on MyApproved.</p>
           <p><strong>Client:</strong> ${escapeHtml(String(data.clientName || ""))}</p>
@@ -299,17 +299,17 @@ export function buildEmailContent(
       };
     case "job_not_selected_notification":
       return {
-        subject: `Job update — ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `Job update: ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Another tradesperson was selected</h2>
           ${refRow}
           <p>The customer has assigned <strong>${escapeHtml(String(data.selectedName || "another tradesperson"))}</strong> for the <strong>${trade}</strong> job.</p>
-          <p>Thank you for applying through MyApproved — new jobs are posted regularly that match your trade.</p>`,
+          <p>Thank you for applying through MyApproved: new jobs are posted regularly that match your trade.</p>`,
         ),
       };
     case "job_in_progress_client_notice":
       return {
-        subject: `Work is booked — ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `Work is booked: ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Your job is in progress</h2>
           ${refRow}
@@ -319,7 +319,7 @@ export function buildEmailContent(
       };
     case "job_completed_alert":
       return {
-        subject: `Job completed — ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `Job completed: ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Job marked complete</h2>
           ${refRow}
@@ -340,7 +340,7 @@ export function buildEmailContent(
       };
     case "review_reminder_24h":
       return {
-        subject: `Reminder — please leave your review · ${trade}`,
+        subject: `Reminder: please leave your review · ${trade}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Gentle reminder</h2>
           ${refRow}
@@ -349,7 +349,7 @@ export function buildEmailContent(
       };
     case "review_reminder_48h":
       return {
-        subject: `Final reminder — your review · ${trade}`,
+        subject: `Final reminder: your review · ${trade}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Last reminder</h2>
           ${refRow}
@@ -358,7 +358,7 @@ export function buildEmailContent(
       };
     case "review_reminder_72h":
       return {
-        subject: `Final notice — please leave your review · ${trade}`,
+        subject: `Final notice: please leave your review · ${trade}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Review still pending</h2>
           ${refRow}
@@ -368,11 +368,11 @@ export function buildEmailContent(
       };
     case "tradesperson_review_wait_reminder":
       return {
-        subject: `Review pending — ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `Review pending: ${trade}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Review pending</h2>
           ${refRow}
-          <p>The <strong>${trade}</strong> job is complete. The customer has not left a review yet — this is normal.</p>
+          <p>The <strong>${trade}</strong> job is complete. The customer has not left a review yet. This is normal.</p>
           <p>Great work on MyApproved often gets rated within a few days.</p>`,
         ),
       };
@@ -389,19 +389,19 @@ export function buildEmailContent(
     case "invoice_sent_client":
     case "invoice_sent_tradesperson":
       return {
-        subject: `Invoice ${String(data.invoiceNumber || "").trim() || "summary"} — ${tradeRaw}`,
+        subject: `Invoice ${String(data.invoiceNumber || "").trim() || "summary"}: ${tradeRaw}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Invoice / summary document</h2>
           ${refRow}
           <p><strong>Document no.:</strong> ${escapeHtml(String(data.invoiceNumber || ""))}</p>
           <p><strong>Job (trade):</strong> ${trade}</p>
-          <p><strong>Amount shown:</strong> £${escapeHtml(String(data.amount ?? ""))} <span style="font-size:12px;color:#64748b;">(platform record — confirm VAT and final pricing with the other party where relevant)</span></p>
+          <p><strong>Amount shown:</strong> £${escapeHtml(String(data.amount ?? ""))} <span style="font-size:12px;color:#64748b;">(platform record: confirm VAT and final pricing with the other party where relevant)</span></p>
           <p>A PDF copy is attached for your records. Please retain it for your accounts.</p>`,
         ),
       };
     case "payment_received":
       return {
-        subject: `Payment confirmation — ${String(data.invoiceNumber || "").trim() || tradeRaw}`,
+        subject: `Payment confirmation: ${String(data.invoiceNumber || "").trim() || tradeRaw}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Payment / completion record</h2>
           ${refRow}
@@ -412,13 +412,13 @@ export function buildEmailContent(
       };
     case "tradesperson_next_steps":
       return {
-        subject: "You are approved — next steps on MyApproved",
+        subject: "You are approved. Next steps on MyApproved",
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Welcome aboard</h2>
           <ol style="margin:0;padding-left:20px;color:#334155;">
             <li style="margin-bottom:8px;">Keep your profile complete (photos, insurance, qualifications).</li>
             <li style="margin-bottom:8px;">Turn on job alerts in your MyApproved tradesperson dashboard.</li>
-            <li>Apply quickly with clear, itemised quotes — speed and clarity win jobs.</li>
+            <li>Apply quickly with clear, itemised quotes: speed and clarity win jobs.</li>
           </ol>`,
         ),
       };
@@ -432,7 +432,7 @@ export function buildEmailContent(
       };
     case "dispute_opened":
       return {
-        subject: `Dispute logged — ticket ${String(data.ticketId || "").slice(0, 12) || "ref on file"}`,
+        subject: `Dispute logged: ticket ${String(data.ticketId || "").slice(0, 12) || "ref on file"}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">We have logged your dispute</h2>
           ${refRow}
@@ -447,7 +447,7 @@ export function buildEmailContent(
       };
     case "dispute_update":
       return {
-        subject: `Dispute update — ticket ${String(data.ticketId || "").slice(0, 12) || "MyApproved"}`,
+        subject: `Dispute update: ticket ${String(data.ticketId || "").slice(0, 12) || "MyApproved"}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Update on your ticket</h2>
           <p><strong>Status:</strong> ${escapeHtml(String(data.status || ""))}</p>
@@ -456,7 +456,7 @@ export function buildEmailContent(
       };
     case "dispute_resolved":
       return {
-        subject: "Dispute resolved — MyApproved",
+        subject: "Dispute resolved: MyApproved",
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Your dispute is closed</h2>
           <p>${escapeHtml(String(data.resolutionNotes || "This ticket has been marked resolved."))}</p>`,
@@ -473,7 +473,7 @@ export function buildEmailContent(
       };
     case "reactivation_guide":
       return {
-        subject: "MyApproved account — reactivation steps",
+        subject: "MyApproved account: reactivation steps",
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">Next steps</h2>
           <p>${escapeHtml(String(data.message || "Contact support with any evidence requested, or wait for admin review if you already submitted an appeal."))}</p>
@@ -482,11 +482,11 @@ export function buildEmailContent(
       };
     case "client_reengagement_60d":
       return {
-        subject: `Need another ${tradeRaw} job? — MyApproved`,
+        subject: `Need another ${tradeRaw} job?: MyApproved`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">We would love to help again</h2>
           <p>It has been a while since your last <strong>${trade}</strong> job on MyApproved.</p>
-          <p>Post a new job in minutes — verified tradespeople are ready in your area.</p>`,
+          <p>Post a new job in minutes: verified tradespeople are ready in your area.</p>`,
         ),
       };
     case "tradesperson_winback_60d":
@@ -502,7 +502,7 @@ export function buildEmailContent(
       const jobTrade = escapeHtml(String(data.trade || "regulated trade"));
       const adminDashboard = String(data.adminDashboardUrl || "https://myapproved.com/admin/dashboard");
       return {
-        subject: `Admin: no certified ${jobTrade} match — manual review needed`,
+        subject: `Admin: no certified ${jobTrade} match: manual review needed`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#ef4444;">No certified tradesperson matched</h2>
           ${refRow}
@@ -526,7 +526,7 @@ export function buildEmailContent(
         ).trim(),
       );
       return {
-        subject: `${tradeRaw} job available${postcode ? ` — ${String(data.postcode || "")}` : ""}${jobRef ? ` · ${jobRef}` : ""}`,
+        subject: `${tradeRaw} job available${postcode ? `: ${String(data.postcode || "")}` : ""}${jobRef ? ` · ${jobRef}` : ""}`,
         html: wrap(
           `<h2 style="margin:0 0 12px;font-size:20px;color:#0f172a;">A client needs a ${trade} tradesperson</h2>
           ${refRow}
@@ -566,7 +566,7 @@ export async function sendEmailNotification(args: {
   const content = buildEmailContent(args.type, args.data);
   const subjectLine = /^MyApproved\b/i.test(content.subject.trim())
     ? content.subject.trim()
-    : `MyApproved — ${content.subject.trim()}`;
+    : `MyApproved: ${content.subject.trim()}`;
 
   const mail: nodemailer.SendMailOptions = {
     from: `MyApproved <${defaultFrom}>`,
@@ -591,7 +591,7 @@ export async function sendEmailNotification(args: {
       const billedToName = String(args.data.billedToName || "Customer");
       const billedToEmail = String(args.data.billedToEmail || args.to);
       const jobRefPdf = args.data.jobRef || "";
-      const description = `${String(args.data.trade || "Job")} — MyApproved job ref ${jobRefPdf || String(args.data.jobId || "").slice(0, 8)}`;
+      const description = `${String(args.data.trade || "Job")}: MyApproved job ref ${jobRefPdf || String(args.data.jobId || "").slice(0, 8)}`;
 
       const pdfBuffer = await buildInvoicePdfBuffer({
         invoiceNumber,

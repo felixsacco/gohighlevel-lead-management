@@ -271,7 +271,7 @@ export async function validateDescription(description: string, trade: string): P
   try {
     const apiKey = process.env.GEMINI_API_KEY || '';
     if (!apiKey) {
-      result.feedback = 'AI review unavailable — check spelling manually';
+      result.feedback = 'AI review unavailable. Check spelling manually.';
       return result;
     }
 
