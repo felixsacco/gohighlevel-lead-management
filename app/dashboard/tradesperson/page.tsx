@@ -906,7 +906,7 @@ export default function TradespersonDashboardPage() {
           )
           .in("chat_room_id", roomIds)
           .neq("sender_id", tradespersonId)
-          .eq("is_read", false);
+          .is("read_at", null);
 
         if (chatError) {
           console.error("Error loading chat notifications:", chatError);

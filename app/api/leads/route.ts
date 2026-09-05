@@ -1,68 +1,34 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
-import { emitFleetIngest } from '@/lib/fleet/emitFleetIngest';
 
-export async function POST(request: Request) {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!supabaseUrl || !serviceRoleKey) {
-    console.error('leads: SUPABASE_SERVICE_ROLE_KEY is not set');
-    return NextResponse.json(
-      { error: 'Service role key is not configured' },
-      { status: 500 }
-    );
-  }
-  const supabase = createClient(supabaseUrl, serviceRoleKey);
-
-  try {
-    const { name, email, phone, trade, postcode, description, estimate } = await request.json();
-    
-    if (!email) {
-      return NextResponse.json(
-        { error: 'Email is required' },
-        { status: 400 }
-      );
-    }
-
-    // Insert lead into Supabase
-    const { data, error } = await supabase
-      .from('leads')
-      .insert([
-        { 
-          name: name || null,
-          email,
-          phone: phone || null,
-          trade,
-          postcode,
-          description,
-          estimate,
-          status: 'new',
-          created_at: new Date().toISOString()
-        },
-      ])
-      .select();
-
-    if (error) {
-      console.error('Error inserting lead:', error);
-      throw error;
-    }
-
-    void emitFleetIngest({
-      event_type: 'lead',
-      summary: `New lead: ${name || email} (${trade || 'trade unknown'}, ${postcode || 'no postcode'})`,
-      payload: { id: data?.[0]?.id, name, email, phone, trade, postcode, estimate },
-    });
-
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Lead submitted successfully',
-      data 
-    });
-  } catch (error) {
-    console.error('Error submitting lead:', error);
-    return NextResponse.json(
-      { error: 'Failed to submit lead' },
-      { status: 500 }
-    );
-  }
+/**
+ * POST /api/leads — legacy lead-capture endpoint (schema migration notice).
+ *
+ * This route was written against a pre-consolidation `leads` table shape —
+ * name/email/phone/trade/postcode/description/estimate columns and a `status`
+ * of 'new'. That shape no longer exists. Under `sql/master-consolidated.sql`:
+ *   - `leads` is job-derived: job_id UNIQUE NOT NULL (FK → jobs), a status enum
+ *     of open/claimed/paid/expired/cancelled, and price_pence. There are no
+ *     name/email/phone/trade columns and 'new' is not a legal status.
+ *   - A lead row is created only by the canonical homeowner submission flow,
+ *     `POST /api/jobs/submit` (client upsert → job → lead → matching → CRM).
+ *
+ * Nothing in the app posts to this route (its only in-app reference,
+ * `lib/api.ts#submitLead`, is itself uncalled), so rather than silently rewrite
+ * its semantics — e.g. auto-publishing + auto-matching a job for a caller that
+ * may have intended "capture for later review" — the handler now returns 410
+ * Gone instead of writing to phantom columns. If this endpoint still needs to
+ * exist for an external integrator, it should be re-pointed at the canonical
+ * job-submission pipeline deliberately, not guessed at.
+ */
+export async function POST() {
+  return NextResponse.json(
+    {
+      error: "Endpoint superseded by consolidated schema",
+      message:
+        "Homeowner job requests must now go to POST /api/jobs/submit (fields: firstName, lastName, clientEmail, clientPhone, trade, description, postcode, urgency, ...).",
+      detail:
+        "leads is job-derived (one lead per job, FK job_id) and cannot be inserted directly with name/email/phone/trade/status='new'.",
+    },
+    { status: 410 }
+  );
 }

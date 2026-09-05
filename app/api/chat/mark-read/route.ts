@@ -14,13 +14,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }
 
-    // Mark all unread messages in this chat room as read (except those sent by the current user)
+    // Mark all unread messages in this chat room as read (except those sent by
+    // the current user). chat_messages uses `read_at` (timestamptz, NULL until
+    // read) — there is no `is_read` boolean column.
     const { error } = await supabaseClient
       .from('chat_messages')
-      .update({ is_read: true })
+      .update({ read_at: new Date().toISOString() })
       .eq('chat_room_id', chatRoomId)
       .neq('sender_id', userId)
-      .eq('is_read', false);
+      .is('read_at', null);
 
     if (error) {
       console.error('Error marking messages as read:', error);

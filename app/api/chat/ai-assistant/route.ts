@@ -174,7 +174,9 @@ export async function POST(request: NextRequest) {
       .insert({
         chat_room_id: chatRoomId,
         sender_id: '00000000-0000-0000-0000-000000000002',
-        sender_type: 'support',
+        // chat_messages.sender_type CHECK only allows client/tradesperson/admin;
+        // the AI assistant is a platform (system) actor, so it writes as 'admin'.
+        sender_type: 'admin',
         message_text: aiResponse.response
       })
       .select()

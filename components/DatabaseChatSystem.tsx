@@ -14,7 +14,7 @@ interface ChatMessage {
   sender_type: 'client' | 'tradesperson';
   message_text: string;
   created_at: string;
-  is_read: boolean;
+  read_at: string | null;
 }
 
 interface ChatRoom {

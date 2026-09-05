@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
       .select('*', { count: 'exact', head: true })
       .in('chat_room_id', roomIds)
       .neq('sender_id', userId)
-      .eq('is_read', false);
+      .is('read_at', null);
 
     if (countError) {
       console.error('Error fetching unread count:', countError);

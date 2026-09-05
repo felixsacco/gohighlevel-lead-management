@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
   // Find the lead_purchases row by GHL invoice ID
   const { data: purchase, error: lookupError } = await supabase
     .from("lead_purchases")
-    .select("id, job_id, tradesperson_id, status")
+    .select("id, job_id, tradesperson_id, status, lead_price_pence")
     .eq("stripe_checkout_session_id", invoiceId)
     .maybeSingle();
 
@@ -75,29 +75,72 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Purchase not found" }, { status: 404 });
   }
 
-  if (purchase.status === "paid") {
+  const isNewlyPaid = purchase.status !== "paid";
+
+  if (isNewlyPaid) {
+    // Mark as paid
+    const { error: updateError } = await supabase
+      .from("lead_purchases")
+      .update({
+        status: "paid",
+        paid_at: new Date().toISOString(),
+      })
+      .eq("id", purchase.id);
+
+    if (updateError) {
+      console.error("Payments webhook: error updating purchase", updateError);
+      return NextResponse.json({ error: "Update failed" }, { status: 500 });
+    }
+
+    console.log("Payments webhook: lead purchase marked as paid", {
+      purchaseId: purchase.id,
+      jobId: purchase.job_id,
+      tradespersonId: purchase.tradesperson_id,
+    });
+  }
+
+  // Money-audit ledger write (audit G2 / Phase C.9): one `transactions` row per
+  // paid invoice, giving the DB a reconcilable record of every payment (there is
+  // no other writer for `transactions` today). The column is UNIQUE, so this
+  // upsert with ignoreDuplicates is idempotent: a replayed webhook — including a
+  // retry that arrives after the paid-update above but before a ledger insert
+  // from a previous attempt — never double-logs. In this GHL invoice-based flow
+  // the external payment id is the invoice _id (stored on the purchase as
+  // stripe_checkout_session_id), so it is used as the stable idempotency key.
+  const amountPence = purchase.lead_price_pence ?? 499;
+  const { error: ledgerError } = await supabase
+    .from("transactions")
+    .upsert(
+      {
+        stripe_payment_intent_id: invoiceId,
+        amount_pence: amountPence,
+        currency: "gbp",
+        status: "succeeded",
+        kind: "lead_purchase",
+        reference_type: "lead_purchase",
+        reference_id: purchase.id,
+        tradesperson_id: purchase.tradesperson_id,
+        job_id: purchase.job_id,
+        metadata: { source: "ghl_invoice", invoice_id: invoiceId },
+      },
+      { onConflict: "stripe_payment_intent_id", ignoreDuplicates: true }
+    );
+
+  if (ledgerError) {
+    // Do not fail the request: the purchase is already marked paid, and a 5xx
+    // would make GHL retry indefinitely. Log loudly for manual reconciliation.
+    console.error("Payments webhook: error writing transactions ledger", ledgerError);
+  } else {
+    console.log("Payments webhook: transactions ledger row written", {
+      invoiceId,
+      purchaseId: purchase.id,
+      amountPence,
+    });
+  }
+
+  if (!isNewlyPaid) {
     return NextResponse.json({ received: true, action: "ignored", reason: "already paid" });
   }
-
-  // Mark as paid
-  const { error: updateError } = await supabase
-    .from("lead_purchases")
-    .update({
-      status: "paid",
-      paid_at: new Date().toISOString(),
-    })
-    .eq("id", purchase.id);
-
-  if (updateError) {
-    console.error("Payments webhook: error updating purchase", updateError);
-    return NextResponse.json({ error: "Update failed" }, { status: 500 });
-  }
-
-  console.log("Payments webhook: lead purchase marked as paid", {
-    purchaseId: purchase.id,
-    jobId: purchase.job_id,
-    tradespersonId: purchase.tradesperson_id,
-  });
 
   // Send notification to tradesperson that their lead is unlocked
   try {
