@@ -784,6 +784,7 @@ export default function TradespersonDashboardPage() {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("userType");
+    localStorage.removeItem("tradeToken");
     router.push("/login/trade");
   };
 

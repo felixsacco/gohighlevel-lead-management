@@ -15,7 +15,6 @@ import { Container } from "@/components/ui/Container";
 import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
-import { supabase } from "@/lib/supabase-client";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function TradespersonLoginPage() {
@@ -330,43 +329,37 @@ export default function TradespersonLoginPage() {
     setOnlineCount(Math.floor(Math.random() * 40) + 160);
   }, []);
 
-  // ── Auth handler - logic unchanged ──────────────────────────────────────
+  // ── Auth handler ───────────────────────────────────────────────────────
+  // Credentials are verified on the server (POST /api/auth/trade/login), which
+  // returns an HMAC-signed session token. The token backs protected routes such
+  // as lead claiming; the legacy camelCase `user` blob is kept so the dashboard
+  // reads it unchanged.
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
     try {
-      const { data: tradesperson, error: userError } = await supabase
-        .from("tradespeople")
-        .select("id, email, first_name, is_approved, is_verified")
-        .eq("email", email)
-        .eq("password_hash", password)
-        .maybeSingle();
+      const response = await fetch("/api/auth/trade/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password }),
+      });
 
-      if (userError || !tradesperson) {
-        setError("Invalid email or password");
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        setError(data.message || data.error || "An error occurred during login");
         return;
       }
 
-      if (!tradesperson.is_verified) {
-        setError("Your profile has not been verified by our admin team yet. Please wait for verification before logging in.");
+      if (!data.token || !data.user) {
+        setError("Login could not be completed. Please try again.");
         return;
       }
 
-      if (!tradesperson.is_approved) {
-        setError("Your profile is currently under review by our admin team. You will receive an email notification once your profile is approved.");
-        return;
-      }
-
-      localStorage.setItem("user", JSON.stringify({
-        id: tradesperson.id,
-        email: tradesperson.email,
-        firstName: tradesperson.first_name,
-        type: "tradesperson",
-        isApproved: tradesperson.is_approved,
-        isVerified: tradesperson.is_verified,
-      }));
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("tradeToken", data.token);
 
       if (rememberMe) {
         localStorage.setItem("tradeRememberEmail", email);
@@ -376,7 +369,7 @@ export default function TradespersonLoginPage() {
 
       router.push("/dashboard/tradesperson");
     } catch (err) {
-      setError("An error occurred during login");
+      setError("An error occurred during login. Please try again.");
     } finally {
       setIsLoading(false);
     }
