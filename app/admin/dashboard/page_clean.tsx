@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
-import SimpleQuoteRequests from "@/components/SimpleQuoteRequests";
 
 interface Tradesperson {
   id: string;

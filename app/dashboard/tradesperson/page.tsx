@@ -201,20 +201,6 @@ export default function TradespersonDashboardPage() {
     const percentage = calculateCompletionPercentage();
     setCompletionPercentage(percentage);
   }, [quotationAmount, quotationNotes]);
-  const [approvedQuoteRequests, setApprovedQuoteRequests] = useState<any[]>([]);
-  const [quoteSubmittingId, setQuoteSubmittingId] = useState<string | null>(
-    null
-  );
-  const [quoteAmountById, setQuoteAmountById] = useState<
-    Record<string, string>
-  >({});
-  const [quoteNotesById, setQuoteNotesById] = useState<Record<string, string>>(
-    {}
-  );
-  const [approvedQuoteBanner, setApprovedQuoteBanner] = useState<{
-    customerName: string;
-    amount?: number;
-  } | null>(null);
   const [showFlagDialog, setShowFlagDialog] = useState(false);
   const [selectedJobForFlag, setSelectedJobForFlag] = useState<Job | null>(null);
   const [flagReason, setFlagReason] = useState("");
@@ -371,12 +357,6 @@ export default function TradespersonDashboardPage() {
           ),
           loadChatUnreadCount(userId).then(() =>
             console.log("Chat unread count loaded")
-          ),
-          loadApprovedQuoteRequests(userId).then(() =>
-            console.log("Approved quote requests loaded")
-          ),
-          loadQuoteApprovals(userId).then(() =>
-            console.log("Quote approvals loaded")
           ),
           loadDashboardSummary(userId).then(() =>
             console.log("Dashboard summary loaded")
@@ -618,46 +598,6 @@ export default function TradespersonDashboardPage() {
       }
     } catch (err) {
       console.error("Error in loadFilteredJobs:", err);
-    }
-  };
-
-  const loadApprovedQuoteRequests = async (tradespersonId: string) => {
-    try {
-      const res = await fetch(
-        `/api/tradesperson/quote-requests?tradespersonId=${tradespersonId}&ts=${Date.now()}`,
-        { cache: "no-store" } as RequestInit
-      );
-      const data = await res.json();
-      if (res.ok) {
-        setApprovedQuoteRequests(data.quoteRequests || []);
-      } else {
-        console.error("Failed to load approved quote requests:", data.error);
-      }
-    } catch (err) {
-      console.error("Error loading approved quote requests:", err);
-    }
-  };
-
-  const loadQuoteApprovals = async (tradespersonId: string) => {
-    try {
-      const { data: quotes, error } = await supabase
-        .from("quotes")
-        .select(
-          `id, quote_amount, status, created_at, quote_requests:quote_request_id ( customer_name )`
-        )
-        .eq("tradesperson_id", tradespersonId)
-        .eq("status", "client_approved")
-        .order("created_at", { ascending: false })
-        .limit(1);
-      if (!error && quotes && quotes.length > 0) {
-        const q = quotes[0] as any;
-        setApprovedQuoteBanner({
-          customerName: q.quote_requests?.customer_name || "client",
-          amount: q.quote_amount,
-        });
-      }
-    } catch (e) {
-      // ignore
     }
   };
 
@@ -1076,25 +1016,6 @@ export default function TradespersonDashboardPage() {
         console.error("Error in job assignments query:", error);
       }
 
-      // Load quote approvals (client approved your quote)
-      let quoteApprovals: any[] = [];
-      try {
-        const { data: quotes, error: quotesErr } = await supabase
-          .from("quotes")
-          .select("id, quote_amount, status, created_at")
-          .eq("tradesperson_id", tradespersonId)
-          .eq("status", "client_approved")
-          .gte(
-            "created_at",
-            new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-          );
-        if (!quotesErr) {
-          quoteApprovals = quotes || [];
-        }
-      } catch (error) {
-        console.error("Error in quote approvals query:", error);
-      }
-
       // Combine notifications
       const allNotifications = [
         // Chat messages
@@ -1173,17 +1094,6 @@ export default function TradespersonDashboardPage() {
           timestamp: job.assigned_at || job.updated_at,
           data: job,
         })),
-        // Quote approvals
-        ...(quoteApprovals || []).map((qa) => ({
-          id: `quote-approved-${qa.id}`,
-          type: "quote_approved",
-          title: "Quote Approved",
-          message: `A client approved your quote${
-            qa.quote_amount ? ` (£${qa.quote_amount})` : ""
-          }. Chat is now enabled.`,
-          timestamp: qa.created_at,
-          data: qa,
-        })),
       ];
 
       // Sort by timestamp (newest first)
@@ -1199,52 +1109,6 @@ export default function TradespersonDashboardPage() {
       setHighlightBell(hasNewJobs);
     } catch (error) {
       console.error("Error loading notifications:", error);
-    }
-  };
-
-  const submitQuoteForRequest = async (qr: any) => {
-    if (!user) return;
-    const amount = quoteAmountById[qr.id];
-    const notes = quoteNotesById[qr.id] || "";
-    if (!amount || isNaN(Number(amount)) || Number(amount) <= 0) {
-      setError("Enter a valid quotation amount");
-      return;
-    }
-    try {
-      setQuoteSubmittingId(qr.id);
-      const res = await fetch("/api/tradesperson/submit-quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          quoteRequestId: qr.id,
-          tradespersonId: user.id,
-          quoteAmount: amount,
-          quoteDescription: notes,
-        }),
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        setSuccess("Quote submitted successfully");
-        // Remove the request from the approved list
-        setApprovedQuoteRequests((prev) => prev.filter((r) => r.id !== qr.id));
-        // Clear inputs
-        setQuoteAmountById((prev) => {
-          const n = { ...prev };
-          delete n[qr.id];
-          return n;
-        });
-        setQuoteNotesById((prev) => {
-          const n = { ...prev };
-          delete n[qr.id];
-          return n;
-        });
-      } else {
-        setError(data.error || "Failed to submit quote");
-      }
-    } catch (e: any) {
-      setError("Failed to submit quote");
-    } finally {
-      setQuoteSubmittingId(null);
     }
   };
 
@@ -1411,9 +1275,6 @@ export default function TradespersonDashboardPage() {
                               {notification.type === "job_assigned" && (
                                 <TrendingUp className="w-4 h-4 text-indigo-600" />
                               )}
-                              {notification.type === "quote_approved" && (
-                                <CheckCircle className="w-4 h-4 text-green-600" />
-                              )}
                               <h4 className="font-medium text-gray-900 text-sm">{notification.title}</h4>
                             </div>
                             <p className="text-gray-600 text-xs mt-1">{notification.message}</p>
@@ -1515,31 +1376,6 @@ export default function TradespersonDashboardPage() {
           </div>
         </div>
 
-        {/* Quote Approved Banner */}
-        {approvedQuoteBanner && (
-          <Alert className="mb-6 border-green-200 bg-green-50">
-            <div className="flex items-start justify-between w-full">
-              <div className="flex items-start">
-                <CheckCircle className="h-5 w-5 text-green-700 mt-0.5 mr-2 flex-shrink-0" />
-                <AlertDescription className="text-green-800">
-                  Your quote
-                  {approvedQuoteBanner.amount
-                    ? ` (£${approvedQuoteBanner.amount})`
-                    : ""}{" "}
-                  has been approved by {approvedQuoteBanner.customerName}. Chat
-                  is now enabled.
-                </AlertDescription>
-              </div>
-              <button
-                onClick={() => setApprovedQuoteBanner(null)}
-                className="text-green-800 hover:text-green-900 text-sm"
-              >
-                Dismiss
-              </button>
-            </div>
-          </Alert>
-        )}
-
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card className="hover:shadow-lg transition-all duration-300">
@@ -1636,7 +1472,7 @@ export default function TradespersonDashboardPage() {
           className="space-y-6"
         >
           <div className="sticky top-16 z-30">
-            <TabsList className="grid w-full grid-cols-5 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60 p-1 rounded-xl shadow-sm border">
+            <TabsList className="grid w-full grid-cols-4 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60 p-1 rounded-xl shadow-sm border">
             <TabsTrigger
               value="available"
               className="flex items-center space-x-2"
@@ -1664,10 +1500,6 @@ export default function TradespersonDashboardPage() {
             >
               <CheckCircle className="w-4 h-4" />
               <span className="hidden sm:inline">Completed</span>
-            </TabsTrigger>
-            <TabsTrigger value="quotes" className="flex items-center space-x-2">
-              <DollarSign className="w-4 h-4" />
-              <span className="hidden sm:inline">Quote Requests</span>
             </TabsTrigger>
             </TabsList>
           </div>
@@ -2132,143 +1964,6 @@ export default function TradespersonDashboardPage() {
                               </p>
                             </div>
                           )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
-          </TabsContent>
-
-          {/* Quote Requests Tab */}
-          <TabsContent value="quotes" className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-extrabold text-brand-navy">
-                Approved Quote Requests
-              </h2>
-              <div className="flex space-x-2">
-                <Button
-                  onClick={() => user?.id && loadApprovedQuoteRequests(user.id)}
-                  variant="outline"
-                  className="flex items-center space-x-2"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                  <span>Refresh</span>
-                </Button>
-              </div>
-            </div>
-
-            {approvedQuoteRequests.length === 0 ? (
-              <Card className="text-center py-12">
-                <CardContent>
-                  <Clock className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-extrabold text-brand-navy mb-2">
-                    No approved quote requests yet
-                  </h3>
-                  <p className="text-gray-600">
-                    When an admin approves a client request for you, it will
-                    appear here.
-                  </p>
-                </CardContent>
-              </Card>
-            ) : (
-              <div className="space-y-4">
-                {approvedQuoteRequests.map((qr) => (
-                  <Card
-                    key={qr.id}
-                    className="hover:shadow-lg transition-all duration-300"
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-extrabold text-brand-navy">
-                              {qr.project_type || "Project"}
-                            </h3>
-                            <Badge
-                              variant="default"
-                              className="bg-green-100 text-green-800"
-                            >
-                              Admin Approved
-                            </Badge>
-                          </div>
-                          <p className="text-gray-600 mb-3">
-                            {qr.project_description}
-                          </p>
-                          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-600">
-                            <div>
-                              <strong>Customer:</strong> {qr.customer_name}
-                            </div>
-                            <div>
-                              <strong>Location:</strong> {qr.location}
-                            </div>
-                            <div>
-                              <strong>Timeframe:</strong>{" "}
-                              {qr.timeframe || "N/A"}
-                            </div>
-                            <div>
-                              <strong>Budget:</strong>{" "}
-                              {qr.budget_range || "Discuss"}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Inline quote submission form (client email hidden) */}
-                      <div className="mt-4 border-t pt-4">
-                        <h4 className="font-semibold text-gray-900 mb-2">
-                          Provide Your Quotation
-                        </h4>
-                        <div className="grid md:grid-cols-3 gap-3">
-                          <div className="md:col-span-1">
-                            <Label htmlFor={`amount-${qr.id}`}>
-                              Amount (£)
-                            </Label>
-                            <Input
-                              id={`amount-${qr.id}`}
-                              type="number"
-                              min="0"
-                              placeholder="e.g. 1200"
-                              value={quoteAmountById[qr.id] || ""}
-                              onChange={(e) =>
-                                setQuoteAmountById((prev) => ({
-                                  ...prev,
-                                  [qr.id]: e.target.value,
-                                }))
-                              }
-                              className="mt-1"
-                            />
-                          </div>
-                          <div className="md:col-span-2">
-                            <Label htmlFor={`notes-${qr.id}`}>
-                              Notes (optional)
-                            </Label>
-                            <Textarea
-                              id={`notes-${qr.id}`}
-                              rows={2}
-                              placeholder="Brief description of what’s included"
-                              value={quoteNotesById[qr.id] || ""}
-                              onChange={(e) =>
-                                setQuoteNotesById((prev) => ({
-                                  ...prev,
-                                  [qr.id]: e.target.value,
-                                }))
-                              }
-                              className="mt-1"
-                            />
-                          </div>
-                        </div>
-                        <div className="mt-3">
-                          <Button
-                            onClick={() => submitQuoteForRequest(qr)}
-                            disabled={quoteSubmittingId === qr.id}
-                            className="bg-brand-navy hover:bg-brand-navy"
-                          >
-                            {quoteSubmittingId === qr.id
-                              ? "Submitting..."
-                              : "Submit Quote"}
-                          </Button>
                         </div>
                       </div>
                     </CardContent>

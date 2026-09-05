@@ -29,12 +29,6 @@ const PostJobDialog = dynamic(() => import("@/components/PostJobDialog"), {
   ),
 });
 
-const ClientQuoteRequests = dynamic(() => import("@/components/ClientQuoteRequests"), {
-  ssr: false,
-  loading: () => (
-    <p className="text-sm text-muted-foreground py-6">Loading quote requests…</p>
-  ),
-});
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Table,
@@ -517,7 +511,6 @@ export default function ClientDashboardPage() {
           <Tabs defaultValue="jobs" className="space-y-4">
             <TabsList>
               <TabsTrigger value="jobs">My jobs</TabsTrigger>
-              <TabsTrigger value="quotes">Quote requests</TabsTrigger>
             </TabsList>
 
             <TabsContent value="jobs" className="space-y-4">
@@ -720,10 +713,6 @@ export default function ClientDashboardPage() {
                   )}
                 </CardContent>
               </Card>
-            </TabsContent>
-
-            <TabsContent value="quotes">
-              <ClientQuoteRequests clientEmail={user.email} clientId={user.id} />
             </TabsContent>
           </Tabs>
         </Container>

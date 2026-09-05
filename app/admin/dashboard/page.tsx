@@ -34,7 +34,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { LogOut, CheckCircle, XCircle, Eye, Star, Clock, Users, Briefcase, ListChecks, RefreshCw, Download, Flag, AlertTriangle, MessageCircle, HeadphonesIcon, UserCheck, Zap, UserX, Mail } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
-import SimpleQuoteRequests from "@/components/SimpleQuoteRequests";
 
 interface Tradesperson {
   id: string;
@@ -1319,7 +1318,6 @@ export default function AdminDashboardPage() {
             🚨 Disputes
           </TabsTrigger>
           <TabsTrigger value="activity">Activity Log</TabsTrigger>
-          <TabsTrigger value="quote-requests">Quote Requests</TabsTrigger>
           <TabsTrigger value="completed">Completed Jobs</TabsTrigger>
           <TabsTrigger value="empire" className="bg-amber-50 border-amber-200 text-amber-800 hover:bg-amber-100">
             <Zap className="w-4 h-4 mr-1" />
@@ -2052,11 +2050,6 @@ export default function AdminDashboardPage() {
                 )}
               </CardContent>
             </Card>
-          </TabsContent>
-
-          {/* Quote Requests Tab */}
-          <TabsContent value="quote-requests">
-            <SimpleQuoteRequests />
           </TabsContent>
 
           {/* Completed Jobs Tab */}
