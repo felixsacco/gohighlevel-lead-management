@@ -403,7 +403,7 @@ export default function TradespersonRegistration() {
                   Thank you for registering with MyApproved!
                 </p>
                 <p className="text-gray-600 text-sm mb-6">
-                  Your account is approved. Log in now to view available jobs and start applying.
+                  Your documents are now in review. We'll email you once your profile is approved and live — you can then log in and start applying to jobs.
                 </p>
               </div>
 

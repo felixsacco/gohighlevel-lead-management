@@ -14,14 +14,7 @@ import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
-import { createClient } from "@supabase/supabase-js";
 import { motion, AnimatePresence } from "framer-motion";
-
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -485,40 +478,40 @@ export default function LoginPage() {
     setSuccess("");
 
     try {
-      // Check email and password directly in database
-      const { data: userData, error: userError } = await supabase
-        .from("clients")
-        .select("id, email, first_name, is_verified")
-        .eq("email", email)
-        .eq("password_hash", password)
-        .maybeSingle();
+      // Credentials are verified server-side against the scrypt hash
+      // (POST /api/auth/client/login). The password never leaves this form
+      // except to that route over HTTPS — it is never compared or stored in
+      // the browser, and the login token is minted by the server.
+      const res = await fetch("/api/auth/client/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password }),
+      });
 
-      if (userError || !userData) {
-        setError("Invalid email or password. Please try again.");
-        setIsLoading(false);
-        return;
-      }
+      const data = await res.json().catch(() => ({}));
 
-      if (!userData.is_verified) {
+      if (res.status === 403) {
+        // Server rejected an unverified account — show the same prompt as
+        // before (check your inbox for the emailed verification code).
         setError(
           "Please verify your email address before logging in. Check your inbox for the verification email."
         );
-        setIsLoading(false);
+        return;
+      }
+
+      if (!res.ok || !data?.token || !data?.user) {
+        setError(
+          data?.error || "Invalid email or password. Please try again."
+        );
         return;
       }
 
       setSuccess("Login successful! Redirecting...");
-      // Store user info in localStorage for now
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          id: userData.id,
-          email: userData.email,
-          firstName: userData.first_name,
-          isVerified: userData.is_verified,
-          userType: "client",
-        })
-      );
+
+      // Store the canonical client blob + server-issued token in localStorage.
+      // data.user is already { id, email, firstName, isVerified, type }.
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("clientToken", data.token);
 
       if (rememberMe) {
         localStorage.setItem("customerRememberEmail", email);

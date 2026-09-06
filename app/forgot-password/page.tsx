@@ -8,15 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Mail, ArrowLeft, Key } from "lucide-react";
+import { Mail, ArrowLeft, Key, User, Wrench } from "lucide-react";
 import Link from "next/link";
-import { createClient } from "@supabase/supabase-js";
-
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
 
 function ForgotPasswordContent() {
   const [email, setEmail] = useState("");
@@ -46,62 +39,38 @@ function ForgotPasswordContent() {
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     setError("");
     setSuccess("");
 
+    const emailValue = email.trim().toLowerCase();
+    if (!emailValue) {
+      setError("Please enter your email address.");
+      return;
+    }
+
+    setIsLoading(true);
+
     try {
-      if (userType === "tradesperson") {
-        // Check only tradespeople table
-        const { data: tradespersonData, error: tradespersonError } = await supabase
-          .from("tradespeople")
-          .select("id, email, first_name, is_verified")
-          .eq("email", email)
-          .single();
+      // The account lookup + reset email are handled server-side
+      // (POST /api/auth/reset/request). This page never queries a table, so it
+      // cannot learn whether an email is registered, and the response is
+      // deliberately identical in every branch — only a real, verified account
+      // actually receives the emailed reset link. No account state is written
+      // to localStorage here.
+      const res = await fetch("/api/auth/reset/request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userType, email: emailValue }),
+      });
 
-        if (tradespersonError || !tradespersonData) {
-          setError("No tradesperson account found with this email address.");
-          setIsLoading(false);
-          return;
-        }
+      const data = await res.json().catch(() => ({}));
 
-        if (!tradespersonData.is_verified) {
-          setError("Please verify your email address first before resetting your password.");
-          setIsLoading(false);
-          return;
-        }
-
-        setSuccess("Email verified! Redirecting to password reset...");
-        localStorage.setItem("resetEmail", email);
-        setTimeout(() => {
-          window.location.href = "/reset-password-tradesperson";
-        }, 1500);
-      } else {
-        // Check only clients table
-        const { data: clientData, error: clientError } = await supabase
-          .from("clients")
-          .select("id, email, first_name, is_verified")
-          .eq("email", email)
-          .single();
-
-        if (clientError || !clientData) {
-          setError("No client account found with this email address.");
-          setIsLoading(false);
-          return;
-        }
-
-        if (!clientData.is_verified) {
-          setError("Please verify your email address first before resetting your password.");
-          setIsLoading(false);
-          return;
-        }
-
-        setSuccess("Email verified! Redirecting to password reset...");
-        localStorage.setItem("resetEmail", email);
-        setTimeout(() => {
-          window.location.href = "/reset-password-client";
-        }, 1500);
-      }
+      // Always show the same neutral confirmation whether or not an account
+      // exists — never reveal which emails are registered.
+      setSuccess(
+        data?.message ||
+          "If an account with that email exists and is verified, we've sent a link to reset your password. Please check your inbox (and spam folder)."
+      );
     } catch (error) {
       setError("An unexpected error occurred. Please try again.");
     } finally {
@@ -126,6 +95,36 @@ function ForgotPasswordContent() {
 
         <CardContent>
           <form onSubmit={handleResetPassword} className="space-y-4">
+            <div>
+              <Label>Account Type</Label>
+              <div className="grid grid-cols-2 gap-2 mt-1">
+                <button
+                  type="button"
+                  onClick={() => setUserType("client")}
+                  className={`flex items-center justify-center gap-2 h-11 rounded-xl border-2 text-sm font-semibold transition-all ${
+                    userType === "client"
+                      ? "border-brand-amber bg-brand-amber/10 text-brand-navyDark"
+                      : "border-gray-300 bg-white text-gray-600 hover:border-brand-amber/50"
+                  }`}
+                >
+                  <User className="w-4 h-4" />
+                  Client
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUserType("tradesperson")}
+                  className={`flex items-center justify-center gap-2 h-11 rounded-xl border-2 text-sm font-semibold transition-all ${
+                    userType === "tradesperson"
+                      ? "border-brand-amber bg-brand-amber/10 text-brand-navyDark"
+                      : "border-gray-300 bg-white text-gray-600 hover:border-brand-amber/50"
+                  }`}
+                >
+                  <Wrench className="w-4 h-4" />
+                  Tradesperson
+                </button>
+              </div>
+            </div>
+
             <div>
               <Label htmlFor="email">Email Address</Label>
               <div className="relative">

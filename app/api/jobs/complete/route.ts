@@ -102,20 +102,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Update job to completed
+    // Update job to completed. Both statuses take the canonical 'completed' value
+    // ('closed' is legal in neither jobs.status nor jobs.application_status) so the
+    // job drops out of open/in-progress listings. The client's completion rating +
+    // review are persisted to job_reviews below (single source for reviews), not
+    // duplicated onto this row.
     const updateData: any = {
       is_completed: true,
-      application_status: 'closed', // Mark as closed so it doesn't appear as available
+      status: 'completed',
+      application_status: 'completed',
       completed_at: new Date().toISOString(),
       completed_by: completedByDb
     };
-
-    // Add rating and review if provided
-    if (ratingNum !== undefined && reviewText) {
-      updateData.client_rating = ratingNum;
-      updateData.client_review = reviewText;
-      updateData.review_submitted_at = new Date().toISOString();
-    }
 
     const { error: updateError } = await supabaseAdmin
       .from('jobs')

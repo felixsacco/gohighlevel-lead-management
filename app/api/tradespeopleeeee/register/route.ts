@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase';
 import { sendTransactionalEmail } from '@/lib/notifications/email';
 import { sendNotification } from '@/lib/notifications';
 import { normalizeUkPhone } from '@/lib/utils/phone-mask';
+import { hashPassword } from '@/lib/auth/password';
 
 export async function POST(request: NextRequest) {
   try {
@@ -79,12 +80,26 @@ export async function POST(request: NextRequest) {
 
     console.log('Creating tradesperson record...');
 
+    // Hash the password before it reaches the DB — password_hash must never hold
+    // a recoverable value. This route shares the tradespeople table with
+    // /api/trades/register and the same login gate, so both must use scrypt.
+    let passwordHash: string;
+    try {
+      passwordHash = await hashPassword(password);
+    } catch (hashError) {
+      console.error('Password hashing failed:', hashError);
+      return NextResponse.json(
+        { error: 'Failed to secure account credentials' },
+        { status: 500 }
+      );
+    }
+
     // Create tradesperson record
     const { data: tradesperson, error: insertError } = await supabaseClient
       .from('tradespeople')
       .insert({
         email,
-        password_hash: password, // Store password directly
+        password_hash: passwordHash,
         first_name: firstName,
         last_name: lastName,
         phone,

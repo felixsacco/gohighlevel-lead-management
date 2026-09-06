@@ -146,6 +146,19 @@ CREATE TABLE IF NOT EXISTS jobs (
   applied_at            timestamptz,
   assigned_by           text,
   assigned_at           timestamptz,
+  -- flagging / admin moderation (jobs/flag, jobs/unflag, admin/flagged-jobs)
+  is_flagged            boolean NOT NULL DEFAULT false,
+  flag_reason           text,
+  flagged_by            text,
+  flagged_at            timestamptz,
+  flagged_by_type       text NOT NULL DEFAULT 'unknown',
+  unflagged_by          text,
+  unflagged_at          timestamptz,
+  admin_notes           text,
+  -- completion wiring (jobs/complete)
+  is_completed          boolean NOT NULL DEFAULT false,
+  completed_at          timestamptz,
+  completed_by          text,
   -- geocoding (phase11)
   latitude              numeric,
   longitude             numeric,
@@ -158,6 +171,23 @@ CREATE INDEX IF NOT EXISTS idx_jobs_trade ON jobs(trade);
 CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status);
 CREATE INDEX IF NOT EXISTS idx_jobs_application_status ON jobs(application_status);
 CREATE INDEX IF NOT EXISTS idx_jobs_assigned_tradesperson ON jobs(assigned_tradesperson_id);
+
+-- ---------------------------------------------------------------------------
+-- jobs — flagging + completion columns (idempotent for databases created before
+-- these columns existed; the CREATE TABLE jobs block above is authoritative for
+-- fresh provisioning and already carries the same columns).
+-- ---------------------------------------------------------------------------
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS is_flagged       boolean NOT NULL DEFAULT false;
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS flag_reason      text;
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS flagged_by       text;
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS flagged_at       timestamptz;
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS flagged_by_type  text NOT NULL DEFAULT 'unknown';
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS unflagged_by     text;
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS unflagged_at     timestamptz;
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS admin_notes      text;
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS is_completed     boolean NOT NULL DEFAULT false;
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS completed_at     timestamptz;
+ALTER TABLE jobs ADD COLUMN IF NOT EXISTS completed_by     text;
 
 -- ---------------------------------------------------------------------------
 -- leads — one open lead per job (phase12). Atomic claim via
@@ -229,6 +259,39 @@ CREATE TABLE IF NOT EXISTS job_applications (
 
 CREATE INDEX IF NOT EXISTS idx_job_applications_job_id ON job_applications(job_id);
 CREATE INDEX IF NOT EXISTS idx_job_applications_tradesperson_id ON job_applications(tradesperson_id);
+
+-- ---------------------------------------------------------------------------
+-- job_reviews — reviews left against a job/tradesperson by the client, the
+-- tradesperson, or an admin (phase: completion + rate-tradesperson flows).
+-- Read/write paths: jobs/complete (service role), jobs/rate-tradesperson (anon),
+-- app/api/trade-data/[id] + app/dashboard/tradesperson + public TP profile embed
+-- via the auto-named FK hint `job_reviews!job_reviews_tradesperson_id_fkey`, so
+-- the tradesperson_id FK below MUST stay auto-named (no explicit CONSTRAINT name).
+-- The reviewer_id column is text: it holds a client uuid, a tradesperson uuid, or
+-- a short admin token, matching how the routes write it.
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS job_reviews (
+  id              uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  job_id          uuid NOT NULL REFERENCES jobs(id) ON DELETE CASCADE,
+  tradesperson_id uuid REFERENCES tradespeople(id) ON DELETE CASCADE,
+  reviewer_type   text NOT NULL DEFAULT 'client'
+      CONSTRAINT job_reviews_reviewer_type_check
+      CHECK (reviewer_type IN ('client', 'tradesperson', 'admin')),
+  reviewer_id     text NOT NULL,
+  rating          smallint NOT NULL
+      CONSTRAINT job_reviews_rating_check
+      CHECK (rating BETWEEN 1 AND 5),
+  review_text     text,
+  reviewed_at     timestamptz NOT NULL DEFAULT now(),
+  created_at      timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_job_reviews_job_id ON job_reviews(job_id);
+CREATE INDEX IF NOT EXISTS idx_job_reviews_tradesperson_id ON job_reviews(tradesperson_id);
+-- One review per reviewer per (job, tradesperson); NULL tradesperson_id rows are
+-- still distinct to Postgres, so untargeted client reviews are not deduped away.
+CREATE UNIQUE INDEX IF NOT EXISTS uq_job_reviews_reviewer
+  ON job_reviews(job_id, reviewer_id, tradesperson_id);
 
 -- ---------------------------------------------------------------------------
 -- chat_rooms — one per job assignment (client ↔ tradesperson). Unique on
@@ -522,9 +585,11 @@ DROP POLICY IF EXISTS "Public read applications per job" ON job_applications;
 CREATE POLICY "Public read applications per job"
   ON job_applications FOR SELECT USING (true);
 
--- ---- clients / tradespeople / chat_rooms / chat_messages / notification_logs ----
+-- ---- clients / tradespeople / chat_rooms / chat_messages / notification_logs / job_reviews ----
 -- No RLS enabled: these are accessed via anon + service-role clients in the
--- current code. Enable selectively in a later hardening pass once auth is
+-- current code (job_reviews is written by the anon rate-tradesperson route and
+-- read by the tradesperson dashboard + public TP profile, mirroring chat_messages).
+-- Enable selectively in a later hardening pass once auth is
 -- migrated to Supabase Auth with app_metadata.role; see BACKEND-AUDIT-REPORT.md §2.4.
 
 -- =============================================================================

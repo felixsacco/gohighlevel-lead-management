@@ -5,6 +5,7 @@ import { sendNotification } from '@/lib/notifications';
 import { getAdminEmail } from '@/lib/notifications/admin-inbox';
 import { normalizeUkPhone } from '@/lib/utils/phone-mask';
 import { geocodePostcode } from '@/lib/geo/postcodes';
+import { hashPassword } from '@/lib/auth/password';
 
 export async function POST(request: NextRequest) {
   try {
@@ -51,6 +52,16 @@ export async function POST(request: NextRequest) {
       console.log('Missing required fields:', { fullName, email, phone, trade, city, postcode });
       return NextResponse.json(
         { error: 'All required fields must be provided' },
+        { status: 400 }
+      );
+    }
+
+    // Mirror the client's minimum length. Short passwords that clear a plaintext
+    // gate cost nothing to store today but are cheap for an attacker to brute
+    // force against a stolen hash, so refuse them server-side too.
+    if (typeof password !== 'string' || password.length < 8) {
+      return NextResponse.json(
+        { error: 'Password must be at least 8 characters long' },
         { status: 400 }
       );
     }
@@ -137,11 +148,33 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Hash the password before it ever reaches the database. The schema column
+    // is named password_hash — it must not hold a recoverable value. This route
+    // runs on the default Node runtime (no edge export), so node:crypto's scrypt
+    // is available here.
+    let passwordHash: string;
+    try {
+      passwordHash = await hashPassword(password);
+    } catch (hashError) {
+      console.error('[trades/register] Password hashing failed:', hashError);
+      return NextResponse.json(
+        { error: 'Failed to secure account credentials' },
+        { status: 500 }
+      );
+    }
+
     // 2. Insert into tradespeople table
+    //
+    // Verification is NOT self-granted here. New accounts start unverified and
+    // in pending admin review; the real gate is the admin verification flow
+    // (app/api/client/admin-secret/verify-tradesperson/route.ts), which flips
+    // is_verified/is_approved to true and verification_status to 'approved'
+    // only after documents have been checked. is_active merely means "not
+    // banned/suspended" and is true from signup.
     const baseTradespersonRow = {
       id: userId,
       email: email,
-      password_hash: password,
+      password_hash: passwordHash,
       first_name: fullName.split(' ')[0] || fullName,
       last_name: fullName.split(' ').slice(1).join(' ') || '',
       phone: phone,
@@ -149,10 +182,10 @@ export async function POST(request: NextRequest) {
       city: city,
       postcode: postcode,
       years_experience: yearsExperience ? parseInt(yearsExperience) : null,
-      is_verified: true,
+      is_verified: false,
       is_active: true,
-      is_approved: true,
-      verification_status: 'approved',
+      is_approved: false,
+      verification_status: 'pending_documents',
     } as Record<string, unknown>;
 
     let { error: tradespersonError } = await supabase
@@ -269,7 +302,7 @@ export async function POST(request: NextRequest) {
             doc_type: 'id',
             file_path: fileName,
             upload_date: new Date().toISOString(),
-            status: 'approved',
+            status: 'pending',
           });
         } catch (error: any) {
           console.error('ID document processing error:', error);
@@ -305,7 +338,7 @@ export async function POST(request: NextRequest) {
             file_path: fileName,
             upload_date: new Date().toISOString(),
             expiry_date: insuranceExpiry || null,
-            status: 'approved',
+            status: 'pending',
           });
         } catch (error: any) {
           console.error('Insurance document processing error:', error);
@@ -341,7 +374,7 @@ export async function POST(request: NextRequest) {
             file_path: fileName,
             upload_date: new Date().toISOString(),
             doc_number: qualificationNumber || null,
-            status: 'approved',
+            status: 'pending',
           });
         } catch (error: any) {
           console.error('Qualification document processing error:', error);
@@ -377,7 +410,7 @@ export async function POST(request: NextRequest) {
             file_path: fileName,
             upload_date: new Date().toISOString(),
             doc_number: tradeCardNumber || null,
-            status: 'approved',
+            status: 'pending',
           });
         } catch (error: any) {
           console.error('Trade card document processing error:', error);
@@ -402,48 +435,46 @@ export async function POST(request: NextRequest) {
           );
         }
 
-        // Auto-approve all registrations — no admin review step.
-        const nextTradeUpdate: Record<string, unknown> = {
-          verification_status: 'approved',
-          is_verified: true,
-          is_approved: true,
-          is_active: true,
-        };
-
+        // Documents are stored, so the account moves out of the
+        // 'pending_documents' state into 'pending_review'. That is the extent of
+        // what this route is allowed to do — approval itself (is_verified /
+        // is_approved = true, verification_status = 'approved') is granted only
+        // by the admin verification flow. Removing the old auto-approve step is
+        // the whole point of this fix.
         const { error: stateErr } = await supabase
           .from('tradespeople')
-          .update(nextTradeUpdate)
+          .update({
+            verification_status: 'pending_review',
+            is_verified: false,
+            is_approved: false,
+            is_active: true,
+          })
           .eq('id', userId);
         if (stateErr) {
-          console.error('Failed to update verification status:', stateErr);
+          console.error('Failed to move registration to pending_review:', stateErr);
         }
       }
     } else {
       console.log('Skipping document uploads - bucket not available');
     }
 
-    // Welcome notifications for every new tradesperson (idempotent).
+    // Signup acknowledgement (idempotent). The copy is deliberately honest: the
+    // account is in review, not live. The "you're approved" notifications
+    // (tradesperson_next_steps, profile_live_alert) are sent only by the admin
+    // verification flow once a human actually approves the account — they must
+    // never fire at signup, because nothing has been approved yet.
     try {
       await sendNotification({
-        type: 'tradesperson_next_steps',
+        type: 'tradesperson_signup_confirmation',
         recipientId: String(userId),
         recipientEmail: email,
         recipientPhone: phone,
         channels: ['email', 'push'],
-        idempotencyKey: `tradesperson_next_steps:auto:${userId}`,
-        data: { trade, city, postcode, autoApproved: true },
-      });
-      await sendNotification({
-        type: 'profile_live_alert',
-        recipientId: String(userId),
-        recipientEmail: email,
-        recipientPhone: phone,
-        channels: ['email', 'push'],
-        idempotencyKey: `tradesperson_profile_live:auto:${userId}`,
-        data: { message: 'Your profile is approved and visible to customers.' },
+        idempotencyKey: `tradesperson_signup_confirmation:${userId}`,
+        data: { firstName: fullName.split(' ')[0] || fullName },
       });
     } catch (notifyErr) {
-      console.error('Welcome notifications failed (non-fatal):', notifyErr);
+      console.error('Signup confirmation notification failed (non-fatal):', notifyErr);
     }
 
     // Geocode postcode (awaited so it completes on Vercel serverless)
@@ -468,7 +499,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message:
-        'Trade registration successful! Your account is approved — you can log in and start receiving jobs.',
+        'Registration received! Your documents are now in review — you will receive an email once your profile is approved and live.',
       subscriptionPlan,
     });
 

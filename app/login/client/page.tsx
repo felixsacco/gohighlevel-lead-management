@@ -15,7 +15,6 @@ import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 import { Container } from "@/components/ui/Container";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
-import { supabase } from "@/lib/supabase-client";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ClientLoginPage() {
@@ -436,43 +435,40 @@ export default function ClientLoginPage() {
     setSuccess("");
 
     try {
-      // Check email and password directly in database
-      const { data: userData, error: userError } = await supabase
-        .from("clients")
-        .select("id, email, first_name, is_verified")
-        .eq("email", email)
-        .eq("password_hash", password)
-        .maybeSingle();
+      // Credentials are verified server-side against the scrypt hash
+      // (POST /api/auth/client/login). The password never leaves this form
+      // except to that route over HTTPS — it is never compared or stored in
+      // the browser, and the login token is minted by the server.
+      const res = await fetch("/api/auth/client/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password }),
+      });
 
-      if (userError || !userData) {
-        setError("Invalid email or password. Please try again.");
-        setIsLoading(false);
-        return;
-      }
+      const data = await res.json().catch(() => ({}));
 
-      if (!userData.is_verified) {
+      if (res.status === 403) {
+        // Server rejected an unverified account — show the same prompt as
+        // before (check your inbox for the emailed verification code).
         setError(
           "Please verify your email address before logging in. Check your inbox for the verification email."
         );
-        setIsLoading(false);
+        return;
+      }
+
+      if (!res.ok || !data?.token || !data?.user) {
+        setError(
+          data?.error || "Invalid email or password. Please try again."
+        );
         return;
       }
 
       setSuccess("Login successful! Redirecting...");
 
-      // Store user info and token in localStorage
-      const clientToken = `client_${userData.id}_${Date.now()}`;
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          id: userData.id,
-          email: userData.email,
-          firstName: userData.first_name,
-          isVerified: userData.is_verified,
-          type: "client",
-        })
-      );
-      localStorage.setItem("clientToken", clientToken);
+      // Store the canonical client blob + server-issued token in localStorage.
+      // data.user is already { id, email, firstName, isVerified, type }.
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("clientToken", data.token);
 
       // Remember email if opted in
       if (rememberMe) {

@@ -24,7 +24,6 @@ import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 import { Container } from "@/components/ui/Container";
-import { supabase } from "@/lib/supabase-client";
 
 interface FormData {
   firstName: string;
@@ -156,54 +155,51 @@ export default function ClientRegistration() {
     setIsLoading(true);
 
     try {
-      // Check if email already exists
-      const { data: existingUser, error: checkError } = await supabase
-        .from("clients")
-        .select("email")
-        .eq("email", formData.email);
+      // The account is created server-side (POST /api/auth/client/register),
+      // which re-validates the fields and scrypt-hashes the password before it
+      // ever reaches Supabase. The raw password never leaves this form except
+      // to that route over HTTPS — it is never stored, inserted or compared in
+      // the browser, and the service-role client is the only thing that writes.
+      const res = await fetch("/api/auth/client/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: formData.firstName.trim(),
+          lastName: formData.lastName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          postcode: formData.postcode.trim(),
+          address: formData.address.trim(),
+          password: formData.password,
+        }),
+      });
 
-      if (existingUser && existingUser.length > 0) {
-        setErrorMessage("An account with this email already exists");
-        setIsLoading(false);
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data?.success) {
+        // Server is authoritative — surface its message (validation failures,
+        // duplicate email "This email is already registered...", 503).
+        setErrorMessage(
+          data?.error || "Registration failed. Please try again."
+        );
         return;
       }
 
-      // Create new client account in database
-      const { data, error } = await supabase
-        .from("clients")
-        .insert({
-          email: formData.email,
-          password_hash: formData.password, // Store password in password_hash column
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          phone: formData.phone,
-          postcode: formData.postcode,
-          address: formData.address,
-          is_verified: false,
-            is_active: false,
-        })
-        .select()
-        .single();
-
-      if (error) {
-        console.error("Registration error:", error);
-        setErrorMessage("Registration failed. Please try again.");
-      } else {
-        // Send verification email
-        await sendVerificationEmail(formData.email);
-        setIsEmailSent(true);
-        // Reset form
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          postcode: "",
-          address: "",
-          password: "",
-          confirmPassword: "",
-        });
-      }
+      // Account created — send the verification email and show the
+      // "check your email / verify" screen.
+      await sendVerificationEmail(formData.email);
+      setIsEmailSent(true);
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        postcode: "",
+        address: "",
+        password: "",
+        confirmPassword: "",
+      });
     } catch (error) {
       console.error("Registration error:", error);
       setErrorMessage("Registration failed. Please try again.");

@@ -36,8 +36,6 @@ Disallow: /verify-email/
 Disallow: /setup-crm/
 Disallow: /setup-crm-private/
 Disallow: /reset-password/
-Disallow: /reset-password-client/
-Disallow: /reset-password-tradesperson/
 Disallow: /forgot-password/
 Disallow: /job-description/
 Disallow: /leads/

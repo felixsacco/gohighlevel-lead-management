@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
+import { hashPassword } from '@/lib/auth/password';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -26,6 +27,29 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'All required fields must be provided' },
         { status: 400 }
+      );
+    }
+
+    // Mirror the main register route's minimum length (server-side authority).
+    if (typeof password !== 'string' || password.length < 8) {
+      return NextResponse.json(
+        { error: 'Password must be at least 8 characters long' },
+        { status: 400 }
+      );
+    }
+
+    // Hash before insert — password_hash must never hold a recoverable value.
+    // This file is a dead duplicate of route.ts (never routed by Next.js), but
+    // if it is ever renamed into a live handler it must not resurrect
+    // plaintext storage on the shared tradespeople table.
+    let passwordHash: string;
+    try {
+      passwordHash = await hashPassword(password);
+    } catch (hashError) {
+      console.error('Password hashing failed:', hashError);
+      return NextResponse.json(
+        { error: 'Failed to secure account credentials' },
+        { status: 500 }
       );
     }
 
@@ -78,7 +102,7 @@ export async function POST(request: NextRequest) {
         first_name: firstName,
         last_name: lastName,
         email: email.toLowerCase().trim(),
-        password_hash: password,
+        password_hash: passwordHash,
         phone: phone,
         trade: trade,
         postcode: postcode,

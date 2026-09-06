@@ -10,23 +10,22 @@
 //   3. Approval/verification/active gates run on the service-role client, so a
 //      disabled or unapproved tradesperson cannot mint a usable token.
 //
-// NOTE: tradespeople.password_hash is a raw password in the current schema
-// (see sql/master-consolidated.sql) — the known auth weakness is that column,
-// not this route. This route does not make it worse: it verifies server-side
-// and never returns the stored value. Migrating to Supabase Auth / bcrypt is a
-// separate workstream; when that lands, only this route needs to change.
+// Passwords are hashed with scrypt (lib/auth/password.ts) at registration and
+// verified against the hash here, server-side, never returned to the browser.
+// Any stored value that is not an scrypt hash is a legacy raw-password row
+// (created before hashing landed). Those get a one-time, timing-safe plaintext
+// comparison and are upgraded to a scrypt hash in place on the first successful
+// login, so plaintext does not linger in the database.
 
-import crypto from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { issueTradeSessionToken } from "@/lib/auth/trade-session";
-
-function safeEqual(a: string, b: string): boolean {
-  const ab = Buffer.from(a, "utf8");
-  const bb = Buffer.from(b, "utf8");
-  if (ab.length !== bb.length) return false;
-  return crypto.timingSafeEqual(ab, bb);
-}
+import {
+  hashPassword,
+  isScryptHash,
+  safeEqualText,
+  verifyPassword,
+} from "@/lib/auth/password";
 
 export async function POST(request: NextRequest) {
   let body: unknown;
@@ -69,15 +68,62 @@ export async function POST(request: NextRequest) {
   }
 
   // Deliberately generic — do not reveal whether the account exists.
-  if (
-    !tradesperson ||
-    typeof tradesperson.password_hash !== "string" ||
-    !safeEqual(password, tradesperson.password_hash)
-  ) {
+  const storedHash: string | null =
+    tradesperson && typeof tradesperson.password_hash === "string"
+      ? tradesperson.password_hash
+      : null;
+
+  // A stored value that is not an scrypt hash is a legacy raw-password row
+  // (written before hashing landed). It gets a one-time, timing-safe plaintext
+  // comparison and is upgraded in place below on success.
+  const isLegacyPlaintext = storedHash !== null && !isScryptHash(storedHash);
+
+  let passwordMatches = false;
+  if (storedHash !== null) {
+    passwordMatches = isLegacyPlaintext
+      ? safeEqualText(password, storedHash)
+      : await verifyPassword(password, storedHash);
+  }
+
+  if (!tradesperson || !passwordMatches) {
     return NextResponse.json(
       { error: "Invalid email or password" },
       { status: 401 },
     );
+  }
+
+  // One-time legacy upgrade. The presented password was confirmed against a
+  // raw-password row, so overwrite it with a scrypt hash to scrub the plaintext
+  // from the DB. Runs before the account gates: even a pending (not-yet-
+  // approved) account that proves its password must not leave plaintext on
+  // disk. Non-fatal if the write fails (login still succeeds) but logged loudly
+  // so it can be retried.
+  if (isLegacyPlaintext) {
+    try {
+      const newHash = await hashPassword(password);
+      const { error: upgradeError } = await admin
+        .from("tradespeople")
+        .update({ password_hash: newHash })
+        .eq("id", tradesperson.id);
+      if (upgradeError) {
+        console.warn(
+          "Trade login: legacy plaintext verified but hash write-back failed for",
+          tradesperson.email,
+          upgradeError.message,
+        );
+      } else {
+        console.warn(
+          "Trade login: upgraded legacy plaintext password to scrypt hash for",
+          tradesperson.email,
+        );
+      }
+    } catch (hashError) {
+      console.warn(
+        "Trade login: legacy password upgrade failed for",
+        tradesperson.email,
+        hashError instanceof Error ? hashError.message : String(hashError),
+      );
+    }
   }
 
   if (!tradesperson.is_active) {
