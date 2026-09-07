@@ -48,9 +48,18 @@ CREATE TABLE IF NOT EXISTS clients (
   postcode         text,
   password_hash    text,                              -- 'ANONYMOUS_NOT_SET' sentinel for walk-in clients
   profile_photo_url text,                            -- phase4
+  -- client auth gates (phase13): register/login/reset routes read & write these
+  is_verified          boolean NOT NULL DEFAULT false, -- server register inserts false; login gates on it
+  is_active            boolean NOT NULL DEFAULT true,  -- register inserts false; no active gate yet on client login
+  address              text,                           -- register requires it (>= 10 chars)
+  verification_token   text,                           -- emailed-code verify loop (send-verification-email)
+  verification_sent_at timestamptz,                    -- emailed-code send loop stamps the send time (send-verification-email)
+  captcha_code         text,                           -- emailed-code verify loop (verify-captcha)
   created_at       timestamptz NOT NULL DEFAULT now(),
   updated_at       timestamptz NOT NULL DEFAULT now()
 );
+
+CREATE INDEX IF NOT EXISTS idx_clients_email ON clients(email);
 
 -- ---------------------------------------------------------------------------
 -- tradespeople — tradesperson account + full profile. Single flat table carries
