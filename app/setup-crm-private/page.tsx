@@ -209,7 +209,7 @@ GOHIGHLEVEL_LOCATION_ID=${locationId}`;
                   <li>Copy the environment variables above</li>
                   <li>Add them to your <code className="bg-green-100 px-1 rounded">.env.local</code> file</li>
                   <li>Restart your development server</li>
-                  <li>Test job submission sync at <code className="bg-green-100 px-1 rounded">/test-crm</code></li>
+                  <li>Submit a job through the public quote form to confirm the CRM sync fires</li>
                 </ol>
               </div>
             </div>

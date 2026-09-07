@@ -102,7 +102,7 @@ export default function FindTradespeople() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
-      const response = await fetch(`/api/tradespeopleeeee/list?${params}`, {
+      const response = await fetch(`/api/tradespeople/list?${params}`, {
         signal: controller.signal,
         headers: {
           'Content-Type': 'application/json',

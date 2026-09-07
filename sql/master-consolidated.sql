@@ -563,36 +563,51 @@ $$ LANGUAGE sql IMMUTABLE;
 -- =============================================================================
 -- 6. ROW-LEVEL SECURITY
 -- =============================================================================
--- The application currently mixes anon client + service-role admin access;
--- most writes go through service-role (bypasses RLS). We enable RLS and add the
--- permissive policies the code already relies on for the anon/client paths,
--- mirroring the surviving phase12 leads policy. Admins operate via service-role
--- (SUPABASE_SERVICE_ROLE_KEY), which bypasses RLS entirely.
+-- The application has NO Supabase Auth: identities come from app-level HMAC
+-- sessions (lib/auth/trade-session.ts) verified in route handlers/server pages,
+-- and auth.uid() is never used. RLS therefore cannot owner-scope rows here, so
+-- the model is:
+--   * Public READS stay policy-gated for the anon/client paths the code relies
+--     on (approved marketplace jobs, per-job applications on the trade dashboard).
+--   * Every WRITE — job submission, applications, lead claim/checkout/release,
+--     and all of `leads` — runs through route handlers on the service-role client
+--     (getSupabaseAdmin(), SUPABASE_SERVICE_ROLE_KEY), which bypasses RLS. No
+--     permissive INSERT/UPDATE policies are added below; that would reopen the
+--     rows anon could not otherwise see or mutate.
+-- This is why `leads` carries ZERO policies: its lifecycle (open → claimed →
+-- paid) is driven only by service-role code (claim/checkout/cron/webhook), and
+-- any anon/client read of lead rows — including the world-readable SELECT
+-- USING (true) that previously exposed them — is denied outright.
 
--- ---- leads (authoritative — phase12) ----
+-- ---- leads (service-role only — ZERO policies) ----
 ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Tradespeople can read leads" ON leads;
-CREATE POLICY "Tradespeople can read leads"
-  ON leads FOR SELECT USING (true);
 DROP POLICY IF EXISTS "Tradespeople can claim open leads" ON leads;
-CREATE POLICY "Tradespeople can claim open leads"
-  ON leads FOR UPDATE
-  USING (status = 'open' AND claimed_by IS NULL);
 DROP POLICY IF EXISTS "Admins full access" ON leads;
-CREATE POLICY "Admins full access"
-  ON leads FOR ALL USING (true);
+-- No CREATE POLICY. `leads` contains no PII columns (contact data lives on
+-- `clients`, reached via jobs.client_id and gated to the purchasing trade at the
+-- application layer), but leaving it policy-free keeps the inventory opaque to
+-- the anon key while service-role writes continue to pass RLS.
 
 -- ---- jobs (public read of approved/open; service-role writes) ----
 ALTER TABLE jobs ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public read approved jobs" ON jobs;
 CREATE POLICY "Public read approved jobs"
   ON jobs FOR SELECT USING (is_approved = true OR status IN ('approved', 'open'));
+-- Writes are service-role only (POST /api/jobs/submit); no INSERT/UPDATE
+-- policy is created here.
 
 -- ---- job_applications ----
 ALTER TABLE job_applications ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public read applications per job" ON job_applications;
 CREATE POLICY "Public read applications per job"
   ON job_applications FOR SELECT USING (true);
+-- Residual: this SELECT is USING (true) because the trade dashboard reads
+-- applications through the anon key and there is no auth.uid() to scope rows to
+-- the applicant. It carries quotation amounts/notes only — no phone/email. Precise
+-- owner-scoping awaits the Supabase Auth migration noted below.
+-- Applications are created ONLY by the session-gated POST /api/jobs/apply
+-- (service-role); no INSERT policy is created here.
 
 -- ---- clients / tradespeople / chat_rooms / chat_messages / notification_logs / job_reviews ----
 -- No RLS enabled: these are accessed via anon + service-role clients in the
