@@ -4,6 +4,7 @@ import {
   createGoHighLevelService,
   createGoHighLevelPrivateService,
 } from "@/lib/gohighlevel-service";
+import { executeWithResilience } from "@/lib/workers/resilience";
 
 const GOHIGHLEVEL_ACCESS_TOKEN = process.env.GOHIGHLEVEL_ACCESS_TOKEN;
 const GOHIGHLEVEL_API_KEY = process.env.GOHIGHLEVEL_API_KEY;
@@ -43,9 +44,21 @@ async function handler(request: NextRequest) {
       ? createGoHighLevelPrivateService(GOHIGHLEVEL_API_KEY!, GOHIGHLEVEL_LOCATION_ID!)
       : createGoHighLevelService(GOHIGHLEVEL_ACCESS_TOKEN!, GOHIGHLEVEL_LOCATION_ID!);
 
-    const syncResult = await goHighLevelService.syncJobSubmission(jobData);
+    // CRM sync runs under the resilience wrapper: a network/API failure throws,
+    // the full job payload is recorded in the dead-letter queue for re-drive,
+    // and this worker responds with an explicit 500 instead of a masked 2xx.
+    // Config (CRM disabled) and validation (missing fields) above deliberately
+    // stay OUTSIDE the wrapper so permanent conditions don't pollute the DLQ.
+    const res = await executeWithResilience(
+      { taskName: "crm-sync", payload: jobData },
+      () => goHighLevelService.syncJobSubmission(jobData),
+    );
 
-    return NextResponse.json(syncResult);
+    if (!res.success) {
+      return NextResponse.json({ error: res.error }, { status: 500 });
+    }
+
+    return NextResponse.json(res.data);
   } catch (error) {
     console.error("[worker:crm-sync] error:", error);
     return NextResponse.json(
