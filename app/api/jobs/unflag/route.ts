@@ -1,5 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase-client";
+import { getSupabaseAdmin } from "@/lib/supabase";
+import {
+  ADMIN_SESSION_COOKIE,
+  verifyAdminSessionToken,
+} from "@/lib/auth/admin-session";
+
+// Wall A (W1): admin moderation action — unflags a job and returns the job joined
+// with client + tradesperson PII. jobs is anon-revoked and flagged jobs are not
+// anon-visible post-REVOKE, so the service-role swap alone would WIDEN this from
+// "no anon access" to a full PII read. It is gated on the HttpOnly admin_session
+// cookie that /api/admin/proxy/* verifies; anonymous callers get 401 first. The
+// body-supplied adminId remains only a display label for the moderation log — only
+// an admin_session holder can reach this route at all.
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,6 +22,25 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { success: false, message: "Job ID is required" },
         { status: 400 }
+      );
+    }
+
+    // Admin-only action: require the HttpOnly admin_session cookie before any DB work.
+    const session = await verifyAdminSessionToken(
+      request.cookies.get(ADMIN_SESSION_COOKIE)?.value
+    );
+    if (!session) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json(
+        { success: false, message: "Service unavailable" },
+        { status: 503 }
       );
     }
 

@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-// import { createClient } from '@supabase/supabase-js';
-import { createClient } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import { verifyAdminSecret } from "@/lib/auth/admin-guard";
+
+// Wall A (W1): already gated by verifyAdminSecret above, but the DB work ran on
+// the anon key against tradespeople (PII, anon-revoked) — the REVOKE would break
+// it. Run on the service-role client instead.
 
 export const dynamic = 'force-dynamic';
 
@@ -21,7 +24,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
 
     // Get all tradespeople ordered by creation date (newest first)
-    const supabaseAdmin = createClient();
+    const supabaseAdmin = getSupabaseAdmin();
     if (!supabaseAdmin) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }

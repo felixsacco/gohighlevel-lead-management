@@ -859,12 +859,29 @@ export default function AdminDashboardPage() {
 
       const data = await response.json();
 
-      if (response.ok) {
-        setMessage("Tradesperson verified successfully!");
-        loadData(); // Reload data
-      } else {
+      if (!response.ok) {
         setError(data.error || "Failed to verify tradesperson");
+        return;
       }
+
+      // Phase 2: verify-tradesperson returns a machine verdict instead of
+      // unconditionally approving. Surface what actually happened rather than a
+      // hardcoded success toast:
+      //   autoApproved true                       → genuine new approval
+      //   verification_status 'approved' + not autoApproved → the profile was
+      //     already approved but now fails a re-check; the route's skip-downgrade
+      //     guard leaves it approved and returns a "review recommended" message.
+      //   'pending_review' / 'pending_documents'  → honest not-auto-approved
+      //     outcome carrying the stored reason. The machine never auto-rejects.
+      if (data.autoApproved === true) {
+        setMessage("Tradesperson verified and approved");
+      } else {
+        setMessage(
+          data.message ||
+            `Not auto-approved — ${data.reason || "manual review required"}.`
+        );
+      }
+      loadData(); // Reload data
     } catch (err) {
       setError("Error verifying tradesperson");
     }

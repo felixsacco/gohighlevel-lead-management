@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase-client";
+import { getSupabaseAdmin } from "@/lib/supabase";
+
+// Wall A (W1): reports a job for moderation (POST) and lists a client's flagged jobs
+// joined with tradesperson PII (GET). jobs is anon-revoked and this route previously
+// rode the browser anon client, so it now runs on the service-role client. This is a
+// tradesperson/client report surface (not an admin endpoint), so no admin_session
+// gate applies. The POST userId/userType and the GET clientId are caller-supplied —
+// there is no server-side client-session verifier yet, so true owner-scoping of the
+// GET (clientId must equal the caller's session claim) lands with the Phase-3
+// client-session work.
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,6 +27,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { success: false, message: "Flag reason must be at least 10 characters long" },
         { status: 400 }
+      );
+    }
+
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json(
+        { success: false, message: "Service unavailable" },
+        { status: 503 }
       );
     }
 
@@ -89,6 +106,14 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         { success: false, message: "Client ID is required" },
         { status: 400 }
+      );
+    }
+
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json(
+        { success: false, message: "Service unavailable" },
+        { status: 503 }
       );
     }
 

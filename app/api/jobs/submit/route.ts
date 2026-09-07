@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient, getSupabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendNotification } from '@/lib/notifications';
 import { getAdminEmail } from '@/lib/notifications/admin-inbox';
 import { notifyMatchingTradespeopleForJob } from '@/lib/notifications/notify-tradespeople-job-match';
@@ -9,7 +9,11 @@ import { geocodePostcode } from '@/lib/geo/postcodes';
 export async function POST(request: NextRequest) {
   console.log('=== JOB SUBMISSION API CALLED ===');
 
-  const supabase = createClient();
+  // All writes here (client upsert, jobs INSERT, leads INSERT) must pass RLS, so
+  // run the whole route on the service-role client (bypasses RLS). This is the
+  // anonymous public AIQuoteForm endpoint — no session exists, so service-role is
+  // the only client that can insert.
+  const supabase = getSupabaseAdmin();
   if (!supabase) {
     return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
   }
@@ -136,7 +140,7 @@ export async function POST(request: NextRequest) {
       }, { status: 500 });
     }
 
-    const supabaseAdmin = getSupabaseAdmin();
+    const supabaseAdmin = supabase; // reuse the single service-role client
     const jobRef = job.reference_code || job.id;
 
     // Geocode postcode (awaited so it completes on Vercel serverless)

@@ -1,5 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase-client";
+import { getSupabaseAdmin } from "@/lib/supabase";
+import {
+  ADMIN_SESSION_COOKIE,
+  verifyAdminSessionToken,
+} from "@/lib/auth/admin-session";
+
+// Wall A (W1): admin moderation views over flagged/resolved jobs joined with client
+// and tradesperson PII. jobs is anon-revoked and flagged jobs are not anon-visible
+// post-REVOKE, so the service-role swap alone would WIDEN this from "no anon access"
+// to a full PII read. Both handlers are gated on the HttpOnly admin_session cookie
+// that /api/admin/proxy/* verifies; anonymous callers get 401 before any DB work.
 
 export async function GET(request: NextRequest) {
   try {
@@ -7,8 +17,27 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "10");
     const status = searchParams.get("status") || "all"; // all, flagged, resolved
-    
+
     const offset = (page - 1) * limit;
+
+    // Admin-only view: require the HttpOnly admin_session cookie before any DB work.
+    const session = await verifyAdminSessionToken(
+      request.cookies.get(ADMIN_SESSION_COOKIE)?.value
+    );
+    if (!session) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json(
+        { success: false, message: "Service unavailable" },
+        { status: 503 }
+      );
+    }
 
     let query = supabase
       .from("jobs")
@@ -119,6 +148,25 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { success: false, message: "Job ID is required" },
         { status: 400 }
+      );
+    }
+
+    // Admin-only view: require the HttpOnly admin_session cookie before any DB work.
+    const session = await verifyAdminSessionToken(
+      request.cookies.get(ADMIN_SESSION_COOKIE)?.value
+    );
+    if (!session) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json(
+        { success: false, message: "Service unavailable" },
+        { status: 503 }
       );
     }
 

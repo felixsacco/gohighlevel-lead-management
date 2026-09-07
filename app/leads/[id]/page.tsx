@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { getSupabaseAdmin } from "@/lib/supabase";
+import {
+  TRADE_SESSION_COOKIE,
+  verifyTradeSessionToken,
+  type TradeSessionResult,
+} from "@/lib/auth/trade-session";
 import { CheckCircle, Lock, MapPin, Phone, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -12,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { maskUkPhoneNumber } from "@/lib/utils/phone-mask";
 import UnlockLeadButton from "./unlock-button";
+import PaymentStatusPoll from "./payment-confirmation";
 
 export const dynamic = "force-dynamic";
 
@@ -33,8 +40,13 @@ function formatBudget(value: any, type: any): string {
 
 export default async function LeadDetailPage({
   params,
+  searchParams,
 }: {
   params: { id: string };
+  // Next 13.5: params/searchParams are plain (synchronous) objects. `payment`
+  // is the GHL redirect query — checkout sends the customer back to
+  // `/leads/{id}?payment=success` after a hosted payment.
+  searchParams?: { payment?: string };
 }) {
   const supabase = getSupabaseAdmin();
   if (!supabase) {
@@ -58,6 +70,53 @@ export default async function LeadDetailPage({
   }
   if (!purchase) {
     notFound();
+  }
+
+  // Buyer-binding gate: customer details belong only to the tradesperson who
+  // actually unlocked/purchased this lead (lead_purchases.tradesperson_id). The
+  // HttpOnly trade_session cookie is verified server-side; its `sub` must match
+  // the purchase owner, otherwise we show a locked panel and never render any
+  // customer name, phone, or job detail. The cookie is read at the top of the
+  // component (before awaits) so the dynamic API is consumed cleanly.
+  const cookieValue = cookies().get(TRADE_SESSION_COOKIE)?.value;
+  // Annotated as TradeSessionResult so the no-cookie fallback's `ok: false` is
+  // contextually typed as the literal (not widened to boolean), keeping the
+  // `auth.ok === true` narrowing below able to reach `.claims`.
+  const auth: TradeSessionResult = cookieValue
+    ? verifyTradeSessionToken(cookieValue)
+    : { ok: false, reason: "malformed" };
+  const isOwner =
+    auth.ok === true && auth.claims.sub === purchase.tradesperson_id;
+
+  if (!isOwner) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-8 px-4">
+        <div className="max-w-2xl mx-auto">
+          <Card className="border border-blue-100 shadow-sm">
+            <CardContent className="p-6 sm:p-8 text-center">
+              <div className="flex justify-center mb-4">
+                <Lock className="w-10 h-10 text-blue-900/40" />
+              </div>
+              <h1 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-3">
+                This lead is locked
+              </h1>
+              <p className="text-sm text-blue-900/80 mb-6">
+                This lead is tied to the tradesperson account that unlocked it.
+                Sign in to that account to view customer details.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-2 justify-center">
+                <Button asChild className="bg-brand-navy hover:bg-brand-navy">
+                  <Link href="/login/trade">Sign in to your account</Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link href="/dashboard/tradesperson">Back to dashboard</Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
   }
 
   const { data: job } = await supabase
@@ -206,12 +265,27 @@ export default async function LeadDetailPage({
                   </div>
                 </div>
 
-                <UnlockLeadButton leadId={purchase.id} leadCost={leadCost} />
+                {searchParams?.payment === "success" ? (
+                  // GHL just bounced the customer back here after the hosted
+                  // payment. The webhook may not have landed yet — poll the
+                  // owner-scoped status endpoint until the purchase flips to
+                  // paid, then re-render into the unlocked state below. Without
+                  // this the button would still say "Unlock" and re-pay an
+                  // in-flight purchase.
+                  <PaymentStatusPoll leadId={purchase.id} />
+                ) : (
+                  <>
+                    <UnlockLeadButton
+                      leadId={purchase.id}
+                      leadCost={leadCost}
+                    />
 
-                <p className="text-xs text-blue-900/60 mt-3 text-center">
-                  Prefer unlimited leads? Switch to the £1,000 / month
-                  Unlimited plan from your dashboard.
-                </p>
+                    <p className="text-xs text-blue-900/60 mt-3 text-center">
+                      Prefer unlimited leads? Switch to the £1,000 / month
+                      Unlimited plan from your dashboard.
+                    </p>
+                  </>
+                )}
               </div>
             )}
 

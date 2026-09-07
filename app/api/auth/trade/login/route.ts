@@ -19,7 +19,11 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
-import { issueTradeSessionToken } from "@/lib/auth/trade-session";
+import {
+  issueTradeSessionToken,
+  TRADE_SESSION_COOKIE,
+  TRADE_SESSION_TTL_SECONDS,
+} from "@/lib/auth/trade-session";
 import {
   hashPassword,
   isScryptHash,
@@ -176,7 +180,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  return NextResponse.json({
+  const response = NextResponse.json({
     token,
     user: {
       id: tradesperson.id,
@@ -187,4 +191,20 @@ export async function POST(request: NextRequest) {
       isVerified: tradesperson.is_verified,
     },
   });
+
+  // Attach the session token as an HttpOnly cookie too, so server-rendered pages
+  // (e.g. /leads/[id]) and the checkout route can authenticate without the client
+  // sending the token. The login page keeps storing token/user in localStorage
+  // for existing client-side calls; the cookie only *additionally* authenticates
+  // the trade across server components. TTL is derived from the token lifetime,
+  // so the cookie never outlives the token's 24h exp.
+  response.cookies.set(TRADE_SESSION_COOKIE, token, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: request.nextUrl.protocol === "https:",
+    path: "/",
+    maxAge: TRADE_SESSION_TTL_SECONDS,
+  });
+
+  return response;
 }

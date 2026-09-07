@@ -1,28 +1,30 @@
-import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { NextRequest, NextResponse } from 'next/server';
+import { getSupabaseAdmin } from '@/lib/supabase';
+import {
+  ADMIN_SESSION_COOKIE,
+  verifyAdminSessionToken,
+} from '@/lib/auth/admin-session';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+// Wall A (W1): the internal moderation log is read by the admin dashboard, which
+// carries the HttpOnly admin_session cookie. It previously rode the anon key over a
+// no-RLS table, leaving the log readable by anyone. It is now served from the
+// service-role client and gated on the same admin_session cookie that
+// /api/admin/proxy/* verifies — anonymous callers get 401 before any DB work.
 
-if (!supabaseUrl || !supabaseKey) {
-  // Fail closed: refuse to serve the activity log rather than silently connect
-  // to a fallback project (or throw at module load with an unclear error).
-  console.error('activity-log: NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY not set');
-}
-
-function getClient() {
-  if (!supabaseUrl || !supabaseKey) {
-    return null;
+export async function GET(request: NextRequest) {
+  // Admin-only read of the moderation log.
+  const session = await verifyAdminSessionToken(
+    request.cookies.get(ADMIN_SESSION_COOKIE)?.value
+  );
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  return createClient(supabaseUrl, supabaseKey);
-}
 
-export async function GET() {
-  const supabase = getClient();
+  const supabase = getSupabaseAdmin();
   if (!supabase) {
     return NextResponse.json(
-      { error: 'Supabase environment not configured' },
-      { status: 500 }
+      { error: 'Service unavailable' },
+      { status: 503 }
     );
   }
 

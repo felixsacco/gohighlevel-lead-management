@@ -78,7 +78,7 @@ npm start
 All variables are documented in `.env.example` (committed as a template — the real values live in `.env.local` / `.env`, which are **never** committed). Key groups:
 
 - **Supabase** — `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
-- **GoHighLevel** — `GHL_API_KEY`, `GHL_LOCATION_ID`, `GHL_WEBHOOK_SECRET` (plus `GOHIGHLEVEL_*` OAuth/legacy keys)
+- **GoHighLevel** — `GHL_API_KEY`, `GHL_LOCATION_ID`, `GHL_WEBHOOK_SECRET`, `GHL_WEBHOOK_SIGNATURE_HEADER`, `GHL_WEBHOOK_SIGNATURE_PREFIX` (plus `GOHIGHLEVEL_*` OAuth/legacy keys)
 - **Google Gemini** — `GEMINI_API_KEY`
 - **Google Places / Maps** — `GOOGLE_SERVER_API_KEY`, `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`
 - **reCAPTCHA Enterprise** — `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY`, `RECAPTCHA_PROJECT_ID`
@@ -139,7 +139,7 @@ Set these in **Vercel → Project Settings → Environment Variables**. The auth
 ### Critical groups
 
 - **Supabase** — `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (keep the service-role key secret)
-- **GoHighLevel** (CRM + payments via Stripe) — `GHL_API_KEY`, `GHL_LOCATION_ID`, `GHL_WEBHOOK_SECRET`, plus `GOHIGHLEVEL_ACCESS_TOKEN` / `GOHIGHLEVEL_CLIENT_ID` / `GOHIGHLEVEL_CLIENT_SECRET` / `GOHIGHLEVEL_REDIRECT_URI` for OAuth
+- **GoHighLevel** (CRM + payments via Stripe) — `GHL_API_KEY`, `GHL_LOCATION_ID`, `GHL_WEBHOOK_SECRET`, `GHL_WEBHOOK_SIGNATURE_HEADER`, `GHL_WEBHOOK_SIGNATURE_PREFIX`, plus `GOHIGHLEVEL_ACCESS_TOKEN` / `GOHIGHLEVEL_CLIENT_ID` / `GOHIGHLEVEL_CLIENT_SECRET` / `GOHIGHLEVEL_REDIRECT_URI` for OAuth
 - **Google Gemini** — `GEMINI_API_KEY`
 - **Google Places / Maps** — `GOOGLE_SERVER_API_KEY`, `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`
 - **reCAPTCHA Enterprise** — `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY`, `RECAPTCHA_PROJECT_ID`

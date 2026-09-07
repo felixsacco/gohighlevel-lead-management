@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
+
+// Wall A (W1): this route writes chat_messages — an anon-revoked table — so it
+// runs on the service-role client. Its pre-existing per-user authorization
+// model (caller-supplied userId; no session binding) is unchanged by this swap.
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,7 +13,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const supabaseClient = createClient();
+    const supabaseClient = getSupabaseAdmin();
     if (!supabaseClient) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }

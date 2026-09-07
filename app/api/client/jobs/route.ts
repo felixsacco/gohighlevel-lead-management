@@ -1,5 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient, getSupabaseAdmin } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
+import {
+  ADMIN_SESSION_COOKIE,
+  verifyAdminSessionToken,
+} from "@/lib/auth/admin-session";
+
+// Wall A (W1): this route reads jobs joined with clients, job_applications and
+// tradespeople — PII, all anon-revoked — so it runs entirely on the service-role
+// client (no more anon fallback). Authorization:
+//   - userId supplied: the caller's own-jobs view (client dashboard /
+//     report-issue). It was already service-role; the caller-supplied userId has
+//     no session binding because there is no server-side client-session verifier
+//     yet — full owner-scoping lands with the Phase-3 client-session work.
+//   - no userId: an administrative all-jobs view. It previously rode on the anon
+//     key (RLS silently limited it to approved jobs); with the anon grants
+//     revoked it must be gated explicitly, so it now requires the same HttpOnly
+//     admin_session cookie that /api/admin/proxy/* verifies. Anonymous callers
+//     get 401 instead of a PII dump.
 
 export const dynamic = "force-dynamic";
 
@@ -16,10 +33,19 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Service role so nested job_applications are returned (anon RLS often hides them).
-    const supabase = userId ? getSupabaseAdmin() : createClient();
+    const supabase = getSupabaseAdmin();
     if (!supabase) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+
+    // Admin all-jobs branch (no userId): gate on the admin session cookie before
+    // any DB work, so the unfiltered jobs+clients read is no longer open.
+    if (!userId) {
+      const sessionCookie = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
+      const session = await verifyAdminSessionToken(sessionCookie);
+      if (!session) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     const jobsTable = supabase.from("jobs");

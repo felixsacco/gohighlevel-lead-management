@@ -1,13 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdmin } from '@/lib/supabase';
+import {
+  ADMIN_SESSION_COOKIE,
+  verifyAdminSessionToken,
+} from '@/lib/auth/admin-session';
 
 export const dynamic = 'force-dynamic';
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// Wall A (W1): admin moderation feed over jobs joined with client PII (email/phone).
+// jobs is anon-revoked, and jobs that are not approved (including the flagged ones
+// under moderation) are not visible to the anon role — so swapping this onto the
+// service-role client alone would WIDEN it from "no anon access" to a full PII read.
+// It is therefore gated on the same HttpOnly admin_session cookie that
+// /api/admin/proxy/* verifies; anonymous callers get 401 before any DB work.
 
 export async function GET(request: NextRequest) {
   try {
@@ -16,6 +21,25 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '10');
     const status = searchParams.get('status') || 'all';
     const search = searchParams.get('search') || '';
+
+    // Admin-only feed: require the HttpOnly admin_session cookie before any DB work.
+    const session = await verifyAdminSessionToken(
+      request.cookies.get(ADMIN_SESSION_COOKIE)?.value
+    );
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json(
+        { success: false, error: 'Service unavailable' },
+        { status: 503 }
+      );
+    }
 
     const from = (page - 1) * limit;
     const to = from + limit - 1;

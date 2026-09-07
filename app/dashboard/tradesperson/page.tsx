@@ -52,7 +52,6 @@ import {
   Flag,
   AlertTriangle,
 } from "lucide-react";
-import { supabase } from "@/lib/supabase-client";
 import DatabaseChatSystem from "@/components/DatabaseChatSystem";
 import AISupportChat from "@/components/AISupportChat";
 import Link from "next/link";
@@ -378,38 +377,22 @@ export default function TradespersonDashboardPage() {
 
   const loadAppliedJobs = async (tradespersonId: string) => {
     try {
-      const { data: applications, error } = await supabase
-        .from("job_applications")
-        .select(
-          `
-          *,
-          jobs (
-            id,
-            trade,
-            job_description,
-            postcode,
-            budget,
-            budget_type,
-            preferred_date,
-            images,
-            clients (
-              first_name,
-              last_name,
-              email,
-              profile_photo_url
-            )
-          )
-        `
-        )
-        .eq("tradesperson_id", tradespersonId)
-        .order("applied_at", { ascending: false });
+      // job_applications (+ its embedded jobs/clients) is anon-revoked, so fetch
+      // the service-role mirror which returns the same raw rows.
+      const res = await fetch(
+        `/api/tradesperson/dashboard/applications?tradespersonId=${encodeURIComponent(
+          tradespersonId,
+        )}`,
+        { cache: "no-store" },
+      );
+      const data = await res.json();
 
-      if (error) {
-        console.error("Error loading applied jobs:", error);
+      if (!res.ok) {
+        console.error("Error loading applied jobs:", data.error);
         return;
       }
 
-      setAppliedJobs(applications || []);
+      setAppliedJobs(data.data || []);
     } catch (err) {
       console.error("Error in loadAppliedJobs:", err);
     }
@@ -417,30 +400,22 @@ export default function TradespersonDashboardPage() {
 
   const loadInProgressJobs = async (tradespersonId: string) => {
     try {
-      const { data: inProgressJobs, error } = await supabase
-        .from("jobs")
-        .select(
-          `
-          *,
-          clients (
-            first_name,
-            last_name,
-            email,
-            profile_photo_url
-          )
-        `
-        )
-        .eq("assigned_tradesperson_id", tradespersonId)
-        .eq("application_status", "in_progress")
-        .is("completed_at", null)
-        .order("created_at", { ascending: false });
+      // jobs + its embedded clients read is anon-revoked, so fetch the
+      // service-role mirror which returns the same raw rows.
+      const res = await fetch(
+        `/api/tradesperson/dashboard/in-progress?tradespersonId=${encodeURIComponent(
+          tradespersonId,
+        )}`,
+        { cache: "no-store" },
+      );
+      const data = await res.json();
 
-      if (error) {
-        console.error("Error loading in-progress jobs:", error);
+      if (!res.ok) {
+        console.error("Error loading in-progress jobs:", data.error);
         return;
       }
 
-      setInProgressJobs(inProgressJobs || []);
+      setInProgressJobs(data.data || []);
     } catch (err) {
       console.error("Error in loadInProgressJobs:", err);
     }
@@ -448,35 +423,20 @@ export default function TradespersonDashboardPage() {
 
   const loadCompletedJobs = async (tradespersonId: string) => {
     try {
-      const { data: completedJobs, error } = await supabase
-        .from("jobs")
-        .select(
-          `
-          *,
-          clients (
-            id,
-            first_name,
-            last_name,
-            email,
-            profile_photo_url
-          ),
-          job_reviews (
-            id,
-            tradesperson_id,
-            reviewer_type,
-            reviewer_id,
-            rating,
-            review_text,
-            reviewed_at
-          )
-        `
-        )
-        .eq("assigned_tradesperson_id", tradespersonId)
-        .not("completed_at", "is", null)
-        .order("completed_at", { ascending: false });
+      // jobs + embedded clients/job_reviews read is anon-revoked, so fetch the
+      // service-role mirror which returns the same raw rows (the mirror already
+      // embeds clients + job_reviews). The review synthesis below is unchanged.
+      const res = await fetch(
+        `/api/tradesperson/dashboard/completed?tradespersonId=${encodeURIComponent(
+          tradespersonId,
+        )}`,
+        { cache: "no-store" },
+      );
+      const payload = await res.json();
+      const completedJobs = res.ok ? payload.data : null;
 
-      if (error) {
-        console.error("Error loading completed jobs:", error);
+      if (!res.ok) {
+        console.error("Error loading completed jobs:", payload.error);
         return;
       }
 
@@ -526,19 +486,27 @@ export default function TradespersonDashboardPage() {
   // Client-side filter to ensure applied jobs are excluded
   const filterOutAppliedJobs = async (jobs: any[], tradespersonId: string) => {
     try {
-      const { data: applications, error } = await supabase
-        .from("job_applications")
-        .select("job_id")
-        .eq("tradesperson_id", tradespersonId);
+      // job_applications is anon-revoked, so read applied job ids via the
+      // service-role mirror, which returns the raw { job_id } rows.
+      const res = await fetch(
+        `/api/tradesperson/dashboard/applied-job-ids?tradespersonId=${encodeURIComponent(
+          tradespersonId,
+        )}`,
+        { cache: "no-store" },
+      );
+      const payload = await res.json();
 
-      if (error) {
-        console.error("Error getting applications for filtering:", error);
+      if (!res.ok) {
+        console.error("Error getting applications for filtering:", payload.error);
         return jobs; // Return original jobs if we can't filter
       }
 
-      const appliedJobIds = applications?.map(app => app.job_id) || [];
+      const appliedJobIds =
+        (payload.data as { job_id: string }[] | null)?.map(
+          (app) => app.job_id,
+        ) || [];
       console.log(`Client-side filtering: excluding ${appliedJobIds.length} applied jobs:`, appliedJobIds);
-      
+
       return jobs.filter(job => !appliedJobIds.includes(job.id));
     } catch (err) {
       console.error("Error in client-side filtering:", err);
@@ -686,10 +654,12 @@ export default function TradespersonDashboardPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          // The route authorises via this session token and derives the actor id
+          // from it — body `tradespersonId` is ignored.
+          Authorization: `Bearer ${localStorage.getItem("tradeToken") ?? ""}`,
         },
         body: JSON.stringify({
           jobId: selectedJob.id,
-          tradespersonId: user.id,
           quotationAmount: parseFloat(quotationAmount),
           quotationNotes: quotationNotes,
         }),
@@ -721,7 +691,16 @@ export default function TradespersonDashboardPage() {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    // Clear the HttpOnly trade_session cookie server-side — an HttpOnly cookie
+    // can't be removed from the client, so this must go through the logout route.
+    // Non-fatal: the localStorage clears below always run, so the trade is signed
+    // out locally even if the cookie route fails.
+    try {
+      await fetch("/api/auth/trade/logout", { method: "POST" });
+    } catch (error) {
+      console.error("Error clearing trade session cookie:", error);
+    }
     localStorage.removeItem("user");
     localStorage.removeItem("userType");
     localStorage.removeItem("tradeToken");
@@ -733,10 +712,21 @@ export default function TradespersonDashboardPage() {
     try {
       setSearchRadiusKm(radius);
       if (!tradesperson?.id) return;
-      await supabase
-        .from("tradespeople")
-        .update({ search_radius_km: radius })
-        .eq("id", tradesperson.id);
+      // tradespeople is anon-revoked, so persist via the session-gated
+      // service-role writer; the actor comes from the Bearer trade session,
+      // never the body.
+      const res = await fetch("/api/tradesperson/dashboard/radius", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("tradeToken") ?? ""}`,
+        },
+        body: JSON.stringify({ radius }),
+      });
+      if (!res.ok) {
+        const payload = await res.json().catch(() => ({}));
+        console.error("Failed to update search radius:", payload.error);
+      }
       // Reload jobs (backend can use radius via tradespersonId)
       await loadFilteredJobs({ ...tradesperson, id: user?.id || tradesperson.id, search_radius_km: radius });
     } catch (e) {
@@ -744,26 +734,18 @@ export default function TradespersonDashboardPage() {
     }
   };
 
-  // Avatar upload to Supabase storage (fallback to local)
+  // Avatar: durable upload via the session-gated service-role writer + always
+  // local preview. 'documents' is a private bucket, so the stored public URL
+  // would 404 on a bare <img>; display therefore always uses the FileReader
+  // dataURL cached in localStorage. The POST only persists the file durably and
+  // never regresses the on-screen avatar — a non-2xx just warns.
   const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !tradesperson?.id) return;
     try {
       setUploadingAvatar(true);
-      const path = `avatars/${tradesperson.id}-${Date.now()}.jpg`;
-      const { data: up, error: upErr } = await supabase.storage
-        .from("documents")
-        .upload(path, file, { upsert: false });
-      if (upErr) throw upErr;
-      const { data: pub } = supabase.storage.from("documents").getPublicUrl(path);
-      const url = pub?.publicUrl || null;
-      if (url) {
-        await supabase.from("tradespeople").update({ profile_picture_url: url }).eq("id", tradesperson.id);
-        setAvatarUrl(url);
-      }
-    } catch (err) {
-      console.error("Avatar upload failed, falling back to local", err);
-      // Fallback: local preview only
+
+      // Local preview first — display must not depend on the upload outcome.
       const reader = new FileReader();
       reader.onload = () => {
         const dataUrl = reader.result as string;
@@ -773,6 +755,25 @@ export default function TradespersonDashboardPage() {
         } catch {}
       };
       reader.readAsDataURL(file as File);
+
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch("/api/tradesperson/dashboard/avatar", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("tradeToken") ?? ""}`,
+        },
+        body: formData,
+      });
+      if (!res.ok) {
+        const payload = await res.json().catch(() => ({}));
+        console.warn(
+          "Avatar persist failed (local preview kept):",
+          payload.error,
+        );
+      }
+    } catch (err) {
+      console.warn("Avatar upload failed, local preview kept:", err);
     } finally {
       setUploadingAvatar(false);
     }
@@ -816,102 +817,29 @@ export default function TradespersonDashboardPage() {
 
   const loadNotifications = async (tradespersonId: string) => {
     try {
-      // Load unread chat messages
-      // Get chat rooms for this tradesperson
-      const { data: chatRooms, error: roomsError } = await supabase
-        .from("chat_rooms")
-        .select("id")
-        .eq("tradesperson_id", tradespersonId);
-
-      if (roomsError) {
-        console.error("Error loading chat rooms:", roomsError);
+      // The seven notification legs below read chat_rooms / chat_messages /
+      // job_applications / jobs / job_notifications / job_reviews — all
+      // anon-revoked. Aggregate them through the service-role mirror, which
+      // returns the same raw rows per leg (each leg fault-isolated to [] on
+      // error, exactly as the original per-leg try/catch was). The synthesis
+      // below is unchanged.
+      const trade = (tradesperson?.trade as string | undefined) || "";
+      const res = await fetch(
+        `/api/tradesperson/dashboard/notifications?tradespersonId=${encodeURIComponent(
+          tradespersonId,
+        )}&trade=${encodeURIComponent(trade)}`,
+        { cache: "no-store" },
+      );
+      const payload = await res.json();
+      if (!res.ok) {
+        console.error("Error loading notifications:", payload.error);
       }
+      const notifData = res.ok && payload?.data ? payload.data : {};
 
-      let chatMessages = [];
-      if (chatRooms && chatRooms.length > 0) {
-        const roomIds = chatRooms.map((room) => room.id);
+      const chatMessages: any[] = notifData.chatMessages || [];
+      const applicationUpdates: any[] = notifData.applicationUpdates || [];
+      const newJobs: any[] = notifData.newJobs || [];
 
-        // Get unread messages where tradesperson is not the sender
-        const { data: messages, error: chatError } = await supabase
-          .from("chat_messages")
-          .select(
-            `
-            *,
-            chat_rooms (
-              jobs (
-                trade,
-                job_description
-              )
-            )
-          `
-          )
-          .in("chat_room_id", roomIds)
-          .neq("sender_id", tradespersonId)
-          .is("read_at", null);
-
-        if (chatError) {
-          console.error("Error loading chat notifications:", chatError);
-        } else {
-          chatMessages = messages || [];
-        }
-      }
-
-      // Load job application status changes (recent)
-      let applicationUpdates = [];
-      try {
-        const { data: apps, error: appError } = await supabase
-          .from("job_applications")
-          .select(
-            `
-            *,
-            jobs (
-              trade,
-              job_description,
-              postcode
-            )
-          `
-          )
-          .eq("tradesperson_id", tradespersonId)
-          .in("status", ["accepted", "rejected"])
-          .gte(
-            "applied_at",
-            new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-          ); // Last 7 days
-
-        if (appError) {
-          console.error("Error loading application updates:", appError);
-        } else {
-          applicationUpdates = apps || [];
-        }
-      } catch (error) {
-        console.error("Error in application updates query:", error);
-      }
-
-      // Load new job matches (jobs that match tradesperson's trade and location)
-      let newJobs = [];
-      try {
-        const { data: jobs, error: jobsError } = await supabase
-          .from("jobs")
-          .select("*")
-          .eq("trade", tradesperson?.trade)
-          .eq("is_approved", true)
-          .eq("status", "approved")
-          .eq("application_status", "open")
-          .gte(
-            "created_at",
-            new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
-          ); // Last 24 hours
-
-        if (jobsError) {
-          console.error("Error loading new job notifications:", jobsError);
-        } else {
-          newJobs = jobs || [];
-        }
-      } catch (error) {
-        console.error("Error in new jobs query:", error);
-      }
-
-      // In-app job notifications (fired when job is posted – instant alerts)
       type JobNotifRow = {
         id: string;
         job_id: string;
@@ -920,101 +848,12 @@ export default function TradespersonDashboardPage() {
         created_at: string;
         jobs?: { id: string; trade: string; postcode: string; budget?: number } | { id: string; trade: string; postcode: string; budget?: number }[] | null;
       };
-      let jobNotificationRows: JobNotifRow[] = [];
-      try {
-        const { data: rows, error: notifError } = await supabase
-          .from("job_notifications")
-          .select("id, job_id, title, message, created_at, jobs(id, trade, postcode, budget)")
-          .eq("tradesperson_id", tradespersonId)
-          .eq("is_read", false)
-          .order("created_at", { ascending: false })
-          .limit(50);
+      const jobNotificationRows: JobNotifRow[] =
+        notifData.jobNotificationRows || [];
 
-        if (!notifError && rows) {
-          jobNotificationRows = rows as JobNotifRow[];
-        }
-      } catch (error) {
-        console.error("Error loading job_notifications:", error);
-      }
-
-      // Load completed jobs where tradesperson was assigned
-      let completedJobs = [];
-      try {
-        const { data: jobs, error: completedError } = await supabase
-          .from("jobs")
-          .select("*")
-          .eq("assigned_tradesperson_id", tradespersonId)
-          .not("completed_at", "is", null)
-          .gte(
-            "completed_at",
-            new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-          ); // Last 7 days
-
-        if (completedError) {
-          console.error(
-            "Error loading completed job notifications:",
-            completedError
-          );
-        } else {
-          completedJobs = jobs || [];
-        }
-      } catch (error) {
-        console.error("Error in completed jobs query:", error);
-      }
-
-      // Load new reviews received
-      let newReviews = [];
-      try {
-        const { data: reviews, error: reviewsError } = await supabase
-          .from("job_reviews")
-          .select(
-            `
-            *,
-            jobs (
-              trade,
-              job_description
-            )
-          `
-          )
-          .eq("tradesperson_id", tradespersonId)
-          .gte(
-            "reviewed_at",
-            new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-          ); // Last 7 days
-
-        if (reviewsError) {
-          console.error("Error loading review notifications:", reviewsError);
-        } else {
-          newReviews = reviews || [];
-        }
-      } catch (error) {
-        console.error("Error in reviews query:", error);
-      }
-
-      // Load job assignments (when admin assigns you to a job)
-      let jobAssignments = [];
-      try {
-        const { data: jobs, error: assignmentError } = await supabase
-          .from("jobs")
-          .select("*")
-          .eq("assigned_tradesperson_id", tradespersonId)
-          .not("assigned_tradesperson_id", "is", null)
-          .gte(
-            "updated_at",
-            new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-          ); // Last 7 days
-
-        if (assignmentError) {
-          console.error(
-            "Error loading job assignment notifications:",
-            assignmentError
-          );
-        } else {
-          jobAssignments = jobs || [];
-        }
-      } catch (error) {
-        console.error("Error in job assignments query:", error);
-      }
+      const completedJobs: any[] = notifData.completedJobs || [];
+      const newReviews: any[] = notifData.newReviews || [];
+      const jobAssignments: any[] = notifData.jobAssignments || [];
 
       // Combine notifications
       const allNotifications = [

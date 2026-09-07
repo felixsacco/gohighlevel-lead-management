@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendNotification } from '@/lib/notifications';
+
+// Wall A (W1): this route reads/writes jobs, tradespeople and job_reviews — all
+// anon-revoked tables — so it runs on the service-role client. Its pre-existing
+// per-user authorization model is unchanged by this swap: reviewerId/reviewerType
+// are caller-supplied and there is no session binding (the review writer can be a
+// client or a tradesperson; see the Phase-3 client-session work for full
+// owner-scoping of spoofable writers like this one).
 
 export async function POST(request: NextRequest) {
   try {
-    const supabaseClient = createClient();
+    const supabaseClient = getSupabaseAdmin();
     if (!supabaseClient) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }

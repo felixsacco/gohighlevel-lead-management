@@ -1,10 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
-import { 
-  calculatePostcodeProximity, 
+import { getSupabaseAdmin } from '@/lib/supabase';
+import {
+  calculatePostcodeProximity,
   isPostcodeWithinRange,
-  arePostcodesInSameRegion 
+  arePostcodesInSameRegion
 } from '@/lib/utils/postcode-matcher';
+
+// Wall A (W1): the tradesperson job-browse query joins clients (email/phone, PII,
+// anon-revoked) on approved jobs and, when tradespersonId is supplied, reads
+// job_applications (anon-revoked) to exclude already-applied jobs — the REVOKE
+// would break both. It runs on the service-role client instead. The query still
+// restricts jobs to is_approved=true, so the key swap does not widen which jobs
+// are returned. Its pre-existing authorization model (the caller supplies
+// tradespersonId to compute the already-applied exclusion; no session binding)
+// is unchanged by this swap.
 
 export const dynamic = 'force-dynamic';
 
@@ -58,7 +67,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const supabase = createClient();
+    const supabase = getSupabaseAdmin();
     if (!supabase) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }

@@ -29,6 +29,15 @@ const ROLE = "tradesperson";
 const SESSION_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 const MIN_SECRET_LENGTH = 32;
 
+// HttpOnly cookie that carries the trade session token to server-rendered pages
+// (e.g. /leads/[id]) and to the checkout route. Minted at trade login, cleared
+// by POST /api/auth/trade/logout. Mirrors the admin_session cookie pattern.
+export const TRADE_SESSION_COOKIE = "trade_session";
+
+// Cookie lifetime in seconds — derived from SESSION_TTL_MS so it always matches
+// the token's 24h `exp`, keeping a cookie valid exactly as long as its token.
+export const TRADE_SESSION_TTL_SECONDS = SESSION_TTL_MS / 1000;
+
 export interface TradeSessionClaims {
   /** tradespeople.id (uuid) — the actor identity for authorising routes. */
   sub: string;

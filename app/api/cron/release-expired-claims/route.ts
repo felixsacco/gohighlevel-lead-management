@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
 
-export async function POST(request: NextRequest) {
+// The handler is exported for BOTH GET and POST. Vercel cron fires GET requests
+// (vercel.json schedules this route every minute), and before the GET export
+// existed a cron tick got a 405 and expired 10-minute claims stayed locked
+// forever. POST is kept so the job can also be run manually/curl'd.
+async function handle(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
   const expectedSecret = process.env.CRON_SECRET;
 
@@ -54,3 +58,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Release failed" }, { status: 500 });
   }
 }
+
+export const GET = handle;
+export const POST = handle;

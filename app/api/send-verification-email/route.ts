@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendTransactionalEmail } from '@/lib/notifications/email';
 
-// Initialize Supabase client for API routes
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-
+// Wall A (W1): this registration-time route writes verification codes onto clients —
+// a revoked, no-RLS PII table — and previously rode the anon key, so any caller could
+// write verification_token / captcha_code against any known email address. It now runs
+// on the service-role client. The email is caller-supplied because this fires before a
+// session exists; moving code storage/comparison server-side so the emailed code is
+// verified on the server (not re-read by the client) is the P1#6 server-side verify
+// track, not done here.
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,6 +19,11 @@ export async function POST(request: NextRequest) {
         { error: 'Missing required fields' },
         { status: 400 }
       );
+    }
+
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }
 
     // Generate a simple captcha code (3 digits)

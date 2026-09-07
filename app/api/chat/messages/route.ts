@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendTransactionalEmail } from '@/lib/notifications/email';
+
+// Wall A (W1): this route reads/writes chat_messages and chat_rooms and joins
+// clients/tradespeople (PII) — all anon-revoked tables — so it runs on the
+// service-role client. Its pre-existing authorization model (the caller
+// supplies senderId/chatRoomId; no session binding) is unchanged by this swap.
 
 // GET messages for a chat room
 export async function GET(request: NextRequest) {
@@ -12,7 +17,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Missing chatRoomId' }, { status: 400 });
     }
 
-    const supabaseClient = createClient();
+    const supabaseClient = getSupabaseAdmin();
     if (!supabaseClient) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }
@@ -45,7 +50,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const supabaseClient = createClient();
+    const supabaseClient = getSupabaseAdmin();
     if (!supabaseClient) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }

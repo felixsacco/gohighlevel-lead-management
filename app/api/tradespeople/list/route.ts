@@ -1,14 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdmin } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
+// Wall A (W1): the public tradespeople directory reads tradespeople + job_reviews —
+// both anon-revoked. It previously rode an inline anon createClient; it now runs on
+// the service-role client with the same filters preserved (is_active + is_approved +
+// the server-side placeholder guard). Only listing-approved profiles resolve, so a
+// bare service-role swap returns the rows the anon policy allowed pre-REVOKE — no
+// admin_session gate needed. Phone/email exposure is the intended public-listing
+// surface; the open/spoofable nature of that exposure is Phase-3 residue.
+
 export async function GET(request: NextRequest) {
   try {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-    
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'Service unavailable' },
+        { status: 503 }
+      );
+    }
 
     // Get search parameters
     const { searchParams } = new URL(request.url);

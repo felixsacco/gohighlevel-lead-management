@@ -13,6 +13,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  Building2,
   Lock,
   ArrowLeft,
   CheckCircle,
@@ -46,6 +47,7 @@ interface FormData {
   phone: string;
   city: string;
   postcode: string;
+  companyNumber: string;
   password: string;
   confirmPassword: string;
   yearsExperience: string;
@@ -60,6 +62,7 @@ interface FormErrors {
   phone?: string;
   city?: string;
   postcode?: string;
+  companyNumber?: string;
   password?: string;
   confirmPassword?: string;
   yearsExperience?: string;
@@ -69,6 +72,14 @@ interface FormErrors {
 
 const MAX_FILE_SIZE_BYTES = 1.5 * 1024 * 1024; // 1.5 MB per document
 const MAX_TOTAL_UPLOAD_BYTES = 4 * 1024 * 1024; // 4 MB total request budget
+
+// UK Companies House numbers are 8 alphanumeric characters: eight digits
+// (01234567), or a two-letter prefix + six digits for non-England registrations
+// and certain structures (SC, NI, OC, LP, FC, ...). Optional at signup and
+// deliberately lenient — the input is uppercased and whitespace-stripped as the
+// user types, and a number that does not resolve is a review-able blocker, not a
+// registration error, so rejecting real-but-unusual numbers is the worse failure.
+const UK_COMPANY_NUMBER_REGEX = /^[A-Z]{0,2}\d{1,8}$/;
 
 const trades = [
   "Plumber",
@@ -163,6 +174,7 @@ export default function TradespersonRegistration() {
     phone: "",
     city: "",
     postcode: "",
+    companyNumber: "",
     password: "",
     confirmPassword: "",
     yearsExperience: "",
@@ -226,6 +238,11 @@ export default function TradespersonRegistration() {
       if (!formData.city.trim()) newErrors.city = "City is required";
       if (!formData.postcode.trim()) newErrors.postcode = "Postcode is required";
       else if (formData.postcode.length < 5) newErrors.postcode = "Please enter a valid postcode";
+      // company_number is OPTIONAL; when supplied it must look like a UK
+      // Companies House number. The field is uppercased + whitespace-stripped on
+      // change, so the test runs against the already-normalised value.
+      if (formData.companyNumber && !UK_COMPANY_NUMBER_REGEX.test(formData.companyNumber))
+        newErrors.companyNumber = "Please enter a valid Companies House number (e.g. 01234567 or SC123456)";
     }
 
     if (current === 2) {
@@ -334,6 +351,7 @@ export default function TradespersonRegistration() {
       formDataToSend.append("trade", formData.trade);
       formDataToSend.append("city", formData.city);
       formDataToSend.append("postcode", formData.postcode);
+      if (formData.companyNumber.trim()) formDataToSend.append("companyNumber", formData.companyNumber.trim());
       formDataToSend.append("yearsExperience", formData.yearsExperience);
       formDataToSend.append("subscriptionPlan", formData.subscriptionPlan);
 
@@ -595,6 +613,32 @@ export default function TradespersonRegistration() {
                         />
                         {errors.postcode && (
                           <p className="text-red-600 text-sm mt-1">{errors.postcode}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Label htmlFor="companyNumber" className="flex items-center mb-2 text-sm font-semibold text-brand-navy">
+                          <Building2 className="w-4 h-4 mr-2" />
+                          Companies House number
+                        </Label>
+                        <Input
+                          id="companyNumber"
+                          type="text"
+                          value={formData.companyNumber}
+                          onChange={(e) =>
+                            handleInputChange("companyNumber", e.target.value.toUpperCase().replace(/\s+/g, ""))
+                          }
+                          className={inputClass(!!errors.companyNumber)}
+                          placeholder="Optional — e.g. 01234567 or SC123456"
+                          maxLength={10}
+                        />
+                        {errors.companyNumber ? (
+                          <p className="text-red-600 text-sm mt-1">{errors.companyNumber}</p>
+                        ) : (
+                          <p className="text-gray-500 text-xs mt-1">
+                            Optional. Add your Companies House number so we can verify your company automatically.
+                            Leave blank if you trade as a sole trader or partnership.
+                          </p>
                         )}
                       </div>
                     </div>

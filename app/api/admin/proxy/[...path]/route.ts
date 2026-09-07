@@ -31,6 +31,7 @@ const ONE_SEGMENT_ENDPOINTS = new Set([
   "jobs",
   "reactivate-tradesperson",
   "reject-application",
+  "review-tradesperson",
   "suspend-tradesperson",
   "tradespeople",
   "verify-tradesperson",

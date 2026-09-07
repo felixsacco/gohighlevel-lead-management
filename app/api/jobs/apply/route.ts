@@ -1,19 +1,54 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient, getSupabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendNotification } from '@/lib/notifications';
+import { authorizeTradeSession } from '@/lib/auth/trade-session';
 
 export async function POST(request: NextRequest) {
-  try {
-    const { jobId, tradespersonId, quotationAmount, quotationNotes } = await request.json();
-
-    if (!jobId || !tradespersonId || !quotationAmount) {
+  const auth = authorizeTradeSession(request);
+  // NB: compare with `=== false`, not `!auth.ok`. This project runs tsconfig
+  // strict:false, where truthiness narrowing of a boolean-typed discriminant
+  // does NOT happen (neither `!auth.ok` nor an `else` on `if (auth.ok)`
+  // narrows), so `auth.reason` below would not type-check. The explicit
+  // comparison narrows the union to the { ok: false } member reliably.
+  if (auth.ok === false) {
+    if (auth.reason === "not_configured") {
       return NextResponse.json(
-        { error: 'Missing required fields: jobId, tradespersonId, quotationAmount' },
+        {
+          error: "Service unavailable",
+          message:
+            "Submitting quotations is unavailable because tradesperson sessions are not configured on the server.",
+        },
+        { status: 503 },
+      );
+    }
+    return NextResponse.json(
+      {
+        error: "Unauthorized",
+        message:
+          "A valid tradesperson session is required to submit a quotation. Please sign in to your account and try again.",
+      },
+      { status: 401 },
+    );
+  }
+
+  // The actor id comes exclusively from the signed session token, never from the
+  // request body — an arbitrary body `tradespersonId` can no longer spoof a
+  // different tradesperson.
+  const tradespersonId = auth.claims.sub;
+
+  try {
+    const { jobId, quotationAmount, quotationNotes } = await request.json();
+
+    if (!jobId || !quotationAmount) {
+      return NextResponse.json(
+        { error: 'Missing required fields: jobId, quotationAmount' },
         { status: 400 }
       );
     }
 
-    const supabase = createClient();
+    // All reads and writes here run on the service-role client: RLS denies anon
+    // INSERTs into job_applications, and the job lookup below joins clients (PII).
+    const supabase = getSupabaseAdmin();
     if (!supabase) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }
@@ -60,6 +95,42 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Tradesperson not found' },
         { status: 404 }
+      );
+    }
+
+    // Fresh account gate: the signed token identifies the caller, but an account
+    // disabled after login must not keep submitting quotations.
+    if (!tradesperson.is_active || !tradesperson.is_approved || !tradesperson.is_verified) {
+      return NextResponse.json(
+        {
+          error: 'Forbidden',
+          message: 'Your account is not eligible to submit quotations. Please contact support if you believe this is a mistake.'
+        },
+        { status: 403 }
+      );
+    }
+
+    // Purchase gate (P1#2): competing for a lead costs the paid unlock. Without
+    // a `paid` lead_purchases row for this job owned by this tradesperson —
+    // which only the mark_lead_purchase_paid RPC can create — a quotation is
+    // rejected. (Unlimited-plan entitlement is not yet modelled on the account;
+    // add an OR clause here the day it is.)
+    const { data: paidLead } = await supabase
+      .from('lead_purchases')
+      .select('id')
+      .eq('job_id', jobId)
+      .eq('tradesperson_id', tradespersonId)
+      .eq('status', 'paid')
+      .maybeSingle();
+
+    if (!paidLead) {
+      return NextResponse.json(
+        {
+          error: 'Forbidden',
+          message:
+            "This lead must be unlocked before you can submit a quotation for it. Pay once to unlock the customer's contact details and apply for the work."
+        },
+        { status: 403 }
       );
     }
 
@@ -120,7 +191,7 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    const admin = getSupabaseAdmin();
+    const admin = supabase; // reuse the single service-role client
     if (!admin) {
       console.warn('Supabase admin not available, skipping scheduled notifications');
     } else {

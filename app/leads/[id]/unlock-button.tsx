@@ -25,7 +25,12 @@ export default function UnlockLeadButton({
       // configured, the API degrades gracefully and returns an error.
       const res = await fetch(`/api/leads/${leadId}/checkout`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          // The checkout route authorises via this session token and derives the
+          // actor id from it — the token must belong to the purchase owner.
+          Authorization: `Bearer ${localStorage.getItem("tradeToken") ?? ""}`,
+        },
       });
       const data = await res.json();
       if (!res.ok || !data?.url) {

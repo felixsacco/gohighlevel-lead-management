@@ -8,7 +8,6 @@ import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CheckCircle, XCircle, Mail, ArrowLeft, Shield, Key } from 'lucide-react';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase-client';
 
 export default function VerifyCaptcha() {
   const [email, setEmail] = useState('');
@@ -32,72 +31,47 @@ export default function VerifyCaptcha() {
     setIsLoading(true);
 
     try {
-      // First try to use Supabase function (if it exists)
+      // Wall A (W1): verification now runs server-side on the service-role
+      // client (app/api/auth/client/verify). The anon browser client used to
+      // read clients.captcha_code and flip is_verified itself, so anyone could
+      // verify any email they chose. Now the emailed code is compared on the
+      // server and never re-read by this page.
+      const response = await fetch('/api/auth/client/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, code: captchaCode }),
+      });
+
+      let result: any = {};
       try {
-        const { data, error } = await supabase
-          .rpc('verify_captcha_code', {
-            client_email: email,
-            code: captchaCode
-          });
-
-        if (error) {
-          throw error; // Fall back to manual verification
-        }
-
-        if (data) {
-          // Verification successful
-          setIsVerified(true);
-          return;
-        }
-      } catch (functionError) {
-        console.log('Supabase function not available, using manual verification');
+        result = await response.json();
+      } catch {
+        // Non-JSON failure response — fall through to the generic branch.
       }
 
-      // Manual verification fallback
-      const { data, error } = await supabase
-        .from('clients')
-        .select('captcha_code, first_name')
-        .eq('email', email)
-        .single();
-
-      if (error) {
-        console.error('Error fetching verification data:', error);
-        setErrorMessage('Verification failed. Please try again.');
+      if (result.success) {
+        // Verified (or already verified) — treat as success.
+        setIsVerified(true);
         return;
       }
 
-      if (!data) {
+      if (result.reason === 'invalid_code') {
+        const next = attempts + 1;
+        setAttempts(next);
+        if (next >= 3) {
+          setErrorMessage('Too many failed attempts. Please request a new verification code.');
+        } else {
+          setErrorMessage(`Invalid verification code. Please check your email and try again. (Attempt ${next}/3)`);
+        }
+        return;
+      }
+
+      if (result.reason === 'email_not_found') {
         setErrorMessage('Email not found. Please check your email address.');
         return;
       }
 
-      if (data.captcha_code === captchaCode) {
-        // Mark email as verified
-        const { error: updateError } = await supabase
-          .from('clients')
-          .update({ 
-            is_verified: true,
-            is_active: true,
-            email_verified_at: new Date().toISOString(),
-            captcha_code: null // Clear the code after successful verification
-          })
-          .eq('email', email);
-
-        if (updateError) {
-          console.error('Error updating verification status:', updateError);
-          setErrorMessage('Verification failed. Please try again.');
-          return;
-        }
-
-        setIsVerified(true);
-      } else {
-        setAttempts(prev => prev + 1);
-        setErrorMessage(`Invalid verification code. Please check your email and try again. (Attempt ${attempts + 1}/3)`);
-        
-        if (attempts >= 2) {
-          setErrorMessage('Too many failed attempts. Please request a new verification code.');
-        }
-      }
+      setErrorMessage(result.error || 'Verification failed. Please try again.');
     } catch (error) {
       console.error('Verification error:', error);
       setErrorMessage('An error occurred during verification. Please try again.');
@@ -111,38 +85,11 @@ export default function VerifyCaptcha() {
     setErrorMessage('');
 
     try {
-      // Try to use Supabase function first (if it exists)
-      let newCode = null;
-      try {
-        const { data, error } = await supabase
-          .rpc('generate_new_captcha_code', {
-            client_email: email
-          });
-
-        if (!error && data) {
-          newCode = data;
-        }
-      } catch (functionError) {
-        console.log('Supabase function not available, using manual code generation');
-      }
-
-      // Manual code generation fallback
-      if (!newCode) {
-        newCode = Math.floor(100 + Math.random() * 900).toString();
-        
-        // Update the captcha code in database
-        try {
-          await supabase
-            .from('clients')
-            .update({ 
-              captcha_code: newCode,
-              verification_sent_at: new Date().toISOString()
-            })
-            .eq('email', email);
-        } catch (updateError) {
-          console.log('Could not update captcha code:', updateError);
-        }
-      }
+      // Wall A (W1): the resend flow's only job is to POST to the service-role
+      // /api/send-verification-email route, which generates a fresh code,
+      // stores it, and emails it. The old RPC attempt plus client-side code
+      // generation and anon clients update are gone — the browser never writes
+      // captcha_code.
 
       // Send new verification email
       const response = await fetch('/api/send-verification-email', {

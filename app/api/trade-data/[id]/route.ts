@@ -1,17 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import { buildProfileSchema, looksLikePlaceholder } from "@/lib/tradesperson-schema";
+
+// Wall A (W1): public tradesperson profile read over tradespeople + job_reviews —
+// both anon-revoked. It previously rode an inline anon createClient; it now runs on
+// the service-role client with the same filters preserved (is_active + is_approved +
+// the looksLikePlaceholder guard). The approved+active scoping means only real,
+// listing-approved profiles resolve, so no admin_session gate is needed — a bare
+// service-role swap returns the exact rows the anon policy allowed pre-REVOKE.
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-    const supabase = createClient(supabaseUrl, supabaseKey);
     const { searchParams } = new URL(request.url);
+
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json(
+        { success: false, error: "Service unavailable" },
+        { status: 503 }
+      );
+    }
 
     console.log("Fetching tradesperson details for ID:", params.id);
 

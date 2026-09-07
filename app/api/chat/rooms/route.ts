@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
+
+// Wall A (W1): this route reads chat_rooms and joins clients/tradespeople (PII)
+// — all anon-revoked tables — so it runs on the service-role client. Its
+// pre-existing per-user authorization model (caller-supplied userId/userType;
+// no session binding) is unchanged by this swap.
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -15,7 +20,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Missing userId or userType' }, { status: 400 });
     }
 
-    const supabaseClient = createClient();
+    const supabaseClient = getSupabaseAdmin();
     if (!supabaseClient) {
       return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }

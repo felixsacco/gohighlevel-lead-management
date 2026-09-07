@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { tradesMatch } from '@/lib/utils/trade-matcher';
 import { isPostcodeWithinRange } from '@/lib/utils/postcode-matcher';
 
 export const dynamic = 'force-dynamic';
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// Wall A (W1): the tradesperson dashboard feed reads open, approved, unassigned jobs
+// joined with client PII and excludes jobs the caller has already applied to
+// (job_applications). Both tables are anon-revoked and this route previously rode the
+// anon key. It now runs on the service-role client with the same filters preserved.
+// The tradespersonId is caller-supplied (spoofable, excludes-applied lookups only) —
+// binding it to the signed trade_session claim is Phase-3 owner-scoping residue.
 
 // Max miles between tradesperson and job postcode before we filter the job
 // out on location alone. Matches the notification system so a tradesperson
@@ -56,6 +57,18 @@ export async function GET(request: NextRequest) {
       location,
       tradespersonId,
     });
+
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Service unavailable',
+          message: 'Database not configured',
+        },
+        { status: 503 },
+      );
+    }
 
     // Get jobs the tradesperson has already applied to (if tradespersonId provided)
     let appliedJobIds: string[] = [];

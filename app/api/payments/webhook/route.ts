@@ -5,30 +5,49 @@ import { sendNotification } from "@/lib/notifications";
 
 export async function POST(request: NextRequest) {
   // --- Webhook signature verification (fail closed) ---
-  // NOTE: GoHighLevel's webhook signing scheme could not be confirmed from this
-  // repo. The header name and HMAC construction below must be reconciled against
-  // GHL's webhook documentation before this goes live.
+  // GoHighLevel's webhook signing scheme has NOT yet been reconciled against a live
+  // GHL delivery (no GHL webhook docs reachable from this environment, and no real
+  // GHL-signed sample has been captured). Until one confirms the header name and
+  // encoding, this route runs the repo's documented assumption — HMAC-SHA256 over
+  // the raw body bytes, compared as hex — but as *configuration*, so aligning to
+  // GHL's true scheme before live money is a deploy-free env change and a mismatch
+  // fails loud (401), never silent:
+  //
+  //   GHL_WEBHOOK_SECRET             shared secret (required; absent -> 500).
+  //   GHL_WEBHOOK_SIGNATURE_HEADER   signature header name. Default "x-ghl-signature".
+  //   GHL_WEBHOOK_SIGNATURE_PREFIX   literal prefix the value may carry (e.g.
+  //                                  "sha256="), stripped before the hex compare.
+  //                                  Default "" = bare lowercase hex.
+  //
+  // Task #13 (live reconcile) remains OPEN until a genuine GHL delivery is checked
+  // against these settings and the env vars are pinned to the real values.
   const secret = process.env.GHL_WEBHOOK_SECRET;
   if (!secret) {
     console.error("Payments webhook: GHL_WEBHOOK_SECRET not set — rejecting request");
     return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
   }
 
-  const signature = request.headers.get("x-ghl-signature");
+  const signatureHeaderName =
+    process.env.GHL_WEBHOOK_SIGNATURE_HEADER?.trim() || "x-ghl-signature";
+  const signature = request.headers.get(signatureHeaderName);
   if (!signature) {
-    console.error("Payments webhook: missing signature header");
+    console.error("Payments webhook: missing signature header", { signatureHeaderName });
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const rawBody = await request.text();
   const expected = createHmac("sha256", secret).update(rawBody).digest("hex");
+  const prefix = process.env.GHL_WEBHOOK_SIGNATURE_PREFIX || "";
+  const received = prefix && signature.startsWith(prefix)
+    ? signature.slice(prefix.length)
+    : signature;
   const expectedBuffer = Buffer.from(expected, "utf8");
-  const receivedBuffer = Buffer.from(signature, "utf8");
+  const receivedBuffer = Buffer.from(received, "utf8");
   if (
     expectedBuffer.length !== receivedBuffer.length ||
     !timingSafeEqual(expectedBuffer, receivedBuffer)
   ) {
-    console.error("Payments webhook: signature mismatch");
+    console.error("Payments webhook: signature mismatch", { signatureHeaderName });
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -75,28 +94,77 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Purchase not found" }, { status: 404 });
   }
 
-  const isNewlyPaid = purchase.status !== "paid";
+  // W2: delivery-id idempotency, independent of the stale purchase.status pre-
+  // read that the old code used. If this invoice has already been handled, a
+  // concurrent or replayed delivery short-circuits HERE — before the single-sale
+  // RPC and before any notification leg — so nothing fires twice.
+  const { data: alreadyProcessed } = await supabase
+    .from("processed_webhooks")
+    .select("invoice_id")
+    .eq("invoice_id", invoiceId)
+    .maybeSingle();
 
-  if (isNewlyPaid) {
-    // Mark as paid
-    const { error: updateError } = await supabase
-      .from("lead_purchases")
-      .update({
-        status: "paid",
-        paid_at: new Date().toISOString(),
-      })
-      .eq("id", purchase.id);
-
-    if (updateError) {
-      console.error("Payments webhook: error updating purchase", updateError);
-      return NextResponse.json({ error: "Update failed" }, { status: 500 });
-    }
-
-    console.log("Payments webhook: lead purchase marked as paid", {
-      purchaseId: purchase.id,
-      jobId: purchase.job_id,
-      tradespersonId: purchase.tradesperson_id,
+  if (alreadyProcessed) {
+    console.log("Payments webhook: invoice already processed", { invoiceId });
+    return NextResponse.json({
+      received: true,
+      action: "ignored",
+      reason: "already_processed",
     });
+  }
+
+  // P1#1: atomic single-sale. mark_lead_purchase_paid is a compare-and-set RPC
+  // that, in one transaction, (a) marks the winning offer 'paid', (b) expires
+  // every sibling offer on the same job, and (c) flips the lead itself to 'paid'
+  // and clears any reservation claim. It returns false when the purchase is
+  // already paid/expired/refunded — a replay, or a concurrent delivery that won
+  // the race — and the duplicate is then ignored.
+  const { data: didMarkPaid, error: rpcError } = await supabase.rpc(
+    "mark_lead_purchase_paid",
+    {
+      p_purchase_id: purchase.id,
+      p_invoice_id: invoiceId,
+    }
+  );
+
+  if (rpcError) {
+    console.error("Payments webhook: single-sale RPC failed", rpcError);
+    return NextResponse.json({ error: "Update failed" }, { status: 500 });
+  }
+
+  if (didMarkPaid === false) {
+    console.log("Payments webhook: purchase already paid; ignoring duplicate", {
+      invoiceId,
+      purchaseId: purchase.id,
+    });
+    return NextResponse.json({
+      received: true,
+      action: "ignored",
+      reason: "already_paid",
+    });
+  }
+
+  console.log("Payments webhook: lead purchase marked as paid", {
+    purchaseId: purchase.id,
+    jobId: purchase.job_id,
+    tradespersonId: purchase.tradesperson_id,
+  });
+
+  // Record the invoice id as processed. Only reached by the RPC winner (the
+  // delivery whose compare-and-set returned true), so this row is the audit
+  // record of which invoices actually completed — not a pre-claim reservation.
+  const { error: processedError } = await supabase
+    .from("processed_webhooks")
+    .insert({
+      invoice_id: invoiceId,
+      purchase_id: purchase.id,
+      event_status: "paid",
+    });
+
+  if (processedError) {
+    // Non-fatal: the purchase and lead are already paid and the RPC remains the
+    // correctness backstop against double-charge. Log for reconciliation.
+    console.error("Payments webhook: error recording processed_webhooks", processedError);
   }
 
   // Money-audit ledger write (audit G2 / Phase C.9): one `transactions` row per
@@ -138,9 +206,10 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  if (!isNewlyPaid) {
-    return NextResponse.json({ received: true, action: "ignored", reason: "already paid" });
-  }
+  // This point is only reached by the RPC winner (mark_lead_purchase_paid returned
+  // true), so the notification leg below fires exactly once per invoice — a
+  // replayed or concurrent delivery already returned at the processed_webhooks
+  // guard or the RPC `false` path above.
 
   // Send notification to tradesperson that their lead is unlocked
   try {
