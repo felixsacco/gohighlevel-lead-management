@@ -67,7 +67,7 @@ export async function POST(
   const { data: purchase, error: purchaseError } = await supabase
     .from("lead_purchases")
     .select(
-      "id, job_id, tradesperson_id, lead_price_pence, status, stripe_checkout_session_id, payment_url"
+      "id, job_id, tradesperson_id, lead_price_pence, status, stripe_checkout_session_id, ghl_invoice_id, payment_url"
     )
     .eq("id", purchaseId)
     .maybeSingle();
@@ -124,9 +124,10 @@ export async function POST(
   // Checkout idempotency (P2#8): this purchase may already carry a live GHL
   // invoice from an earlier click on the same Unlock button. Minting a second
   // invoice would orphan the first — the webhook matches purchases by
-  // stripe_checkout_session_id, so it could only ever see the last one written,
-  // and a customer paying the earlier invoice would be charged with no unlock.
-  if (purchase.stripe_checkout_session_id) {
+  // stripe_checkout_session_id or ghl_invoice_id, so it could only ever see the
+  // last one written, and a customer paying the earlier invoice would be charged
+  // with no unlock.
+  if (purchase.stripe_checkout_session_id || purchase.ghl_invoice_id) {
     // Legacy rows predate the payment_url column and have no stored URL to hand
     // back. Refuse rather than risk a second invoice for an in-flight purchase.
     if (!purchase.payment_url) {
@@ -232,15 +233,19 @@ export async function POST(
   // Conditional store (P2#8): write the invoice id only if this purchase does not
   // already hold one. Two requests racing past the reuse guard above (both read
   // the row before either wrote) must not orphan a live invoice — the webhook
-  // matches purchases by stripe_checkout_session_id, so a second id written over
-  // the first would make the customer's earlier payment unmatchable. Only the
-  // first writer wins; the loser returns 409 so the client never presents the
-  // freshly minted, orphaned link. `payment_url` is stored alongside so a later
-  // replay can hand back the original hosted link instead of minting a new one.
+  // matches purchases by either stripe_checkout_session_id or ghl_invoice_id, so
+  // a second id written over the first would make the customer's earlier payment
+  // unmatchable. Only the first writer wins; the loser returns 409 so the client
+  // never presents the freshly minted, orphaned link. `payment_url` is stored
+  // alongside so a later replay can hand back the original hosted link instead
+  // of minting a new one. The GHL invoice id is written to BOTH the legacy
+  // Stripe-named column (for back-compat with the pre-migration lookup) and the
+  // dedicated ghl_invoice_id column (phase16) the webhook now queries.
   const { data: stored, error: storeError } = await supabase
     .from("lead_purchases")
     .update({
       stripe_checkout_session_id: paymentLink.invoiceId,
+      ghl_invoice_id: paymentLink.invoiceId,
       payment_url: paymentLink.paymentUrl,
     })
     .eq("id", purchaseId)

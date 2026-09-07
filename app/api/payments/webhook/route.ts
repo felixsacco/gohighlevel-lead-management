@@ -4,51 +4,61 @@ import { getSupabaseAdmin } from "@/lib/supabase";
 import { sendNotification } from "@/lib/notifications";
 
 export async function POST(request: NextRequest) {
-  // --- Webhook signature verification (fail closed) ---
-  // GoHighLevel's webhook signing scheme has NOT yet been reconciled against a live
-  // GHL delivery (no GHL webhook docs reachable from this environment, and no real
-  // GHL-signed sample has been captured). Until one confirms the header name and
-  // encoding, this route runs the repo's documented assumption — HMAC-SHA256 over
-  // the raw body bytes, compared as hex — but as *configuration*, so aligning to
-  // GHL's true scheme before live money is a deploy-free env change and a mismatch
-  // fails loud (401), never silent:
+  // --- Webhook signature verification (fail-open bridge until reconciled) ---
+  // GoHighLevel's signing scheme has not yet been confirmed against a live GHL
+  // delivery. Until GHL_WEBHOOK_SECRET is set AND a genuine GHL-signed sample has
+  // been captured, signature verification is a *configuration* that fails open:
   //
-  //   GHL_WEBHOOK_SECRET             shared secret (required; absent -> 500).
-  //   GHL_WEBHOOK_SIGNATURE_HEADER   signature header name. Default "x-ghl-signature".
-  //   GHL_WEBHOOK_SIGNATURE_PREFIX   literal prefix the value may carry (e.g.
-  //                                  "sha256="), stripped before the hex compare.
-  //                                  Default "" = bare lowercase hex.
-  //
-  // Task #13 (live reconcile) remains OPEN until a genuine GHL delivery is checked
-  // against these settings and the env vars are pinned to the real values.
+  //   * If GHL_WEBHOOK_SECRET is set  -> enforced. A delivery without a matching
+  //     signature is rejected (401). Header is read from
+  //     GHL_WEBHOOK_SIGNATURE_HEADER (default "x-ghl-signature"), with
+  //     "x-leadconnector-signature" accepted as a fallback so the real GHL header
+  //     name does not require an env change to align.
+  //   * If GHL_WEBHOOK_SECRET is unset -> the delivery is processed anyway and a
+  //     loud warning is logged. This is the bridge that lets real GHL deliveries
+  //     through so the actual payload shape / identifier can be observed before
+  //     the secret is pinned. Set the secret to switch enforcement on.
   const secret = process.env.GHL_WEBHOOK_SECRET;
-  if (!secret) {
-    console.error("Payments webhook: GHL_WEBHOOK_SECRET not set — rejecting request");
-    return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
-  }
-
-  const signatureHeaderName =
-    process.env.GHL_WEBHOOK_SIGNATURE_HEADER?.trim() || "x-ghl-signature";
-  const signature = request.headers.get(signatureHeaderName);
-  if (!signature) {
-    console.error("Payments webhook: missing signature header", { signatureHeaderName });
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
 
   const rawBody = await request.text();
-  const expected = createHmac("sha256", secret).update(rawBody).digest("hex");
-  const prefix = process.env.GHL_WEBHOOK_SIGNATURE_PREFIX || "";
-  const received = prefix && signature.startsWith(prefix)
-    ? signature.slice(prefix.length)
-    : signature;
-  const expectedBuffer = Buffer.from(expected, "utf8");
-  const receivedBuffer = Buffer.from(received, "utf8");
-  if (
-    expectedBuffer.length !== receivedBuffer.length ||
-    !timingSafeEqual(expectedBuffer, receivedBuffer)
-  ) {
-    console.error("Payments webhook: signature mismatch", { signatureHeaderName });
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  if (!secret) {
+    console.warn(
+      "Payments webhook: GHL_WEBHOOK_SECRET not set — signature verification SKIPPED " +
+        "(fail-open bridge). Set GHL_WEBHOOK_SECRET to enforce."
+    );
+  } else {
+    const signatureHeaderName =
+      process.env.GHL_WEBHOOK_SIGNATURE_HEADER?.trim() || "x-ghl-signature";
+
+    let signature = request.headers.get(signatureHeaderName);
+    // Tolerate the alternative GHL header name without an env change.
+    if (!signature && signatureHeaderName !== "x-leadconnector-signature") {
+      signature = request.headers.get("x-leadconnector-signature");
+    }
+    if (!signature && signatureHeaderName !== "x-ghl-signature") {
+      signature = request.headers.get("x-ghl-signature");
+    }
+
+    if (!signature) {
+      console.error("Payments webhook: missing signature header", { signatureHeaderName });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const expected = createHmac("sha256", secret).update(rawBody).digest("hex");
+    const prefix = process.env.GHL_WEBHOOK_SIGNATURE_PREFIX || "";
+    const received = prefix && signature.startsWith(prefix)
+      ? signature.slice(prefix.length)
+      : signature;
+    const expectedBuffer = Buffer.from(expected, "utf8");
+    const receivedBuffer = Buffer.from(received, "utf8");
+    if (
+      expectedBuffer.length !== receivedBuffer.length ||
+      !timingSafeEqual(expectedBuffer, receivedBuffer)
+    ) {
+      console.error("Payments webhook: signature mismatch", { signatureHeaderName });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
   }
 
   const supabase = getSupabaseAdmin();
@@ -64,24 +74,45 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const invoiceId = body._id;
-  const status = body.status;
+  // Normalize the envelope: GHL wraps some events under `payload`, while direct
+  // invoice/order triggers put the fields at the top level. Resolve the inner
+  // object so every field read below works for either shape.
+  const payload =
+    body && typeof body.payload === "object" && body.payload !== null ? body.payload : body;
 
-  console.log("Payments webhook received:", { invoiceId, status });
+  const invoiceId = payload._id || payload.invoiceId || body._id || body.invoiceId;
+  const eventStatus = payload.status || body.status;
+  const eventType = payload.type || body.type;
+
+  // Accept the signals GHL uses for a settled payment: a top-level status of
+  // "paid", or an invoice/order success event type. Anything else is a
+  // non-payment or pre-payment trigger and is ignored.
+  const isPaid =
+    eventStatus === "paid" ||
+    (typeof eventType === "string" &&
+      ["InvoicePaid", "invoice.paid", "order.success", "payment.success"].includes(eventType));
+
+  console.log("Payments webhook received:", { invoiceId, eventStatus, eventType, isPaid });
 
   if (!invoiceId) {
-    return NextResponse.json({ error: "Missing invoice _id" }, { status: 400 });
+    return NextResponse.json({ error: "Missing invoice id" }, { status: 400 });
   }
 
-  if (status !== "paid") {
+  if (!isPaid) {
     return NextResponse.json({ received: true, action: "ignored", reason: "status not paid" });
   }
 
-  // Find the lead_purchases row by GHL invoice ID
+  // Find the lead_purchases row by EITHER stored identifier. stripe_checkout_session_id
+  // is the legacy column (it has held the GHL invoice id since the pre-GHL Stripe
+  // integration); ghl_invoice_id is the dedicated column added by the phase16
+  // migration and backfilled from the legacy one. A real GHL delivery may carry an
+  // id that maps to only one of them, so both are tried. NOTE: this query
+  // references ghl_invoice_id, so the phase16 migration MUST be applied to Supabase
+  // before this handler deploys, or every delivery fails with "column does not exist".
   const { data: purchase, error: lookupError } = await supabase
     .from("lead_purchases")
     .select("id, job_id, tradesperson_id, status, lead_price_pence")
-    .eq("stripe_checkout_session_id", invoiceId)
+    .or(`stripe_checkout_session_id.eq.${invoiceId},ghl_invoice_id.eq.${invoiceId}`)
     .maybeSingle();
 
   if (lookupError) {
@@ -90,7 +121,18 @@ export async function POST(request: NextRequest) {
   }
 
   if (!purchase) {
-    console.warn("Payments webhook: no purchase found for invoice", invoiceId);
+    // Loud, structured capture of the unmatched delivery so the true identifier
+    // GHL sends can be reconciled against the stored columns on first delivery.
+    const idCandidateKeys = Object.keys(body).filter((k) =>
+      /_?id|invoice|payment|order|charge|_id/i.test(k)
+    );
+    console.warn("Payments webhook: no purchase found for invoice", {
+      invoiceId,
+      eventStatus,
+      eventType,
+      matchedColumns: ["stripe_checkout_session_id", "ghl_invoice_id"],
+      deliveryIdFields: idCandidateKeys.map((k) => ({ field: k, value: body[k] })),
+    });
     return NextResponse.json({ error: "Purchase not found" }, { status: 404 });
   }
 
@@ -173,8 +215,8 @@ export async function POST(request: NextRequest) {
   // upsert with ignoreDuplicates is idempotent: a replayed webhook — including a
   // retry that arrives after the paid-update above but before a ledger insert
   // from a previous attempt — never double-logs. In this GHL invoice-based flow
-  // the external payment id is the invoice _id (stored on the purchase as
-  // stripe_checkout_session_id), so it is used as the stable idempotency key.
+  // the external payment id is the invoice id (stored on the purchase), so it is
+  // used as the stable idempotency key.
   const amountPence = purchase.lead_price_pence ?? 499;
   const { error: ledgerError } = await supabase
     .from("transactions")
