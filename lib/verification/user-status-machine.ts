@@ -4,6 +4,13 @@ export type VerificationStatus =
   | "approved"
   | "rejected";
 
+// The machine only ever emits an *automatic* verdict. "rejected" is a human
+// reviewer's decision (GDPR Article 22 human-review route — the review/
+// suspend endpoints write it), so it is deliberately excluded here: an
+// auto-verdict that types as "rejected" would be a bug caught at compile time,
+// not a silent auto-reject at runtime.
+export type AutoVerificationStatus = Exclude<VerificationStatus, "rejected">;
+
 export type VerificationDocument = {
   doc_type: string;
   status?: string | null;
@@ -47,7 +54,7 @@ function isDocApproved(doc: VerificationDocument | null): boolean {
 }
 
 export function evaluateVerificationState(input: VerificationInput): {
-  nextStatus: VerificationStatus;
+  nextStatus: AutoVerificationStatus;
   autoApproved: boolean;
   reason: string;
 } {
