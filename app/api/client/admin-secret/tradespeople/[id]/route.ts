@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
+import { verifyAdminSecret } from "@/lib/auth/admin-guard";
 
 export const dynamic = "force-dynamic";
 
@@ -7,6 +8,12 @@ export async function GET(
   _request: NextRequest,
   { params }: { params: { id: string } },
 ) {
+  // Admin bearer gate (lib/auth/admin-guard): fail closed with 401 before any
+  // Supabase/DB work when ADMIN_SECRET_KEY is absent or the token is wrong.
+  if (!verifyAdminSecret(_request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const id = params.id;
     if (!id) {

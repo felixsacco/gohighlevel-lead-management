@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import {
+  ADMIN_SESSION_COOKIE,
+  ADMIN_SESSION_TTL_SECONDS,
+  mintAdminSession,
+} from "./lib/auth/admin-session";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (!pathname.startsWith("/admin")) {
@@ -37,9 +42,31 @@ export function middleware(request: NextRequest) {
     });
   }
 
-  return NextResponse.next();
+  // Basic auth succeeded. The browser cannot carry ADMIN_SECRET_KEY (it must
+  // never ship in client code), so every admin-secret call is routed through
+  // /api/admin/proxy/* instead. That proxy validates this cookie and injects the
+  // Authorization: Bearer header server-side. Minting here means the HttpOnly
+  // session cookie exists only after real Basic credentials were supplied.
+  const sessionToken = await mintAdminSession();
+
+  const response = NextResponse.next();
+  if (sessionToken) {
+    response.cookies.set(ADMIN_SESSION_COOKIE, sessionToken, {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: request.nextUrl.protocol === "https:",
+      path: "/",
+      maxAge: ADMIN_SESSION_TTL_SECONDS,
+    });
+  }
+  return response;
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/client/admin-secret/:path*"],
+  // Basic-auth protects the /admin page shell only. Every /api/client/admin-secret/*
+  // handler enforces its own Bearer ADMIN_SECRET_KEY gate (lib/auth/admin-guard),
+  // so the API is intentionally NOT listed here — the browser reaches it through
+  // /api/admin/proxy/*, which validates the admin_session cookie instead and is
+  // therefore likewise excluded from Basic auth (a session, not Basic, is its gate).
+  matcher: ["/admin/:path*"],
 };

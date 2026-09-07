@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendNotification } from '@/lib/notifications';
+import { verifyAdminSecret } from "@/lib/auth/admin-guard";
 
 export async function POST(request: NextRequest) {
+  // Admin bearer gate (lib/auth/admin-guard): fail closed with 401 before any
+  // Supabase/DB work when ADMIN_SECRET_KEY is absent or the token is wrong.
+  if (!verifyAdminSecret(request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const supabaseAdmin = getSupabaseAdmin();
     if (!supabaseAdmin) {

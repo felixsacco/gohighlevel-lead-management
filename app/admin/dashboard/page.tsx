@@ -272,7 +272,7 @@ export default function AdminDashboardPage() {
 
       // Load tradespeople
       const tradespeopleResponse = await fetch(
-        "/api/client/admin-secret/tradespeople"
+        "/api/admin/proxy/tradespeople"
       );
       if (tradespeopleResponse.ok) {
         const tradespeopleData = await tradespeopleResponse.json();
@@ -309,7 +309,7 @@ export default function AdminDashboardPage() {
 
       // Load job applications
       const applicationsResponse = await fetch(
-        "/api/client/admin-secret/job-applications"
+        "/api/admin/proxy/job-applications"
       );
       if (applicationsResponse.ok) {
         const applicationsData = await applicationsResponse.json();
@@ -683,7 +683,7 @@ export default function AdminDashboardPage() {
     setInviteResult("");
     try {
       const response = await fetch(
-        "/api/client/admin-secret/invite-tradespeople",
+        "/api/admin/proxy/invite-tradespeople",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -847,7 +847,7 @@ export default function AdminDashboardPage() {
   const handleVerifyTradesperson = async (tradespersonId: string) => {
     try {
       const response = await fetch(
-        "/api/client/admin-secret/verify-tradesperson",
+        "/api/admin/proxy/verify-tradesperson",
         {
           method: "POST",
           headers: {
@@ -881,7 +881,7 @@ export default function AdminDashboardPage() {
     setSuspendLoading(true);
     setError("");
     try {
-      const response = await fetch("/api/client/admin-secret/suspend-tradesperson", {
+      const response = await fetch("/api/admin/proxy/suspend-tradesperson", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -908,7 +908,7 @@ export default function AdminDashboardPage() {
   const handleReactivateTradesperson = async (tradespersonId: string) => {
     setError("");
     try {
-      const response = await fetch("/api/client/admin-secret/reactivate-tradesperson", {
+      const response = await fetch("/api/admin/proxy/reactivate-tradesperson", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ tradespersonId }),
@@ -948,7 +948,7 @@ export default function AdminDashboardPage() {
         setMessage(`Quotation ${action}d successfully!`);
         
         // Reload applications data immediately
-        const applicationsResponse = await fetch("/api/client/admin-secret/job-applications");
+        const applicationsResponse = await fetch("/api/admin/proxy/job-applications");
         if (applicationsResponse.ok) {
           const applicationsData = await applicationsResponse.json();
           setApplications(applicationsData.applications || []);
@@ -970,7 +970,7 @@ export default function AdminDashboardPage() {
   ) => {
     try {
       const { data: tradespeople, error } = await fetch(
-        "/api/client/admin-secret/tradespeople"
+        "/api/admin/proxy/tradespeople"
       ).then((res) => res.json());
 
       if (error) {
@@ -993,7 +993,7 @@ export default function AdminDashboardPage() {
   const loadJobApplications = async (jobId: string) => {
     try {
       const { data, error } = await fetch(
-        "/api/client/admin-secret/job-applications"
+        "/api/admin/proxy/job-applications"
       ).then((res) => res.json());
       if (!error) setJobApplications(data || []);
       else setJobApplications([]);
@@ -1023,7 +1023,7 @@ export default function AdminDashboardPage() {
     setAssigning(true);
     setError("");
     try {
-      const response = await fetch("/api/client/admin-secret/assign-job", {
+      const response = await fetch("/api/admin/proxy/assign-job", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -1071,7 +1071,7 @@ export default function AdminDashboardPage() {
   const handleApproveApplication = async (applicationId: string) => {
     console.log(`Admin: approving application ${applicationId}`);
     try {
-      const response = await fetch("/api/client/admin-secret/approve-application", {
+      const response = await fetch("/api/admin/proxy/approve-application", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -1085,7 +1085,7 @@ export default function AdminDashboardPage() {
         setMessage("Application approved successfully!");
         
         // Reload applications data immediately
-        const applicationsResponse = await fetch("/api/client/admin-secret/job-applications");
+        const applicationsResponse = await fetch("/api/admin/proxy/job-applications");
         if (applicationsResponse.ok) {
           const applicationsData = await applicationsResponse.json();
           setApplications(applicationsData.applications || []);
@@ -1104,7 +1104,7 @@ export default function AdminDashboardPage() {
   const handleRejectApplication = async (applicationId: string) => {
     console.log(`Admin: rejecting application ${applicationId}`);
     try {
-      const response = await fetch("/api/client/admin-secret/reject-application", {
+      const response = await fetch("/api/admin/proxy/reject-application", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -1120,7 +1120,7 @@ export default function AdminDashboardPage() {
         setMessage("Application rejected successfully!");
         
         // Reload applications data immediately
-        const applicationsResponse = await fetch("/api/client/admin-secret/job-applications");
+        const applicationsResponse = await fetch("/api/admin/proxy/job-applications");
         if (applicationsResponse.ok) {
           const applicationsData = await applicationsResponse.json();
           console.log('Reloaded applications after reject:', applicationsData.applications?.length);
@@ -1150,7 +1150,7 @@ export default function AdminDashboardPage() {
     setSelectedTradesperson(tradesperson);
     setSelectedTradespersonDocs([]);
     try {
-      const res = await fetch(`/api/client/admin-secret/tradespeople/${tradesperson.id}`);
+      const res = await fetch(`/api/admin/proxy/tradespeople/${tradesperson.id}`);
       const data = await res.json();
       if (!res.ok) {
         setError(data.error || "Failed to load tradesperson details");
