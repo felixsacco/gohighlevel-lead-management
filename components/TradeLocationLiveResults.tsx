@@ -1,12 +1,5 @@
 import { getSupabaseAdmin } from "@/lib/supabase";
-import {
-  Shield,
-  CheckCircle,
-  Phone,
-  Globe,
-  MapPin,
-  Info,
-} from "lucide-react";
+import { CheckCircle, Phone, Globe, MapPin, Info } from "lucide-react";
 
 interface Props {
   tradeSlug: string;
@@ -23,7 +16,6 @@ interface Member {
   postcode: string | null;
   phone: string | null;
   is_verified: boolean;
-  hourly_rate: number | null;
   years_experience: number | null;
 }
 
@@ -70,8 +62,12 @@ export async function fetchTradeLocationProviders({
   // name, then filter by city match in JS.
   const memberQuery = supabase
     .from("tradespeople")
+    // Select only real `tradespeople` columns. The schema has no hourly_rate
+    // or profile_picture_url (the model is pay-per-lead subscription), so
+    // requesting them aborts the whole query in Postgres — which used to drop
+    // this entire section on every trade×location page.
     .select(
-      "id, first_name, last_name, trade, city, postcode, phone, is_verified, hourly_rate, years_experience, profile_picture_url",
+      "id, first_name, last_name, trade, city, postcode, phone, is_verified, years_experience",
     )
     .eq("is_active", true)
     .eq("is_approved", true)
@@ -110,8 +106,8 @@ export async function fetchTradeLocationProviders({
   );
 
   const locationMatch = locationName.toLowerCase();
-  const members: Member[] = ((memberRes.data ?? []) as any[]).filter(
-    (row: any) => {
+  const members: Member[] = ((memberRes.data ?? []) as any[])
+    .filter((row: any) => {
       const city = (row.city || "").toLowerCase();
       const postcode = (row.postcode || "").toLowerCase();
       const matchesCity =
@@ -125,8 +121,24 @@ export async function fetchTradeLocationProviders({
         (postcode.includes(locationMatch) ||
           locationMatch.includes(postcode));
       return matchesCity || matchesPostcode;
-    },
-  );
+    })
+    .map((row: any): Member => {
+      // The schema stores first_name/last_name separately (no single `name`
+      // column), so compose the display name here.
+      const composed =
+        [row.first_name, row.last_name].filter(Boolean).join(" ").trim() ||
+        row.trade ||
+        "MyApproved member";
+      return {
+        id: row.id,
+        name: composed,
+        city: row.city ?? null,
+        postcode: row.postcode ?? null,
+        phone: row.phone ?? null,
+        is_verified: !!row.is_verified,
+        years_experience: row.years_experience ?? null,
+      };
+    });
 
   return { members, prospects };
 }
@@ -198,12 +210,6 @@ export default async function TradeLocationLiveResults(props: Props) {
                       {m.phone}
                     </div>
                   )}
-                  {m.hourly_rate ? (
-                    <div className="flex items-center gap-1.5">
-                      <Shield className="w-4 h-4 text-gray-400" />
-                      £{m.hourly_rate}/hr
-                    </div>
-                  ) : null}
                 </div>
               </div>
             ))}
