@@ -76,7 +76,7 @@ These are the load-bearing claims. Every page must agree with them.
 The homepage sections, in order, are the canonical structure. A page that covers the same need should mirror this rhythm:
 
 1. **Header** — Find Tradespeople · How It Works · For Tradespeople · Get Quotes · Sign Up, with tagline **Free Quotes • No Obligation • Local Pros**
-2. **Hero** — overline ("Checked tradespeople across the UK"), headline, one specific sub-head, search/CTA (button **Get Quotes**), trust chips (**IDENTITY CHECKED** · **INSURANCE VERIFIED**)
+2. **Hero** — overline ("Checked tradespeople across the UK"), headline, one specific sub-head, search/CTA (button **Get Quotes**), trust chips (**IDENTITY VERIFIED** · **INSURANCE VERIFIED**)
 3. **Coverage / services** — "One Search. Every Trade." + trade carousel
 4. **Why homeowners choose us** — four benefit cards
 5. **Our Checks** — the four checks, four-up grid

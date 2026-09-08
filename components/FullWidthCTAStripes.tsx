@@ -47,7 +47,7 @@ const FullWidthCTAStripes = () => {
       id: 'customers',
       title: 'Need Work Done?',
       subtitle: 'Find Trusted Tradespeople in Minutes',
-      description: 'Get instant quotes from identity-checked professionals with public liability cover confirmed. No more waiting weeks for callbacks or worrying about cowboy builders.',
+      description: 'Get instant quotes from verified professionals with public liability cover confirmed. No more waiting weeks for callbacks or worrying about cowboy builders.',
       buttonText: 'Find Tradespeople',
       buttonAction: () => window.location.href = '/find-tradespeople',
       gradient: 'from-brand-navy via-brand-navy to-brand-navy',
@@ -60,7 +60,7 @@ const FullWidthCTAStripes = () => {
       ],
       features: [
         'Instant AI quotes',
-        'Identity-checked professionals',
+        'Verified professionals',
         'Public liability cover confirmed',
         'No obligation quotes'
       ],
@@ -124,7 +124,7 @@ const FullWidthCTAStripes = () => {
               <div className="text-center text-white">
                 <Search className="w-16 h-16 mx-auto mb-4 opacity-80" />
                 <div className="text-lg font-bold">Find Your Perfect Match</div>
-                <div className="text-sm opacity-80">Identity-checked professionals ready to help</div>
+                <div className="text-sm opacity-80">Verified professionals ready to help</div>
               </div>
             </div>
             {/* Floating elements */}

@@ -62,7 +62,7 @@ export default function JoinPage() {
       description: "For homeowners looking to hire trusted tradespeople",
       price: "Free to use",
       features: [
-        "Find local, identity-checked professionals",
+        "Find local, verified professionals",
         "Read customer reviews",
         "Get free quotes",
         "Message trades directly",
@@ -77,8 +77,8 @@ export default function JoinPage() {
 
   const benefits = [
     {
-      title: "Identity-Checked Professionals",
-      description: "All tradespeople are identity-checked",
+      title: "Verified Professionals",
+      description: "All tradespeople are verified",
       icon: <Shield className="h-6 w-6 text-blue-600" />,
     },
     {

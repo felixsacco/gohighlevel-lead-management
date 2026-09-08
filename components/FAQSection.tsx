@@ -115,7 +115,7 @@ const FAQSection = () => {
     {
       id: 'faq-8',
       question: 'What areas do you cover across the UK?',
-      answer: 'We cover all major cities and towns across England, Scotland, Wales, and Northern Ireland. Our network of identity-checked tradespeople spans London, Edinburgh, Manchester, Cardiff, and everywhere in between.',
+      answer: 'We cover all major cities and towns across England, Scotland, Wales, and Northern Ireland. Our network of verified tradespeople spans London, Edinburgh, Manchester, Cardiff, and everywhere in between.',
       icon: Award,
       category: 'general',
       relatedLink: {

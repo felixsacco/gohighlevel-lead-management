@@ -240,7 +240,7 @@ const InDemandServices = () => {
             <div className="w-10 h-10 mx-auto bg-blue-50 rounded-xl flex items-center justify-center mb-2">
               <ShieldCheck className="w-5 h-5 text-blue-600" />
             </div>
-            <h4 className="text-gray-800 font-medium text-xs text-center">Identity checked</h4>
+            <h4 className="text-gray-800 font-medium text-xs text-center">Identity verified</h4>
           </div>
           <div className="bg-white p-3 rounded-xl border border-gray-100 hover:border-yellow-300 transition-colors duration-300 shadow-sm hover:shadow-md">
             <div className="w-10 h-10 mx-auto bg-yellow-50 rounded-xl flex items-center justify-center mb-2">

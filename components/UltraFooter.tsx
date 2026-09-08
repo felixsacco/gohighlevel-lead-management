@@ -89,7 +89,7 @@ const UltraFooter = () => {
   ].filter(link => link.href);
 
   const trustBadges = [
-    { name: 'Identity Vetted', rating: 'ID Checked', reviews: 'Official Records', color: 'text-green-400' },
+    { name: 'Identity Vetted', rating: 'Identity Verified', reviews: 'Official Records', color: 'text-green-400' },
     { name: 'Public Liability', rating: '£2M Cover', reviews: 'Confirmed Active', color: 'text-blue-400' },
     { name: 'Qualifications', rating: 'Certified', reviews: 'Official Registers', color: 'text-brand-amber' },
     { name: 'Homeowners', rating: 'Free Use', reviews: 'No hidden fees', color: 'text-orange-400' }
@@ -142,7 +142,7 @@ const UltraFooter = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
                     <div className="text-2xl font-black text-brand-amber">✓</div>
-                    <div className="text-sm text-blue-200">Identity checked</div>
+                    <div className="text-sm text-blue-200">Identity verified</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-black text-brand-amber">✓</div>
@@ -247,7 +247,7 @@ const UltraFooter = () => {
                 <div className="flex items-center gap-4 mt-4 text-sm text-blue-200">
                   <div className="flex items-center gap-2">
                     <Shield className="w-4 h-4 text-brand-amber" />
-                    <span>Identity-checked tradespeople</span>
+                    <span>Verified tradespeople</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4 text-green-400" />

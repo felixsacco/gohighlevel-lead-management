@@ -38,7 +38,7 @@ const CTACardsSection = () => {
     {
       id: 'hire',
       title: 'Hire a Tradesperson',
-      description: 'Find identity-checked, business-verified tradespeople in your area. Get instant quotes and book with confidence.',
+      description: 'Find identity-verified, business-verified tradespeople in your area. Get instant quotes and book with confidence.',
       buttonText: 'Find Tradespeople',
       href: '/find-tradespeople',
       icon: Wrench,
@@ -47,9 +47,9 @@ const CTACardsSection = () => {
       variant: 'primary',
       stats: [
         { label: 'Average Response', value: 'Fast' },
-        { label: 'Identity Check', value: 'Included' }
+        { label: 'Identity Verified', value: 'Included' }
       ],
-      features: ['Instant quotes', 'Identity-checked tradespeople', 'Insurance cover confirmed']
+      features: ['Instant quotes', 'Verified tradespeople', 'Insurance cover confirmed']
     },
     {
       id: 'join',
@@ -248,7 +248,7 @@ const CTACardsSection = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { icon: Shield, value: 'Identity Checked', label: 'Business verified' },
+                { icon: Shield, value: 'Identity Verified', label: 'Business verified' },
                 { icon: Clock, value: 'Instant Quotes', label: 'AI-powered estimates' },
                 { icon: Star, value: 'Insurance confirmed', label: 'And monitored' },
                 { icon: Award, value: 'Re-checked', label: 'Time-limited checks' },

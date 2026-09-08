@@ -480,7 +480,7 @@ export default function AIQuoteForm({ isOpen, onClose, initialTrade = '', initia
                   <div className="flex items-center gap-3">
                     <ShieldCheck className="w-5 h-5 text-brand-navy flex-shrink-0" />
                     <div className="text-sm text-gray-700">
-                      <span className="font-semibold text-gray-900">Identity-checked pros</span>
+                      <span className="font-semibold text-gray-900">Verified pros</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">

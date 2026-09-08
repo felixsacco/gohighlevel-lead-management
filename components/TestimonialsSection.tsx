@@ -195,7 +195,7 @@ const TestimonialsSection = () => {
               <div className="flex items-center justify-center gap-1 mb-1">
                 {renderStars(5)}
               </div>
-              <div className="text-sm text-gray-600">Identity checked</div>
+              <div className="text-sm text-gray-600">Identity verified</div>
             </div>
             <div className="w-px h-12 bg-gray-300"></div>
             <div className="text-center">
@@ -237,7 +237,7 @@ const TestimonialsSection = () => {
                         <div className="ml-auto">
                           <div className="inline-flex items-center gap-1 bg-green-50 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">
                             <CheckCircle className="w-3 h-3" />
-                            <span>Identity Checked</span>
+                            <span>Identity Verified</span>
                           </div>
                         </div>
                       )}
@@ -298,7 +298,7 @@ const TestimonialsSection = () => {
                       <span className="text-gray-300">•</span>
                       <div className="flex items-center gap-1 text-xs text-gray-600">
                         <CheckCircle className="w-3 h-3 text-blue-500" />
-                        <span>Identity checked</span>
+                        <span>Identity verified</span>
                       </div>
                       <span className="text-gray-300">•</span>
                       <div className="flex items-center gap-1 text-xs text-gray-600">

@@ -9,7 +9,7 @@ export default function HeroTrustBadges() {
         <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">
           <ShieldCheckFill weight="fill" className="h-4 w-4 sm:h-5 sm:w-5 inline-block" aria-hidden="true" />
         </span>
-        <span className="font-bold tracking-wide text-white/70 notranslate">IDENTITY CHECKED</span>
+        <span className="font-bold tracking-wide text-white/70 notranslate">IDENTITY VERIFIED</span>
       </div>
       <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap border-l border-white/20">
         <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">

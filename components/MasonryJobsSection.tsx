@@ -292,7 +292,7 @@ const MasonryJobsSection = () => {
                       {job.isVerified && (
                         <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold text-green-700 bg-green-50 border border-green-200">
                           <Shield className="w-3 h-3" />
-                          <span>Identity checked</span>
+                          <span>Identity verified</span>
                         </div>
                       )}
                     </div>
@@ -364,7 +364,7 @@ const MasonryJobsSection = () => {
                     </div>
                     <div className="flex items-center gap-1">
                       <Star className="w-3 h-3 text-brand-amber fill-current" />
-                      <span className="font-semibold">Identity checked</span>
+                      <span className="font-semibold">Identity verified</span>
                     </div>
                   </div>
 

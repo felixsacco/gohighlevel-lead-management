@@ -46,7 +46,7 @@ const AIExplainerSection = () => {
       id: 2,
       title: 'AI Finds Perfect Matches',
       subtitle: 'Smart matching in seconds',
-      description: 'Our advanced AI instantly scans identity-checked tradespeople, checking availability, location, ratings, and specializations to find your ideal matches.',
+      description: 'Our advanced AI instantly scans verified tradespeople, checking availability, location, ratings, and specializations to find your ideal matches.',
       icon: Brain,
       color: 'from-purple-500 to-purple-700',
       features: [
@@ -64,7 +64,7 @@ const AIExplainerSection = () => {
       id: 3,
       title: 'Get Instant Quotes',
       subtitle: 'Connect with top professionals',
-      description: 'Receive multiple quotes from identity-checked professionals within minutes. Compare prices, reviews, and availability to make the best choice.',
+      description: 'Receive multiple quotes from verified professionals within minutes. Compare prices, reviews, and availability to make the best choice.',
       icon: Users,
       color: 'from-green-500 to-green-700',
       features: [
@@ -281,7 +281,7 @@ const AIExplainerSection = () => {
                       <div className="bg-purple-500/20 rounded-xl p-4 border border-purple-400/30">
                         <div className="flex items-center justify-between mb-3">
                           <span className="text-white font-semibold">Scanning Database</span>
-                          <span className="text-brand-amber font-bold">Identity-checked tradespeople</span>
+                          <span className="text-brand-amber font-bold">Verified tradespeople</span>
                         </div>
                         <div className="w-full bg-white/20 rounded-full h-2">
                           <div className="bg-gradient-to-r from-brand-amber to-yellow-400 h-2 rounded-full animate-pulse" style={{width: '85%'}}></div>
@@ -379,8 +379,8 @@ const AIExplainerSection = () => {
                     <CheckCircle className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-sm font-black text-brand-navy">Identity Checked</div>
-                    <div className="text-xs text-gray-600">Identity Checked</div>
+                    <div className="text-sm font-black text-brand-navy">Identity Verified</div>
+                    <div className="text-xs text-gray-600">Identity Verified</div>
                   </div>
                 </div>
               </div>

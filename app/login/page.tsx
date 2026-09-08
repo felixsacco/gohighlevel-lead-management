@@ -555,7 +555,7 @@ export default function LoginPage() {
                 <div className="mx-auto mb-3 inline-flex flex-nowrap justify-center rounded-full border border-brand-navy/10 bg-white px-2 py-1.5 text-xs font-bold shadow-sm">
                   <div className="inline-flex items-center gap-1.5 whitespace-nowrap px-2 text-brand-navy sm:px-3">
                     <ShieldCheckFill weight="fill" className="h-4 w-4 text-brand-navy" aria-hidden="true" />
-                    <span className="font-extrabold tracking-wide notranslate">IDENTITY CHECKED</span>
+                    <span className="font-extrabold tracking-wide notranslate">IDENTITY VERIFIED</span>
                   </div>
                   <div className="mx-1 self-stretch border-l border-brand-navy/10" />
                   <div className="inline-flex items-center gap-1.5 whitespace-nowrap px-2 text-brand-navy sm:px-3">
@@ -858,7 +858,7 @@ export default function LoginPage() {
                     </div>
                     <div className="text-center px-3">
                       <div className="text-xl sm:text-2xl font-black text-brand-amber">ID✓</div>
-                      <div className="text-[10px] text-white/40 font-medium mt-0.5">Identity checked</div>
+                      <div className="text-[10px] text-white/40 font-medium mt-0.5">Identity verified</div>
                     </div>
                     <div className="text-center px-3">
                       <div className="text-xl sm:text-2xl font-black text-brand-amber">24/7</div>
@@ -912,7 +912,7 @@ export default function LoginPage() {
               <div className="relative bg-gradient-to-br from-brand-navy to-brand-navy backdrop-blur-md rounded-xl border border-white/20 p-4 shadow-xl">
                 <div className="flex items-center justify-center gap-2 text-center">
                   <Shield className="h-5 w-5 text-blue-400" />
-                  <span className="text-lg font-bold text-white">Identity checked</span>
+                  <span className="text-lg font-bold text-white">Identity verified</span>
                   <span className="text-blue-200">for every member before listing</span>
                 </div>
               </div>

@@ -586,7 +586,7 @@ export default function TradespersonLoginPage() {
                     </div>
                     <div className="text-center px-3">
                       <div className="text-xl sm:text-2xl font-black text-brand-navy">✓</div>
-                      <div className="text-[10px] text-brand-navy/60 font-medium mt-0.5">Identity checked</div>
+                      <div className="text-[10px] text-brand-navy/60 font-medium mt-0.5">Identity verified</div>
                     </div>
                     <div className="text-center px-3">
                       <div className="text-xl sm:text-2xl font-black text-brand-navy">24/7</div>

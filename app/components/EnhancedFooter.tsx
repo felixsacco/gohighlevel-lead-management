@@ -70,7 +70,7 @@ const EnhancedFooter = () => {
                 </span>
               </div>
               <p className="text-slate-400 leading-relaxed mb-6 max-w-md">
-                The UK's trusted platform connecting homeowners with identity-checked tradespeople whose
+                The UK's trusted platform connecting homeowners with verified tradespeople whose
                 public liability insurance is confirmed and monitored.
               </p>
 
@@ -78,7 +78,7 @@ const EnhancedFooter = () => {
               <div className="grid grid-cols-3 gap-4 mb-8">
                 <div className="text-center bg-slate-800/50 rounded-xl p-3">
                   <div className="text-xl font-bold text-yellow-400">✓</div>
-                  <div className="text-xs text-slate-400">Identity checked</div>
+                  <div className="text-xs text-slate-400">Identity verified</div>
                 </div>
                 <div className="text-center bg-slate-800/50 rounded-xl p-3">
                   <div className="text-xl font-bold text-blue-400">✓</div>

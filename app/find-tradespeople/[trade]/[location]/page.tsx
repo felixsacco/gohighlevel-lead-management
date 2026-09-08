@@ -13,9 +13,11 @@ import Link from "next/link";
 import {
   TRADES,
   LOCATIONS,
+  TRADE_PRICING,
   generateTradeLocationSchema,
   resolveLocation,
   ALL_NEIGHBORHOOD_SLUGS,
+  NEIGHBORHOODS,
   toSlug,
 } from "@/lib/seo-data";
 import { graphify } from "@/components/SchemaMarkup";
@@ -206,11 +208,20 @@ export async function generateMetadata({
       siteName: "MyApproved",
       locale: "en_GB",
       type: "website",
+      images: [
+        {
+          url: `https://myapproved.com/og/${params.trade}/${params.location}`,
+          width: 1200,
+          height: 630,
+          alt: `Verified ${trade.plural} in ${locationName} | MyApproved`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `Verified ${trade.plural} in ${locationName} | MyApproved`,
       description: `Compare verified ${trade.plural.toLowerCase()} in ${locationName}. Free quotes, no obligation.`,
+      images: [`https://myapproved.com/og/${params.trade}/${params.location}`],
     },
   };
 }
@@ -227,6 +238,49 @@ export default async function FindTradeLocationPage({
   const location = resolveLocation(params.location);
   if (!location) notFound();
   const locationName = location.name;
+
+  // F4 deep-crawl matrix. On a city page the coverage section becomes the
+  // internal anchor into its child-neighbourhood pages: each postcode-district
+  // chip that maps to a neighbourhood in `NEIGHBORHOODS[this city]` renders as a
+  // link to that child page (first match wins for districts shared by more than
+  // one neighbourhood), while districts without a mapping keep opening the quote
+  // modal. Neighbourhood pages never map their own district chip (that would
+  // self-link); instead they list sibling neighbourhoods under the same parent
+  // so crawlers can keep moving and never dead-end on a leaf page.
+  const isNeighbourhood = location.kind === "neighbourhood";
+  const childNeighbourhoods = isNeighbourhood
+    ? []
+    : (NEIGHBORHOODS[params.location] ?? []);
+  const siblingNeighbourhoods = isNeighbourhood
+    ? (NEIGHBORHOODS[toSlug(location.parent)] ?? []).filter(
+        (nb) => toSlug(nb.name) !== params.location
+      )
+    : [];
+  const areaLinks = (isNeighbourhood ? siblingNeighbourhoods : childNeighbourhoods).map(
+    (nb) => ({ name: nb.name, slug: toSlug(nb.name) })
+  );
+  const areaLinksHeading = isNeighbourhood
+    ? `More ${trade.plural.toLowerCase()} areas near ${locationName}`
+    : `${trade.plural} covering ${locationName} neighbourhoods`;
+  const postcodeToChildHref = new Map<string, string>();
+  for (const nb of childNeighbourhoods) {
+    if (!postcodeToChildHref.has(nb.postalDistrict)) {
+      postcodeToChildHref.set(
+        nb.postalDistrict,
+        `/find-tradespeople/${params.trade}/${toSlug(nb.name)}`
+      );
+    }
+  }
+
+  // Pricing copy derives from the single pricing dataset (TRADE_PRICING).
+  // Hourly trades quote a rate per hour; fixed/lump-sum trades are quoted as
+  // one whole-project price, so never append a fabricated "per hour" to them.
+  const pricing = TRADE_PRICING[params.trade];
+  const costAnswer = pricing
+    ? pricing.unit === "per hour"
+      ? `Most ${trade.plural.toLowerCase()} in ${locationName} charge between ${pricing.low} and ${pricing.high} per hour, with a typical job coming to ${pricing.typical}. The final cost depends on your region, the size of the job, and the materials used. Every MyApproved ${trade.name.toLowerCase()} gives you a fixed, written quote before work starts, so there are no surprises on cost. Post your job free and verified local professionals will call you back with quotes.`
+      : `Most ${trade.plural.toLowerCase()} in ${locationName} quote a fixed price for the whole job, with a typical project coming to ${pricing.typical}. The final cost depends on your region, the size of the job, and the materials used. Every MyApproved ${trade.name.toLowerCase()} gives you a fixed, written quote before work starts, so there are no surprises on cost. Post your job free and verified local professionals will call you back with quotes.`
+    : `Every MyApproved ${trade.name.toLowerCase()} gives you a fixed, written quote before work starts, so there are no surprises on cost. Post your job free and verified local professionals will call you back with quotes.`;
 
   const relatedTrades = TRADES.filter(
     (t) => t.category === trade.category && t.slug !== trade.slug
@@ -264,7 +318,7 @@ export default async function FindTradeLocationPage({
   const faqs = [
     {
       q: `How much does a ${trade.name.toLowerCase()} cost in ${locationName}?`,
-      a: `${trade.plural} in ${locationName} typically charge ${trade.hourlyRate} per hour. Exact prices depend on the job itself, but you'll get a fixed, written quote before any work starts. So there are no surprises.`,
+      a: costAnswer,
     },
     {
       q: `Are ${trade.plural.toLowerCase()} on MyApproved in ${locationName} insured?`,
@@ -280,10 +334,12 @@ export default async function FindTradeLocationPage({
     },
   ];
 
+  const serviceSchema = generateTradeLocationSchema(
+    params.trade,
+    params.location
+  );
   const schema = graphify([
-    ...(generateTradeLocationSchema(params.trade, params.location)
-      ? [generateTradeLocationSchema(params.trade, params.location)]
-      : []),
+    ...(serviceSchema ? [serviceSchema] : []),
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
@@ -298,7 +354,9 @@ export default async function FindTradeLocationPage({
         width: 512,
         height: 512,
       },
-      priceRange: "££",
+      priceRange: pricing
+        ? `${pricing.low}–${pricing.high} ${pricing.unit}`
+        : "££",
       currenciesAccepted: "GBP",
       paymentAccepted: "Cash, Credit Card, Bank Transfer",
       address: {
@@ -330,7 +388,7 @@ export default async function FindTradeLocationPage({
         identifier: {
           "@type": "PropertyValue",
           name: "MyApproved tradesperson verification",
-          value: "identity-checked & insured",
+          value: "verified & insured",
         },
         description: `Every ${trade.name.toLowerCase()} listed on MyApproved in ${locationName} has passed identity, business and public liability insurance checks, which are confirmed and monitored by MyApproved.`,
         recognizedBy: {
@@ -515,7 +573,7 @@ export default async function FindTradeLocationPage({
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/75 leading-relaxed mb-12 sm:mb-16 max-w-[34rem] mx-auto font-normal px-4">
-                Compare identity-checked, insured {trade.plural.toLowerCase()} in {locationName} and get free, no-obligation quotes.
+                Compare verified, insured {trade.plural.toLowerCase()} in {locationName} and get free, no-obligation quotes.
               </p>
 
               <HeroSearchTrigger suggestions={trade.services} />
@@ -780,13 +838,20 @@ export default async function FindTradeLocationPage({
         </section>
 
         {/* ── Places Results ──
-             Server component; renders nothing when there are no providers. */}
+             Server component. Renders the population + live-count stats band and
+             real providers; hides the whole section only on a genuine empty area
+             (query ran clean, nothing found) and shows an availability note when
+             live listings could not be checked. */}
         <TradeLocationLiveResults
           tradeSlug={params.trade}
           tradeName={trade.name}
           tradePlural={trade.plural}
           locationSlug={params.location}
           locationName={locationName}
+          population={location.population}
+          areaLabel={
+            location.kind === "neighbourhood" ? location.parent : location.name
+          }
         />
 
         {/* ── AEO Answer Block ── */}
@@ -817,13 +882,13 @@ export default async function FindTradeLocationPage({
                         <AccordionItem value="postcodes">
                           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 mx-auto">
                             {location.postcodes.slice(0, postcodesVisibleCount).map((pc) => (
-                              <PostcodeChip key={pc} postcode={pc} />
+                              <PostcodeChip key={pc} postcode={pc} href={postcodeToChildHref.get(pc)} />
                             ))}
                           </div>
                           <AccordionContent>
                             <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 pt-2 mx-auto">
                               {location.postcodes.slice(postcodesVisibleCount).map((pc) => (
-                                <PostcodeChip key={pc} postcode={pc} />
+                                <PostcodeChip key={pc} postcode={pc} href={postcodeToChildHref.get(pc)} />
                               ))}
                             </div>
                           </AccordionContent>
@@ -835,7 +900,7 @@ export default async function FindTradeLocationPage({
                     ) : (
                       <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 mb-6 mx-auto">
                         {location.postcodes.map((pc) => (
-                          <PostcodeChip key={pc} postcode={pc} />
+                          <PostcodeChip key={pc} postcode={pc} href={postcodeToChildHref.get(pc)} />
                         ))}
                       </div>
                     )}
@@ -895,6 +960,26 @@ export default async function FindTradeLocationPage({
                         ))}
                       </div>
                     )}
+                  </>
+                )}
+
+                {areaLinks.length > 0 && (
+                  <>
+                    <p className="text-sm font-semibold text-slate-600 mb-3">
+                      {areaLinksHeading}
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-2.5 mx-auto">
+                      {areaLinks.map((area) => (
+                        <Link
+                          key={area.slug}
+                          href={`/find-tradespeople/${params.trade}/${area.slug}`}
+                          className="inline-flex items-center justify-center gap-1.5 bg-white border border-gray-100 hover:border-brand-navy hover:bg-gray-50 px-3.5 py-2 rounded-full text-sm text-brand-navy font-semibold transition-all whitespace-nowrap"
+                        >
+                          {trade.plural} in {area.name}
+                          <ArrowRight className="w-3 h-3 flex-shrink-0" />
+                        </Link>
+                      ))}
+                    </div>
                   </>
                 )}
 

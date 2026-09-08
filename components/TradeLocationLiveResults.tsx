@@ -7,6 +7,12 @@ interface Props {
   tradePlural: string;
   locationSlug: string;
   locationName: string;
+  /** Catchment population this area's stats band is labelled with. For a
+   *  neighbourhood this is the parent city's population. */
+  population: number;
+  /** Human label for the area `population` describes (city name, or the parent
+   *  city for a neighbourhood). */
+  areaLabel: string;
 }
 
 interface Member {
@@ -39,21 +45,25 @@ type FetchInput = {
 };
 
 /**
- * Fetch and filter the verified providers for a given trade × location pair.
- * Returns `null` when Supabase is unavailable or the query errors, so callers
- * can distinguish "nothing to show" from "couldn't check". Exported so the
- * trade+location page can run the same live-result check server-side and avoid
- * rendering a "Verified [trade] in [Location]" page when none exist (soft-404
- * guard).
+ * Fetch and filter the providers for a given trade × location pair. Never
+ * returns `null`: the `ok` flag reports whether live listings were checkable,
+ * and the arrays are empty when they could not be. This lets callers tell a
+ * genuine empty area (query ran clean, nothing found) apart from a temporary
+ * Supabase outage without ever rendering a fabricated "0". Exported so a page
+ * can run the same live-result check server-side if it wants to.
  */
 export async function fetchTradeLocationProviders({
   tradeSlug,
   tradeName,
   locationSlug,
   locationName,
-}: FetchInput): Promise<{ members: Member[]; prospects: Prospect[] } | null> {
+}: FetchInput): Promise<{
+  ok: boolean;
+  members: Member[];
+  prospects: Prospect[];
+}> {
   const supabase = getSupabaseAdmin();
-  if (!supabase) return null;
+  if (!supabase) return { ok: false, members: [], prospects: [] };
 
   // Group 1: MyApproved members (vetted tradespeople).
   // Match members by their humanized trade name (e.g. "Plumber"), falling back
@@ -98,7 +108,7 @@ export async function fetchTradeLocationProviders({
       memberRes.error?.message,
       prospectRes.error?.message,
     );
-    return null;
+    return { ok: false, members: [], prospects: [] };
   }
 
   const prospects: Prospect[] = (prospectRes.data ?? []).filter(
@@ -140,7 +150,7 @@ export async function fetchTradeLocationProviders({
       };
     });
 
-  return { members, prospects };
+  return { ok: true, members, prospects };
 }
 
 export default async function TradeLocationLiveResults(props: Props) {
@@ -150,6 +160,8 @@ export default async function TradeLocationLiveResults(props: Props) {
     tradePlural,
     locationSlug,
     locationName,
+    population,
+    areaLabel,
   } = props;
 
   const result = await fetchTradeLocationProviders({
@@ -158,66 +170,99 @@ export default async function TradeLocationLiveResults(props: Props) {
     locationSlug,
     locationName,
   });
-  if (!result) return null;
 
-  const { members, prospects } = result;
+  const { ok, members, prospects } = result;
 
-  if (members.length === 0 && prospects.length === 0) {
+  // Genuine empty area: the query ran clean and found nothing, so this page
+  // has no live listings to show at all — soft-404 (never render on a real
+  // empty result; only the `ok:false` outage case falls through below).
+  if (ok && members.length === 0 && prospects.length === 0) {
     return null;
   }
+
+  const liveCount = ok ? members.length : null;
 
   return (
     <section className="py-12 sm:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ── Stats band: real per-location metrics ── */}
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-8 max-w-xl">
+          <div className="bg-white rounded-xl border border-blue-100 p-5 shadow-sm">
+            <div className="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+              {population.toLocaleString("en-GB")}
+            </div>
+            <div className="text-xs sm:text-sm text-gray-500 mt-1">
+              people in {areaLabel}
+            </div>
+          </div>
+          <div className="bg-white rounded-xl border border-blue-100 p-5 shadow-sm">
+            <div className="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+              {liveCount ?? "—"}
+            </div>
+            <div className="text-xs sm:text-sm text-gray-500 mt-1">
+              live verified {tradePlural.toLowerCase()} listed
+            </div>
+          </div>
+        </div>
+
+        {!ok && (
+          <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 mb-8 flex items-center gap-2">
+            <Info className="w-4 h-4 shrink-0" />
+            Live listings are temporarily unavailable — check back shortly.
+          </p>
+        )}
+
         {/* ── Group 1: MyApproved members ── */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6">
           MyApproved {tradePlural} in {locationName}
         </h2>
 
-        {members.length === 0 ? (
-          <p className="text-sm text-gray-500 mb-8">
-            There are currently no MyApproved {tradePlural.toLowerCase()} listed
-            in {locationName}. The businesses below are listed on Google and
-            have not undergone MyApproved's checks.
-          </p>
-        ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-            {members.map((m) => (
-              <div
-                key={m.id}
-                className="bg-white rounded-xl border border-blue-100 p-5 shadow-sm"
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="flex-1 font-bold text-brand-navy truncate">
-                    {m.name}
-                  </span>
-                  {m.is_verified && (
-                    <span className="inline-flex items-center gap-1 bg-green-50 border border-green-200 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">
-                      <CheckCircle className="w-3.5 h-3.5" /> Verified
+        {ok && (
+          members.length === 0 ? (
+            <p className="text-sm text-gray-500 mb-8">
+              There are currently no MyApproved {tradePlural.toLowerCase()}
+              listed in {locationName}. The businesses below are listed on
+              Google and have not undergone MyApproved's checks.
+            </p>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+              {members.map((m) => (
+                <div
+                  key={m.id}
+                  className="bg-white rounded-xl border border-blue-100 p-5 shadow-sm"
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="flex-1 font-bold text-brand-navy truncate">
+                      {m.name}
                     </span>
-                  )}
+                    {m.is_verified && (
+                      <span className="inline-flex items-center gap-1 bg-green-50 border border-green-200 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">
+                        <CheckCircle className="w-3.5 h-3.5" /> Verified
+                      </span>
+                    )}
+                  </div>
+                  <div className="space-y-1.5 text-sm text-gray-600">
+                    {[m.city, m.postcode].filter(Boolean).length > 0 && (
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="w-4 h-4 text-gray-400" />
+                        {[m.city, m.postcode].filter(Boolean).join(", ")}
+                      </div>
+                    )}
+                    {m.phone && (
+                      <div className="flex items-center gap-1.5">
+                        <Phone className="w-4 h-4 text-gray-400" />
+                        {m.phone}
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="space-y-1.5 text-sm text-gray-600">
-                  {[m.city, m.postcode].filter(Boolean).length > 0 && (
-                    <div className="flex items-center gap-1.5">
-                      <MapPin className="w-4 h-4 text-gray-400" />
-                      {[m.city, m.postcode].filter(Boolean).join(", ")}
-                    </div>
-                  )}
-                  {m.phone && (
-                    <div className="flex items-center gap-1.5">
-                      <Phone className="w-4 h-4 text-gray-400" />
-                      {m.phone}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )
         )}
 
         {/* ── Group 2: Harvested businesses ── */}
-        {prospects.length > 0 && (
+        {ok && prospects.length > 0 && (
           <>
             <h3 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-2">
               Other businesses in {locationName}

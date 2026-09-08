@@ -12,7 +12,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { TRADES, LOCATIONS } from "@/lib/seo-data";
-import { TRADE_PRICING } from "@/lib/seoMetadataRouter";
+import { TRADE_PRICING } from "@/lib/seo-data";
 import ProgrammaticSchema from "@/components/ProgrammaticSchema";
 import AEOContentBlock from "@/components/AEOContentBlock";
 import TrustEngineSection from "@/components/TrustEngineSection";
@@ -59,13 +59,13 @@ export async function generateMetadata({
   if (!trade) return { title: "Not Found | MyApproved", robots: { index: false } };
 
   return {
-    title: `Identity-Checked ${trade.plural} Near You | Free Quotes UK | MyApproved`,
-    description: `Find identity-checked ${trade.plural.toLowerCase()} across the UK. Compare local professionals, read customer reviews, and get free no-obligation quotes. All ID-checked and public liability insured.`,
-    keywords: `${trade.plural.toLowerCase()} near me, identity-checked ${trade.plural.toLowerCase()} UK, find ${trade.name.toLowerCase()} quotes, local ${trade.name.toLowerCase()} free quotes`,
+    title: `Verified ${trade.plural} Near You | Free Quotes UK | MyApproved`,
+    description: `Find verified ${trade.plural.toLowerCase()} across the UK. Compare local professionals, read customer reviews, and get free no-obligation quotes. All verified and public liability insured.`,
+    keywords: `${trade.plural.toLowerCase()} near me, verified ${trade.plural.toLowerCase()} UK, find ${trade.name.toLowerCase()} quotes, local ${trade.name.toLowerCase()} free quotes`,
     alternates: { canonical: `https://myapproved.com/find-tradespeople/${params.trade}` },
     openGraph: {
-      title: `Identity-Checked ${trade.plural} Near You | MyApproved UK`,
-      description: `Compare identity-checked ${trade.plural.toLowerCase()} in your area. Free quotes, customer reviews, all tradespeople public liability insured.`,
+      title: `Verified ${trade.plural} Near You | MyApproved UK`,
+      description: `Compare verified ${trade.plural.toLowerCase()} in your area. Free quotes, customer reviews, all tradespeople public liability insured.`,
       url: `https://myapproved.com/find-tradespeople/${params.trade}`,
       siteName: "MyApproved",
       locale: "en_GB",
@@ -85,6 +85,15 @@ export default function FindTradePage({ params }: { params: { trade: string } })
   if (!trade) notFound();
 
   const pricing = TRADE_PRICING[params.trade];
+
+  // Cost FAQ copy derives from the single pricing dataset. Hourly trades quote
+  // a rate per hour; fixed/lump-sum trades are quoted as one whole-project
+  // price, so never append a fabricated "per hour" to them.
+  const costAnswer = pricing
+    ? pricing.unit === "per hour"
+      ? `Most ${trade.plural.toLowerCase()} in the UK charge between ${pricing.low} and ${pricing.high} per hour, with a typical job coming to ${pricing.typical}. The final cost depends on your region, the size of the job, and the materials used. Every MyApproved ${trade.name.toLowerCase()} gives you a fixed, written quote before work starts. No verbal estimates that climb once the job begins. Post your job free and verified local professionals will call you back with quotes.`
+      : `Most ${trade.plural.toLowerCase()} in the UK quote a fixed price for the whole job, with a typical project coming to ${pricing.typical}. The final cost depends on your region, the size of the job, and the materials used. Every MyApproved ${trade.name.toLowerCase()} gives you a fixed, written quote before work starts. No verbal estimates that climb once the job begins. Post your job free and verified local professionals will call you back with quotes.`
+    : `Every MyApproved ${trade.name.toLowerCase()} gives you a fixed, written quote before work starts, so there are no surprises on cost. Post your job free and verified local professionals will call you back with quotes.`;
 
   // Related trades (same category, different slug)
   const relatedTrades = TRADES.filter(
@@ -148,7 +157,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
               <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] mb-12 sm:mb-16 px-2 sm:px-4" style={{fontWeight: 800}}>
                 Find Verified {trade.plural} Near You
                 <span className="block text-xl sm:text-2xl font-semibold text-brand-amber mt-2">
-                  ID-Checked · Insured · Real Reviews
+                  Verified · Insured · Real Reviews
                 </span>
               </h1>
 
@@ -169,7 +178,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
 
               <div className="flex flex-wrap justify-center gap-3 mb-8">
                 <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-medium">
-                  <Shield className="w-4 h-4 text-green-400" /> ID Verified
+                  <Shield className="w-4 h-4 text-green-400" /> Verified
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-medium">
                   <CheckCircle className="w-4 h-4 text-brand-amber" /> £2M Insured
@@ -197,7 +206,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100">
               {[
-                { value: "ID", label: "Identity Checked", sub: "before first lead" },
+                { value: "✓", label: "Identity Verified", sub: "before first lead" },
                 { value: "£2M+", label: "Insurance Cover", sub: "independently confirmed" },
                 { value: "Free", label: "For Homeowners", sub: "no fees, ever" },
               ].map(({ value, label, sub }) => (
@@ -255,7 +264,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
                   step: "04",
                   icon: ThumbsUp,
                   title: "Hire with confidence",
-                  desc: `Every ${trade.name.toLowerCase()} is ID-checked, and their public liability cover of at least £2M is confirmed and monitored.`,
+                  desc: `Every ${trade.name.toLowerCase()} is Verified, and their public liability cover of at least £2M is confirmed and monitored.`,
                   color: "bg-brand-slate text-brand-navy",
                 },
               ].map(({ step, icon: Icon, title, desc, color }) => (
@@ -353,7 +362,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
               {[
                 {
                   q: `How much does a ${trade.name.toLowerCase()} cost in the UK?`,
-                  a: `${trade.plural} in the UK typically charge ${trade.hourlyRate} per hour. The cost depends on your region, the size of the job, and the materials used. Every MyApproved ${trade.name.toLowerCase()} gives you a fixed, written quote before work starts. No verbal estimates that climb once the job begins. Post your job free and verified local professionals will call you back with quotes.`,
+                  a: costAnswer,
                 },
                 {
                   q: `Are all ${trade.plural.toLowerCase()} on MyApproved verified?`,
@@ -422,7 +431,7 @@ export default function FindTradePage({ params }: { params: { trade: string } })
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
               <Shield className="w-4 h-4 text-green-400" />
-              Identity checked and public liability insurance confirmed and monitored
+              Identity verified and public liability insurance confirmed and monitored
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4" style={{fontWeight: 800}}>
               Ready to Find a Verified {trade.name}?

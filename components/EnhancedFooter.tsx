@@ -19,7 +19,7 @@ const EnhancedFooter = () => {
               <span className="text-3xl font-bold text-white" style={{fontWeight: 800}}>MyApproved</span>
             </Link>
             <p className="text-gray-300 text-sm mb-4">
-              Find verified and approved tradespeople across the UK. ID-checked, insured to £2M, and reviewed by real customers.
+              Find verified and approved tradespeople across the UK. Identity-verified, insured to £2M, and reviewed by real customers.
             </p>
             <p className="text-gray-300 text-sm">
               <a href="mailto:support@myapproved.com" className="hover:text-white flex items-center gap-2">

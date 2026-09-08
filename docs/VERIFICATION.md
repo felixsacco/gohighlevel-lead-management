@@ -316,7 +316,7 @@ Tier C is where the routes differ, and both routes prove the same four things:
 | No adverse financial history | C1.7, C1.9, C1.10 | C2.3, C2.4 |
 | No disqualification or phoenixing | C1.8, B7 | C2.5, C2.6, B7 |
 
-**On the site, both are "Identity checked" and "Business verified".** The difference in evidence is shown on the public record page, not in the badge.
+**On the site, both are "Identity verified" and "Business verified".** The difference in evidence is shown on the public record page, not in the badge.
 
 ---
 
@@ -476,7 +476,7 @@ Three rules govern all of it:
 
 | Claim | Check | Shown when |
 |---|---|---|
-| "Identity checked" | A1, A2 | Both passed |
+| "Identity verified" | A1, A2 | Both passed |
 | "Photo ID verified against a live selfie" | A1, A2 | Both passed |
 | "Address confirmed" | A3 | Passed, within 12 months |
 | "Right to work in the UK confirmed" | A5 | Passed |

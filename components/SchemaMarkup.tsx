@@ -31,7 +31,7 @@ export const organizationSchema = {
     "height": 512
   },
   "image": "https://myapproved.com/logo-icon.svg",
-  "description": "MyApproved is a UK-wide tradespeople verification platform connecting homeowners nationwide with identity-checked local tradespeople whose public liability insurance is confirmed and monitored. No tradesperson is listed until identity, business and insurance checks have passed.",
+  "description": "MyApproved is a UK-wide tradespeople verification platform connecting homeowners nationwide with Verified local tradespeople whose public liability insurance is confirmed and monitored. No tradesperson is listed until identity, business and insurance checks have passed.",
   "foundingDate": "2024",
   "address": {
     "@type": "PostalAddress",
@@ -75,7 +75,7 @@ export const organizationSchema = {
     "credentialCategory": "Trade Verification Platform",
     "description": "MyApproved verifies tradesperson credentials against Gas Safe Register, NICEIC, NAPIT, FENSA, and MCS official registers"
   },
-  "slogan": "Identity-checked Tradespeople. Free Quotes.",
+  "slogan": "Verified Tradespeople. Free Quotes.",
   "sameAs": [
     process.env.NEXT_PUBLIC_TWITTER_URL,
     process.env.NEXT_PUBLIC_LINKEDIN_URL,
@@ -91,7 +91,7 @@ export const WebsiteSchema = {
   "name": "MyApproved",
   "alternateName": "My Approved",
   "url": "https://myapproved.com",
-  "description": "Find identity-checked local tradespeople across the UK with public liability insurance confirmed and monitored. Compare free quotes and book trusted professionals - free for homeowners.",
+  "description": "Find Verified local tradespeople across the UK with public liability insurance confirmed and monitored. Compare free quotes and book trusted professionals - free for homeowners.",
   "inLanguage": "en-GB",
   "publisher": {
     "@id": "https://myapproved.com/#organization"
@@ -220,7 +220,7 @@ export const ServiceSchema = {
   "@type": "Service",
   "@id": "https://myapproved.com/#service",
   "name": "Verified Tradesperson Matching",
-  "description": "MyApproved connects homeowners with identity-checked local tradespeople across the United Kingdom, with public liability insurance confirmed and monitored. Free quotes, no obligation.",
+  "description": "MyApproved connects homeowners with Verified local tradespeople across the United Kingdom, with public liability insurance confirmed and monitored. Free quotes, no obligation.",
   "provider": {
     "@id": "https://myapproved.com/#organization"
   },

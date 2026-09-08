@@ -4,7 +4,7 @@ import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
 
 export const metadata = {
   title: "About MyApproved - Verified Tradespeople Platform UK",
-  description: "MyApproved connects UK homeowners with identity-checked, insured tradespeople nationwide. Learn about our mission, verification process, and values.",
+  description: "MyApproved connects UK homeowners with verified, insured tradespeople nationwide. Learn about our mission, verification process, and values.",
   alternates: { canonical: "https://myapproved.com/about" },
 };
 

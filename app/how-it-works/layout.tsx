@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://myapproved.com/how-it-works" },
   openGraph: {
     title: "How MyApproved Works | Find Verified Tradespeople UK",
-    description: "Post your job free. Get quotes from ID-checked, insured tradespeople. Compare and hire with confidence.",
+    description: "Post your job free. Get quotes from verified, insured tradespeople. Compare and hire with confidence.",
     url: "https://myapproved.com/how-it-works",
     siteName: "MyApproved",
     locale: "en_GB",

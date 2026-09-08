@@ -113,7 +113,7 @@ const steps = [
           <div className="p-4 bg-gray-50 border border-gray-200 rounded-xl">
             <div className="grid grid-cols-2 gap-x-6 gap-y-3">
               {[
-                { icon: Shield, label: "Identity-checked pros" },
+                { icon: Shield, label: "Verified pros" },
                 { icon: Star, label: "Customer reviewed" },
                 { icon: Wrench, label: "Under 60s" },
                 { icon: Shield, label: "Public liability insured" },
@@ -268,7 +268,7 @@ const steps = [
 const benefits = [
   {
     icon: "identity",
-    title: "IDENTITY CHECKED",
+    title: "IDENTITY VERIFIED",
     body: "Every profile passes a photo ID check, verified against a live selfie, before it's listed.",
   },
   {

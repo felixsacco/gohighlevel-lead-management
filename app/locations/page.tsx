@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin, ArrowRight, CheckCircle, Star, Shield } from "lucide-react";
 import { TRADES, LOCATIONS } from "@/lib/seo-data";
-import { TRADE_PRICING } from "@/lib/seoMetadataRouter";
+import { TRADE_PRICING } from "@/lib/seo-data";
 import HeroSearchTrigger from "@/components/HeroSearchTrigger";
 
 export const metadata: Metadata = {
   title: "Find Tradespeople by Location | All UK Cities & Towns | MyApproved",
   description:
-    "Browse verified, insured tradespeople across every UK city and town. 33 trades - plumbers, electricians, roofers, builders and more. All ID-checked and insured. Free quotes in hours.",
+    "Browse verified, insured tradespeople across every UK city and town. 33 trades - plumbers, electricians, roofers, builders and more. All verified and insured. Free quotes in hours.",
   alternates: { canonical: "https://myapproved.com/locations" },
   openGraph: {
     title: "Find Tradespeople by Location | All UK Cities & Towns | MyApproved",
     description:
-      "Browse verified tradespeople in every UK city and town. Free quotes from ID-checked, insured professionals.",
+      "Browse verified tradespeople in every UK city and town. Free quotes from verified, insured professionals.",
     url: "https://myapproved.com/locations",
     siteName: "MyApproved",
     locale: "en_GB",
@@ -25,9 +25,9 @@ function toSlug(str: string): string {
   return str.toLowerCase().replace(/[\s]+/g, "-").replace(/[^a-z0-9-]/g, "");
 }
 
-function formatPricing(slug: string, fallback: string): string {
+function formatPricing(slug: string): string {
   const p = TRADE_PRICING[slug as keyof typeof TRADE_PRICING];
-  if (!p) return fallback;
+  if (!p) return "";
   const unitMap: Record<string, string> = {
     "per hour": "/hr",
     "per load": "/load",
@@ -121,7 +121,7 @@ const jsonLd = {
       url: "https://myapproved.com/locations",
       name: "Find Tradespeople by Location | All UK Cities & Towns | MyApproved",
       description:
-        "Browse verified, insured tradespeople across every UK city and town. 33 trades, all ID-checked and insured.",
+        "Browse verified, insured tradespeople across every UK city and town. 33 trades, all verified and insured.",
       breadcrumb: {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -183,7 +183,7 @@ export default function LocationsPage() {
               <span className="block text-brand-amber">Anywhere in the UK</span>
             </h1>
             <p className="speakable-intro text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-              ID-checked, insured professionals for every trade - in every city and town across
+              Verified, insured professionals for every trade - in every city and town across
               England, Scotland, Wales, and Northern Ireland.
             </p>
             <div className="flex flex-wrap justify-center gap-3 mb-8">
@@ -272,9 +272,11 @@ export default function LocationsPage() {
                           >
                             {trade.plural}
                           </p>
-                          <p className="text-xs text-gray-400 mt-1 break-words">
-                            {formatPricing(trade.slug, trade.hourlyRate)}
-                          </p>
+                          {formatPricing(trade.slug) && (
+                            <p className="text-xs text-gray-400 mt-1 break-words">
+                              {formatPricing(trade.slug)}
+                            </p>
+                          )}
                         </Link>
                       ))}
                     </div>

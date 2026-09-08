@@ -772,7 +772,7 @@ export default function JobDescriptionPage() {
             >
               <Shield className="h-5 w-5 text-blue-600" />
               <span className="text-sm font-medium text-gray-700">
-                All tradespeople are identity checked
+                All tradespeople are identity verified
               </span>
             </motion.div>
             <p className="text-xs text-gray-500 mt-2">

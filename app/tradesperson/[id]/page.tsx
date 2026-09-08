@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const name = `${(data.first_name || "").trim()} ${(data.last_name || "").trim()}`.trim();
   const title = `${name} — ${data.trade} in ${data.city} | MyApproved`;
-  const description = `Verified ${data.trade} in ${data.city}. Identity-checked, insurance-confirmed local tradesperson on MyApproved.`;
+  const description = `Verified ${data.trade} in ${data.city}. Identity-verified, insurance-confirmed local tradesperson on MyApproved.`;
 
   return {
     title,

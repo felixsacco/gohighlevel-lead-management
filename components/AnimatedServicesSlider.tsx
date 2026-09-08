@@ -167,7 +167,7 @@ const AnimatedServicesSlider = () => {
             Popular <span className="text-brand-amber">Services</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            The services customers are booking most. <span className="font-bold text-brand-navy">Identity-checked professionals</span>,
+            The services customers are booking most. <span className="font-bold text-brand-navy">Verified professionals</span>,
             instant quotes, and <span className="font-bold text-brand-amber">public liability cover confirmed</span>.
           </p>
           
@@ -234,7 +234,7 @@ const AnimatedServicesSlider = () => {
                             </div>
                             <div className="flex items-center gap-1">
                               <Star className="w-4 h-4 text-brand-amber fill-current" />
-                              <span className="font-bold text-gray-700">Identity checked</span>
+                              <span className="font-bold text-gray-700">Identity verified</span>
                             </div>
                           </div>
                           
@@ -250,7 +250,7 @@ const AnimatedServicesSlider = () => {
 
                           <div className="flex items-center gap-2">
                             <CheckCircle className="w-4 h-4 text-green-500" />
-                            <span className="text-xs text-gray-600 font-semibold">Identity checked & public liability cover confirmed</span>
+                            <span className="text-xs text-gray-600 font-semibold">Identity verified & public liability cover confirmed</span>
                           </div>
                         </div>
 

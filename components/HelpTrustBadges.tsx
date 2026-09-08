@@ -21,7 +21,7 @@ export default function HelpTrustBadges() {
           <ShieldCheckFill weight="fill" className="w-4 h-4 text-white" />
         </div>
         <div>
-          <p className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy notranslate" style={{fontWeight: 800}}>IDENTITY CHECKED</p>
+          <p className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy notranslate" style={{fontWeight: 800}}>IDENTITY VERIFIED</p>
           <p className="text-gray-600 text-sm">Photo ID verified against a live selfie</p>
           <p className="text-gray-600 text-xs mt-0.5">Business confirmed on Companies House</p>
         </div>

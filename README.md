@@ -1,6 +1,6 @@
-# MyApproved™ — Identity-Checked Tradespeople Across the UK
+# MyApproved™ — Verified Tradespeople Across the UK
 
-A platform connecting homeowners with **identity-checked** local tradespeople across the UK. Rather than list unverified ratings, MyApproved runs each tradesperson through identity verification (photo ID, proof of trade, Companies House where applicable) so customers can hire with confidence.
+A platform connecting homeowners with **verified** local tradespeople across the UK. Rather than list unverified ratings, MyApproved runs each tradesperson through identity verification (photo ID, proof of trade, Companies House where applicable) so customers can hire with confidence.
 
 ## Stack
 
@@ -20,7 +20,7 @@ A platform connecting homeowners with **identity-checked** local tradespeople ac
 
 ## Key features
 
-- **Identity checking** — tradespeople are verified (ID, trade proof, insurance) before they appear.
+- **Identity verification** — tradespeople are verified (ID, trade proof, insurance) before they appear.
 - **Smart search** — find tradespeople by trade + location/postcode.
 - **Quotes & jobs** — post a job, receive quotes, auto-assign via round-robin.
 - **CRM sync** — leads sync to GoHighLevel; payments via Stripe (through GHL).
@@ -89,4 +89,4 @@ Deployed on **Vercel** at [myapproved.com](https://myapproved.com). See `DEPLOYM
 
 ---
 
-**MyApproved™** — identity-checked tradespeople, across the UK.
+**MyApproved™** — verified tradespeople, across the UK.

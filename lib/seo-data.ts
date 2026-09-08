@@ -258,7 +258,9 @@ export function resolveLocation(slug: string) {
         kind: "neighbourhood" as const,
         name: match.name,
         region: parentCity.region,
-        population: null,
+        // A neighbourhood page serves the parent city's catchment, so its
+        // population stat truthfully reflects the surrounding area.
+        population: parentCity.population,
         priority: null,
         postcodes: [match.postalDistrict],
         parent: match.parent,
@@ -655,6 +657,50 @@ export const TRADES = [
   },
 ] as const;
 
+// ── Pricing data ─────────────────────────────────────────────────────────────
+// Single pricing source for programmatic trade/location pages. Every `TRADES`
+// slug must have an entry here, and `unit` must reflect how that trade actually
+// quotes — never a blanket "per hour" for fixed/lump-sum trades.
+export const TRADE_PRICING: Record<
+  string,
+  { low: string; high: string; unit: string; typical: string }
+> = {
+  plumber:               { low: "£40",     high: "£70",     unit: "per hour",        typical: "£150 to £400 for most jobs"              },
+  electrician:           { low: "£45",     high: "£75",     unit: "per hour",        typical: "£200 to £800 for most jobs"              },
+  "gas-engineer":        { low: "£60",     high: "£100",    unit: "per hour",        typical: "£80 to £120 for a boiler service"        },
+  builder:               { low: "£35",     high: "£60",     unit: "per hour",        typical: "£20,000 to £80,000 for extensions"       },
+  roofer:                { low: "£35",     high: "£55",     unit: "per hour",        typical: "£150 to £1,500 for repairs"              },
+  carpenter:             { low: "£35",     high: "£55",     unit: "per hour",        typical: "£300 to £2,000 for most jobs"            },
+  cleaner:               { low: "£15",     high: "£25",     unit: "per hour",        typical: "£100 to £300 for a deep clean"           },
+  plasterer:             { low: "£30",     high: "£50",     unit: "per hour",        typical: "£200 to £600 per room"                   },
+  "painter-decorator":   { low: "£25",     high: "£45",     unit: "per hour",        typical: "£400 to £1,200 per room"                 },
+  painter:               { low: "£25",     high: "£45",     unit: "per hour",        typical: "£400 to £1,200 per room"                 },
+  handyman:              { low: "£25",     high: "£40",     unit: "per hour",        typical: "£50 to £200 for most odd jobs"           },
+  locksmith:             { low: "£60",     high: "£120",    unit: "per hour",        typical: "£75 to £200 for most jobs"               },
+  landscaper:            { low: "£30",     high: "£50",     unit: "per hour",        typical: "£1,500 to £15,000 for garden design"     },
+  gardener:              { low: "£25",     high: "£40",     unit: "per hour",        typical: "£50 to £200 for regular maintenance"     },
+  "window-fitter":       { low: "£35",     high: "£55",     unit: "per hour",        typical: "£400 to £800 per window installed"       },
+  "heating-engineer":    { low: "£50",     high: "£80",     unit: "per hour",        typical: "£150 to £800 for most repairs"           },
+  "air-conditioning":    { low: "£60",     high: "£100",    unit: "per hour",        typical: "£1,500 to £5,000 for installation"       },
+  "kitchen-fitter":      { low: "£35",     high: "£55",     unit: "per hour",        typical: "£1,000 to £5,000 for fitting only"       },
+  "bathroom-fitter":     { low: "£35",     high: "£55",     unit: "per hour",        typical: "£2,000 to £8,000 for a full bathroom"    },
+  tiler:                 { low: "£30",     high: "£50",     unit: "per hour",        typical: "£300 to £800 per bathroom"               },
+  flooring:              { low: "£25",     high: "£45",     unit: "per hour",        typical: "£300 to £1,500 per room"                 },
+  "damp-specialist":     { low: "£45",     high: "£75",     unit: "per hour",        typical: "£300 to £2,500 for treatment"            },
+  "pest-control":        { low: "£80",     high: "£200",    unit: "per visit",       typical: "£80 to £300 per treatment"               },
+  "security-installer":  { low: "£50",     high: "£80",     unit: "per hour",        typical: "£400 to £2,500 for installation"         },
+  "solar-panel-installer": { low: "£500", high: "£1,500",  unit: "per day",         typical: "£5,000 to £15,000 for a full system"     },
+  "loft-conversion":     { low: "£35,000", high: "£60,000", unit: "full project",   typical: "£35,000 to £60,000 for a dormer"         },
+  conservatory:          { low: "£15,000", high: "£40,000", unit: "full project",   typical: "£15,000 to £40,000 for most conservatory projects" },
+  "driveway-specialist": { low: "£30",    high: "£50",     unit: "per hour",        typical: "£2,000 to £8,000 for a full driveway"    },
+  scaffolder:            { low: "£250",   high: "£800",    unit: "per week",        typical: "£500 to £3,000 for most projects"        },
+  "chimney-sweep":       { low: "£60",    high: "£120",    unit: "per visit",       typical: "£60 to £120 per sweep"                   },
+  "loft-insulation":     { low: "£400",   high: "£800",    unit: "full project",    typical: "£400 to £800 for standard loft"          },
+  fencer:                { low: "£25",    high: "£40",     unit: "per hour",        typical: "£500 to £3,000 for a full garden fence"  },
+  "waste-removal":       { low: "£150",   high: "£400",    unit: "per load",        typical: "£150 to £600 per clearance"              },
+  "carpet-cleaner":      { low: "£80",    high: "£200",    unit: "per room",        typical: "£80 to £300 for a full house"            },
+};
+
 // Service modifiers for long-tail keywords
 export const SERVICE_MODIFIERS = [
   "Emergency",
@@ -678,58 +724,18 @@ export const SERVICE_MODIFIERS = [
   "Industrial"
 ] as const;
 
-// Content templates for programmatic pages
-export const CONTENT_TEMPLATES = {
-  tradePage: {
-    intro: (trade: string, location: string) => `Looking for a trusted ${trade.toLowerCase()} in ${location}? MyApproved connects you with identity-checked, ${location}-based ${trade.toLowerCase()}s whose public liability insurance is confirmed and monitored.`,
-    whyChoose: (trade: string) => `Why choose MyApproved ${trade}s?`,
-    services: (trade: string, location: string) => `Popular ${trade} services in ${location}`,
-    areas: (trade: string, location: string) => `${trade} services available across ${location} and surrounding areas`,
-    faq: (trade: string, location: string) => `Common questions about hiring a ${trade.toLowerCase()} in ${location}`,
-    cta: (trade: string, location: string) => `Ready to find your ${trade.toLowerCase()} in ${location}?`,
-  },
-  
-  locationPage: {
-    intro: (location: string) => `Find trusted local tradespeople in ${location}. MyApproved connects you with identity-checked professionals across ${location} whose public liability insurance is confirmed and ready to help with your home improvement projects.`,
-    popularTrades: (location: string) => `Most popular trades in ${location}`,
-    whyLocal: (location: string) => `Why choose local ${location} tradespeople?`,
-    areas: (location: string) => `Areas we cover in and around ${location}`,
-    cta: (location: string) => `Ready to find a tradesperson in ${location}?`,
-  }
-};
-
-// Generate dynamic metadata for trade + location pages
-export function generateTradeLocationMetadata(tradeSlug: string, locationSlug: string) {
-  const trade = TRADES.find(t => t.slug === tradeSlug);
-  const location = resolveLocation(locationSlug);
-
-  if (!trade || !location) return null;
-
-  const tradeName = trade.name;
-  const locationName = location.name;
-  
-  return {
-    title: `${tradeName} in ${locationName} | Identity-Checked ${trade.plural} - Get Free Quotes | MyApproved™`,
-    description: `Find identity-checked ${tradeName.toLowerCase()}s in ${locationName}. Compare ${trade.plural.toLowerCase()}, read reviews, and get free quotes. All ${tradeName.toLowerCase()}s are identity-checked and their public liability insurance is confirmed and monitored. Book your ${locationName} ${tradeName.toLowerCase()} today.`,
-    openGraph: {
-      title: `${tradeName}s in ${locationName} | Get Free Quotes from Identity-Checked ${trade.plural}`,
-      description: `Connect with identity-checked ${tradeName.toLowerCase()}s in ${locationName}. Free quotes, customer reviews, same-day service available.`,
-    }
-  };
-}
-
 // Generate schema for trade + location
 export function generateTradeLocationSchema(tradeSlug: string, locationSlug: string) {
   const trade = TRADES.find(t => t.slug === tradeSlug);
   const location = resolveLocation(locationSlug);
 
   if (!trade || !location) return null;
-  
+
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": `${trade.name} Services in ${location.name}`,
-    "description": `Professional ${trade.name.toLowerCase()} services in ${location.name}. Identity-checked, public liability insured, and reviewed by real customers.`,
+    "description": `Professional ${trade.name.toLowerCase()} services in ${location.name}. Verified, public liability insured, and reviewed by real customers.`,
     "provider": {
       "@type": "LocalBusiness",
       "name": `MyApproved ${trade.name}s`,

@@ -124,7 +124,7 @@ export const CHECKS: VerificationCheck[] = [
     automatable: "yes",
     source: "IDV provider",
     validFor: "3 years",
-    publicLabel: "Identity checked",
+    publicLabel: "Identity verified",
   },
   {
     code: "A2",
@@ -135,7 +135,7 @@ export const CHECKS: VerificationCheck[] = [
     automatable: "yes",
     source: "IDV provider",
     validFor: "3 years",
-    publicLabel: "Identity checked",
+    publicLabel: "Identity verified",
   },
   {
     code: "A3",

@@ -15,7 +15,62 @@ import GetQuoteModal from "@/components/GetQuoteModal";
 import Link from "next/link";
 import ProgrammaticSchema from "@/components/ProgrammaticSchema";
 import AEOContentBlock from "@/components/AEOContentBlock";
+import { TRADES } from "@/lib/seo-data";
+import { graphify } from "@/components/SchemaMarkup";
 // (Header dropdown imports removed; Header is rendered globally in layout)
+
+// Search landing schema. Rendered only on the index (not in the layout) so
+// child [trade] and [trade]/[location] routes never inherit a SearchResultsPage
+// / WebPage / ItemList script of their own.
+const indexSchema = graphify([
+  {
+    "@context": "https://schema.org",
+    "@type": "SearchResultsPage",
+    "@id": "https://myapproved.com/find-tradespeople",
+    "url": "https://myapproved.com/find-tradespeople",
+    "name": "Find Verified Tradespeople UK",
+    "description": "Search and compare verified, insured local tradespeople across the UK. Filter by trade type and location.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://myapproved.com/find-tradespeople?search={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://myapproved.com" },
+        { "@type": "ListItem", "position": 2, "name": "Find Tradespeople", "item": "https://myapproved.com/find-tradespeople" }
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://myapproved.com/find-tradespeople",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", "h2", "[data-speakable]"]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Verified Tradespeople by Trade Type - UK",
+    "description": "Browse all 33 verified trade categories available on MyApproved across the United Kingdom.",
+    "url": "https://myapproved.com/find-tradespeople",
+    "numberOfItems": TRADES.length,
+    "itemListElement": TRADES.map((trade, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `Verified ${trade.plural} UK`,
+      "description": trade.description,
+      "url": `https://myapproved.com/find-tradespeople/${trade.slug}`
+    }))
+  }
+]);
 
 interface Tradesperson {
   id: string;
@@ -221,6 +276,11 @@ export default function FindTradespeople() {
 
   return (
     <div className="min-h-screen bg-brand-slate">
+      {/* Search landing JSON-LD (index only; never emitted from the layout) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(indexSchema) }}
+      />
       {/* JSON-LD structured data - trade-aware, updates as user switches trade chips */}
       <ProgrammaticSchema
         tradeType={tradeSlug}
@@ -232,7 +292,7 @@ export default function FindTradespeople() {
         <div className="mb-4 sm:mb-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:gap-4 text-xs sm:text-sm text-brand-navy">
           <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-brand-slate px-2 sm:px-3 py-1 rounded-full ring-1 ring-gray-100">
             <ShieldCheckFill weight="fill" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-navy" />
-            <span className="font-bold tracking-wide notranslate">IDENTITY CHECKED</span>
+            <span className="font-bold tracking-wide notranslate">IDENTITY VERIFIED</span>
           </span>
           <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-brand-slate px-2 sm:px-3 py-1 rounded-full ring-1 ring-gray-100">
             <SealCheckFill weight="fill" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-navy" />

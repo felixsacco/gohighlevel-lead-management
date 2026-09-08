@@ -34,7 +34,7 @@ export default function PostJobPage() {
             </div>
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-brand-amber" />
-              <span>Identity-checked tradespeople</span>
+              <span>Verified tradespeople</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-brand-amber" />

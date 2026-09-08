@@ -23,7 +23,7 @@ export const metadata = {
 const checks = [
   {
     icon: UserCheck,
-    title: 'Identity checked',
+    title: 'Identity verified',
     body: 'We confirm who the tradesperson is before they can list.',
     points: [
       'Photo ID verified against a live selfie',
@@ -85,7 +85,7 @@ export default function VerificationPage() {
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-blue-200">
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-3 py-2 rounded-full">
                 <CheckCircle className="w-4 h-4 text-[#16A34A]" />
-                <span>Identity Checked</span>
+                <span>Identity Verified</span>
               </div>
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-3 py-2 rounded-full">
                 <CreditCard className="w-4 h-4 text-brand-amber" />

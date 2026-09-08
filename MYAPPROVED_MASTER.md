@@ -27,9 +27,9 @@
 
 # 1. README.md
 
-# MyApproved™ — Identity-Checked Tradespeople Across the UK
+# MyApproved™ — Verified Tradespeople Across the UK
 
-A platform connecting homeowners with **identity-checked** local tradespeople across the UK. Rather than list unverified ratings, MyApproved runs each tradesperson through identity verification (photo ID, proof of trade, Companies House where applicable) so customers can hire with confidence.
+A platform connecting homeowners with **verified** local tradespeople across the UK. Rather than list unverified ratings, MyApproved runs each tradesperson through identity verification (photo ID, proof of trade, Companies House where applicable) so customers can hire with confidence.
 
 ## Stack
 
@@ -49,7 +49,7 @@ A platform connecting homeowners with **identity-checked** local tradespeople ac
 
 ## Key features
 
-- **Identity checking** — tradespeople are verified (ID, trade proof, insurance) before they appear.
+- **Identity verification** — tradespeople are verified (ID, trade proof, insurance) before they appear.
 - **Smart search** — find tradespeople by trade + location/postcode.
 - **Quotes & jobs** — post a job, receive quotes, auto-assign via round-robin.
 - **CRM sync** — leads sync to GoHighLevel; payments via Stripe (through GHL).
@@ -118,7 +118,7 @@ Deployed on **Vercel** at [myapproved.com](https://myapproved.com). See `DEPLOYM
 
 ---
 
-**MyApproved™** — identity-checked tradespeople, across the UK.
+**MyApproved™** — verified tradespeople, across the UK.
 
 ---
 
@@ -1198,7 +1198,7 @@ These aren't blocking but should be scheduled:
 | 5 | Location page generator | `lib/seo-data.ts` (`TRADES` array) × `LOCATIONS` | 30 × 50 = 1,500 pages | SEO — canonical trade list powering `/find-tradespeople/[trade]/[location]` |
 
 **Additional datasets referenced:**
-- `lib/seoMetadataRouter.ts` — `TRADE_PRICING` (32 entries) and `SUB_TRADE_LABELS` (30 entries), used by `[trade]/page.tsx`
+- `lib/seo-data.ts` — `TRADE_PRICING` (single pricing dataset), used by `[trade]/page.tsx` and the ProgrammaticSchema components
 - `lib/pricing/PricingCalculator.ts` — `normalizeTrade()` maps diverse names to PricingMatrix keys
 
 ---
@@ -1273,7 +1273,7 @@ Homeowners can select these trades in the AI quote form, but PricingMatrix has n
 
 ### 2. SEO TRADES missing from PricingMatrix (11 gaps)
 
-These 11 trades have full location page coverage (1,500 pages each) and structured pricing in `TRADE_PRICING` (seoMetadataRouter.ts), but are absent from `PricingMatrix.json`:
+These 11 trades have full location page coverage (1,500 pages each) and structured pricing in `TRADE_PRICING` (lib/seo-data.ts), but are absent from `PricingMatrix.json`:
 
 | Trade Slug | Has 50 Location Pages? | Has TRADE_PRICING? | In Form? | In PricingMatrix? |
 |------------|------------------------|---------------------|----------|-------------------|
@@ -2366,7 +2366,7 @@ Complete SEO transformation from basic platform to a search traffic machine targ
 - Prominent reviews section with 4.9/5 rating display
 - "3,247 verified reviews" counter
 - Real review snippets with names and locations
-- Trust badges: ID Verified, £2M Insured, 4.9/5 Rated
+- Trust badges: Identity Verified, £2M Insured, 4.9/5 Rated
 - Response time indicators (15min avg)
 - Profile count badges (127 Plumbers in London)
 

@@ -172,7 +172,7 @@ export default function ForTradespeople() {
                   <User className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
                 </div>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Identity checked</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{fontWeight: 700}}>Identity verified</h3>
               <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Your photo ID is checked against a live selfie.</p>
             </div>
 

@@ -16,7 +16,7 @@
 | 5 | Location page generator | `lib/seo-data.ts` (`TRADES` array) × `LOCATIONS` | 30 × 50 = 1,500 pages | SEO — canonical trade list powering `/find-tradespeople/[trade]/[location]` |
 
 **Additional datasets referenced:**
-- `lib/seoMetadataRouter.ts` — `TRADE_PRICING` (32 entries) and `SUB_TRADE_LABELS` (30 entries), used by `[trade]/page.tsx`
+- `lib/seo-data.ts` — `TRADE_PRICING` (single pricing dataset), used by `[trade]/page.tsx` and the ProgrammaticSchema components
 - `lib/pricing/PricingCalculator.ts` — `normalizeTrade()` maps diverse names to PricingMatrix keys
 
 ---
@@ -91,7 +91,7 @@ Homeowners can select these trades in the AI quote form, but PricingMatrix has n
 
 ### 2. SEO TRADES missing from PricingMatrix (11 gaps)
 
-These 11 trades have full location page coverage (1,500 pages each) and structured pricing in `TRADE_PRICING` (seoMetadataRouter.ts), but are absent from `PricingMatrix.json`:
+These 11 trades have full location page coverage (1,500 pages each) and structured pricing in `TRADE_PRICING` (lib/seo-data.ts), but are absent from `PricingMatrix.json`:
 
 | Trade Slug | Has 50 Location Pages? | Has TRADE_PRICING? | In Form? | In PricingMatrix? |
 |------------|------------------------|---------------------|----------|-------------------|

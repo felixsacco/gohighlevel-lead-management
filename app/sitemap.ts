@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { TRADES, LOCATIONS, ALL_NEIGHBORHOOD_SLUGS } from '@/lib/seo-data'
+import { TRADES, LOCATIONS, NEIGHBORHOODS, ALL_NEIGHBORHOOD_SLUGS } from '@/lib/seo-data'
 import { BLOG_POSTS, getAllBlogPosts } from '@/lib/blog-data'
 
 function toSlug(str: string): string {
@@ -115,11 +115,79 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  return [
+  // ── Build-time metadata uniqueness enforcement ─────────────────────────────────
+  // Search engines treat two live URLs that share one canonical (or one <title>)
+  // as duplicate content. The programmatic matrix below is large (33 trades × 57
+  // cities × 99 neighbourhoods), so a slug or display-name collision could
+  // silently emit thousands of duplicate URLs/titles. These assertions throw at
+  // build time the moment a collision appears, instead of letting duplicate
+  // metadata reach the deployed sitemap.
+  const allSitemapEntries = [
     ...staticPages,
     ...findTradespeopleTradePages,
     ...findTradespeopleLocationPages,
     ...findTradespeopleNeighbourhoodPages,
     ...blogPages,
   ]
+
+  // Canonical uniqueness: every sitemap entry must resolve to a distinct URL.
+  const canonicalSeen = new Set<string>()
+  for (const entry of allSitemapEntries) {
+    if (canonicalSeen.has(entry.url)) {
+      throw new Error(
+        `Duplicate canonical URL in sitemap: "${entry.url}" — city/neighbourhood slug or route collision.`
+      )
+    }
+    canonicalSeen.add(entry.url)
+  }
+
+  // Title uniqueness: the <title> for every trade hub, city page, neighbourhood
+  // page and blog post must be distinct. Display-name maps let the assertion
+  // reason about the real page H1 (mirroring generateMetadata), not the URL slug,
+  // so e.g. a neighbourhood sharing a city's display name is caught even though
+  // the two pages live at different URLs.
+  const cityNameBySlug = new Map(
+    LOCATIONS.map(location => [toSlug(location.name), location.name])
+  )
+  const neighbourhoodNameBySlug = new Map<string, string>()
+  for (const neighbourhoods of Object.values(NEIGHBORHOODS)) {
+    for (const neighbourhood of neighbourhoods) {
+      const slug = toSlug(neighbourhood.name)
+      if (!neighbourhoodNameBySlug.has(slug)) {
+        neighbourhoodNameBySlug.set(slug, neighbourhood.name)
+      }
+    }
+  }
+
+  const generatedTitles: string[] = []
+  for (const trade of TRADES) {
+    generatedTitles.push(`Verified ${trade.plural} Near You | Free Quotes UK | MyApproved`)
+    for (const locationSlug of allLocationSlugs) {
+      const locationName = cityNameBySlug.get(locationSlug)
+      if (!locationName) {
+        throw new Error(`City slug "${locationSlug}" has no matching LOCATIONS display name`)
+      }
+      generatedTitles.push(`Verified ${trade.plural} in ${locationName} | Free Quotes | MyApproved`)
+    }
+    for (const neighbourhoodSlug of ALL_NEIGHBORHOOD_SLUGS) {
+      const neighbourhoodName = neighbourhoodNameBySlug.get(neighbourhoodSlug)
+      if (!neighbourhoodName) {
+        throw new Error(`Neighbourhood slug "${neighbourhoodSlug}" has no matching NEIGHBORHOODS display name`)
+      }
+      generatedTitles.push(`Verified ${trade.plural} in ${neighbourhoodName} | Free Quotes | MyApproved`)
+    }
+  }
+  for (const post of getAllBlogPosts()) {
+    generatedTitles.push(post.metaTitle)
+  }
+
+  const titleSeen = new Set<string>()
+  for (const title of generatedTitles) {
+    if (titleSeen.has(title)) {
+      throw new Error(`Duplicate metadata <title>: "${title}"`)
+    }
+    titleSeen.add(title)
+  }
+
+  return allSitemapEntries
 }

@@ -38,7 +38,7 @@ const faqCategories = [
     questions: [
       {
         q: "How do I know a tradesperson is verified?",
-        a: "No tradesperson is listed until their identity, business and insurance checks have passed. We confirm their photo ID against a live selfie, check the business is registered on Companies House, and confirm their public liability insurance is genuine and in date. The IDENTITY CHECKED and INSURANCE VERIFIED badges on a profile confirm this.",
+        a: "No tradesperson is listed until their identity, business and insurance checks have passed. We confirm their photo ID against a live selfie, check the business is registered on Companies House, and confirm their public liability insurance is genuine and in date. The IDENTITY VERIFIED and INSURANCE VERIFIED badges on a profile confirm this.",
       },
       {
         q: "What if I'm not happy with the work?",

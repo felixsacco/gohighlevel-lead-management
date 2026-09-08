@@ -233,7 +233,7 @@ const TestimonialsCarousel = () => {
               <div className="flex items-center justify-center gap-1 mb-1">
                 {renderStars(5)}
               </div>
-              <div className="text-sm text-gray-600">Identity checked</div>
+              <div className="text-sm text-gray-600">Identity verified</div>
             </div>
             <div className="w-px h-12 bg-gray-300"></div>
             <div className="text-center">
@@ -341,7 +341,7 @@ const TestimonialsCarousel = () => {
                         </div>
                         <div className="flex items-center gap-1">
                           <CheckCircle className="w-3 h-3 text-blue-500" />
-                          <span>Identity Checked</span>
+                          <span>Identity Verified</span>
                         </div>
                       </div>
                     </div>
@@ -412,7 +412,7 @@ const TestimonialsCarousel = () => {
                 <Shield className="w-8 h-8" />
               </div>
               <div className="text-sm font-bold text-gray-700">MyApproved</div>
-              <div className="text-xs text-gray-500">Identity-checked tradespeople</div>
+              <div className="text-xs text-gray-500">Verified tradespeople</div>
             </div>
           </div>
         </div>

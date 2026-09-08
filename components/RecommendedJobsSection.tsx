@@ -288,7 +288,7 @@ const RecommendedJobsSection = () => {
                             </span>
                             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700">
                               <Shield className="w-3 h-3" />
-                              <span>Identity checked</span>
+                              <span>Identity verified</span>
                             </span>
                           </div>
                         </div>

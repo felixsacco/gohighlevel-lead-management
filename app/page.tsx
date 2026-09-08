@@ -259,7 +259,7 @@ export default function Home() {
       "@id": "https://myapproved.com/#website",
       "url": "https://myapproved.com",
       "name": "MyApproved",
-      "description": "Find identity-checked local tradespeople across the UK. Free quotes, real reviews, public liability insurance confirmed and monitored.",
+      "description": "Find Verified local tradespeople across the UK. Free quotes, real reviews, public liability insurance confirmed and monitored.",
       "inLanguage": "en-GB",
       "potentialAction": { "@type": "SearchAction", "target": { "@type": "EntryPoint", "urlTemplate": "https://myapproved.com/find-tradespeople?search={search_term_string}" }, "query-input": "required name=search_term_string" }
     },
@@ -270,7 +270,7 @@ export default function Home() {
       "name": "MyApproved",
       "url": "https://myapproved.com",
       "logo": { "@type": "ImageObject", "url": "https://myapproved.com/logo-icon.svg", "width": 512, "height": 512 },
-      "description": "MyApproved is a UK-wide tradespeople verification platform connecting homeowners nationwide with identity-checked and reviewed local tradespeople whose public liability insurance is confirmed and monitored.",
+      "description": "MyApproved is a UK-wide tradespeople verification platform connecting homeowners nationwide with Verified and reviewed local tradespeople whose public liability insurance is confirmed and monitored.",
       "areaServed": { "@type": "Country", "name": "United Kingdom" },
       "sameAs": [
         process.env.NEXT_PUBLIC_TWITTER_URL,
@@ -302,7 +302,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
 
-      {/* HERO SECTION — a public register for identity-checked tradespeople, not a marketing banner */}
+      {/* HERO SECTION — a public register for verified tradespeople, not a marketing banner */}
       <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden flex items-center -mt-[var(--header-height)]">
         {/* Brand background accents — subtle radial glow + amber grain */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
@@ -432,7 +432,7 @@ export default function Home() {
                       aria-hidden="true"
                     />
                   </span>
-                  <span className="font-bold tracking-wide text-white/70 notranslate">IDENTITY CHECKED</span>
+                  <span className="font-bold tracking-wide text-white/70 notranslate">IDENTITY VERIFIED</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap border-l border-white/20">
                   <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">

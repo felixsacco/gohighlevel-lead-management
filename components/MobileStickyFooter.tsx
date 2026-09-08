@@ -66,7 +66,7 @@ const MobileStickyFooter = () => {
                 <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mx-auto mb-2">
                   <Shield className="w-6 h-6 text-green-600" />
                 </div>
-                <div className="text-xs font-bold text-gray-700">Identity Checked</div>
+                <div className="text-xs font-bold text-gray-700">Identity Verified</div>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-2">
