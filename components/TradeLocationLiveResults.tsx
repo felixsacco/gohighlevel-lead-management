@@ -170,7 +170,7 @@ export default async function TradeLocationLiveResults(props: Props) {
     <section className="py-12 sm:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── Group 1: MyApproved members ── */}
-        <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-2">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6">
           MyApproved {tradePlural} in {locationName}
         </h2>
 
@@ -219,7 +219,7 @@ export default async function TradeLocationLiveResults(props: Props) {
         {/* ── Group 2: Harvested businesses ── */}
         {prospects.length > 0 && (
           <>
-            <h3 className="text-lg font-extrabold text-brand-navy mb-2">
+            <h3 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-2">
               Other businesses in {locationName}
             </h3>
             <p className="text-xs text-gray-400 mb-4 flex items-center gap-1.5">

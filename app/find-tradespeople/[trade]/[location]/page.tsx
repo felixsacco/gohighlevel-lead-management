@@ -20,11 +20,11 @@ import {
 } from "@/lib/seo-data";
 import { graphify } from "@/components/SchemaMarkup";
 import AEOContentBlock from "@/components/AEOContentBlock";
-import TradeLocationLiveResults, {
-  fetchTradeLocationProviders,
-} from "@/components/TradeLocationLiveResults";
+import TradeLocationLiveResults from "@/components/TradeLocationLiveResults";
 import HeroSearchTrigger from "@/components/HeroSearchTrigger";
 import GetQuotesButton from "@/components/GetQuotesButton";
+import ServiceTile from "@/components/ServiceTile";
+import PostcodeChip from "@/components/PostcodeChip";
 import HeroTrustBadges from "@/components/HeroTrustBadges";
 import { Button } from "@/components/ui/button";
 import SectionHeaderPill from "@/components/ui/SectionHeaderPill";
@@ -39,7 +39,6 @@ import {
   Archive,
   Armchair,
   ArrowRight,
-  BadgeCheck,
   Bath,
   BatteryCharging,
   Bird,
@@ -48,7 +47,6 @@ import {
   Building2,
   CalendarCheck,
   Cctv,
-  CheckCircle,
   ChevronRight,
   Cog,
   CookingPot,
@@ -78,7 +76,6 @@ import {
   Leaf,
   Lightbulb,
   Lock,
-  MapPin,
   Monitor,
   Mountain,
   PaintRoller,
@@ -231,21 +228,6 @@ export default async function FindTradeLocationPage({
   if (!location) notFound();
   const locationName = location.name;
 
-  // Soft-404 guard: only render this "Verified [trade] in [Location]" page when
-  // there is at least one verified member or a harvested business for the pair.
-  // A `null` fetch means Supabase was unavailable or the query errored — fail
-  // open so we never hide a real listing because of a transient read error.
-  const providers = await fetchTradeLocationProviders({
-    tradeSlug: params.trade,
-    tradeName: trade.name,
-    locationSlug: params.location,
-    locationName,
-  });
-  const hasNoProviders =
-    providers &&
-    providers.members.length === 0 &&
-    providers.prospects.length === 0;
-
   const relatedTrades = TRADES.filter(
     (t) => t.category === trade.category && t.slug !== trade.slug
   ).slice(0, 4);
@@ -255,6 +237,13 @@ export default async function FindTradeLocationPage({
         (l) => l.region === location.region && l.name !== location.name
       ).slice(0, 12)
     : [];
+
+  // Carousel rows for the "Services" band — split the trade's service list
+  // into two even/odd rows (mirroring the homepage dual marquee). Each item
+  // keeps its original index so getServiceIcon maps the right icon.
+  const serviceItems = trade.services.map((service, i) => ({ service, i }));
+  const serviceRow1 = serviceItems.filter((_, i) => i % 2 === 0);
+  const serviceRow2 = serviceItems.filter((_, i) => i % 2 === 1);
 
   // Coverage-section layout constants. "Rows" are defined against a fixed
   // column count so the initial view is deterministic regardless of trade or
@@ -529,10 +518,10 @@ export default async function FindTradeLocationPage({
                 Compare identity-checked, insured {trade.plural.toLowerCase()} in {locationName} and get free, no-obligation quotes.
               </p>
 
+              <HeroSearchTrigger suggestions={trade.services} />
+
               {/* Trust indicators — flat register entries, separated by a hairline */}
               <HeroTrustBadges />
-
-              <HeroSearchTrigger suggestions={trade.services} />
               <div className="flex justify-center mt-4">
                 <Link
                   href={`/find-tradespeople/${params.trade}`}
@@ -545,111 +534,243 @@ export default async function FindTradeLocationPage({
           </div>
         </section>
 
-        {/* ── Trust checks ── */}
-        <div className="bg-white border-b border-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
-              {[
-                { title: "Identity checked", icon: BadgeCheck },
-                { title: "Registered business", icon: CheckCircle },
-                { title: "Insurance monitored", icon: Shield },
-              ].map(({ title, icon: Icon }) => (
-                <div
-                  key={title}
-                  className="flex flex-col items-center justify-center gap-3 text-center bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all p-6"
-                >
-                  <div className="w-11 h-11 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shrink-0">
-                    <Icon className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-sm sm:text-base font-extrabold text-brand-navy" style={{ fontWeight: 700 }}>
-                    {title}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ── Places Results ──
-             Rendered as a server component; renders nothing when empty.
-             When there are no providers, show an inviting empty state instead. */}
-        {hasNoProviders ? (
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-            <div className="text-center bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-12">
-              <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy">
-                No {trade.plural.toLowerCase()} listed in {locationName} yet
+        {/* ── Services ── */}
+        <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{ fontWeight: 800 }}>
+                {trade.name} Services in {locationName}
               </h2>
-              <p className="text-slate-600 mt-3 max-w-xl mx-auto">
-                We don't currently have any verified {trade.plural.toLowerCase()}
-                {" "}in {locationName}. Be the first to list your business and reach
-                homeowners looking for {trade.plural.toLowerCase()} here.
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-brand-navy/80 max-w-3xl mx-auto font-semibold px-4">
+                Post any of these jobs and receive free quotes from verified local pros.
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <GetQuotesButton />
-                <Link
-                  href={`/find-tradespeople/${params.trade}`}
-                  className="inline-flex items-center gap-2 rounded-xl border border-brand-navy/15 px-5 py-3 text-sm font-bold text-brand-navy hover:bg-brand-navy/5 transition-colors"
-                >
-                  Browse all {trade.plural.toLowerCase()} across the UK
-                </Link>
+            </div>
+
+            <div className="space-y-3 sm:space-y-4 overflow-hidden">
+              {/* Row 1 - scrolls left */}
+              <div className="relative">
+                <div className="flex gap-3 sm:gap-4 animate-scroll hover:pause-animation">
+                  {serviceRow1.map(({ service, i }, idx) => {
+                    const { Icon } = getServiceIcon(trade.slug, i);
+                    return (
+                      <ServiceTile key={`services-row1-${idx}`}>
+                        <div className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5">
+                          <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-brand-amber flex-shrink-0" strokeWidth={1.5} />
+                          <p className="text-sm sm:text-base font-extrabold text-brand-navy leading-snug" style={{ fontWeight: 700 }}>
+                            {service}
+                          </p>
+                        </div>
+                      </ServiceTile>
+                    );
+                  })}
+                  {serviceRow1.map(({ service, i }, idx) => {
+                    const { Icon } = getServiceIcon(trade.slug, i);
+                    return (
+                      <ServiceTile key={`services-row1-dup-${idx}`} hidden>
+                        <div className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5">
+                          <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-brand-amber flex-shrink-0" strokeWidth={1.5} />
+                          <p className="text-sm sm:text-base font-extrabold text-brand-navy leading-snug" style={{ fontWeight: 700 }}>
+                            {service}
+                          </p>
+                        </div>
+                      </ServiceTile>
+                    );
+                  })}
+                </div>
+              </div>
+              {/* Row 2 - scrolls in sync */}
+              <div className="relative">
+                <div className="flex gap-3 sm:gap-4 animate-scroll hover:pause-animation">
+                  {serviceRow2.map(({ service, i }, idx) => {
+                    const { Icon } = getServiceIcon(trade.slug, i);
+                    return (
+                      <ServiceTile key={`services-row2-${idx}`}>
+                        <div className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5">
+                          <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-brand-amber flex-shrink-0" strokeWidth={1.5} />
+                          <p className="text-sm sm:text-base font-extrabold text-brand-navy leading-snug" style={{ fontWeight: 700 }}>
+                            {service}
+                          </p>
+                        </div>
+                      </ServiceTile>
+                    );
+                  })}
+                  {serviceRow2.map(({ service, i }, idx) => {
+                    const { Icon } = getServiceIcon(trade.slug, i);
+                    return (
+                      <ServiceTile key={`services-row2-dup-${idx}`} hidden>
+                        <div className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5">
+                          <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-brand-amber flex-shrink-0" strokeWidth={1.5} />
+                          <p className="text-sm sm:text-base font-extrabold text-brand-navy leading-snug" style={{ fontWeight: 700 }}>
+                            {service}
+                          </p>
+                        </div>
+                      </ServiceTile>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <TradeLocationLiveResults
-            tradeSlug={params.trade}
-            tradeName={trade.name}
-            tradePlural={trade.plural}
-            locationSlug={params.location}
-            locationName={locationName}
-          />
-        )}
 
-        {/* CTA — follow the results list */}
-        <div className="bg-white py-12 sm:py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="text-center mt-10 sm:mt-12 px-4">
+              <GetQuotesButton variant="hero" />
+              <p className="mt-3 text-sm sm:text-base text-brand-navy/70">Free, no obligation.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Why Homeowners Choose MyApproved (homepage styling) ── */}
+        <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-[#F1F5F9]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8 sm:mb-12 md:mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{ fontWeight: 800 }}>
+                Why Homeowners Choose MyApproved
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+              {/* Benefit 1 */}
+              <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
+                <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{ fontWeight: 700 }}>Vetted before they&apos;re listed</h3>
+                <p className="text-sm sm:text-base text-gray-600">Only tradespeople who pass qualification, business and insurance checks make the cut.</p>
+              </div>
+
+              {/* Benefit 2 */}
+              <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
+                <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{ fontWeight: 700 }}>A price range up front</h3>
+                <p className="text-sm sm:text-base text-gray-600">See what the job should cost before you speak to anyone.</p>
+              </div>
+
+              {/* Benefit 3 */}
+              <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
+                <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{ fontWeight: 700 }}>Booked into a real slot</h3>
+                <p className="text-sm sm:text-base text-gray-600">Your job lands in their diary, in a time slot that works for you.</p>
+              </div>
+
+              {/* Benefit 4 */}
+              <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6">
+                <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2" style={{ fontWeight: 700 }}>Free, no obligation</h3>
+                <p className="text-sm sm:text-base text-gray-600">No sign-up fee, no quote fees. You only ever pay the tradesperson.</p>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
+              <GetQuotesButton variant="hero" />
+              <p className="mt-3 text-sm sm:text-base text-brand-navy/70">Checked, priced, booked.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Our Checks (homepage styling) ── */}
+        <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8 sm:mb-12 md:mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4 sm:mb-6 px-4" style={{ fontWeight: 800 }}>
+                Our Checks
+              </h2>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-brand-navy max-w-3xl mx-auto font-semibold px-4">
+                Every tradesperson on MyApproved passes qualification, business and insurance checks before they can take on work.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+              {/* Check 1 */}
+              <div className="text-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
+                <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{ fontWeight: 700 }}>Photo ID</h3>
+                <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Photo ID checked against a live selfie.</p>
+              </div>
+
+              {/* Check 2 */}
+              <div className="text-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 2v8h8V4H6zm2 2h4v1H8V6zm0 2h4v1H8V8zm0 2h4v1H8v-1z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
+                <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{ fontWeight: 700 }}>Registered business</h3>
+                <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Registered on Companies House.</p>
+              </div>
+
+              {/* Check 3 */}
+              <div className="text-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
+                <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{ fontWeight: 700 }}>Insurance</h3>
+                <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Public liability cover, verified and monitored.</p>
+              </div>
+
+              {/* Check 4 */}
+              <div className="text-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  </div>
+                </div>
+                <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-brand-navy mb-1 sm:mb-2 notranslate" style={{ fontWeight: 700 }}>Qualifications</h3>
+                <p className="text-sm sm:text-base text-gray-700 font-medium notranslate">Qualifications checked against certificate schemes.</p>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <div className="text-center mt-8 sm:mt-10 md:mt-12 px-4">
+              <GetQuotesButton variant="hero" />
+              <p className="mt-3 text-sm sm:text-base text-brand-navy/70 notranslate">Only MyApproved tradespeople get your job.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Standalone CTA ── */}
+        <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-navyDark to-brand-navy">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-white mb-6" style={{ fontWeight: 800 }}>
+              Need a {trade.name} in {locationName} today?
+            </h2>
             <GetQuotesButton />
-            <p className="text-sm text-slate-500 mt-3">
+            <p className="text-sm text-slate-300 mt-3">
               Free · No obligation · 2-minute job post
             </p>
           </div>
-        </div>
+        </section>
 
-        {/* ── AEO Answer Block ── */}
-        <AEOContentBlock
-          tradeType={params.trade}
-          city={locationName}
-          className="rounded-none border-x-0"
-        />
-
-        {/* ── Services ── */}
-        <section className="py-16 sm:py-24 bg-brand-slate">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-2 text-center" style={{ fontWeight: 800 }}>
-              {trade.name} Services in {locationName}
+        {/* ── FAQ Accordion ── */}
+        <section className="py-12 sm:py-16 bg-white" data-speakable>
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-8 text-center" style={{ fontWeight: 800 }}>
+              Frequently Asked Questions
             </h2>
-            <p className="text-sm text-slate-600 text-center mb-8 max-w-xl mx-auto">
-              Post any of these jobs and receive free quotes from verified local pros.
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-              {trade.services.map((service, i) => {
-                const { Icon } = getServiceIcon(trade.slug, i);
-                return (
-                  <div
-                    key={i}
-                    className="bg-white rounded-xl p-4 text-center border border-gray-100 hover:border-brand-navy hover:shadow-sm transition-all"
-                  >
-                    <div className="w-10 h-10 bg-brand-slate rounded-xl flex items-center justify-center mx-auto mb-2">
-                      <Icon className="w-5 h-5 text-brand-amber" />
-                    </div>
-                    <p className="text-sm font-semibold text-brand-navy leading-snug">
-                      {service}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="mt-10 text-center">
+            <Accordion type="single" collapsible className="space-y-3">
+              {faqs.map((faq, i) => (
+                <AccordionItem
+                  key={i}
+                  value={`faq-${i}`}
+                  className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6 data-[state=open]:bg-brand-slate data-[state=open]:border-gray-200 transition-colors"
+                >
+                  <AccordionTrigger className="text-left font-semibold text-brand-navy py-4 hover:no-underline text-sm sm:text-base">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-sm leading-relaxed pb-4">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            <div className="mt-12 text-center">
               <GetQuotesButton />
               <p className="text-sm text-slate-500 mt-3">
                 Free · No obligation · 2-minute job post
@@ -658,6 +779,23 @@ export default async function FindTradeLocationPage({
           </div>
         </section>
 
+        {/* ── Places Results ──
+             Server component; renders nothing when there are no providers. */}
+        <TradeLocationLiveResults
+          tradeSlug={params.trade}
+          tradeName={trade.name}
+          tradePlural={trade.plural}
+          locationSlug={params.location}
+          locationName={locationName}
+        />
+
+        {/* ── AEO Answer Block ── */}
+        <AEOContentBlock
+          tradeType={params.trade}
+          city={locationName}
+          className="rounded-none border-x-0"
+        />
+
         {/* ── Coverage Area ── */}
         <section className="py-16 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -665,7 +803,7 @@ export default async function FindTradeLocationPage({
 
               {/* Coverage area */}
               <div className="text-center">
-                <h2 className="text-lg sm:text-xl font-extrabold text-brand-navy mb-4" style={{ fontWeight: 800 }}>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-4" style={{ fontWeight: 800 }}>
                   {trade.plural} Covering {locationName} &amp; Nearby Areas
                 </h2>
 
@@ -679,25 +817,13 @@ export default async function FindTradeLocationPage({
                         <AccordionItem value="postcodes">
                           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 mx-auto">
                             {location.postcodes.slice(0, postcodesVisibleCount).map((pc) => (
-                              <div
-                                key={pc}
-                                className="flex items-center gap-1.5 bg-brand-slate rounded-xl px-3 py-2.5 border border-gray-100 justify-center"
-                              >
-                                <MapPin className="w-3 h-3 text-brand-amber flex-shrink-0" />
-                                <span className="text-sm font-bold text-brand-navy">{pc}</span>
-                              </div>
+                              <PostcodeChip key={pc} postcode={pc} />
                             ))}
                           </div>
                           <AccordionContent>
                             <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 pt-2 mx-auto">
                               {location.postcodes.slice(postcodesVisibleCount).map((pc) => (
-                                <div
-                                  key={pc}
-                                  className="flex items-center gap-1.5 bg-brand-slate rounded-xl px-3 py-2.5 border border-gray-100"
-                                >
-                                  <MapPin className="w-3 h-3 text-brand-amber flex-shrink-0" />
-                                  <span className="text-sm font-bold text-brand-navy">{pc}</span>
-                                </div>
+                                <PostcodeChip key={pc} postcode={pc} />
                               ))}
                             </div>
                           </AccordionContent>
@@ -709,13 +835,7 @@ export default async function FindTradeLocationPage({
                     ) : (
                       <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 mb-6 mx-auto">
                         {location.postcodes.map((pc) => (
-                          <div
-                            key={pc}
-                            className="flex items-center gap-1.5 bg-brand-slate rounded-xl px-3 py-2.5 border border-gray-100 justify-center"
-                          >
-                            <MapPin className="w-3 h-3 text-brand-amber flex-shrink-0" />
-                            <span className="text-sm font-bold text-brand-navy">{pc}</span>
-                          </div>
+                          <PostcodeChip key={pc} postcode={pc} />
                         ))}
                       </div>
                     )}
@@ -790,55 +910,11 @@ export default async function FindTradeLocationPage({
           </div>
         </section>
 
-        {/* ── Standalone CTA ── */}
-        <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-navyDark to-brand-navy">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-white mb-6" style={{ fontWeight: 800 }}>
-              Need a {trade.name} in {locationName} today?
-            </h2>
-            <GetQuotesButton />
-            <p className="text-sm text-slate-300 mt-3">
-              Free · No obligation · 2-minute job post
-            </p>
-          </div>
-        </section>
-
-        {/* ── FAQ Accordion ── */}
-        <section className="py-12 sm:py-16 bg-white" data-speakable>
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-8 text-center" style={{ fontWeight: 800 }}>
-              Frequently Asked Questions
-            </h2>
-            <Accordion type="single" collapsible className="space-y-3">
-              {faqs.map((faq, i) => (
-                <AccordionItem
-                  key={i}
-                  value={`faq-${i}`}
-                  className="bg-white rounded-xl border-2 border-gray-200 px-4 sm:px-6 data-[state=open]:bg-brand-slate data-[state=open]:border-gray-200 transition-colors"
-                >
-                  <AccordionTrigger className="text-left font-semibold text-brand-navy py-4 hover:no-underline text-sm sm:text-base">
-                    {faq.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-sm leading-relaxed pb-4">
-                    {faq.a}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-            <div className="mt-12 text-center">
-              <GetQuotesButton />
-              <p className="text-sm text-slate-500 mt-3">
-                Free · No obligation · 2-minute job post
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* ── Other UK Cities ── */}
         {otherCities.length > 0 && (
           <section className="py-12 sm:py-16 bg-brand-slate">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-6 text-center" style={{ fontWeight: 800 }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-6 text-center" style={{ fontWeight: 800 }}>
                 Find {trade.plural} in Other UK Cities
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
@@ -869,7 +945,7 @@ export default async function FindTradeLocationPage({
         {relatedTrades.length > 0 && (
           <section className="py-12 sm:py-16 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-xl sm:text-2xl font-extrabold text-brand-navy mb-6 text-center" style={{ fontWeight: 800 }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy mb-6 text-center" style={{ fontWeight: 800 }}>
                 Related Trades in {locationName}
               </h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
