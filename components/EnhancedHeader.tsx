@@ -59,7 +59,7 @@ const EnhancedHeader = () => {
 
   return (
     <>
-      {/* Single fixed stack: promo bar + main nav + trust row (avoids overlap and eases body offset) */}
+      {/* Fixed stack: main nav only (avoids overlap and eases body offset) */}
       <div className="fixed top-0 left-0 right-0 z-50 flex flex-col shadow-xl">
       <header
         className="shrink-0 bg-brand-navyDark backdrop-blur-sm py-1 sm:py-2"
@@ -156,15 +156,6 @@ const EnhancedHeader = () => {
           </div>
         </div>
         
-        {/* Trust Bar - Simple Text */}
-        <div className="lg:hidden bg-brand-navyDark backdrop-blur-sm py-1.5 sm:py-2 shadow-lg">
-          <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
-            <p className="text-center text-xs sm:text-sm text-gray-300">
-              Free Quotes • No Obligation • Local Pros
-            </p>
-          </div>
-        </div>
-
       </header>
       </div>
 
