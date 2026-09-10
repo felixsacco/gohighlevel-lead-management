@@ -603,10 +603,6 @@ export default function Home() {
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
-                  <span><strong className="font-bold" style={{fontWeight: 700}}>Jobs drop into your calendar.</strong> Booking lands straight in your diary. No clashes.</span>
-                </li>
-                <li className="flex items-center gap-3 text-white text-sm sm:text-base">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-brand-amber flex-shrink-0" />
                   <span><strong className="font-bold" style={{fontWeight: 700}}>£4.99 a lead, pay as you go.</strong> Only pay when a lead's worth taking. No subscription.</span>
                 </li>
                 <li className="flex items-center gap-3 text-white text-sm sm:text-base">
