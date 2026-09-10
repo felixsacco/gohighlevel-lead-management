@@ -315,39 +315,65 @@ export default function HowItWorks() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-      {/* Hero */}
-      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] flex items-center -mt-[var(--header-height)]">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] sm:pt-[176px] pb-24 md:pt-[224px] md:pb-40">
+      {/* Hero — search-first primary action zone. The quote/search bar is the first
+          visual anchor, sitting high in the fold so the job-matching intent is
+          answered immediately. The four-step breakdown below is secondary proof. */}
+      <section className="relative bg-gradient-to-b from-brand-navyDark to-brand-navy text-white overflow-hidden min-h-[100vh] -mt-[var(--header-height)]">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[132px] sm:pt-[148px] md:pt-[168px] pb-20 sm:pb-28">
           <div className="text-center max-w-4xl mx-auto">
             <SectionHeaderPill>How It Works</SectionHeaderPill>
-            <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-[-0.02em] text-white mb-12 sm:mb-16 px-2 sm:px-4" style={{fontWeight: 800}}>
+
+            <h1 className="text-[1.9rem] sm:text-4xl md:text-5xl font-extrabold leading-[1.08] tracking-[-0.02em] text-white mb-8 sm:mb-10 px-2 sm:px-4" style={{fontWeight: 800}}>
               The Simple Way to Hire <span className="text-brand-amber">Trusted Tradespeople</span>
             </h1>
-            <p className="text-white/75 text-base sm:text-lg max-w-2xl mx-auto">
-              Describe your job in four steps, submit it, and you'll get a phone call back from a verified tradesperson who wants the job. Free for homeowners.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Search bar — exact replica of the homepage hero entry point */}
-      <section className="bg-brand-navy py-10 sm:py-14 px-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-white/70 text-sm sm:text-base mb-6">
-            Start here. This is the same search bar you'll see on the homepage.
-          </p>
-          <div className="relative max-w-3xl mx-auto">
-            <div className="relative flex flex-col sm:flex-row items-center bg-white rounded-full shadow-xl shadow-black/20 border border-white/40 cursor-pointer gap-0 sm:pl-1.5 sm:pr-1.5 sm:py-1.5 overflow-hidden">
-              <div className="flex-1 relative flex items-center w-full sm:w-auto">
-                <Search className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 ml-4 sm:ml-4 flex-shrink-0" />
-                <span className="w-full px-4 py-4 sm:py-5 text-gray-900 placeholder-gray-500 focus:outline-none rounded-full text-base sm:text-lg font-medium bg-transparent text-center sm:text-left">
-                  What service do you need?
-                </span>
+            {/* Search bar — mirrors the homepage hero entry point exactly */}
+            <div className="relative max-w-3xl mx-auto mb-12 sm:mb-20 md:mb-24 px-4">
+              <div
+                className="relative flex flex-col sm:flex-row items-center bg-white rounded-3xl sm:rounded-full shadow-xl shadow-black/20 border border-white/40 cursor-pointer gap-0 sm:pl-1.5 sm:pr-1.5 sm:py-1.5 overflow-hidden p-2 sm:p-0"
+                onClick={() => window.dispatchEvent(new Event("open-ai-quote"))}
+              >
+                <div className="flex-1 relative flex items-center w-full sm:w-auto">
+                  <Search className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 ml-4 sm:ml-4 flex-shrink-0" />
+                  <input
+                    type="text"
+                    readOnly
+                    placeholder="What service do you need?"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.dispatchEvent(new Event("open-ai-quote"));
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        window.dispatchEvent(new Event("open-ai-quote"));
+                      }
+                    }}
+                    className="w-full px-4 py-4 sm:py-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-amber focus:ring-offset-0 rounded-full text-base sm:text-lg font-medium bg-transparent cursor-pointer text-center sm:text-left"
+                  />
+                </div>
+                <AIQuoteTriggerButton
+                  className="rounded-full bg-brand-amber hover:bg-brand-amber text-brand-navyDark font-bold px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg w-full sm:w-auto self-stretch sm:self-auto mt-2 sm:mt-0 transition-all duration-150 hover:-translate-y-px hover:shadow-md"
+                >
+                  <span style={{ fontWeight: 800 }}>Get Quotes</span>
+                </AIQuoteTriggerButton>
               </div>
-              <AIQuoteTriggerButton
-                label="Get Quotes"
-                className="rounded-full bg-brand-amber hover:bg-brand-amber text-brand-navyDark font-bold px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg w-auto sm:w-auto self-stretch sm:self-auto m-2 sm:m-0 transition-all duration-150 hover:-translate-y-px hover:shadow-md"
-              />
+            </div>
+
+            {/* Trust indicators — mirrors the homepage hero register */}
+            <div className="inline-flex flex-wrap justify-center text-xs sm:text-sm md:text-base px-2 sm:px-4">
+              <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap">
+                <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">
+                  <ShieldCheckFill weight="fill" className="h-4 w-4 sm:h-5 sm:w-5 inline-block" aria-hidden="true" />
+                </span>
+                <span className="font-bold tracking-wide text-white/70 notranslate">IDENTITY VERIFIED</span>
+              </div>
+              <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-1 sm:py-2 text-white/70 whitespace-nowrap border-l border-white/20">
+                <span className="text-white/70 text-base sm:text-lg font-bold leading-none" aria-hidden="true">
+                  <SealCheckFill weight="fill" className="h-4 w-4 sm:h-5 sm:w-5 inline-block" aria-hidden="true" />
+                </span>
+                <span className="font-bold tracking-wide text-white/70 notranslate">INSURANCE VERIFIED</span>
+              </div>
             </div>
           </div>
         </div>
